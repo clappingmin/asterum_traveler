@@ -1,5 +1,8 @@
+@import './font.css';
+
 * {
   box-sizing: border-box;
+  font-family: 'pretendard', sans-serif !important;
 }
 
 body {
