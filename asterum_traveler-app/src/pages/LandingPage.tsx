@@ -4,8 +4,6 @@ function LandingPage() {
   return <Wrapper>Landing</Wrapper>;
 }
 
-const Wrapper = styled.div`
-  height: 5000px;
-`;
+const Wrapper = styled.div``;
 
 export default LandingPage;
