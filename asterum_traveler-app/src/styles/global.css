@@ -1,5 +1,6 @@
 @import './font.css';
 @import './variables.css';
+@import './common.css';
 
 * {
   box-sizing: border-box;

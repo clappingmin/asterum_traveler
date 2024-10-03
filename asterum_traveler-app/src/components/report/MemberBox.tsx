@@ -1,25 +1,25 @@
 import styled from 'styled-components';
 import { Member } from '../../shared/interfaces/common.interface';
 import { MEMBER_ENGLISH_NAME, MEMBER_KOREAN_NAME } from '../../shared/constants';
-import yejunImage from '../../assets/images/member/yejun.png';
-import noahImage from '../../assets/images/member/noah.png';
-import bambyImage from '../../assets/images/member/bamby.png';
-import eunhoImage from '../../assets/images/member/eunho.png';
-import haminImage from '../../assets/images/member/hamin.png';
+import yejunImage from '../../assets/images/member/profile/yejun.png';
+import noahImage from '../../assets/images/member/profile/noah.png';
+import bambyImage from '../../assets/images/member/profile/bamby.png';
+import eunhoImage from '../../assets/images/member/profile/eunho.png';
+import haminImage from '../../assets/images/member/profile/hamin.png';
+
+const MEMBER_IMAGE = {
+  yejun: yejunImage,
+  noah: noahImage,
+  bamby: bambyImage,
+  eunho: eunhoImage,
+  hamin: haminImage,
+};
 
 interface MemberBoxProps {
   member: Member;
 }
 
 function MemberBox({ member }: MemberBoxProps) {
-  const MEMBER_IMAGE = {
-    yejun: yejunImage,
-    noah: noahImage,
-    bamby: bambyImage,
-    eunho: eunhoImage,
-    hamin: haminImage,
-  };
-
   return (
     <Wrapper>
       <MemberImg width="64" height="64" src={MEMBER_IMAGE[member]}></MemberImg>
