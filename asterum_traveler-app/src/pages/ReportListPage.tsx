@@ -105,7 +105,7 @@ const PostContainer = styled.div`
 const Post = styled.div`
   width: 100%;
   aspect-ratio: 1;
-  background-color: pink;
+  background-color: #d9d9d9;
 `;
 
 export default ReportListPage;
