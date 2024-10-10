@@ -1,15 +1,17 @@
 {
   "name": "asterum_traveler",
-  "version": "0.0.0",
-  "description": "### 1. 사용 도구",
+  "version": "1.0.0",
   "main": "index.js",
-  "workspaces": [
-    "packages/*"
-  ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "repository": "https://github.com/clappingmin/asterum_traveler.git",
+  "author": "Sumin Park <clappingmin@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ]
 }

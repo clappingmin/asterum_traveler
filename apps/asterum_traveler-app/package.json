@@ -1,5 +1,5 @@
 {
-  "name": "asterum_traveler-app",
+  "name": "app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@asterum/ui": "file:packages/ui",
     "@tanstack/react-query": "^5.59.0",
     "react": "^18.2.0",
     "react-calendar": "^5.0.0",
