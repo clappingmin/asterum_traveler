@@ -1,4 +1,6 @@
 @import './font.css';
+@import './variables.css';
+@import './common.css';
 
 * {
   box-sizing: border-box;
@@ -7,5 +9,5 @@
 
 body {
   background-color: #000;
-  color: #fff;
+  color: var(--color);
 }

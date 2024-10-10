@@ -2,9 +2,10 @@ import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import LandingPage from './pages/LandingPage';
 import ReportListPage from './pages/ReportListPage';
-import ReportDetailPage from './pages/ReportDetailPage';
+
 import DearPage from './pages/DearPage';
 import SchedulePage from './pages/SchedulePage';
+import ReportRouter from './pages/ReportRouter';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
         path: 'report',
         element: <ReportListPage />,
       },
-      { path: 'report/:pageId', element: <ReportDetailPage /> },
+      { path: 'report/:pageType/:pageId', element: <ReportRouter /> },
       { path: 'dear', element: <DearPage /> },
       { path: 'schedule', element: <SchedulePage /> },
     ],
