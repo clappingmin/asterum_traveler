@@ -1,3 +1,5 @@
 declare module '@asterum/ui' {
-  export const TestButton: JSX.Element;
+  import { FC } from 'react';
+
+  export const TestButton: FC;
 }
