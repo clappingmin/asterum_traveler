@@ -1,9 +1,11 @@
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
+import { TestButton } from '@asterum/ui';
 
 function App() {
   return (
     <Wrapper>
+      <TestButton />
       <Outlet />
     </Wrapper>
   );
