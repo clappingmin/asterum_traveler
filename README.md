@@ -4,6 +4,7 @@
 
 - 빌드 도구 : Vite
 - 프레임워크 : React
+- 배포 : Vercel
 
 ### 2. Git Commit Convention
 

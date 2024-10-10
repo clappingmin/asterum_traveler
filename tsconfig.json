@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@asterum/ui": ["packages/ui"],
+      "*": ["node_modules/*"]
+    },
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true
+  },
+  "include": ["packages/**/*", "apps/**/*"],
+  "exclude": ["node_modules"]
+}

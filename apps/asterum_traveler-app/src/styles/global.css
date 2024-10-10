@@ -1,0 +1,13 @@
+@import './font.css';
+@import './variables.css';
+@import './common.css';
+
+* {
+  box-sizing: border-box;
+  font-family: 'pretendard', sans-serif !important;
+}
+
+body {
+  background-color: #000;
+  color: var(--color);
+}
