@@ -1,8 +1,22 @@
 import styled from 'styled-components';
 import pencilImg from '../../assets/images/pencil.png';
+import { Modal, ModalContent, ModalOverlay, useDisclosure } from '@chakra-ui/react';
+import ModalWriteLetter from './ModalWriteLetter';
 
 function WriteLetterButton() {
-  return <WritePencil width={1600} height={64} src={pencilImg} />;
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  return (
+    <>
+      <WritePencil width={1600} height={64} src={pencilImg} onClick={onOpen} />
+      <Modal isOpen={isOpen} onClose={onClose} isCentered closeOnOverlayClick={true}>
+        <ModalOverlay bg={'rgba(0,0,0,0.5)'} />
+        <ModalContent w={'fit-content'} bg={'transparent'}>
+          <ModalWriteLetter />
+        </ModalContent>
+      </Modal>
+    </>
+  );
 }
 
 const WritePencil = styled.img`
