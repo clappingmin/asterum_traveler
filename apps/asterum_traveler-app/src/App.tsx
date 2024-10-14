@@ -4,6 +4,7 @@ import Header from './components/global/Header';
 import Footer from './components/global/Footer';
 import { useEffect, useRef } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
+import { theme } from '@asterum/ui';
 
 /**
  * 화면 크기가 변경됐을 때
@@ -36,7 +37,7 @@ function App() {
   }, []);
 
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Wrapper ref={wrapperRef}>
         <Header />
         <Container>

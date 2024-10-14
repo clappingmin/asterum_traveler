@@ -10,8 +10,8 @@ function WriteLetterButton() {
     <>
       <WritePencil width={1600} height={64} src={pencilImg} onClick={onOpen} />
       <Modal isOpen={isOpen} onClose={onClose} isCentered closeOnOverlayClick={true}>
-        <ModalOverlay bg={'rgba(0,0,0,0.5)'} />
-        <ModalContent w={'fit-content'} bg={'transparent'}>
+        <ModalOverlay />
+        <ModalContent>
           <ModalWriteLetter />
         </ModalContent>
       </Modal>
