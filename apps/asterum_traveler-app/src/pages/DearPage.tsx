@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import dearNoahImg from '../assets/images/member/dear_noah.png';
 import WriteLetterButton from '../components/dear/WriteLetterButton';
+import LettersView from '../components/dear/LettersView';
 
 function DearPage() {
   return (
@@ -12,6 +13,7 @@ function DearPage() {
       <WriteButtonWrapper>
         <WriteLetterButton />
       </WriteButtonWrapper>
+      <LettersView />
     </Wrapper>
   );
 }
