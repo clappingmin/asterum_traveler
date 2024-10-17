@@ -104,7 +104,7 @@ const WriterInfoInput = styled.input`
   line-height: 24px;
 
   &::placeholder {
-    color: #7f8082;
+    color: var(--gray);
   }
 `;
 
@@ -128,7 +128,7 @@ const LetterTextarea = styled.textarea`
   resize: none;
 
   &::placeholder {
-    color: #7f8082;
+    color: var(--gray);
   }
 `;
 

@@ -70,7 +70,7 @@ const Writer = styled.div`
 
 const WriteDate = styled.div`
   margin-top: 8px;
-  color: #7f8082;
+  color: var(--gray);
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;

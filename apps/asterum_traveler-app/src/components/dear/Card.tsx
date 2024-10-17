@@ -101,7 +101,7 @@ const CardTitle = styled.div`
 
 const CardDate = styled.div`
   margin-top: 8px;
-  color: #7f8082;
+  color: var(--gray);
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
