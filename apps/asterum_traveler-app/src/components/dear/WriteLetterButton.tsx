@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import pencilImg from '../../assets/images/pencil.png';
+import pencilImg from '../../assets/images/dear/pencil.png';
 import { Modal, ModalContent, ModalOverlay, useDisclosure } from '@chakra-ui/react';
 import ModalWriteLetter from './ModalWriteLetter';
 

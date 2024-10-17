@@ -4,7 +4,7 @@ import icon_box_top_left from '../../assets/icons/box_top_left.svg';
 import icon_box_top_right from '../../assets/icons/box_top_right.svg';
 import icon_box_bottom_left from '../../assets/icons/box_bottom_left.svg';
 import icon_box_bottom_right from '../../assets/icons/box_bottom_right.svg';
-import icon_write_letter from '../../assets/images/write_letter.png';
+import icon_write_letter from '../../assets/images/dear/write_letter.png';
 import icon_select_color from '../../assets/icons/select_color.svg';
 
 function ModalWriteLetter() {
