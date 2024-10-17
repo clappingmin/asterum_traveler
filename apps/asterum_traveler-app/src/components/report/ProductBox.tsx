@@ -70,7 +70,7 @@ const ProductName = styled.span`
 `;
 
 const BrandName = styled.span`
-  color: #7f8082;
+  color: var(--gray);
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;

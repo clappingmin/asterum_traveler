@@ -78,7 +78,7 @@ const Tabs = styled.div`
 `;
 
 const Tab = styled.div`
-  color: #7f8082;
+  color: var(--gray);
   font-size: 32px;
   font-weight: 400;
   line-height: 48px;
