@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Header from './components/global/Header';
 import Footer from './components/global/Footer';
 import { useEffect, useRef } from 'react';
+import { ChakraProvider } from '@chakra-ui/react';
+import { theme } from '@asterum/ui';
 
 /**
  * 화면 크기가 변경됐을 때
@@ -35,21 +37,24 @@ function App() {
   }, []);
 
   return (
-    <Wrapper ref={wrapperRef}>
-      <Header />
-      <Container>
-        <PageContainer>
-          <Outlet />
-        </PageContainer>
-        <Footer />
-      </Container>
-    </Wrapper>
+    <ChakraProvider theme={theme}>
+      <Wrapper ref={wrapperRef}>
+        <Header />
+        <Container>
+          <PageContainer>
+            <Outlet />
+          </PageContainer>
+          <Footer />
+        </Container>
+      </Wrapper>
+    </ChakraProvider>
   );
 }
 
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
+  overflow-x: hidden;
   overflow-y: auto;
 `;
 
