@@ -54,8 +54,8 @@
   flex: 0 0 auto;
 }
 
-.react-calendar__month-view__days__day--neighboringMonth > abbr {
-  color: var(--gray);
+.react-calendar__month-view__days__day--neighboringMonth * {
+  color: var(--gray) !important;
 }
 
 /* 오늘 */
