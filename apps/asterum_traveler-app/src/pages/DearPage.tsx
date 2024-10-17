@@ -52,11 +52,4 @@ const WriteButtonWrapper = styled.div`
   margin: 32px 0;
 `;
 
-const MemosContainer = styled.div`
-  width: 100%;
-  display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(4, 1fr);
-`;
-
 export default DearPage;
