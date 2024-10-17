@@ -52,7 +52,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   width: var(--width);
   margin: auto;
-  padding: 64px;
+  padding: 64px 0;
 `;
 
 const Title = styled.div`

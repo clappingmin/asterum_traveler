@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import yejunIcon from '../../assets/images/member/icon_heart/yejun.png';
-import noahIcon from '../../assets/images/member/icon_heart/noah.png';
-import bambyIcon from '../../assets/images/member/icon_heart/bamby.png';
-import eunhoIcon from '../../assets/images/member/icon_heart/eunho.png';
-import haminIcon from '../../assets/images/member/icon_heart/hamin.png';
+import yejunIcon from '../../assets/images/member/heart/yejun.png';
+import noahIcon from '../../assets/images/member/heart/noah.png';
+import bambyIcon from '../../assets/images/member/heart/bamby.png';
+import eunhoIcon from '../../assets/images/member/heart/eunho.png';
+import haminIcon from '../../assets/images/member/heart/hamin.png';
 import { Member } from '../../shared/interfaces/common.interface';
 
 const MEMBER_ICON = {
