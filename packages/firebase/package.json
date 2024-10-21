@@ -1,0 +1,14 @@
+{
+  "name": "@asterum/firebase",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "packageManager": "yarn@4.5.0",
+  "peerDependencies": {
+    "firebase": "*"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}
