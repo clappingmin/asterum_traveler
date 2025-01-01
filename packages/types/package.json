@@ -2,7 +2,11 @@
   "name": "@asterum/types",
   "version": "1.0.0",
   "main": "index.js",
+  "types": "index.d.ts",
   "license": "MIT",
   "private": true,
-  "packageManager": "yarn@4.5.0"
+  "packageManager": "yarn@4.5.0",
+  "peerDependencies": {
+    "typescript": "*"
+  }
 }
