@@ -21,19 +21,19 @@ const router = createBrowserRouter([
         element: <ReportListPage />,
       },
       {
-        path: 'report/p/:productId',
+        path: 'report/product/:productId',
         element: <ProductDetailPage />,
       },
       {
-        path: 'report/p/:productId/edit',
+        path: 'report/edit/product/:productId?',
         element: <ProductEditPage />,
       },
       {
-        path: 'report/r/:reportId',
+        path: 'report/report/:reportId',
         element: <ReportDetailPage />,
       },
       {
-        path: 'report/r/:reportId/edit',
+        path: 'report/edit/report/:reportId?',
         element: <ReportEditPage />,
       },
     ],
