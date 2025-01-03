@@ -19,12 +19,12 @@ export const imageUpload = async (image: File) => {
  * @param {ProductBase} prdocut
  */
 export async function addProduct(prdocut: ProductBase) {
-  const productId = uuidv4();
+  try {
+    const productId = uuidv4();
 
-  console.log(productId);
-
-  setDoc(doc(db, 'products', productId), { id: productId, ...prdocut }).catch((e) => {
-    console.log(e);
-    // TODO: 에러 핸들링
-  });
+    await setDoc(doc(db, 'products', productId), { id: productId, ...prdocut });
+    return productId;
+  } catch (e) {
+    throw e;
+  }
 }

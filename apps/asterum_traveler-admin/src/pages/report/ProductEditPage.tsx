@@ -1,16 +1,34 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import * as api from '../../shared/services/reportService';
+import { ProductBase } from '@asterum/types';
+import { queryClient } from '../../main';
+import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 function ProductEditPage() {
   const [productName, setProductName] = useState('');
   const [productBrand, setProductBrand] = useState('');
-  const [tumbnail, setTumbnail] = useState<File | null>(null);
+  const [thumbnail, setThumbnail] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  const addProduct = useMutation({
+    mutationFn: (product: ProductBase) => api.addProduct(product),
+    onSuccess: (productId: string) => {
+      queryClient.invalidateQueries({ queryKey: ['product', productId] });
+      alert('제품 추가 완료');
+      navigate(-1);
+    },
+    onError: () => {
+      alert('제품 추가 실패!');
+    },
+  });
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setTumbnail(file);
+      setThumbnail(file);
 
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -18,7 +36,21 @@ function ProductEditPage() {
     }
   };
 
-  const saveProduct = () => {
+  const saveProduct = async () => {
+    // TODO: 에러 처리
+    if (!thumbnail || !productName || !productBrand) return;
+
+    const uploadedTumbnailUrl = await api.imageUpload(thumbnail);
+
+    if (!uploadedTumbnailUrl) return;
+
+    const product: ProductBase = {
+      productName,
+      productBrand,
+      productTumbnail: uploadedTumbnailUrl,
+    };
+
+    addProduct.mutate(product);
     /**
      * TODO: 제품 저장후 성공시 이전 페이지로 이동
      */
