@@ -1,10 +1,13 @@
 import { Member } from './common.interface';
 
-export interface Product {
-  id: string;
+export interface ProductBase {
   productName: string;
   productBrand: string; // 이미지 리포트에서 태그로 들어감
   productTumbnail: string;
+}
+
+export interface Product extends ProductBase {
+  id: string;
 }
 
 export type ReportType = 'image' | 'live';
@@ -20,8 +23,7 @@ export type ReportType = 'image' | 'live';
 
 export type ReortCategory = 'album' | 'fashion' | 'game' | 'live' | 'etc';
 
-export interface Report {
-  id: string;
+export interface ReportBase {
   reportMembers: string[];
   reportTumbnail: string;
   includedProducts: { productId: string; members: Member[] };
@@ -29,4 +31,8 @@ export interface Report {
   reportType: ReportType;
   category: ReortCategory;
   reportTitle?: string; // 라이브 리포트에서만 사용
+}
+
+export interface Report extends ReportBase {
+  id: string;
 }
