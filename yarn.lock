@@ -2295,7 +2295,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-query-devtools@npm:^5.59.0, @tanstack/react-query-devtools@npm:^5.59.13":
+"@tanstack/react-query-devtools@npm:^5.59.0":
   version: 5.62.11
   resolution: "@tanstack/react-query-devtools@npm:5.62.11"
   dependencies:
@@ -2304,6 +2304,18 @@ __metadata:
     "@tanstack/react-query": ^5.62.11
     react: ^18 || ^19
   checksum: 10c0/ccb69e7027ad2c65a943e2dbe2b96166a1eba13b54314678a3535c080a8a32ce9127523840cd514083bddf1c4e7189bbccdab6ebe4c0f9ef1eeead8ef9d3e4ea
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query-devtools@npm:^5.62.14":
+  version: 5.62.14
+  resolution: "@tanstack/react-query-devtools@npm:5.62.14"
+  dependencies:
+    "@tanstack/query-devtools": "npm:5.62.9"
+  peerDependencies:
+    "@tanstack/react-query": ^5.62.14
+    react: ^18 || ^19
+  checksum: 10c0/3ecd5cbc393c333d3fd0923ebe33006b84ff74d2dda269cf13ba5c2341ae4b5601971f0ce1f67f83c93c98d2ea9dec766ecc5cd9e8c5cb055f40b0db20ec000f
   languageName: node
   linkType: hard
 
@@ -2784,7 +2796,7 @@ __metadata:
     "@emotion/react": "npm:^11.13.3"
     "@emotion/styled": "npm:^11.13.0"
     "@tanstack/react-query": "npm:^5.62.14"
-    "@tanstack/react-query-devtools": "npm:^5.59.13"
+    "@tanstack/react-query-devtools": "npm:^5.62.14"
     "@types/react": "npm:^18.3.11"
     "@types/react-dom": "npm:^18.3.1"
     "@typescript-eslint/eslint-plugin": "npm:^7.2.0"
