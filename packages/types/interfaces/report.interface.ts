@@ -4,6 +4,7 @@ export interface ProductBase {
   productName: string;
   productBrand: string; // 이미지 리포트에서 태그로 들어감
   productTumbnail: string;
+  productUrl: string;
 }
 
 export interface Product extends ProductBase {
@@ -31,6 +32,7 @@ export interface ReportBase {
   reportType: ReportType;
   category: ReortCategory;
   reportTitle?: string; // 라이브 리포트에서만 사용
+  reportLiveUrl?: string; // 라이브 리포트에서만 사용
 }
 
 export interface Report extends ReportBase {

@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 function ProductEditPage() {
   const [productName, setProductName] = useState('');
   const [productBrand, setProductBrand] = useState('');
+  const [productUrl, setProductUrl] = useState('');
   const [thumbnail, setThumbnail] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ function ProductEditPage() {
 
   const saveProduct = async () => {
     // TODO: 에러 처리
-    if (!thumbnail || !productName || !productBrand) return;
+    if (!thumbnail || !productName || !productBrand || !productUrl) return;
 
     const uploadedTumbnailUrl = await api.imageUpload(thumbnail);
 
@@ -47,6 +48,7 @@ function ProductEditPage() {
     const product: ProductBase = {
       productName,
       productBrand,
+      productUrl,
       productTumbnail: uploadedTumbnailUrl,
     };
 
@@ -81,6 +83,15 @@ function ProductEditPage() {
             placeholder="productBrand"
             value={productBrand}
             onChange={(e) => setProductBrand(e.target.value)}
+          />
+        </InputWrapper>
+        <InputWrapper>
+          <InfoLabel htmlFor="productBrand">제품 주소</InfoLabel>
+          <InfoInput
+            id="productUrl"
+            placeholder="productUrl"
+            value={productUrl}
+            onChange={(e) => setProductUrl(e.target.value)}
           />
         </InputWrapper>
         <ConfirmButton onClick={saveProduct}>추가하기</ConfirmButton>
