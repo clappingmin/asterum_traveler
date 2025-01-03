@@ -4,15 +4,15 @@ import styled from 'styled-components';
 
 function App() {
   const location = useLocation();
-  const [pageTitle, setPageTitle] = useState('Dashboard');
+  const [pageTitle, setPageTitle] = useState('Dashboard Overview');
 
   useEffect(() => {
     changePageTitle(location.pathname);
   }, [location]);
 
   const changePageTitle = (path: string) => {
-    if (path === '/') setPageTitle('Dashboard');
-    else if (path.startsWith('/report')) setPageTitle('Report');
+    if (path === '/') setPageTitle('Dashboard Overview');
+    else if (path.startsWith('/report')) setPageTitle('Report Overview');
     else setPageTitle('Page');
   };
 
@@ -35,7 +35,7 @@ function App() {
       <Container>
         <DecoBox />
         <PageTopContainer>
-          <PageTitle>{pageTitle} Overview</PageTitle>
+          <PageTitle>{pageTitle}</PageTitle>
           <SearchBar placeholder="Search for anything"></SearchBar>
         </PageTopContainer>
         <RouterBox>
@@ -119,6 +119,7 @@ const PageTopContainer = styled.div`
   position: relative;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const PageTitle = styled.div`
@@ -147,9 +148,13 @@ const SearchBar = styled.input`
 `;
 
 const RouterBox = styled.div`
+  margin-top: 45px;
   width: 100%;
-  min-height: 100%;
   position: relative;
+  border-radius: 15px;
+  background: var(--black, linear-gradient(153deg, #000 18.75%, rgba(0, 0, 0, 0) 100%));
+  backdrop-filter: blur(20px);
+  padding: 22px;
 `;
 
 export default App;
