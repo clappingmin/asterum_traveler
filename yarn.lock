@@ -2791,10 +2791,6 @@ __metadata:
   resolution: "admin@workspace:apps/asterum_traveler-admin"
   dependencies:
     "@asterum/types": "workspace:^"
-    "@asterum/ui": "workspace:^"
-    "@chakra-ui/react": "npm:^2.10.2"
-    "@emotion/react": "npm:^11.13.3"
-    "@emotion/styled": "npm:^11.13.0"
     "@tanstack/react-query": "npm:^5.62.14"
     "@tanstack/react-query-devtools": "npm:^5.62.14"
     "@types/react": "npm:^18.3.11"
@@ -2806,7 +2802,6 @@ __metadata:
     eslint-plugin-react-hooks: "npm:^4.6.0"
     eslint-plugin-react-refresh: "npm:^0.4.6"
     firebase: "npm:^10.14.1"
-    framer-motion: "npm:^11.11.8"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
     react-router-dom: "npm:^6.27.0"
