@@ -3,7 +3,7 @@ import { Member } from './common.interface';
 export interface ProductBase {
   productName: string;
   productBrand: string; // 이미지 리포트에서 태그로 들어감
-  productTumbnail: string;
+  productThumbnail: string;
   productUrl: string;
 }
 

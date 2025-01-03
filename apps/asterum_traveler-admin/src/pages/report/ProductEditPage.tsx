@@ -49,7 +49,7 @@ function ProductEditPage() {
       productName,
       productBrand,
       productUrl,
-      productTumbnail: uploadedTumbnailUrl,
+      productThumbnail: uploadedTumbnailUrl,
     };
 
     addProduct.mutate(product);
