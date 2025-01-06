@@ -8,7 +8,8 @@ import { Product } from '@asterum/types';
 function ReportListPage() {
   const [view, setView] = useState<'product' | 'report'>('product');
 
-  // TODO isLoading으로 로딩 넣기
+  // TODO: isLoading으로 로딩 넣기
+  // TODO: product, report 컴포넌트 분리하기
   const { data: products } = useQuery<Product[]>({
     queryKey: ['products'],
     queryFn: async () => {
