@@ -1,14 +1,14 @@
-import { Product } from './../../../../../packages/types/interfaces/report.interface';
+import { Product, ReportBase } from './../../../../../packages/types/interfaces/report.interface';
 import { v4 as uuidv4 } from 'uuid';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { db, storage } from '../firebaseConfig';
 import { collection, doc, getDocs, query, setDoc } from 'firebase/firestore';
 import { ProductBase } from '@asterum/types';
 
-export const imageUpload = async (image: File) => {
+export const imageUpload = async (image: File, saveType: 'products' | 'reports') => {
   if (!image) return;
 
-  const storageRef = ref(storage, `products/${image.name}`);
+  const storageRef = ref(storage, `${saveType}/${image.name}`);
   await uploadBytes(storageRef, image);
   const downloadURL = await getDownloadURL(storageRef);
 
@@ -53,5 +53,22 @@ export async function getProducts(): Promise<Product[]> {
     return products;
   } catch (e) {
     return [];
+  }
+}
+
+/**
+ *  리포트 추가하기
+ * @param {ReportBase} report
+ * @return {Promise<string>} product id
+ */
+export async function addReport(report: ReportBase): Promise<string> {
+  try {
+    const reportId = uuidv4();
+
+    await setDoc(doc(db, 'reports', reportId), { id: reportId, ...report });
+    return reportId;
+  } catch (e) {
+    console.log(e);
+    throw e;
   }
 }

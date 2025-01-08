@@ -41,7 +41,7 @@ function ProductEditPage() {
     // TODO: 에러 처리
     if (!thumbnail || !productName || !productBrand || !productUrl) return;
 
-    const uploadedThumbnailUrl = await api.imageUpload(thumbnail);
+    const uploadedThumbnailUrl = await api.imageUpload(thumbnail, 'products');
 
     if (!uploadedThumbnailUrl) return;
 
