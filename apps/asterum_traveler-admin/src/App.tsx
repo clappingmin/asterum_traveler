@@ -99,6 +99,7 @@ const Menu = styled(Link)<MenuProps>`
 `;
 
 const Container = styled.div`
+  min-width: 780px;
   flex: 1 1 auto;
   position: relative;
   padding: 30px;

@@ -17,7 +17,7 @@ function ProductEditPage() {
   const addProduct = useMutation({
     mutationFn: (product: ProductBase) => api.addProduct(product),
     onSuccess: (productId: string) => {
-      queryClient.invalidateQueries({ queryKey: ['product', productId] });
+      queryClient.invalidateQueries({ queryKey: ['products', productId] });
       alert('제품 추가 완료');
       navigate(-1);
     },
