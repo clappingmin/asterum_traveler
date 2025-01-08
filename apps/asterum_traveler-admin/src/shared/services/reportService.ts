@@ -1,9 +1,8 @@
-import { Product, ReportBase } from './../../../../../packages/types/interfaces/report.interface';
 import { v4 as uuidv4 } from 'uuid';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { db, storage } from '../firebaseConfig';
 import { collection, doc, getDocs, query, setDoc } from 'firebase/firestore';
-import { ProductBase } from '@asterum/types';
+import { Product, Report, ReportBase, ProductBase } from '@asterum/types';
 
 export const imageUpload = async (image: File, saveType: 'products' | 'reports') => {
   if (!image) return;
@@ -70,5 +69,35 @@ export async function addReport(report: ReportBase): Promise<string> {
   } catch (e) {
     console.log(e);
     throw e;
+  }
+}
+
+/**
+ * 리포트 가져오기
+ * @return {Promise<Report[]>}
+ */
+export async function getReports(): Promise<Report[]> {
+  try {
+    const q = query(collection(db, 'reports'));
+
+    const querySnapshot = await getDocs(q);
+    const reports: Report[] = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        reportType: data.reportType ?? '',
+        category: data.category ?? 'etc',
+        reportMembers: data.reportMembers ?? [],
+        reportThumbnail: data.reportThumbnail ?? '',
+        includedProducts: data.includedProducts ?? [],
+        reportDate: { display: data.display ?? '', usage: data.usage ?? '' },
+        liveTitle: data.liveTitle ?? '',
+        reportUrl: data.reportUrl ?? '',
+      } as Report;
+    });
+
+    return reports;
+  } catch (e) {
+    return [];
   }
 }
