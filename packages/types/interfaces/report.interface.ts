@@ -25,13 +25,13 @@ export type ReportType = 'image' | 'live';
 export type ReortCategory = 'album' | 'fashion' | 'game' | 'live' | 'etc';
 
 export interface ReportBase {
-  reportMembers: string[];
+  reportType: ReportType; // 'image' | 'live'
+  reportMembers: Member[];
   reportTumbnail: string;
-  includedProducts: { productId: string; members: Member[] };
+  includedProducts: Map<string, Member[]>;
   reportDate: { display: string; usage: string };
-  reportType: ReportType;
   category: ReortCategory;
-  reportTitle?: string; // 라이브 리포트에서만 사용
+  liveTitle?: string; // 라이브 리포트에서만 사용
   reportUrl?: string; // 바로가기 연결할 주소
 }
 
