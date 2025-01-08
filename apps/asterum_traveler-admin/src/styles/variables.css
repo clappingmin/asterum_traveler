@@ -1,0 +1,24 @@
+:root {
+  --width: 1600px;
+  --header-height: 128px;
+
+  --color: #ffffff;
+  --gray: #7f8082;
+  --modal-black: #242424;
+  --report: #00d6a3;
+  --dear: #ec1d26;
+  --schedule: #4a41fe;
+
+  --letter-pink: #d400c4;
+  --letter-red: #ec1d26;
+  --letter-orange: #fd5f22;
+  --letter-yellow: #f8b700;
+  --letter-green: #00d6a3;
+  --letter-skyblue: #0898f9;
+  --letter-blue: #4a41fe;
+  --letter-yellowgreen: #aaed3d;
+
+  --black: #000000;
+  --label: #898989;
+  --main: linear-gradient(90deg, #92fe9d 0%, #00c9ff 100%);
+}
