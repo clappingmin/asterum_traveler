@@ -41,15 +41,15 @@ function ProductEditPage() {
     // TODO: 에러 처리
     if (!thumbnail || !productName || !productBrand || !productUrl) return;
 
-    const uploadedTumbnailUrl = await api.imageUpload(thumbnail);
+    const uploadedThumbnailUrl = await api.imageUpload(thumbnail);
 
-    if (!uploadedTumbnailUrl) return;
+    if (!uploadedThumbnailUrl) return;
 
     const product: ProductBase = {
       productName,
       productBrand,
       productUrl,
-      productThumbnail: uploadedTumbnailUrl,
+      productThumbnail: uploadedThumbnailUrl,
     };
 
     addProduct.mutate(product);
