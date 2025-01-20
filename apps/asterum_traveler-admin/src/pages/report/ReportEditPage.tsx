@@ -2,7 +2,7 @@ import {
   IncludedProduct,
   Member,
   Product,
-  ReortCategory,
+  ReportCategory,
   ReportBase,
   ReportType,
 } from '@asterum/types';
@@ -20,7 +20,7 @@ function ReportEditPage() {
   const [thumbnail, setThumbnail] = useState<File | null>(null);
   const [displayDate, setDisplayDate] = useState<string>('');
   const [usageDate, setUsageDate] = useState<string>('');
-  const [category, setCategory] = useState<ReortCategory>('etc');
+  const [category, setCategory] = useState<ReportCategory>('etc');
   const [liveTitle, setLiveTitle] = useState<string>('');
   const [reportUrl, setReportUrl] = useState<string>('');
   const [preview, setPreview] = useState<string | null>(null);

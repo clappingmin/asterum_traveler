@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 import reportYejunImg from '../assets/images/member/report_yejun.png';
 import { useQuery } from '@tanstack/react-query';
-import { Report } from '@asterum/types';
+import { ReportCategory, Report } from '@asterum/types';
 import * as api from '../shared/services/reportService';
+import { useState } from 'react';
 
 function ReportListPage() {
+  const [category, setCategory] = useState<ReportCategory | 'all'>('all');
+
   const { data: reports } = useQuery<Report[]>({
-    queryKey: ['reports'],
+    queryKey: ['reports', category],
     queryFn: async () => {
-      return await api.getReports();
+      return await api.getReportsByCategory(category);
     },
   });
 
@@ -20,12 +23,54 @@ function ReportListPage() {
       </TitleContainer>
       <TabContainer>
         <Tabs>
-          <Tab>All</Tab>
-          <Tab>Album</Tab>
-          <Tab>Fashion</Tab>
-          <Tab>Game</Tab>
-          <Tab>Live</Tab>
-          <Tab>Product</Tab>
+          <Tab
+            isSelected={category === 'all'}
+            onClick={() => {
+              setCategory('all');
+            }}
+          >
+            All
+          </Tab>
+          <Tab
+            isSelected={category === 'album'}
+            onClick={() => {
+              setCategory('album');
+            }}
+          >
+            Album
+          </Tab>
+          <Tab
+            isSelected={category === 'fashion'}
+            onClick={() => {
+              setCategory('fashion');
+            }}
+          >
+            Fashion
+          </Tab>
+          <Tab
+            isSelected={category === 'game'}
+            onClick={() => {
+              setCategory('game');
+            }}
+          >
+            Game
+          </Tab>
+          <Tab
+            isSelected={category === 'live'}
+            onClick={() => {
+              setCategory('live');
+            }}
+          >
+            Live
+          </Tab>
+          <Tab
+            isSelected={category === 'etc'}
+            onClick={() => {
+              setCategory('etc');
+            }}
+          >
+            etc.
+          </Tab>
         </Tabs>
         <HorizontalLine />
       </TabContainer>
@@ -84,11 +129,16 @@ const Tabs = styled.div`
   gap: 32px;
 `;
 
-const Tab = styled.div`
-  color: var(--gray);
+interface TabProps {
+  isSelected: boolean;
+}
+
+const Tab = styled.div<TabProps>`
+  color: ${(props) => (props.isSelected ? 'var(--report)' : 'var(--gray)')};
   font-size: 32px;
-  font-weight: 400;
+  font-weight: ${(props) => (props.isSelected ? 700 : 400)};
   line-height: 48px;
+  cursor: pointer;
 `;
 
 const HorizontalLine = styled.div`

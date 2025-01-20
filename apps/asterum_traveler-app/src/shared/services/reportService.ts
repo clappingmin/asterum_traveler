@@ -1,14 +1,17 @@
-import { collection, getDocs, query } from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
-import { Report } from '@asterum/types';
+import { Report, ReportCategory } from '@asterum/types';
 
 /**
  * 리포트 가져오기
  * @return {Promise<Report[]>}
  */
-export async function getReports(): Promise<Report[]> {
+export async function getReportsByCategory(category: ReportCategory | 'all'): Promise<Report[]> {
   try {
-    const q = query(collection(db, 'reports'));
+    const reportsRef = collection(db, 'reports');
+
+    const q =
+      category === 'all' ? query(reportsRef) : query(reportsRef, where('category', '==', category));
 
     const querySnapshot = await getDocs(q);
     const reports: Report[] = querySnapshot.docs.map((doc) => {
