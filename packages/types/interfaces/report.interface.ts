@@ -34,6 +34,7 @@ export interface ReportBase {
   includedProducts: IncludedProduct[];
   reportDate: { display: string; usage: string };
   liveTitle?: string; // 라이브 리포트에서만 사용
+  imageTags?: string[];
   reportUrl?: string; // 바로가기 연결할 주소
 }
 
