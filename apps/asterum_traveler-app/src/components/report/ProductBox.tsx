@@ -4,7 +4,10 @@ import noahIcon from '../../assets/images/member/heart/noah.png';
 import bambyIcon from '../../assets/images/member/heart/bamby.png';
 import eunhoIcon from '../../assets/images/member/heart/eunho.png';
 import haminIcon from '../../assets/images/member/heart/hamin.png';
-import { Member } from '../../shared/interfaces/common.interface';
+import { IncludedProduct, Product } from '@asterum/types';
+import { useQuery } from '@tanstack/react-query';
+import * as api from '../../shared/services/reportService';
+import { ALL_MEMBERS } from '../../shared/constants';
 
 const MEMBER_ICON = {
   yejun: yejunIcon,
@@ -14,28 +17,34 @@ const MEMBER_ICON = {
   hamin: haminIcon,
 };
 
-function ProductBox() {
-  const MOCK_MEMBER: Member[] = ['yejun', 'noah', 'bamby'];
+interface ProductBoxProps {
+  includedProduct: IncludedProduct;
+}
+
+function ProductBox({ includedProduct: { productId, members } }: ProductBoxProps) {
+  const { data } = useQuery<Product>({
+    queryKey: ['product', productId],
+    queryFn: async () => {
+      return await api.getProdcutById(productId);
+    },
+  });
+
   return (
     <Wrapper>
-      <ProductTumbnail
-        width="243"
-        height="243"
-        src="https://i.namu.wiki/i/4khghYBSI1St9br_7FyzrXmSZxmPmf8NHmkYDjWk6sXxy0KajSMaRgl430uM-vZw63XC5bv0Bw36vfplsx-s_jdcYJEQs_2xsmotQZKpv2kgeUmt_AawupMDBKKWNgEiYgSsECSekLWI3XZZuD6cQw.webp"
-      />
+      <ProductTumbnail width="243" height="243" src={data?.productThumbnail} />
       <ProductInfoBox>
-        <ProductName className="text-overflow-2">
-          에센셜 캐시미어 오버핏 하이넥 니트 그레이 IESW3F502G2에센셜 캐시미어 오버핏 하이넥 니트
-          그레이 IESW3F502G2
-        </ProductName>
-        <BrandName className="text-overflow-1">알꼬르소</BrandName>
+        <ProductName className="text-overflow-2">{data?.productName}</ProductName>
+        <BrandName className="text-overflow-1">{data?.productBrand}</BrandName>
         <MemberIconsContainer>
-          {MOCK_MEMBER.map((member, index) => (
-            <MemberIconBox>
-              <MemberIcon width={28} height={28} src={MEMBER_ICON[member]} />
-              {index !== MOCK_MEMBER.length - 1 && <span>,</span>}
-            </MemberIconBox>
-          ))}
+          {ALL_MEMBERS.map(
+            (member, index) =>
+              members.includes(member) && (
+                <MemberIconBox key={`productMember-${index}-${member}`}>
+                  <MemberIcon width={28} height={28} src={MEMBER_ICON[member]} />
+                  {index !== members.length - 1 && <span>,</span>}
+                </MemberIconBox>
+              )
+          )}
         </MemberIconsContainer>
       </ProductInfoBox>
     </Wrapper>
@@ -52,11 +61,10 @@ const Wrapper = styled.div`
 const ProductTumbnail = styled.img`
   width: 100%;
   aspect-ratio: 1;
-  object-fit: contain;
+  object-fit: cover;
 `;
 
 const ProductInfoBox = styled.div`
-  margin-top: 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;

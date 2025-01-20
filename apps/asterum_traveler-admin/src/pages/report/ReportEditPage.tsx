@@ -2,7 +2,7 @@ import {
   IncludedProduct,
   Member,
   Product,
-  ReortCategory,
+  ReportCategory,
   ReportBase,
   ReportType,
 } from '@asterum/types';
@@ -20,8 +20,10 @@ function ReportEditPage() {
   const [thumbnail, setThumbnail] = useState<File | null>(null);
   const [displayDate, setDisplayDate] = useState<string>('');
   const [usageDate, setUsageDate] = useState<string>('');
-  const [category, setCategory] = useState<ReortCategory>('etc');
+  const [category, setCategory] = useState<ReportCategory>('etc');
   const [liveTitle, setLiveTitle] = useState<string>('');
+  const [tag, setTag] = useState<string>('');
+  const [imageTags, setImageTags] = useState<string[]>([]);
   const [reportUrl, setReportUrl] = useState<string>('');
   const [preview, setPreview] = useState<string | null>(null);
   const [includedProducts, setIncludedProducts] = useState<Map<string, Member[]>>(new Map());
@@ -60,7 +62,7 @@ function ReportEditPage() {
 
   /**
    * 멤버 선택 변경
-   * @param e {React.ChangeEvent<HTMLFormElement>}
+   * @param {React.ChangeEvent<HTMLFormElement>} e
    */
   const changeSelectMember = (e: React.ChangeEvent<HTMLFormElement>) => {
     const selectedMember = e.target.value;
@@ -73,8 +75,38 @@ function ReportEditPage() {
   };
 
   /**
+   * 태그 추가하기
+   * @param {React.KeyboardEvent<HTMLInputElement>} e
+   * @return {void}
+   */
+  const addImageTag = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key !== 'Enter') return;
+
+    const inputValue: string = (e.target as HTMLInputElement).value;
+
+    if (inputValue.trim() !== '') {
+      setImageTags((prevItems) => [...prevItems, inputValue.trim()]);
+      setTag('');
+    }
+
+    return;
+  };
+
+  /**
+   * 태그 삭제하기
+   * @param {number} targetIndex
+   */
+  const deleteTag = (targetIndex: number): void => {
+    setImageTags((prevItems) => {
+      const updatedItems = [...prevItems];
+      updatedItems.splice(targetIndex, 1);
+      return updatedItems;
+    });
+  };
+
+  /**
    * 참조할 제품 선택
-   * @param productId {string} 선택한 제품 아이디
+   * @param {string} productId 선택한 제품 아이디
    */
   const changeSelectProduct = (productId: string) => {
     const hasProductId = includedProducts.has(productId);
@@ -90,8 +122,8 @@ function ReportEditPage() {
 
   /**
    * 제품에 연결한 멤버 변경
-   * @param productId {string} 멤버가 변경된 제품 아이디
-   * @param selectedMember {Member} 변경된 멤버
+   * @param {string} productId 멤버가 변경된 제품 아이디
+   * @param {Member} selectedMember 변경된 멤버
    */
   const changeProductMember = (productId: string, selectedMember: Member) => {
     // 제품이 존재하지 않을 경우
@@ -109,6 +141,10 @@ function ReportEditPage() {
     setIncludedProducts(updatedProducts);
   };
 
+  /**
+   * 제품 저장하기
+   * @returns
+   */
   const saveProduct = async () => {
     const uploadedThumbnailUrl = thumbnail && (await api.imageUpload(thumbnail, 'reports'));
     if (!uploadedThumbnailUrl) return;
@@ -123,6 +159,7 @@ function ReportEditPage() {
       includedProducts: convertedProduts,
       reportDate: { display: displayDate, usage: usageDate },
       liveTitle,
+      imageTags,
       reportUrl,
     };
 
@@ -282,6 +319,7 @@ function ReportEditPage() {
               onChange={(e) => setReportUrl(e.target.value)}
             />
           </InputWrapper>
+          <HorizontalLine />
           {reportType === 'live' && (
             <InputWrapper>
               <InfoLabel htmlFor="liveTitle">라이브 제목</InfoLabel>
@@ -292,6 +330,27 @@ function ReportEditPage() {
                 onChange={(e) => setLiveTitle(e.target.value)}
               />
             </InputWrapper>
+          )}
+          {reportType === 'image' && (
+            <>
+              <InputWrapper>
+                <InfoLabel htmlFor="imageTags">이미지 태그</InfoLabel>
+                <InfoInput
+                  id="imageTags"
+                  placeholder="imageTags"
+                  value={tag}
+                  onChange={(e) => setTag(e.target.value)}
+                  onKeyUp={addImageTag}
+                />
+              </InputWrapper>
+              <TagBox>
+                {imageTags.map((data, index) => (
+                  <Tag key={`tag-${index}`}>
+                    {data} <button onClick={() => deleteTag(index)}>X</button>
+                  </Tag>
+                ))}
+              </TagBox>
+            </>
           )}
         </ReportInputContainer>
       </TopContainer>
@@ -410,6 +469,25 @@ const InfoInput = styled.input`
   font-size: 18px;
   line-height: 140%;
   padding: 4px;
+`;
+
+const TagBox = styled.div`
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+`;
+
+const Tag = styled.div`
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  background-color: var(--report);
+  border-radius: 999px;
+  padding: 4px 12px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
 `;
 
 const HorizontalLine = styled.div`
