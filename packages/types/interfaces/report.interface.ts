@@ -22,18 +22,19 @@ export type ReportType = 'image' | 'live';
  * ReportType이 live인 경우 live 고정
  *  */
 
-export type ReortCategory = 'album' | 'fashion' | 'game' | 'live' | 'etc';
+export type ReportCategory = 'album' | 'fashion' | 'game' | 'live' | 'etc';
 
 export type IncludedProduct = { productId: string; members: Member[] };
 
 export interface ReportBase {
   reportType: ReportType; // 'image' | 'live'
-  category: ReortCategory;
+  category: ReportCategory;
   reportMembers: Member[];
   reportThumbnail: string;
   includedProducts: IncludedProduct[];
   reportDate: { display: string; usage: string };
   liveTitle?: string; // 라이브 리포트에서만 사용
+  imageTags?: string[];
   reportUrl?: string; // 바로가기 연결할 주소
 }
 

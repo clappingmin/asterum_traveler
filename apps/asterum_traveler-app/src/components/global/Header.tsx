@@ -1,14 +1,23 @@
 import styled from 'styled-components';
 import LogoLarge from '../../assets/images/logos/logo_large.svg';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
     <Wrapper>
       <Container>
-        <Logo src={LogoLarge} height="64" />
-        <NavButton>REPORT</NavButton>
-        <NavButton>SCHEDULE</NavButton>
-        <NavButton>DEAR.</NavButton>
+        <Link to="">
+          <Logo src={LogoLarge} height="64" />
+        </Link>
+        <Link to="report">
+          <NavButton>REPORT</NavButton>
+        </Link>
+        <Link to="schedule">
+          <NavButton>SCHEDULE</NavButton>
+        </Link>
+        <Link to="dear">
+          <NavButton>DEAR.</NavButton>
+        </Link>
       </Container>
     </Wrapper>
   );

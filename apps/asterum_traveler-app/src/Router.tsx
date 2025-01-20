@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import LandingPage from './pages/LandingPage';
-import ReportListPage from './pages/ReportListPage';
+import ReportListPage from './pages/report/ReportListPage';
 
 import DearPage from './pages/DearPage';
 import SchedulePage from './pages/SchedulePage';
-import ReportRouter from './pages/ReportRouter';
+import ReportRouter from './pages/report/ReportRouter';
 
 const router = createBrowserRouter([
   {
