@@ -1,7 +1,17 @@
 import styled from 'styled-components';
 import reportYejunImg from '../assets/images/member/report_yejun.png';
+import { useQuery } from '@tanstack/react-query';
+import { Report } from '@asterum/types';
+import * as api from '../shared/services/reportService';
 
 function ReportListPage() {
+  const { data: reports } = useQuery<Report[]>({
+    queryKey: ['reports'],
+    queryFn: async () => {
+      return await api.getReports();
+    },
+  });
+
   return (
     <Wrapper>
       <TitleContainer>
@@ -20,14 +30,11 @@ function ReportListPage() {
         <HorizontalLine />
       </TabContainer>
       <PostContainer>
-        <Post /> <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        {reports?.map((report) => (
+          <Post key={report.id}>
+            <img src={report.reportThumbnail} />
+          </Post>
+        ))}
       </PostContainer>
       {/* TODO: 무한스크롤 영역 margin 처리 */}
     </Wrapper>
@@ -105,7 +112,15 @@ const PostContainer = styled.div`
 const Post = styled.div`
   width: 100%;
   aspect-ratio: 1;
-  background-color: #d9d9d9;
+  /* background-color: #d9d9d9; // 로딩 컬러 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > img {
+    width: 100%;
+    object-fit: cover;
+  }
 `;
 
 export default ReportListPage;
