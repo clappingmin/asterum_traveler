@@ -1,6 +1,6 @@
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
-import { Report, ReportCategory } from '@asterum/types';
+import { Product, Report, ReportCategory } from '@asterum/types';
 
 /**
  * 리포트 가져오기
@@ -32,6 +32,43 @@ export async function getReportsByCategory(category: ReportCategory | 'all'): Pr
 
     return reports;
   } catch (e) {
-    return [];
+    throw e;
+  }
+}
+
+export async function getReportById(reportId: string): Promise<Report> {
+  try {
+    const docRef = doc(db, 'reports', reportId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      return docSnap.data() as Report;
+    } else {
+      // TODO: 에러 처리
+      throw new Error('Get Data Error!!');
+    }
+  } catch (e) {
+    throw e;
+  }
+}
+
+/**
+ * 제품 아이디로 제품 가져오기
+ * @param productId
+ * @returns
+ */
+export async function getProdcutById(productId: string): Promise<Product> {
+  try {
+    const docRef = doc(db, 'products', productId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      return docSnap.data() as Product;
+    } else {
+      // TODO: 에러 처리
+      throw new Error('Get Data Error!!');
+    }
+  } catch (e) {
+    throw e;
   }
 }

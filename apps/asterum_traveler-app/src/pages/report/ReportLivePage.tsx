@@ -1,29 +1,31 @@
 import styled from 'styled-components';
-import MemberBox from '../components/report/MemberBox';
-import ProductBox from '../components/report/ProductBox';
+import MemberBox from '../../components/report/MemberBox';
+import ProductBox from '../../components/report/ProductBox';
+import { Report } from '@asterum/types';
 
-function ReportLivePage() {
+interface ReportLivePageProps {
+  reportData: Report;
+}
+
+function ReportLivePage({ reportData }: ReportLivePageProps) {
+  const { reportThumbnail, liveTitle, reportDate, reportMembers, includedProducts } = reportData;
+
   return (
     <Wrapper>
       <LiveContainer>
-        <LiveThumbnail />
-        <LiveTitle className="text-overflow-2">
-          (ENG/JP/CH/ESP SUB) [하이라이트] 성휘예술고등학교 가을🍂 맞이 체육대회 #2｜#플레이브
-          PLAVE｜Plave Highlight Clip
-        </LiveTitle>
-        <LiveDate>2023년 10월 15일 </LiveDate>
+        <LiveThumbnail src={reportThumbnail} />
+        <LiveTitle className="text-overflow-2">{liveTitle}</LiveTitle>
+        <LiveDate>{reportDate.display}</LiveDate>
         <LiveMembers>
-          <MemberBox member="noah"></MemberBox>
-          <MemberBox member="noah"></MemberBox>
-          <MemberBox member="noah"></MemberBox>
-          <MemberBox member="noah"></MemberBox>
-          <MemberBox member="noah"></MemberBox>
+          {reportMembers.map((member) => {
+            return <MemberBox key={member} member={member} />;
+          })}
         </LiveMembers>
       </LiveContainer>
       <ProductContainer>
-        <ProductBox />
-        <ProductBox />
-        <ProductBox />
+        {includedProducts.map((product) => {
+          return <ProductBox key={product.productId} includedProduct={product} />;
+        })}
       </ProductContainer>
     </Wrapper>
   );

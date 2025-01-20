@@ -1,25 +1,34 @@
 import styled from 'styled-components';
-import MemberBox from '../components/report/MemberBox';
-import ProductBox from '../components/report/ProductBox';
+import MemberBox from '../../components/report/MemberBox';
+import ProductBox from '../../components/report/ProductBox';
+import { Report } from '@asterum/types';
 
-function ReportImagePage() {
+interface ReportImagePageProps {
+  reportData: Report;
+}
+
+function ReportImagePage({ reportData }: ReportImagePageProps) {
+  const { reportThumbnail, reportMembers, reportDate, includedProducts } = reportData;
   return (
     <Wrapper>
-      <Thumbnail
-        width="540"
-        src="https://i.namu.wiki/i/4khghYBSI1St9br_7FyzrXmSZxmPmf8NHmkYDjWk6sXxy0KajSMaRgl430uM-vZw63XC5bv0Bw36vfplsx-s_jdcYJEQs_2xsmotQZKpv2kgeUmt_AawupMDBKKWNgEiYgSsECSekLWI3XZZuD6cQw.webp"
-      ></Thumbnail>
+      <Thumbnail width="540" src={reportThumbnail}></Thumbnail>
       <InfoContainer>
-        <MemberBox member="noah"></MemberBox>
-        <UpdateInfo className="text-overflow-1">2023년 10월 15일 수요일 7시 음악방송</UpdateInfo>
+        <Members>
+          {/* TODO: 멤버 순서 고정 예,노,밤,은.하 */}
+          {reportMembers.map((member) => {
+            return <MemberBox key={member} member={member} />;
+          })}
+        </Members>
+        <UpdateInfo className="text-overflow-1">{reportDate.display}</UpdateInfo>
         <TagBox>
           <Tag>#아메카지</Tag>
           <Tag>#아메카지</Tag>
           <Tag>#아메카지</Tag>
         </TagBox>
         <ProductContainer>
-          <ProductBox />
-          <ProductBox />
+          {includedProducts.map((product) => {
+            return <ProductBox key={product.productId} includedProduct={product} />;
+          })}
         </ProductContainer>
       </InfoContainer>
     </Wrapper>
@@ -46,7 +55,14 @@ const InfoContainer = styled.div`
   width: calc(100% - (540px + 64px));
 `;
 
+const Members = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+`;
+
 const UpdateInfo = styled.div`
+  color: var(--color);
   margin-top: 16px;
 `;
 

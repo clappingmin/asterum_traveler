@@ -1,12 +1,14 @@
 import styled from 'styled-components';
-import reportYejunImg from '../assets/images/member/report_yejun.png';
+import reportYejunImg from '../../assets/images/member/report_yejun.png';
 import { useQuery } from '@tanstack/react-query';
-import { ReportCategory, Report } from '@asterum/types';
-import * as api from '../shared/services/reportService';
+import { ReportCategory, Report, ReportType } from '@asterum/types';
+import * as api from '../../shared/services/reportService';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function ReportListPage() {
   const [category, setCategory] = useState<ReportCategory | 'all'>('all');
+  const navigate = useNavigate();
 
   const { data: reports } = useQuery<Report[]>({
     queryKey: ['reports', category],
@@ -14,6 +16,10 @@ function ReportListPage() {
       return await api.getReportsByCategory(category);
     },
   });
+
+  const goToReportDetail = (reportId: string, reportType: ReportType) => {
+    navigate(`${reportType}/${reportId}`);
+  };
 
   return (
     <Wrapper>
@@ -76,7 +82,7 @@ function ReportListPage() {
       </TabContainer>
       <PostContainer>
         {reports?.map((report) => (
-          <Post key={report.id}>
+          <Post key={report.id} onClick={() => goToReportDetail(report.id, report.reportType)}>
             <img src={report.reportThumbnail} />
           </Post>
         ))}
@@ -166,10 +172,12 @@ const Post = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   & > img {
     width: 100%;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
   }
 `;
 
