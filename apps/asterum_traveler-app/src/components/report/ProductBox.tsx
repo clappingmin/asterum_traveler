@@ -7,6 +7,7 @@ import haminIcon from '../../assets/images/member/heart/hamin.png';
 import { IncludedProduct, Product } from '@asterum/types';
 import { useQuery } from '@tanstack/react-query';
 import * as api from '../../shared/services/reportService';
+import { ALL_MEMBERS } from '../../shared/constants';
 
 const MEMBER_ICON = {
   yejun: yejunIcon,
@@ -35,12 +36,15 @@ function ProductBox({ includedProduct: { productId, members } }: ProductBoxProps
         <ProductName className="text-overflow-2">{data?.productName}</ProductName>
         <BrandName className="text-overflow-1">{data?.productBrand}</BrandName>
         <MemberIconsContainer>
-          {members.map((member, index) => (
-            <MemberIconBox key={`productMember-${index}-${member}`}>
-              <MemberIcon width={28} height={28} src={MEMBER_ICON[member]} />
-              {index !== members.length - 1 && <span>,</span>}
-            </MemberIconBox>
-          ))}
+          {ALL_MEMBERS.map(
+            (member, index) =>
+              members.includes(member) && (
+                <MemberIconBox key={`productMember-${index}-${member}`}>
+                  <MemberIcon width={28} height={28} src={MEMBER_ICON[member]} />
+                  {index !== members.length - 1 && <span>,</span>}
+                </MemberIconBox>
+              )
+          )}
         </MemberIconsContainer>
       </ProductInfoBox>
     </Wrapper>
@@ -57,11 +61,10 @@ const Wrapper = styled.div`
 const ProductTumbnail = styled.img`
   width: 100%;
   aspect-ratio: 1;
-  object-fit: contain;
+  object-fit: cover;
 `;
 
 const ProductInfoBox = styled.div`
-  margin-top: 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;

@@ -2,28 +2,28 @@ import styled from 'styled-components';
 import MemberBox from '../../components/report/MemberBox';
 import ProductBox from '../../components/report/ProductBox';
 import { Report } from '@asterum/types';
+import { ALL_MEMBERS } from '../../shared/constants';
 
 interface ReportImagePageProps {
   reportData: Report;
 }
 
 function ReportImagePage({ reportData }: ReportImagePageProps) {
-  const { reportThumbnail, reportMembers, reportDate, includedProducts } = reportData;
+  const { reportThumbnail, reportMembers, reportDate, imageTags, includedProducts } = reportData;
   return (
     <Wrapper>
       <Thumbnail width="540" src={reportThumbnail}></Thumbnail>
       <InfoContainer>
         <Members>
-          {/* TODO: 멤버 순서 고정 예,노,밤,은.하 */}
-          {reportMembers.map((member) => {
-            return <MemberBox key={member} member={member} />;
+          {ALL_MEMBERS.map((member) => {
+            return reportMembers.includes(member) && <MemberBox key={member} member={member} />;
           })}
         </Members>
         <UpdateInfo className="text-overflow-1">{reportDate.display}</UpdateInfo>
         <TagBox>
-          <Tag>#아메카지</Tag>
-          <Tag>#아메카지</Tag>
-          <Tag>#아메카지</Tag>
+          {imageTags?.map((tag, index) => (
+            <Tag key={`tag-${index}`}>#{tag}</Tag>
+          ))}
         </TagBox>
         <ProductContainer>
           {includedProducts.map((product) => {
@@ -64,6 +64,9 @@ const Members = styled.div`
 const UpdateInfo = styled.div`
   color: var(--color);
   margin-top: 16px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
 `;
 
 const TagBox = styled.div`

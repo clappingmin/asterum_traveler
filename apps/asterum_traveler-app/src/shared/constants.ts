@@ -1,3 +1,7 @@
+import { Member } from '@asterum/types';
+
+export const ALL_MEMBERS: Member[] = ['yejun', 'noah', 'bamby', 'eunho', 'hamin'];
+
 export const MEMBER_KOREAN_NAME = {
   yejun: '예준',
   noah: '노아',

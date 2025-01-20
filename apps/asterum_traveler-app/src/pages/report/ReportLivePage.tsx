@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import MemberBox from '../../components/report/MemberBox';
 import ProductBox from '../../components/report/ProductBox';
 import { Report } from '@asterum/types';
+import { ALL_MEMBERS } from '../../shared/constants';
 
 interface ReportLivePageProps {
   reportData: Report;
@@ -17,8 +18,8 @@ function ReportLivePage({ reportData }: ReportLivePageProps) {
         <LiveTitle className="text-overflow-2">{liveTitle}</LiveTitle>
         <LiveDate>{reportDate.display}</LiveDate>
         <LiveMembers>
-          {reportMembers.map((member) => {
-            return <MemberBox key={member} member={member} />;
+          {ALL_MEMBERS.map((member) => {
+            return reportMembers.includes(member) && <MemberBox key={member} member={member} />;
           })}
         </LiveMembers>
       </LiveContainer>

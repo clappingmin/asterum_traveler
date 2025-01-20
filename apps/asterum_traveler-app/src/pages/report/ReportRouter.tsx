@@ -13,16 +13,16 @@ interface ReportRouterParams {
 function ReportRouter() {
   const { pageType, pageId } = useParams<Partial<Record<keyof ReportRouterParams, string>>>();
 
+  if (!pageType || !pageId) {
+    return <div>Invalid route parameters</div>;
+  }
+
   const { data } = useQuery<Report>({
     queryKey: ['report', pageId],
     queryFn: async () => {
       return await api.getReportById(pageId);
     },
   });
-
-  if (!pageType || !pageId) {
-    return <div>Invalid route parameters</div>;
-  }
 
   if (!data) return <div>NO DATA</div>;
 
