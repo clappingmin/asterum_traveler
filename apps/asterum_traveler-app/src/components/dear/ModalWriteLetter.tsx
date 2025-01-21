@@ -35,8 +35,8 @@ function ModalWriteLetter({ onClose }: ModalWriteLetterProps) {
 
   const addDearCard = useMutation({
     mutationFn: (dearCard: DearCardBase) => api.addDearCard(dearCard),
-    onSuccess: (cardId: string) => {
-      queryClient.invalidateQueries({ queryKey: ['cards', cardId] });
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['cards'] });
       alert('카드 추가 완료');
       onClose();
     },
