@@ -6,24 +6,101 @@ import icon_box_bottom_left from '../../assets/icons/box_bottom_left.svg';
 import icon_box_bottom_right from '../../assets/icons/box_bottom_right.svg';
 import icon_write_letter from '../../assets/images/dear/write_letter.png';
 import icon_select_color from '../../assets/icons/select_color.svg';
+import { useState } from 'react';
+import { CardCoverColor, DearCardBase } from '@asterum/types';
+import { useMutation } from '@tanstack/react-query';
+import * as api from '../../shared/services/dearService';
+import { queryClient } from '../../main';
 
-function ModalWriteLetter() {
+const CARD_COVER_COLORS: CardCoverColor[] = [
+  'pink',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'skyblue',
+  'blue',
+  'yellowgreen',
+];
+
+interface ModalWriteLetterProps {
+  onClose: () => void;
+}
+
+function ModalWriteLetter({ onClose }: ModalWriteLetterProps) {
+  const [from, setFrom] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [content, setContent] = useState<string>('');
+  const [cardCoverColor, setCardCoverColor] = useState<CardCoverColor | undefined>(undefined);
+
+  const addDearCard = useMutation({
+    mutationFn: (dearCard: DearCardBase) => api.addDearCard(dearCard),
+    onSuccess: (cardId: string) => {
+      queryClient.invalidateQueries({ queryKey: ['cards', cardId] });
+      alert('카드 추가 완료');
+      onClose();
+    },
+    onError: () => {
+      alert('카드 추가 실패!');
+    },
+  });
+
+  /**
+   * 카드 배경 색성 변경
+   * @param {React.MouseEvent<HTMLDivElement>} e
+   */
+  const changeCardCoverColor = (e: React.MouseEvent<HTMLDivElement>): void => {
+    const target = e.target as HTMLDivElement;
+    const color = (target.getAttribute('data-color') as CardCoverColor) || undefined;
+    if (color) setCardCoverColor(color);
+  };
+
+  /**
+   * 카드 추가하기
+   * @return {void}
+   */
+  const saveDearCard = (): void => {
+    // TODO: 비었을 경우 UI처리 추가
+    if (!from || !password || !content || !cardCoverColor) return;
+
+    const saveData: DearCardBase = {
+      from,
+      password,
+      content,
+      cardCoverColor,
+    };
+
+    addDearCard.mutate(saveData);
+
+    return;
+  };
+
   return (
     <Wrapper>
       <Header>
-        <CloseButton>
+        <CloseButton onClick={onClose}>
           <CloseIcon width={24} height={24} src={icon_close} />
         </CloseButton>
       </Header>
       <WriteContainer>
         <WriterContainer>
-          <WriterInfoInput placeholder="From" />
-          <WriterInfoInput placeholder="Password" />
+          <WriterInfoInput
+            placeholder="From"
+            value={from}
+            onChange={(e) => setFrom(e.target.value)}
+          />
+          <WriterInfoInput
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </WriterContainer>
         <TextareaBox>
           <LetterTextarea
             placeholder="Dear,"
             maxLength={100}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
             // cols={47}
             // rows={7}
           />
@@ -32,17 +109,17 @@ function ModalWriteLetter() {
           <BoxBorderIcon src={icon_box_bottom_left} />
           <BoxBorderIcon src={icon_box_bottom_right} />
         </TextareaBox>
-        <ColorSelectBox>
-          <ColorBox boxColor={'pink'} isSelected={true} />
-          <ColorBox boxColor={'red'} isSelected={false} />
-          <ColorBox boxColor={'orange'} isSelected={false} />
-          <ColorBox boxColor={'yellow'} isSelected={false} />
-          <ColorBox boxColor={'green'} isSelected={false} />
-          <ColorBox boxColor={'skyblue'} isSelected={false} />
-          <ColorBox boxColor={'blue'} isSelected={false} />
-          <ColorBox boxColor={'yellowgreen'} isSelected={false} />
+        <ColorSelectBox onClick={changeCardCoverColor}>
+          {CARD_COVER_COLORS.map((color) => (
+            <ColorBox
+              key={`card-cover-${color}`}
+              data-color={color}
+              boxColor={color}
+              isSelected={color === cardCoverColor}
+            />
+          ))}
         </ColorSelectBox>
-        <WriteButton>
+        <WriteButton onClick={saveDearCard}>
           <img src={icon_write_letter} />
         </WriteButton>
       </WriteContainer>
@@ -100,11 +177,12 @@ const WriterInfoInput = styled.input`
   outline: none;
   color: var(--color);
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 24px;
 
   &::placeholder {
     color: var(--gray);
+    font-weight: 400;
   }
 `;
 
@@ -122,13 +200,14 @@ const LetterTextarea = styled.textarea`
   background-color: transparent;
   color: var(--color);
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 24px;
   outline: none;
   resize: none;
 
   &::placeholder {
     color: var(--gray);
+    font-weight: 400;
   }
 `;
 

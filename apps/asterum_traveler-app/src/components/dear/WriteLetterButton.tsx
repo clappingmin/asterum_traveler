@@ -12,7 +12,7 @@ function WriteLetterButton() {
       <Modal isOpen={isOpen} onClose={onClose} isCentered closeOnOverlayClick={true}>
         <ModalOverlay />
         <ModalContent>
-          <ModalWriteLetter />
+          <ModalWriteLetter onClose={onClose} />
         </ModalContent>
       </Modal>
     </>

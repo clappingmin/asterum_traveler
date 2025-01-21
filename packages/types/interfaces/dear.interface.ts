@@ -1,3 +1,5 @@
+import { Timestamp } from 'firebase/firestore';
+
 export type CardCoverColor =
   | 'pink'
   | 'red'
@@ -8,10 +10,14 @@ export type CardCoverColor =
   | 'blue'
   | 'yellowgreen';
 
-export interface DearCard {
+export interface DearCardBase {
   from: string;
   password: string;
-  writeDate: string;
   content: string;
   cardCoverColor: CardCoverColor;
+}
+
+export interface DearCard extends DearCardBase {
+  id: string;
+  createdAt: Timestamp;
 }
