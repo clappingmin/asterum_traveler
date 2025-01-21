@@ -22,6 +22,7 @@ function WriteLetterButton() {
 const WritePencil = styled.img`
   width: var(--width);
   height: 64px;
+  cursor: pointer;
 `;
 
 export default WriteLetterButton;

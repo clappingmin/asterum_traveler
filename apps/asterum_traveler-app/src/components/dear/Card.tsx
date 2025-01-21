@@ -7,9 +7,9 @@ import img_card_green from '../../assets/images/report/card_green.png';
 import img_card_skyblue from '../../assets/images/report/card_skyblue.png';
 import img_card_blue from '../../assets/images/report/card_blue.png';
 import img_card_yellowgreen from '../../assets/images/report/card_yellowgreen.png';
-import { CardCoverColor } from '../../shared/interfaces/dear.interface';
 import { Modal, ModalContent, ModalOverlay, useDisclosure } from '@chakra-ui/react';
 import ModalLetterDetail from './ModalLetterDetail';
+import { CardCoverColor } from '@asterum/types';
 
 function Card() {
   const TEMP_COLOR: CardCoverColor = 'red';
