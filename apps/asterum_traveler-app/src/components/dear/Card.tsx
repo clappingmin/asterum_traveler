@@ -45,7 +45,7 @@ function Card({ dearCard }: CardProps) {
       <Modal isOpen={isOpen} onClose={onClose} isCentered closeOnOverlayClick={true}>
         <ModalOverlay />
         <ModalContent>
-          <ModalLetterDetail />
+          <ModalLetterDetail onClose={onClose} dearCard={dearCard} />
         </ModalContent>
       </Modal>
     </>
@@ -59,6 +59,7 @@ const Wrapper = styled.div`
   transition: transform 0.3s;
   transform: perspective(800px) rotateY(0deg);
   transform-style: preserve-3d;
+  cursor: pointer;
 
   &:hover {
     transform: perspective(800px) rotateY(180deg);
