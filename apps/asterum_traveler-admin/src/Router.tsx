@@ -6,6 +6,7 @@ import ProductDetailPage from './pages/report/ProductDetailPage';
 import ReportDetailPage from './pages/report/ReportDetailPage';
 import ProductEditPage from './pages/report/ProductEditPage';
 import ReportEditPage from './pages/report/ReportEditPage';
+import SchedulePage from './pages/SchedulePage';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
         path: 'report/edit/report/:reportId?',
         element: <ReportEditPage />,
       },
+      { path: 'schedule', element: <SchedulePage /> },
     ],
   },
 ]);

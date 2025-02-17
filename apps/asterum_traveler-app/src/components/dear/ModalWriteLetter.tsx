@@ -33,6 +33,7 @@ function ModalWriteLetter({ onClose }: ModalWriteLetterProps) {
   const [content, setContent] = useState<string>('');
   const [cardCoverColor, setCardCoverColor] = useState<CardCoverColor | undefined>(undefined);
 
+  // TODO: 최근에 추가한 카드 앞에 추가하게 수정
   const addDearCard = useMutation({
     mutationFn: (dearCard: DearCardBase) => api.addDearCard(dearCard),
     onSuccess: () => {

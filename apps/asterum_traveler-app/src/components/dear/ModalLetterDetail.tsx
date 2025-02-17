@@ -10,12 +10,34 @@ interface ModalLetterDetailProps {
 }
 
 function ModalLetterDetail({ onClose, dearCard }: ModalLetterDetailProps) {
-  const { from, content, createdAt } = dearCard;
+  const { from, content, password, createdAt } = dearCard;
+
+  /**
+   * 비밀번호 확인
+   * @returns {boolean}
+   */
+  const handlePasswordInput = (): boolean => {
+    const inputPassword = prompt('비밀번호를 입력하세요.');
+
+    if (inputPassword === password) return true;
+
+    return false;
+  };
+
+  const deleteButtonClickHandler = () => {
+    // 비밀번호 확인
+    if (!handlePasswordInput()) {
+      // TODO: 비밀번호 확인 실패시
+      return;
+    }
+
+    console.log('야호!');
+  };
 
   return (
     <Wrapper>
       <Header>
-        <HeaderButton>
+        <HeaderButton onClick={deleteButtonClickHandler}>
           <HeaderButtonIcon width={24} height={24} src={img_trash} />
         </HeaderButton>
         <HeaderButton onClick={onClose}>

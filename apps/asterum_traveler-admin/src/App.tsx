@@ -13,6 +13,7 @@ function App() {
   const changePageTitle = (path: string) => {
     if (path === '/') setPageTitle('Dashboard Overview');
     else if (path.startsWith('/report')) setPageTitle('Report Overview');
+    else if (path.startsWith('/schedule')) setPageTitle('Schedule Overview');
     else setPageTitle('Page');
   };
 
@@ -29,7 +30,9 @@ function App() {
             Report
           </Menu>
           <Menu to={'/'}>Dear</Menu>
-          <Menu to={'/'}>Schedule</Menu>
+          <Menu to={'/schedule'} isSelected={!!useMatch('/schedule')}>
+            Schedule
+          </Menu>
         </MenuBox>
       </Navigation>
       <Container>

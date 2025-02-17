@@ -4,6 +4,9 @@ import Calendar from 'react-calendar';
 import '../styles/react-calendar.css';
 import { useState } from 'react';
 
+const TODAY = new Date();
+const YEAR = TODAY.getFullYear();
+
 function SchedulePage() {
   const TEMP_SHDDULE = [
     '8PM 은호 밤비 유투브 어쩌구 저쩌구 fdsafdsdfdsafdsfdsfadsaf 은호 밤비 유투브 어쩌구 저쩌구',
@@ -11,9 +14,6 @@ function SchedulePage() {
     '8PM 은호 밤비 유투브 어쩌구 저쩌구 fdsafdsdfdsafdsfdsfadsaf 은호 밤비 유투브 어쩌구 저쩌구',
     ,
   ];
-
-  const TODAY = new Date();
-  const YEAR = TODAY.getFullYear();
 
   const [selectedMonth, _setSelectedMonth] = useState(TODAY.getMonth() + 1);
 
