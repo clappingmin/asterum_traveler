@@ -4,7 +4,7 @@ import { Member } from './common.interface';
 export interface ScheduleBase {
   content: string;
   scheduleDate: Date | Timestamp;
-  member: Member[];
+  members: Member[];
 }
 
 export interface Schedule extends ScheduleBase {

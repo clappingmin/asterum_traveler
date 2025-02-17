@@ -8,11 +8,7 @@ const TODAY = new Date();
 
 function SchedulePage() {
   const navigate = useNavigate();
-  const [selectedDate, setSelectedDate] = useState<Date>(TODAY);
-
-  const changeDate = (date: Date | any) => {
-    setSelectedDate(date);
-  };
+  const [selectedDate, setSelectedDate] = useState<Date | any>(TODAY);
 
   const goToScheduleEdit = (scheduleId?: string) => {
     scheduleId ? navigate(`edit/${scheduleId}`) : navigate('edit');
@@ -24,7 +20,7 @@ function SchedulePage() {
         defaultActiveStartDate={TODAY}
         defaultValue={TODAY}
         defaultView="month"
-        onChange={changeDate}
+        onChange={setSelectedDate}
         value={selectedDate}
         locale="en-US"
       />
@@ -45,7 +41,8 @@ function SchedulePage() {
           </ScheduleAddButton>
         </ScheduleTopWrapper>
         <HorizontalLine />
-        <Outlet context={selectedDate} />
+        {/* Schedule Edit Component */}
+        <Outlet context={{ selectedDate }} />
         <ScheduleListWrapper>
           <ScheduleContainer>
             <ScheduleContent>
