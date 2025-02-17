@@ -6,7 +6,8 @@ import ProductDetailPage from './pages/report/ProductDetailPage';
 import ReportDetailPage from './pages/report/ReportDetailPage';
 import ProductEditPage from './pages/report/ProductEditPage';
 import ReportEditPage from './pages/report/ReportEditPage';
-import SchedulePage from './pages/SchedulePage';
+import SchedulePage from './pages/shedule/SchedulePage';
+import ScheduleEdit from './pages/shedule/SheduleEdit';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
         path: '',
         element: <LandingPage />,
       },
+      // 리포트
       {
         path: 'report',
         element: <ReportListPage />,
@@ -37,7 +39,12 @@ const router = createBrowserRouter([
         path: 'report/edit/report/:reportId?',
         element: <ReportEditPage />,
       },
-      { path: 'schedule', element: <SchedulePage /> },
+      // 스케줄
+      {
+        path: 'schedule',
+        element: <SchedulePage />,
+        children: [{ path: 'edit/:scheduleId?', element: <ScheduleEdit /> }],
+      },
     ],
   },
 ]);

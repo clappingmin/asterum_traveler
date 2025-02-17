@@ -2,35 +2,33 @@ import styled from 'styled-components';
 import Calendar from 'react-calendar';
 import { useState } from 'react';
 import EditSharpIcon from '@mui/icons-material/EditSharp';
-import { Schedule } from '@asterum/types';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 const TODAY = new Date();
-const MOCK_SCHEDULE = {
-  id: 1,
-  content: '어쩌구 저쩌구~~~~~',
-  member: ['yejun', 'bamby'],
-  date: new Date(),
-};
 
 function SchedulePage() {
+  const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState<Date>(TODAY);
 
   const changeDate = (date: Date | any) => {
     setSelectedDate(date);
   };
 
+  const goToScheduleEdit = (scheduleId?: string) => {
+    scheduleId ? navigate(`edit/${scheduleId}`) : navigate('edit');
+  };
+
   return (
     <Wrapper>
-      <CalendarWrapper>
-        <Calendar
-          defaultActiveStartDate={TODAY}
-          defaultValue={TODAY}
-          defaultView="month"
-          onChange={changeDate}
-          value={selectedDate}
-          locale="en-US"
-        />
-      </CalendarWrapper>
+      <Calendar
+        defaultActiveStartDate={TODAY}
+        defaultValue={TODAY}
+        defaultView="month"
+        onChange={changeDate}
+        value={selectedDate}
+        locale="en-US"
+      />
+
       <DayListWrapper>
         <ScheduleTopWrapper>
           <SelctedDate>{`
@@ -38,25 +36,27 @@ function SchedulePage() {
           ${selectedDate.getMonth() + 1}월
           ${selectedDate.getDate()}일
         `}</SelctedDate>
-          <ScheduleAddButton>ADD SCHEDULE</ScheduleAddButton>
+          <ScheduleAddButton
+            onClick={() => {
+              goToScheduleEdit();
+            }}
+          >
+            ADD SCHEDULE
+          </ScheduleAddButton>
         </ScheduleTopWrapper>
         <HorizontalLine />
+        <Outlet context={selectedDate} />
         <ScheduleListWrapper>
           <ScheduleContainer>
             <ScheduleContent>
               8PM 은호 밤비 유투브 어쩌구 저쩌구 fdsafdsdfdsafdsfdsfadsaf 은호 밤비 유투브 어쩌구
               저쩌구
             </ScheduleContent>
-            <ScheduleEditButton>
-              <EditSharpIcon fontSize="small" />
-            </ScheduleEditButton>
-          </ScheduleContainer>
-          <ScheduleContainer>
-            <ScheduleContent>
-              8PM 은호 밤비 유투브 어쩌구 저쩌구 fdsafdsdfdsafdsfdsfadsaf 은호 밤비 유투브 어쩌구
-              저쩌구
-            </ScheduleContent>
-            <ScheduleEditButton>
+            <ScheduleEditButton
+              onClick={() => {
+                goToScheduleEdit('124');
+              }}
+            >
               <EditSharpIcon fontSize="small" />
             </ScheduleEditButton>
           </ScheduleContainer>
@@ -71,8 +71,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 20px;
 `;
-
-const CalendarWrapper = styled.div``;
 
 const DayListWrapper = styled.div`
   display: flex;
@@ -89,6 +87,7 @@ const ScheduleTopWrapper = styled.div`
 
 const ScheduleAddButton = styled.button`
   height: 30px;
+  cursor: pointer;
 `;
 
 const SelctedDate = styled.span`
@@ -121,6 +120,7 @@ const ScheduleContent = styled.div`
 const ScheduleEditButton = styled.button`
   aspect-ratio: 1;
   border-radius: 10px;
+  cursor: pointer;
 `;
 
 export default SchedulePage;
