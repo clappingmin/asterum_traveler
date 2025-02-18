@@ -11,8 +11,6 @@ export async function addSchedule(schedule: ScheduleBase): Promise<string> {
   try {
     const scheduleId = uuidv4();
 
-    console.log(schedule);
-
     await setDoc(doc(db, 'schedules', scheduleId), {
       id: scheduleId,
       ...schedule,

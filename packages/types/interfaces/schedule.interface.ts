@@ -2,16 +2,15 @@ import { Timestamp } from 'firebase/firestore';
 import { Member } from './common.interface';
 
 export type ScheduleDate = {
-  year: number;
-  month: number;
-  day: number;
-  hour: number;
-  minute: number;
+  schedules_year: number;
+  schedules_month: number;
+  schedules_day: number;
+  schedules_hour: number;
+  schedules_minute: number;
 };
 
-export interface ScheduleBase {
+export interface ScheduleBase extends ScheduleDate {
   content: string;
-  scheduleDate: ScheduleDate;
   members: Member[];
   isAnniversary: boolean;
 }

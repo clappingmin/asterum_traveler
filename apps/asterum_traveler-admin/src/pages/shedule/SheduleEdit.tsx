@@ -1,11 +1,11 @@
-import { Member, ScheduleBase, ScheduleDate } from '@asterum/types';
+import { Member, ScheduleBase } from '@asterum/types';
 import { useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import styled from 'styled-components';
 import * as api from '../../shared/services/scheduleService';
 import { queryClient } from '../../main';
-import { localStringToScheduleDate, localStringToTimestamp } from '../../shared/utils';
+import { localStringToScheduleDate } from '../../shared/utils';
 
 interface OutletContext {
   selectedDate: Date;
@@ -28,7 +28,6 @@ function ScheduleEdit() {
       queryClient.invalidateQueries({ queryKey: ['schedules', scheduleId] });
       alert('스케줄 추가 완료');
       navigate(-1);
-      // FIXME: 날짜가 이전 날짜로 돌아감 ex) 18일 추가하면 17일 보여주는 페이지로 이동
     },
   });
 
@@ -60,7 +59,7 @@ function ScheduleEdit() {
     const convertedScheduleDate = localStringToScheduleDate(localDate);
 
     const schedule: ScheduleBase = {
-      scheduleDate: convertedScheduleDate,
+      ...convertedScheduleDate,
       content,
       members,
       isAnniversary,

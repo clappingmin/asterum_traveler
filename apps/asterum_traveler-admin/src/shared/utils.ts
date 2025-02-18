@@ -17,7 +17,13 @@ export const localStringToScheduleDate = (localString: string): ScheduleDate => 
   const hour = date.getHours();
   const minute = date.getMinutes();
 
-  return { year, month, day, hour, minute };
+  return {
+    schedules_year: year,
+    schedules_month: month,
+    schedules_day: day,
+    schedules_hour: hour,
+    schedules_minute: minute,
+  };
 };
 
 export const getTimeFromTimestamp = (timestamp: Timestamp): string => {
