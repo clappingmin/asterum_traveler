@@ -1,28 +1,53 @@
 import styled from 'styled-components';
 import icon_close from '../../assets/icons/close.svg';
 import img_trash from '../../assets/images/dear/trash.png';
+import { DearCard } from '@asterum/types';
+import { timestampToDisplayDate } from '../../shared/utils';
 
-function ModalLetterDetail() {
+interface ModalLetterDetailProps {
+  onClose: () => void;
+  dearCard: DearCard;
+}
+
+function ModalLetterDetail({ onClose, dearCard }: ModalLetterDetailProps) {
+  const { from, content, password, createdAt } = dearCard;
+
+  /**
+   * 비밀번호 확인
+   * @returns {boolean}
+   */
+  const handlePasswordInput = (): boolean => {
+    const inputPassword = prompt('비밀번호를 입력하세요.');
+
+    if (inputPassword === password) return true;
+
+    return false;
+  };
+
+  const deleteButtonClickHandler = () => {
+    // 비밀번호 확인
+    if (!handlePasswordInput()) {
+      // TODO: 비밀번호 확인 실패시
+      return;
+    }
+
+    console.log('야호!');
+  };
+
   return (
     <Wrapper>
       <Header>
-        <HeaderButton>
+        <HeaderButton onClick={deleteButtonClickHandler}>
           <HeaderButtonIcon width={24} height={24} src={img_trash} />
         </HeaderButton>
-        <HeaderButton>
+        <HeaderButton onClick={onClose}>
           <HeaderButtonIcon width={24} height={24} src={icon_close} />
         </HeaderButton>
       </Header>
       <ContentContainer>
-        <Writer>작성자이름 10자까지</Writer>
-        <WriteDate>2024.11.18</WriteDate>
-        <LetterContent>
-          우리는 이 곳에서 서로에게 영감을 주고, 플레이브에 대한 감사와 사랑을 공유합니다. 이
-          페이지는 추상적이고 아름다운 이야기의 집이며, 각자가 그 의미를 만들어갈 수 있는
-          공간입니다. 플레이브와 함께하는 모든 순간은 우리에게 더 큰 의미를 부여하고, 그들의 음악은
-          우리에게 특별한 여행을 선사합니다.함께 이 페이지에서 만나고, 플레이브와 함께하는 여정에서
-          새로운 감동과 기억을 만들어 나가요. 감사합니다, 빛나는 여러분! 편지 내용입니다
-        </LetterContent>
+        <Writer>{from}</Writer>
+        <WriteDate>{timestampToDisplayDate(createdAt)}</WriteDate>
+        <LetterContent>{content}</LetterContent>
       </ContentContainer>
     </Wrapper>
   );

@@ -23,7 +23,8 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2",
     "reset-css": "^5.0.2",
-    "styled-components": "^6.1.13"
+    "styled-components": "^6.1.13",
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
     "@tanstack/react-query-devtools": "^5.59.0",
