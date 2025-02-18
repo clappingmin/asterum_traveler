@@ -43,7 +43,9 @@ function SchedulePage() {
       <DayScheduleBox>
         {dateSchedules.map((schedule) => (
           <ScheduleText className="text-overflow-3" key={schedule.id}>
-            {formatTime(schedule.schedules_hour, schedule.schedules_minute)}{' '}
+            {!schedule.isAnniversary
+              ? '🎉'
+              : formatTime(schedule.schedules_hour, schedule.schedules_minute)}{' '}
             {schedule.members.map((member) => MEMBER_KOREAN_NAME[member]).join(' ')}{' '}
             {schedule.content}
           </ScheduleText>
