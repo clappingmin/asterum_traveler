@@ -1,11 +1,11 @@
-import { Member, ScheduleBase } from '@asterum/types';
+import { Member, ScheduleBase, ScheduleDate } from '@asterum/types';
 import { useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import styled from 'styled-components';
 import * as api from '../../shared/services/scheduleService';
 import { queryClient } from '../../main';
-import { localStringToTimestamp } from '../../shared/utils';
+import { localStringToScheduleDate, localStringToTimestamp } from '../../shared/utils';
 
 interface OutletContext {
   selectedDate: Date;
@@ -17,7 +17,8 @@ function ScheduleEdit() {
 
   const navigate = useNavigate();
   const { selectedDate } = useOutletContext<OutletContext>();
-  const [scheduleDate, setScheduleDate] = useState<string>('');
+  const [localDate, setLocalDate] = useState<string>('');
+  const [isAnniversary, setIsAnniversary] = useState<boolean>(false);
   const [content, setContent] = useState<string>('');
   const [members, setMembers] = useState<Member[]>([]);
 
@@ -33,9 +34,12 @@ function ScheduleEdit() {
 
   useEffect(() => {
     // 날짜 초기화
-    selectedDate.setUTCHours(0, 0, 0, 0);
-    const localISOString = selectedDate.toISOString().slice(0, 16);
-    setScheduleDate(localISOString);
+    const date = new Date(selectedDate);
+    date.setHours(0, 0, 0, 0);
+
+    const offset = date.getTimezoneOffset() * 60000;
+    const localISOString = new Date(date.getTime() - offset).toISOString().slice(0, 16);
+    setLocalDate(localISOString);
   }, [selectedDate]);
 
   /**
@@ -53,12 +57,13 @@ function ScheduleEdit() {
   };
 
   const saveSchedule = () => {
-    const convertedDate = localStringToTimestamp(scheduleDate);
+    const convertedScheduleDate = localStringToScheduleDate(localDate);
 
     const schedule: ScheduleBase = {
-      scheduleDate: convertedDate,
+      scheduleDate: convertedScheduleDate,
       content,
       members,
+      isAnniversary,
     };
 
     addSchedule.mutate(schedule);
@@ -73,11 +78,22 @@ function ScheduleEdit() {
           <input
             id="scheduleDate"
             type="datetime-local"
-            value={scheduleDate}
+            value={localDate}
             onChange={(e) => {
-              setScheduleDate(e.target.value);
+              setLocalDate(e.target.value);
             }}
           />
+        </InputWrapper>
+        <InputWrapper>
+          <span>기념일</span>
+          <form
+            onChange={(e: React.ChangeEvent<HTMLFormElement>) => {
+              setIsAnniversary(!!e.target.value);
+            }}
+          >
+            <input type="radio" name="isAnniversary" value={1} checked={isAnniversary} />Y
+            <input type="radio" name="isAnniversary" value={0} checked={!isAnniversary} />N
+          </form>
         </InputWrapper>
         <InputWrapper>
           <label htmlFor="content">스케줄 내용</label>

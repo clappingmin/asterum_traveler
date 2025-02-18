@@ -1,3 +1,4 @@
+import { ScheduleDate } from '@asterum/types';
 import { Timestamp } from 'firebase/firestore';
 
 // date-local string Timestamp로 변경
@@ -5,6 +6,18 @@ export const localStringToTimestamp = (localString: string) => {
   const date = new Date(localString);
 
   return Timestamp.fromDate(date);
+};
+
+export const localStringToScheduleDate = (localString: string): ScheduleDate => {
+  const date = new Date(localString);
+
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+
+  return { year, month, day, hour, minute };
 };
 
 export const getTimeFromTimestamp = (timestamp: Timestamp): string => {
