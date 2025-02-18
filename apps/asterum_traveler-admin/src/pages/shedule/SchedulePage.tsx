@@ -3,12 +3,24 @@ import Calendar from 'react-calendar';
 import { useState } from 'react';
 import EditSharpIcon from '@mui/icons-material/EditSharp';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import * as api from '../../shared/services/scheduleService';
+import { Schedule } from '@asterum/types';
+import { getTimeFromTimestamp } from '../../shared/utils';
+import { Timestamp } from 'firebase/firestore';
 
 const TODAY = new Date();
 
 function SchedulePage() {
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState<Date | any>(TODAY);
+
+  const { data: schedules } = useQuery({
+    queryKey: ['schedules', selectedDate],
+    queryFn: async () => {
+      return await api.getSchedulesByDate(selectedDate);
+    },
+  });
 
   const goToScheduleEdit = (scheduleId?: string) => {
     scheduleId ? navigate(`edit/${scheduleId}`) : navigate('edit');
@@ -44,19 +56,23 @@ function SchedulePage() {
         {/* Schedule Edit Component */}
         <Outlet context={{ selectedDate }} />
         <ScheduleListWrapper>
-          <ScheduleContainer>
-            <ScheduleContent>
-              8PM 은호 밤비 유투브 어쩌구 저쩌구 fdsafdsdfdsafdsfdsfadsaf 은호 밤비 유투브 어쩌구
-              저쩌구
-            </ScheduleContent>
-            <ScheduleEditButton
-              onClick={() => {
-                goToScheduleEdit('124');
-              }}
-            >
-              <EditSharpIcon fontSize="small" />
-            </ScheduleEditButton>
-          </ScheduleContainer>
+          {schedules &&
+            schedules.map((schedule: Schedule) => (
+              <ScheduleContainer>
+                <ScheduleContent>
+                  <div>{getTimeFromTimestamp(schedule.scheduleDate as Timestamp)}</div>
+                  <div>{schedule.members.join(', ')}</div>
+                  <div>{schedule.content}</div>
+                </ScheduleContent>
+                <ScheduleEditButton
+                  onClick={() => {
+                    goToScheduleEdit(schedule.id);
+                  }}
+                >
+                  <EditSharpIcon fontSize="small" />
+                </ScheduleEditButton>
+              </ScheduleContainer>
+            ))}
         </ScheduleListWrapper>
       </DayListWrapper>
     </Wrapper>
@@ -111,7 +127,10 @@ const ScheduleContainer = styled.div`
 `;
 
 const ScheduleContent = styled.div`
-  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 18px;
 `;
 
 const ScheduleEditButton = styled.button`

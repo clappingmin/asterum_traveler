@@ -27,6 +27,7 @@ function ScheduleEdit() {
       queryClient.invalidateQueries({ queryKey: ['schedules', scheduleId] });
       alert('스케줄 추가 완료');
       navigate(-1);
+      // FIXME: 날짜가 이전 날짜로 돌아감 ex) 18일 추가하면 17일 보여주는 페이지로 이동
     },
   });
 
