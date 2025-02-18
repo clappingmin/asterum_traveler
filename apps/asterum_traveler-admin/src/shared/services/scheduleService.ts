@@ -27,27 +27,44 @@ export async function getSchedulesByDate(targetDate: Date) {
   try {
     const schedulesRef = collection(db, 'schedules');
 
-    const startDate = new Date(targetDate);
-    startDate.setHours(0, 0, 0, 0);
+    const year = targetDate.getFullYear();
+    const month = targetDate.getMonth() + 1;
+    const day = targetDate.getDate();
 
-    const endDate = new Date(targetDate);
-    endDate.setHours(23, 59, 59, 59);
-
-    const q = query(
+    const q1 = query(
       schedulesRef,
-      where('scheduleDate', '>=', startDate),
-      where('scheduleDate', '<=', endDate)
+      where('isAnniversary', '==', false),
+      where('schedules_year', '==', year),
+      where('schedules_month', '==', month),
+      where('schedules_day', '==', day)
     );
 
-    const querySnapshot = await getDocs(q);
-    const schedules: Schedule[] = querySnapshot.docs.map((doc) => ({
-      id: doc.data().id,
-      createdAt: doc.data().createAt,
-      content: doc.data().content,
-      scheduleDate: doc.data().scheduleDate,
-      members: doc.data().members,
-    }));
+    const q2 = query(
+      schedulesRef,
+      where('isAnniversary', '==', true),
+      where('schedules_month', '==', month),
+      where('schedules_day', '==', day)
+    );
 
-    return schedules;
+    const [snapshot1, snapshot2] = await Promise.all([getDocs(q1), getDocs(q2)]);
+
+    const schedules = new Map();
+
+    snapshot1.forEach((doc) => schedules.set(doc.id, doc.data()));
+    snapshot2.forEach((doc) => schedules.set(doc.id, doc.data()));
+
+    // 시간순 정렬
+    const schedulesArray: Schedule[] = Array.from(schedules.values());
+    schedulesArray.sort((a, b) => {
+      if (a.schedules_hour < b.schedules_hour) return -1;
+      if (a.schedules_hour > b.schedules_hour) return 1;
+      if (a.schedules_hour === b.schedules_hour) {
+        if (a.schedules_minute < b.schedules_minute) return -1;
+        if (a.schedules_minute > b.schedules_minute) return 1;
+        if (a.schedules_minute === b.schedules_minute) return 0;
+      }
+    });
+
+    return schedulesArray;
   } catch (e) {}
 }

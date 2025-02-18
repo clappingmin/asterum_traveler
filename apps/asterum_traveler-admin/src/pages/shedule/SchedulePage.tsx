@@ -26,6 +26,8 @@ function SchedulePage() {
     scheduleId ? navigate(`edit/${scheduleId}`) : navigate('edit');
   };
 
+  console.log('야호?', schedules);
+
   return (
     <Wrapper>
       <Calendar
@@ -60,7 +62,8 @@ function SchedulePage() {
             schedules.map((schedule: Schedule) => (
               <ScheduleContainer>
                 <ScheduleContent>
-                  <div>{getTimeFromTimestamp(schedule.scheduleDate as Timestamp)}</div>
+                  <div>기념일 {schedule.isAnniversary ? 'Y' : 'N'}</div>
+                  <div>{`${schedule.schedules_hour}:${schedule.schedules_minute}`}</div>
                   <div>{schedule.members.join(', ')}</div>
                   <div>{schedule.content}</div>
                 </ScheduleContent>
