@@ -29,7 +29,7 @@ function SchedulePage() {
     return `${weekday}..`;
   };
 
-  const renderSchedule = ({ date }) => {
+  const renderSchedule = ({ date }: any) => {
     const day = new Date(date).getDate();
     const month = new Date(date).getMonth() + 1;
 

@@ -57,10 +57,10 @@ export async function getDearCards(): Promise<DearCard[]> {
  * @param {string} cardId
  * @return
  */
-export async function deleteDearCardByCardId(cardId: string): Promise<boolean> {
-  try {
-    return true;
-  } catch (e) {
-    throw e;
-  }
-}
+// export async function deleteDearCardByCardId(cardId: string): Promise<boolean> {
+//   try {
+//     return true;
+//   } catch (e) {
+//     throw e;
+//   }
+// }
