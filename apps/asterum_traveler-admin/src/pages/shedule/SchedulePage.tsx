@@ -6,8 +6,6 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import * as api from '../../shared/services/scheduleService';
 import { Schedule } from '@asterum/types';
-import { getTimeFromTimestamp } from '../../shared/utils';
-import { Timestamp } from 'firebase/firestore';
 
 const TODAY = new Date();
 
@@ -25,8 +23,6 @@ function SchedulePage() {
   const goToScheduleEdit = (scheduleId?: string) => {
     scheduleId ? navigate(`edit/${scheduleId}`) : navigate('edit');
   };
-
-  console.log('야호?', schedules);
 
   return (
     <Wrapper>

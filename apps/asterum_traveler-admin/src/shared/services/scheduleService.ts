@@ -31,6 +31,8 @@ export async function getSchedulesByDate(targetDate: Date) {
     const month = targetDate.getMonth() + 1;
     const day = targetDate.getDate();
 
+    // TODO: 전달, 다음달 +5개 스케줄 가져오기
+
     const q1 = query(
       schedulesRef,
       where('isAnniversary', '==', false),
@@ -55,13 +57,13 @@ export async function getSchedulesByDate(targetDate: Date) {
 
     // 시간순 정렬
     const schedulesArray: Schedule[] = Array.from(schedules.values());
-    schedulesArray.sort((a, b) => {
+    schedulesArray.sort((a: Schedule, b: Schedule) => {
       if (a.schedules_hour < b.schedules_hour) return -1;
-      if (a.schedules_hour > b.schedules_hour) return 1;
-      if (a.schedules_hour === b.schedules_hour) {
+      else if (a.schedules_hour > b.schedules_hour) return 1;
+      else {
         if (a.schedules_minute < b.schedules_minute) return -1;
-        if (a.schedules_minute > b.schedules_minute) return 1;
-        if (a.schedules_minute === b.schedules_minute) return 0;
+        else if (a.schedules_minute > b.schedules_minute) return 1;
+        else return 0;
       }
     });
 
