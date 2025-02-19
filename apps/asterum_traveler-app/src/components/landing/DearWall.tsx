@@ -10,6 +10,9 @@ import sticker8 from '../../assets/images/landing/dearWall/sticker_8.png';
 import sticker9 from '../../assets/images/landing/dearWall/sticker_9.png';
 import sticker10 from '../../assets/images/landing/dearWall/sticker_10.png';
 import sticker11 from '../../assets/images/landing/dearWall/sticker_11.png';
+import dearBoard1 from '../../assets/images/landing/dearWall/dear_board_1.png';
+import dearBoard2 from '../../assets/images/landing/dearWall/dear_board_2.png';
+import dearBoard3 from '../../assets/images/landing/dearWall/dear_board_3.png';
 
 function DearWall() {
   return (
@@ -46,6 +49,10 @@ function DearWall() {
       />
       <Sticker src={sticker10} width={206} height={199} top={58} right={156} />
       <Sticker src={sticker11} width={122} height={115} top={87} right={674} />
+
+      <DearBoard background={dearBoard1} width={800} height={400} top={71} left={230} />
+      <DearBoard background={dearBoard2} width={320} height={400} top={576} left={491} />
+      <DearBoard background={dearBoard3} width={564} height={228} top={528} right={303} />
     </Wrapper>
   );
 }
@@ -77,6 +84,21 @@ const Sticker = styled.img<StickerProps>`
   left: ${(props) => (props.left ? `${props.left}px` : 'auto')};
   right: ${(props) => (props.right ? `${props.right}px` : 'auto')};
   transform: ${(props) => props.transform || ''};
+`;
+
+interface DearBoardProps extends StickerProps {
+  background: string;
+}
+
+const DearBoard = styled.div<DearBoardProps>`
+  position: absolute;
+  width: ${(props) => `${props.width}px`};
+  height: ${(props) => `${props.height}px`};
+  background: url(${(props) => props.background}) no-repeat center center;
+  background-size: cover;
+  top: ${(props) => `${props.top}px`};
+  left: ${(props) => (props.left ? `${props.left}px` : 'auto')};
+  right: ${(props) => (props.right ? `${props.right}px` : 'auto')};
 `;
 
 export default DearWall;
