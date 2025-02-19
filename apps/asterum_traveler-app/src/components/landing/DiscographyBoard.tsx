@@ -4,6 +4,7 @@ import cdHole from '../../assets/images/landing/discography/cd_hole.png';
 function DiscographyBoard() {
   return (
     <Wrapper>
+      {/* TODO: 슬라이더로 변경하기 참고: https://vlast.co.kr/plave/ */}
       <CDBox>
         <CD className="cd-img">
           <CDImg src="https://i.namu.wiki/i/2jtVjIws6a90SFvUToXJ_2Gp8FBu98yOBDqXVbXYPyoP8fzOh7M9fifQc7s2kYJ9KU_kP1D-OuSa7Dyw_-Wp6axxGDyLWJRxklLTCZOgTnneJxB6JeABkWyF-muG6n8a_f2B0xTrZ_ThyUSmuoLmYg.webp" />
