@@ -50,9 +50,58 @@ function DearWall() {
       <Sticker src={sticker10} width={206} height={199} top={58} right={156} />
       <Sticker src={sticker11} width={122} height={115} top={87} right={674} />
 
-      <DearBoard background={dearBoard1} width={800} height={400} top={71} left={230} />
-      <DearBoard background={dearBoard2} width={320} height={400} top={576} left={491} />
-      <DearBoard background={dearBoard3} width={564} height={228} top={528} right={303} />
+      <DearBoard background={dearBoard1} width={800} height={400} top={71} left={230}>
+        <Board1From className="text-overflow-1">FROM.</Board1From>
+        <Board1Content>
+          장문입니다 길어지면 말줄임표 해주세요 아이고 허리아파 돈벌기 쉽지않아요 스티커도 거의 다
+          만든거랍니다 프리소스 훔쳐온 것도 있긴해요 문입니다 길어지면 말줄임표 해주세요 아이고
+          허리아파 돈벌기 쉽지않아요 스티커도 거의 다 만든거랍니다 프리소스 훔쳐온 것도 있긴해요
+          문입니다 길어지면 말줄임표 해주세요 아이고 허리아파 돈벌기 쉽지않아요 스티커도 거의 다
+          만든거랍니다 프리소스 훔쳐온 것도 있긴해요 문입니다 길어지면 말줄임표 해주세요 아이고
+          허리아파 돈벌기 쉽지않아요 스티커도 거의 다 만든거랍니다 프리소스 훔쳐온 것도 있긴해요
+        </Board1Content>
+      </DearBoard>
+      <DearBoard
+        background={dearBoard2}
+        width={320}
+        height={400}
+        top={576}
+        left={491}
+        padding="10px"
+      >
+        <Board2Dear className="text-overflow-1">DEAR.</Board2Dear>
+        <Board2Content>
+          아이고 허리아파 돈벌기 쉽지않아요 스티커도 거의 다 만든거랍니다 프리소스 훔쳐온 것도
+          있긴해요 문입니다 길어지면 말줄임표 해주세요 아이고 허리아파 돈벌기 쉽지않아요 스티커도
+          거의 다 만든거랍니다 프리소스 훔쳐온 것도 있긴해요 문입니다 길어지면 말줄임표 해주세요
+          아이고 허리아파 돈벌기 쉽지않아요 스티커도 거의 다 만든거랍니다 프리소스 훔쳐온 것도
+          있긴해요 문입니다 길어지면 말줄임표 해주세요 아이고 허리아파 돈벌기 쉽지않아요 스티커도
+          거의 다 만든거랍니다 프리소스 훔쳐온 것도 있긴해요
+        </Board2Content>
+        <Board2From className="text-overflow-1">FROM.</Board2From>
+      </DearBoard>
+      <DearBoard
+        background={dearBoard3}
+        width={564}
+        height={228}
+        top={528}
+        right={303}
+        padding="0 38px"
+      >
+        <Board3From>
+          <FromIcon>※</FromIcon>
+          FROM.나인
+          <FromIcon>※</FromIcon>
+        </Board3From>
+        <Board3Content className="text-overflow-2">
+          장문입니다 길어지면 말줄임표 해주세요 아이고 허리아파 돈벌기 쉽지않아요 스티커도 거의 다
+          만든거랍니다 프리소스 훔쳐온 것도 있긴해요 문입니다 길어지면 말줄임표 해주세요 아이고
+          허리아파 돈벌기 쉽지않아요 스티커도 거의 다 만든거랍니다 프리소스 훔쳐온 것도 있긴해요
+          문입니다 길어지면 말줄임표 해주세요 아이고 허리아파 돈벌기 쉽지않아요 스티커도 거의 다
+          만든거랍니다 프리소스 훔쳐온 것도 있긴해요 문입니다 길어지면 말줄임표 해주세요 아이고
+          허리아파 돈벌기 쉽지않아요 스티커도 거의 다 만든거랍니다 프리소스 훔쳐온 것도 있긴해요
+        </Board3Content>
+      </DearBoard>
     </Wrapper>
   );
 }
@@ -78,8 +127,8 @@ interface StickerProps {
 
 const Sticker = styled.img<StickerProps>`
   position: absolute;
-  width: ${(props) => (props.width ? `${props.width}px` : 'auto')};
-  height: ${(props) => (props.height ? `${props.height}px` : 'auto')};
+  width: ${(props) => `${props.width}px`};
+  height: ${(props) => `${props.height}px`};
   top: ${(props) => `${props.top}px`};
   left: ${(props) => (props.left ? `${props.left}px` : 'auto')};
   right: ${(props) => (props.right ? `${props.right}px` : 'auto')};
@@ -88,6 +137,7 @@ const Sticker = styled.img<StickerProps>`
 
 interface DearBoardProps extends StickerProps {
   background: string;
+  padding?: string;
 }
 
 const DearBoard = styled.div<DearBoardProps>`
@@ -99,6 +149,87 @@ const DearBoard = styled.div<DearBoardProps>`
   top: ${(props) => `${props.top}px`};
   left: ${(props) => (props.left ? `${props.left}px` : 'auto')};
   right: ${(props) => (props.right ? `${props.right}px` : 'auto')};
+  display: flex;
+  flex-direction: column;
+  padding: ${(props) => props.padding || 0};
+`;
+
+const Text = styled.span`
+  color: #000;
+  font-family: 'PartialSansKR' !important;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 180%;
+`;
+
+const Board1From = styled(Text)`
+  margin: 12px 16px;
+  margin-left: auto;
+  line-height: 32px;
+`;
+
+const Board1Content = styled(Text)`
+  margin: 16px;
+  width: 768px;
+  max-height: 312px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  // NOTE: ...으로 표기 안되는 폰트임
+  // TODO: common style로 빼기 함수로 만들어서 변수로 줄 받아서 사용하게 변경
+`;
+
+const Board2Dear = styled(Text)`
+  width: 260px;
+  margin: 16px 20px;
+  line-height: 32px;
+`;
+
+const Board2Content = styled(Text)`
+  margin: 16px;
+  width: 268px;
+  height: 215px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+`;
+
+const Board2From = styled(Text)`
+  margin: 16px;
+  margin-left: auto;
+  max-width: 200px;
+  line-height: 32px;
+`;
+
+const Board3From = styled(Text)`
+  width: 100%;
+  height: 93px;
+  color: #ec1d26;
+  font-size: 32px;
+  line-height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+`;
+
+const FromIcon = styled.span`
+  font-family: 'Noto Sans KR' !important;
+  color: #ec1d26;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 48px;
+`;
+
+const Board3Content = styled(Text)`
+  color: #fff;
+  margin-top: 11px;
 `;
 
 export default DearWall;
