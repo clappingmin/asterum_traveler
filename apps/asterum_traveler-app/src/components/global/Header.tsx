@@ -6,7 +6,7 @@ function Header() {
   return (
     <Wrapper>
       <Container>
-        <Link to="">
+        <Link to="/">
           <Logo src={LogoLarge} height="64" />
         </Link>
         <Link to="report">

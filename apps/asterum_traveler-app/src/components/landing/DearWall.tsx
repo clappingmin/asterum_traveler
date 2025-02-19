@@ -110,7 +110,6 @@ const Wrapper = styled.div`
   width: 100%;
   height: 1080px;
   position: relative;
-  border: 1px solid blue;
   color: #fff;
   font-size: 200px;
   padding: 50px 0;

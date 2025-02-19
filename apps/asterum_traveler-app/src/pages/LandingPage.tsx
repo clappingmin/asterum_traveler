@@ -1,17 +1,27 @@
 import styled from 'styled-components';
-import { TestButton } from '@asterum/ui';
+import ImgSlider from '../components/landing/ImgSlider';
+import DearWall from '../components/landing/DearWall';
+import ScheduleBoard from '../components/landing/ScheduleBoard';
+import DiscographyBoard from '../components/landing/DiscographyBoard';
+import BackgroundImg from '../assets/images/landing/background.png';
 
 function LandingPage() {
   return (
-    <Wrapper>
-      Landing
-      <TestButton />
+    <Wrapper background={BackgroundImg}>
+      <ImgSlider />
+      <DearWall />
+      <ScheduleBoard />
+      <DiscographyBoard />
     </Wrapper>
   );
 }
 
-const Wrapper = styled.div`
-  border: 10px solid red;
+const Wrapper = styled.div<{ background: string }>`
+  display: flex;
+  flex-direction: column;
+  gap: 128px;
+  background: url(${(props) => props.background}) no-repeat center center;
+  background-size: cover;
 `;
 
 export default LandingPage;
