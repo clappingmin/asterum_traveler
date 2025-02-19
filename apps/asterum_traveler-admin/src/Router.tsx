@@ -6,8 +6,8 @@ import ProductDetailPage from './pages/report/ProductDetailPage';
 import ReportDetailPage from './pages/report/ReportDetailPage';
 import ProductEditPage from './pages/report/ProductEditPage';
 import ReportEditPage from './pages/report/ReportEditPage';
-import SchedulePage from './pages/shedule/SchedulePage';
-import ScheduleEdit from './pages/shedule/SheduleEdit';
+import SchedulePage from './pages/schedule/SchedulePage';
+import ScheduleEdit from './pages/schedule/SheduleEdit';
 
 const router = createBrowserRouter([
   {
