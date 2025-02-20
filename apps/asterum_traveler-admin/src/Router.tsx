@@ -9,6 +9,7 @@ import ReportEditPage from './pages/report/ReportEditPage';
 import SchedulePage from './pages/schedule/SchedulePage';
 import ScheduleEdit from './pages/schedule/SheduleEdit';
 import OverViewPage from './pages/OverViewPage';
+import LandingEditImgSlider from './pages/landing/LandingEditImgSlider';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,13 @@ const router = createBrowserRouter([
       {
         path: 'landing',
         element: <LandingPage />,
+      },
+      {
+        path: 'landing/edit/img-slider',
+        element: <LandingEditImgSlider />,
+      },
+      {
+        path: 'landing/edit/discography',
       },
       // 리포트
       {
