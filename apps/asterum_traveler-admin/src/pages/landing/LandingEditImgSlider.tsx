@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import LandingImgFileUploader from './LandingImgFileUploader';
+import ManageSliderImage from './ManageSliderImage';
 
 function LandingEditImgSlider() {
   return (
@@ -10,11 +11,8 @@ function LandingEditImgSlider() {
       </Container>
       <HorizontalLine />
       <Container>
-        <Title>랜딩 이미지 관리</Title>
-      </Container>
-      <HorizontalLine />
-      <Container>
-        <Title>서버 이미지 관리</Title>
+        <Title>이미지 관리</Title>
+        <ManageSliderImage />
       </Container>
     </Wrapper>
   );

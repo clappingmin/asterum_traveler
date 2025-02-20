@@ -1,7 +1,7 @@
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { db, storage } from '../firebaseConfig';
 import { SliderImage } from '@asterum/types';
-import { doc, setDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, orderBy, query, setDoc, where } from 'firebase/firestore';
 
 export const imageUpload = async (
   image: File,
@@ -28,3 +28,64 @@ export const imageUpload = async (
     console.log(e);
   }
 };
+
+/**
+ * 슬라이더 이미지 가져오기
+ * @return {Promise<SliderImage[]>}
+ */
+export async function getSliderImages(): Promise<SliderImage[]> {
+  try {
+    const imagesRef = collection(db, 'landing-slider');
+
+    const q = query(imagesRef, orderBy('order'));
+
+    const querySnapshot = await getDocs(q);
+    const images: SliderImage[] = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: data.id,
+        order: data.order ?? -1,
+        imageUrl: data.imageUrl ?? '',
+      } as SliderImage;
+    });
+
+    return images;
+  } catch (e) {
+    return [];
+  }
+}
+
+export async function setSliderImage(sliderImage: SliderImage, order: number): Promise<boolean> {
+  try {
+    // FIXME: 드래그앤드랍 추가 후 order 방식 수정 필요
+    // FIXME: 리오더링 알고리즘도 필요
+    await setDoc(doc(db, 'landing-slider', sliderImage.id), { ...sliderImage, order });
+
+    return true;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export async function getViewdSliderImages(): Promise<SliderImage[]> {
+  try {
+    const imagesRef = collection(db, 'landing-slider');
+
+    const q = query(imagesRef, where('order', '!=', -1), orderBy('order'));
+
+    const querySnapshot = await getDocs(q);
+    const images: SliderImage[] = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: data.id,
+        order: data.order ?? 0,
+        imageUrl: data.imageUrl ?? '',
+      } as SliderImage;
+    });
+
+    return images;
+  } catch (e) {
+    console.log(e);
+    return [];
+  }
+}

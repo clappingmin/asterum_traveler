@@ -12,8 +12,8 @@ function LandingImgFileUploader() {
   const addSliderImage = useMutation({
     mutationFn: ({ preview, imageId, type }: { preview: File; imageId: string; type: 'slider' }) =>
       api.imageUpload(preview, imageId, type),
-    onSuccess: (imageUrl) => {
-      queryClient.invalidateQueries({ queryKey: ['slider', imageUrl] });
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['slider'] });
       beforeImageId.current = imageId.current;
       alert('이미지 업로드 완료');
     },
