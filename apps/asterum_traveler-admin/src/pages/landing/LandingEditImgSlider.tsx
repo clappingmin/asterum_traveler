@@ -1,53 +1,12 @@
-import { useRef, useState } from 'react';
 import styled from 'styled-components';
-import * as api from '../../shared/services/landingService';
-import { v4 as uuidv4 } from 'uuid';
+import LandingImgFileUploader from './LandingImgFileUploader';
 
 function LandingEditImgSlider() {
-  const [preview, setPreview] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string>('');
-
-  // 이미지 재업로드 막기 위해서
-  const beforeImageId = useRef<string>('');
-  const imageId = useRef<string>('');
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setPreview(file);
-      const id = uuidv4();
-      imageId.current = id;
-
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => setPreviewUrl(reader.result as string);
-    }
-  };
-
-  const uploadSliderImage = async () => {
-    if (!preview) return;
-    if (!imageId.current || imageId.current === beforeImageId.current) {
-      alert('이미 업로드 완료한 이미지 혹은 잘못된 이미지입니다.');
-      return;
-    }
-
-    const uploadedImageUrl = await api.imageUpload(preview, imageId.current, 'slider');
-
-    if (uploadedImageUrl) beforeImageId.current = imageId.current;
-  };
-
   return (
     <Wrapper>
       <Container>
         <Title>이미지 추가</Title>
-        <ImgPreviewContainer>
-          <label htmlFor="preview">{previewUrl && <img src={previewUrl} />}</label>
-          <input type="file" accept="image/*" id="preview" onChange={handleImageChange} />
-        </ImgPreviewContainer>
-        <ButtonContainer>
-          <WarningText>이미지는 1920*1080 비율에 맞게 조정됩니다.</WarningText>
-          <Button onClick={uploadSliderImage}>추가하기</Button>
-        </ButtonContainer>
+        <LandingImgFileUploader />
       </Container>
       <HorizontalLine />
       <Container>
