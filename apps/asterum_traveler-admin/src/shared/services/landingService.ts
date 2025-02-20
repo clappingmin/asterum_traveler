@@ -1,6 +1,6 @@
 import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { db, storage } from '../firebaseConfig';
-import { SliderImage } from '@asterum/types';
+import { Album, SliderImage } from '@asterum/types';
 import {
   collection,
   deleteDoc,
@@ -11,6 +11,7 @@ import {
   setDoc,
   where,
 } from 'firebase/firestore';
+import { v4 as uuidv4 } from 'uuid';
 
 export const imageUpload = async (
   image: File,
@@ -116,5 +117,35 @@ export async function deleteDBSliderImage(targetId: string): Promise<boolean> {
   } catch (error) {
     console.log(error);
     return false;
+  }
+}
+
+export async function addAlbum(
+  albumCover: File,
+  albumName: string,
+  releaseDate: string
+): Promise<string> {
+  try {
+    if (!albumCover) return '';
+
+    const albumId = uuidv4();
+
+    const storageRef = ref(storage, `landing/discography/${albumId}`);
+    await uploadBytes(storageRef, albumCover);
+    const downloadURL = await getDownloadURL(storageRef);
+
+    const targetAlbum: Album = {
+      id: albumId,
+      imageUrl: downloadURL,
+      albumName,
+      releaseDate,
+    };
+
+    await setDoc(doc(db, 'discography', albumId), targetAlbum);
+
+    return downloadURL;
+  } catch (error) {
+    console.log(error);
+    return '';
   }
 }

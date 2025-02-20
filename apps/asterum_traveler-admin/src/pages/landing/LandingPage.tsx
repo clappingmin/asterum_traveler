@@ -20,7 +20,7 @@ function LandingPage() {
       <div>
         <TopBar>
           <span>디스코그래피 관리</span>
-          <NavBtn to="">
+          <NavBtn to="edit/discography">
             <EditIcon />
           </NavBtn>
         </TopBar>

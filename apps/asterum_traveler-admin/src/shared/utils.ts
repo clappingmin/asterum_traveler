@@ -35,3 +35,7 @@ export const getTimeFromTimestamp = (timestamp: Timestamp): string => {
 
   return `${hours}:${minutes}:${seconds}`;
 };
+
+export const formatDate = (dateString: string): string => {
+  return dateString.replace(/-/g, '.');
+};

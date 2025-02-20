@@ -10,6 +10,7 @@ import SchedulePage from './pages/schedule/SchedulePage';
 import ScheduleEdit from './pages/schedule/SheduleEdit';
 import OverViewPage from './pages/OverViewPage';
 import LandingEditImgSliderPage from './pages/landing/LandingEditImgSliderPage';
+import LandingEditDiscographyPage from './pages/landing/LandingEditDiscographyPage';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'landing/edit/discography',
+        element: <LandingEditDiscographyPage />,
       },
       // 리포트
       {
