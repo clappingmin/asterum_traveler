@@ -20,6 +20,7 @@ function LandingImgFileUploader() {
   });
 
   // 이미지 재업로드 막기 위해서
+  // NOTE: 생각해보니 ref를 두개 안만들고 file를 비교하면 되는거 아님? Id도 서비스에서 호출하고
   const beforeImageId = useRef<string>('');
   const imageId = useRef<string>('');
 
