@@ -11,10 +11,16 @@ import { theme } from '@asterum/ui';
  * @return
  */
 const handleResize = (wrapperRef: React.RefObject<HTMLDivElement>) => {
-  if (window.innerWidth > 1920) return;
-
   const pageWrapper = wrapperRef.current;
   if (!pageWrapper) return;
+
+  // 1920보다 클 경우
+  if (window.innerWidth > 1920) {
+    pageWrapper.style.zoom = '1';
+    pageWrapper.style.minHeight = '100vh';
+
+    return;
+  }
 
   const zoomSize = window.innerWidth / 1920;
   const revertSize = 1920 / window.innerWidth;

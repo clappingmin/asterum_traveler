@@ -17,6 +17,8 @@ function LandingPage() {
 }
 
 const Wrapper = styled.div<{ background: string }>`
+  width: 1920px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   gap: 128px;
