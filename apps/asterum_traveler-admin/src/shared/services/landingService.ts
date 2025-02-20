@@ -1,7 +1,16 @@
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { db, storage } from '../firebaseConfig';
 import { SliderImage } from '@asterum/types';
-import { collection, doc, getDocs, orderBy, query, setDoc, where } from 'firebase/firestore';
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+  setDoc,
+  where,
+} from 'firebase/firestore';
 
 export const imageUpload = async (
   image: File,
@@ -11,7 +20,7 @@ export const imageUpload = async (
   try {
     if (!image) return;
 
-    const storageRef = ref(storage, `landing/${saveType}/${image.name}`);
+    const storageRef = ref(storage, `landing/${saveType}/${imageId}`);
     await uploadBytes(storageRef, image);
     const downloadURL = await getDownloadURL(storageRef);
 
@@ -64,6 +73,7 @@ export async function setSliderImage(sliderImage: SliderImage, order: number): P
     return true;
   } catch (e) {
     console.log(e);
+    return false;
   }
 }
 
@@ -87,5 +97,24 @@ export async function getViewdSliderImages(): Promise<SliderImage[]> {
   } catch (e) {
     console.log(e);
     return [];
+  }
+}
+
+/**
+ * 슬라이더 이미지 삭제
+ * @param {string }targetId
+ * @return {Promise<boolean>}
+ */
+export async function deleteDBSliderImage(targetId: string): Promise<boolean> {
+  try {
+    await deleteDoc(doc(db, 'landing-slider', targetId));
+
+    const targetRef = ref(storage, `landing/slider/${targetId}`);
+    await deleteObject(targetRef);
+
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
   }
 }

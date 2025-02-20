@@ -36,14 +36,28 @@ function ManageSliderImage() {
     },
   });
 
+  const deleteDBImage = useMutation({
+    mutationFn: (targetId: string) => api.deleteDBSliderImage(targetId),
+    onSuccess: (isSuccess: boolean) => {
+      if (!isSuccess) throw new Error('이미지 추가 실패');
+      queryClient.invalidateQueries({ queryKey: ['slider'] });
+      alert('서버 이미지 삭제 완료');
+    },
+    onError: () => {
+      alert('서버 이미지 삭제 실패!');
+    },
+  });
+
   const updateViewedImage = async (targetImg: SliderImage, type: 'add' | 'remove') => {
-    const updateOrder = type === 'remove' ? -1 : viewed && viewed.length ? viewed[-1].order + 1 : 0;
+    const updateOrder =
+      type === 'remove' ? -1 : viewed && viewed.length ? viewed[viewed.length - 1].order + 1 : 0;
 
     updateSliderImage.mutate({ sliderImg: targetImg, order: updateOrder });
   };
 
   return (
     <Wrapper>
+      <Title>현재 랜딩페이지에 보여주는 이미지들</Title>
       <SortContainer>
         {/* TODO: 드래그앤드랍으로 이미지 순서 관리하기
       현재: 이미지 추가 순으로 이미지 순서 자동으로 */}
@@ -58,10 +72,11 @@ function ManageSliderImage() {
           ))}
       </SortContainer>
       <HorizontalLine />
+      <Title>전체 이미지</Title>
       <AllImagesContainer>
         {images &&
           images.map((image) => (
-            <ImgBox key={image.id}>
+            <ImgBox key={image.id} isViewed={image.order !== -1}>
               <img src={image.imageUrl} alt={image.id} />
               {image.order === -1 && (
                 <>
@@ -72,7 +87,11 @@ function ManageSliderImage() {
                   >
                     <AddIcon fontSize="small" />
                   </AddButton>
-                  <DeleteButton>
+                  <DeleteButton
+                    onClick={() => {
+                      deleteDBImage.mutate(image.id);
+                    }}
+                  >
                     <DeleteIcon fontSize="small" />
                   </DeleteButton>
                 </>
@@ -87,7 +106,12 @@ function ManageSliderImage() {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
+`;
+
+const Title = styled.span`
+  font-size: 18px;
+  font-weight: 700;
 `;
 
 const HorizontalLine = styled.div`
@@ -96,7 +120,11 @@ const HorizontalLine = styled.div`
   background-color: var(--color);
 `;
 
-const SortContainer = styled.div``;
+const SortContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+`;
 
 const AllImagesContainer = styled.div`
   display: flex;
@@ -104,16 +132,18 @@ const AllImagesContainer = styled.div`
   gap: 8px;
 `;
 
-const ImgBox = styled.div`
+const ImgBox = styled.div<{ isViewed: boolean }>`
   position: relative;
   width: 300px;
   aspect-ratio: 1920/1080;
-  border: 1px solid var(--color);
+  border: 1px solid ${(props) => (props.isViewed ? 'red' : '#FFF')};
+  cursor: ${(props) => props.isViewed && 'not-allowed'};
 
   & > img {
     width: 100%;
     aspect-ratio: 1920/1080;
     object-fit: fill;
+    filter: brightness(${(props) => props.isViewed && '50%'});
   }
 
   &:hover {

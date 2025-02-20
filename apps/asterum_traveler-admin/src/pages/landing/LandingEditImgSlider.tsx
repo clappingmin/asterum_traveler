@@ -5,15 +5,14 @@ import ManageSliderImage from './ManageSliderImage';
 function LandingEditImgSlider() {
   return (
     <Wrapper>
-      <Container>
+      <div>
         <Title>이미지 추가</Title>
         <LandingImgFileUploader />
-      </Container>
+      </div>
       <HorizontalLine />
-      <Container>
-        <Title>이미지 관리</Title>
+      <div>
         <ManageSliderImage />
-      </Container>
+      </div>
     </Wrapper>
   );
 }
@@ -30,55 +29,10 @@ const HorizontalLine = styled.div`
   background-color: var(--color);
 `;
 
-const Container = styled.div``;
-
-const ImgPreviewContainer = styled.div`
-  border: 1px solid var(--color);
-  width: 500px;
-  aspect-ratio: 1920/1080;
-  cursor: pointer;
-
-  & > label {
-    display: inline-block;
-    width: 100%;
-    aspect-ratio: 1920/1080;
-    cursor: pointer;
-
-    & > img {
-      width: inherit;
-      aspect-ratio: 1920/1080;
-      object-fit: fill;
-    }
-  }
-
-  & > input {
-    display: none;
-  }
-`;
-
-const WarningText = styled.span`
-  font-size: 16px;
-  font-weight: 500;
-`;
-
-const ButtonContainer = styled.div`
-  margin-top: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
 const Title = styled.div`
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 10px;
-`;
-
-const Button = styled.button`
-  padding: 4px 8px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
 `;
 
 export default LandingEditImgSlider;
