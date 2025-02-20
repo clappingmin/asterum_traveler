@@ -132,7 +132,7 @@ const AllImagesContainer = styled.div`
   gap: 8px;
 `;
 
-const ImgBox = styled.div<{ isViewed: boolean }>`
+const ImgBox = styled.div<{ isViewed?: boolean }>`
   position: relative;
   width: 300px;
   aspect-ratio: 1920/1080;
