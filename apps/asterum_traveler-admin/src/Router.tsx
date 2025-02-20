@@ -9,7 +9,7 @@ import ReportEditPage from './pages/report/ReportEditPage';
 import SchedulePage from './pages/schedule/SchedulePage';
 import ScheduleEdit from './pages/schedule/SheduleEdit';
 import OverViewPage from './pages/OverViewPage';
-import LandingEditImgSlider from './pages/landing/LandingEditImgSlider';
+import LandingEditImgSliderPage from './pages/landing/LandingEditImgSliderPage';
 
 const router = createBrowserRouter([
   {
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'landing/edit/img-slider',
-        element: <LandingEditImgSlider />,
+        element: <LandingEditImgSliderPage />,
       },
       {
         path: 'landing/edit/discography',

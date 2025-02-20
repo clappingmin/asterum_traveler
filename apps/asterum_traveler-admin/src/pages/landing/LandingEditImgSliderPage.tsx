@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import LandingImgFileUploader from './LandingImgFileUploader';
 import ManageSliderImage from './ManageSliderImage';
 
-function LandingEditImgSlider() {
+function LandingEditImgSliderPage() {
   return (
     <Wrapper>
       <div>
@@ -35,4 +35,4 @@ const Title = styled.div`
   margin-bottom: 10px;
 `;
 
-export default LandingEditImgSlider;
+export default LandingEditImgSliderPage;
