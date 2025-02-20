@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import LandingPage from './pages/LandingPage';
+import LandingPage from './pages/landing/LandingPage';
 import ReportListPage from './pages/report/ReportListPage';
 import ProductDetailPage from './pages/report/ProductDetailPage';
 import ReportDetailPage from './pages/report/ReportDetailPage';
@@ -8,6 +8,7 @@ import ProductEditPage from './pages/report/ProductEditPage';
 import ReportEditPage from './pages/report/ReportEditPage';
 import SchedulePage from './pages/schedule/SchedulePage';
 import ScheduleEdit from './pages/schedule/SheduleEdit';
+import OverViewPage from './pages/OverViewPage';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '',
+        element: <OverViewPage />,
+      },
+      // 랜딩
+      {
+        path: 'landing',
         element: <LandingPage />,
       },
       // 리포트
