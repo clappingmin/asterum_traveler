@@ -27,25 +27,26 @@ export async function getSchedulesByDate(targetDate: Date) {
   try {
     const schedulesRef = collection(db, 'schedules');
 
-    const year = targetDate.getFullYear();
+    targetDate.setHours(0, 0, 0, 0);
+
+    const tomorrow = new Date(targetDate);
+    tomorrow.setDate(targetDate.getDate() + 1);
+
     const month = targetDate.getMonth() + 1;
     const day = targetDate.getDate();
-
-    // TODO: 전달, 다음달 +5개 스케줄 가져오기
 
     const q1 = query(
       schedulesRef,
       where('isAnniversary', '==', false),
-      where('schedules_year', '==', year),
-      where('schedules_month', '==', month),
-      where('schedules_day', '==', day)
+      where('scheduleDate', '>=', targetDate),
+      where('scheduleDate', '<', tomorrow)
     );
 
     const q2 = query(
       schedulesRef,
       where('isAnniversary', '==', true),
-      where('schedules_month', '==', month),
-      where('schedules_day', '==', day)
+      where('schedule_month', '==', month),
+      where('schedule_day', '==', day)
     );
 
     const [snapshot1, snapshot2] = await Promise.all([getDocs(q1), getDocs(q2)]);
@@ -58,15 +59,17 @@ export async function getSchedulesByDate(targetDate: Date) {
     // 시간순 정렬
     const schedulesArray: Schedule[] = Array.from(schedules.values());
     schedulesArray.sort((a: Schedule, b: Schedule) => {
-      if (a.schedules_hour < b.schedules_hour) return -1;
-      else if (a.schedules_hour > b.schedules_hour) return 1;
+      if (a.schedule_hour < b.schedule_hour) return -1;
+      else if (a.schedule_hour > b.schedule_hour) return 1;
       else {
-        if (a.schedules_minute < b.schedules_minute) return -1;
-        else if (a.schedules_minute > b.schedules_minute) return 1;
+        if (a.schedule_minute < b.schedule_minute) return -1;
+        else if (a.schedule_minute > b.schedule_minute) return 1;
         else return 0;
       }
     });
 
     return schedulesArray;
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);
+  }
 }

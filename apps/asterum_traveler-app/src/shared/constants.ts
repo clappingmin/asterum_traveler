@@ -17,3 +17,11 @@ export const MEMBER_ENGLISH_NAME = {
   eunho: 'EUNHO',
   hamin: 'HAMIN',
 };
+
+export const MEMBER_HEART = {
+  yejun: '💙',
+  noah: '💜',
+  bamby: '💗',
+  eunho: '❤️',
+  hamin: '🖤',
+};
