@@ -3,6 +3,9 @@ import icon_close from '../../assets/icons/close.svg';
 import img_trash from '../../assets/images/dear/trash.png';
 import { DearCard } from '@asterum/types';
 import { timestampToDisplayDate } from '../../shared/utils';
+import { useMutation } from '@tanstack/react-query';
+import * as api from '../../shared/services/dearService';
+import { queryClient } from '../../main';
 
 interface ModalLetterDetailProps {
   onClose: () => void;
@@ -10,7 +13,15 @@ interface ModalLetterDetailProps {
 }
 
 function ModalLetterDetail({ onClose, dearCard }: ModalLetterDetailProps) {
-  const { from, content, password, createdAt } = dearCard;
+  const { from, content, password, createdAt, id } = dearCard;
+
+  const deleteCard = useMutation({
+    mutationFn: () => api.deleteDearCardByCardId(id),
+    onSuccess: (isSuccess: boolean) => {
+      queryClient.invalidateQueries({ queryKey: ['cards'] });
+      isSuccess && onClose();
+    },
+  });
 
   /**
    * 비밀번호 확인
@@ -27,11 +38,11 @@ function ModalLetterDetail({ onClose, dearCard }: ModalLetterDetailProps) {
   const deleteButtonClickHandler = () => {
     // 비밀번호 확인
     if (!handlePasswordInput()) {
-      // TODO: 비밀번호 확인 실패시
+      alert('비밀번호가 다릅니다.');
       return;
     }
 
-    console.log('야호!');
+    deleteCard.mutate();
   };
 
   return (

@@ -7,9 +7,7 @@ import * as api from '../../shared/services/dearService';
 function LettersView() {
   const { data: dearCards } = useQuery<DearCard[]>({
     queryKey: ['cards'],
-    queryFn: async () => {
-      return await api.getDearCards();
-    },
+    queryFn: api.getDearCards,
   });
 
   return (
