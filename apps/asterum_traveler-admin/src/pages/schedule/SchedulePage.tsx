@@ -59,7 +59,7 @@ function SchedulePage() {
               <ScheduleContainer>
                 <ScheduleContent>
                   <div>기념일 {schedule.isAnniversary ? 'Y' : 'N'}</div>
-                  <div>{`${schedule.schedules_hour}:${schedule.schedules_minute}`}</div>
+                  <div>{`${schedule.schedule_hour}:${schedule.schedule_minute}`}</div>
                   <div>{schedule.members.join(', ')}</div>
                   <div>{schedule.content}</div>
                 </ScheduleContent>

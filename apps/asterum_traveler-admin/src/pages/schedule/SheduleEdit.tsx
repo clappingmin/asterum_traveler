@@ -5,7 +5,7 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import styled from 'styled-components';
 import * as api from '../../shared/services/scheduleService';
 import { queryClient } from '../../main';
-import { localStringToScheduleDate } from '../../shared/utils';
+import { localStringToScheduleDate, localStringToTimestamp } from '../../shared/utils';
 
 interface OutletContext {
   selectedDate: Date;
@@ -58,11 +58,14 @@ function ScheduleEdit() {
   const saveSchedule = () => {
     const convertedScheduleDate = localStringToScheduleDate(localDate);
 
+    const timestampDate = localStringToTimestamp(localDate);
+
     const schedule: ScheduleBase = {
       ...convertedScheduleDate,
       content,
       members,
       isAnniversary,
+      scheduleDate: timestampDate,
     };
 
     addSchedule.mutate(schedule);

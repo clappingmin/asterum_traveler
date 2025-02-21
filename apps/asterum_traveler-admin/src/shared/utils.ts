@@ -18,11 +18,11 @@ export const localStringToScheduleDate = (localString: string): ScheduleDate => 
   const minute = date.getMinutes();
 
   return {
-    schedules_year: year,
-    schedules_month: month,
-    schedules_day: day,
-    schedules_hour: hour,
-    schedules_minute: minute,
+    schedule_year: year,
+    schedule_month: month,
+    schedule_day: day,
+    schedule_hour: hour,
+    schedule_minute: minute,
   };
 };
 
