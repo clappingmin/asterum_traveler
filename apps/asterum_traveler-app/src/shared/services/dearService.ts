@@ -1,5 +1,14 @@
 import { DearCard, DearCardBase } from '@asterum/types';
-import { collection, doc, getDocs, orderBy, query, setDoc, Timestamp } from 'firebase/firestore';
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+  setDoc,
+  Timestamp,
+} from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
 import { db } from '../firebaseConfig';
 
@@ -31,7 +40,7 @@ export async function getDearCards(): Promise<DearCard[]> {
   try {
     const cardsRef = collection(db, 'cards');
 
-    const q = query(cardsRef, orderBy('createdAt'));
+    const q = query(cardsRef, orderBy('createdAt', 'desc'));
 
     const querySnapshot = await getDocs(q);
     const dearCards: DearCard[] = querySnapshot.docs.map((doc) => {
@@ -55,12 +64,14 @@ export async function getDearCards(): Promise<DearCard[]> {
 /**
  * 디어카드 삭제하기
  * @param {string} cardId
- * @return
+ * @return {Promise<boolean>}
  */
-// export async function deleteDearCardByCardId(cardId: string): Promise<boolean> {
-//   try {
-//     return true;
-//   } catch (e) {
-//     throw e;
-//   }
-// }
+export async function deleteDearCardByCardId(cardId: string): Promise<boolean> {
+  try {
+    await deleteDoc(doc(db, 'cards', cardId));
+
+    return true;
+  } catch (e) {
+    throw e;
+  }
+}
