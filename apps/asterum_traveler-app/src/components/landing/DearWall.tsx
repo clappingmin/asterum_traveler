@@ -13,16 +13,97 @@ import sticker11 from '../../assets/images/landing/dearWall/sticker_11.png';
 import dearBoard1 from '../../assets/images/landing/dearWall/dear_board_1.png';
 import dearBoard2 from '../../assets/images/landing/dearWall/dear_board_2.png';
 import dearBoard3 from '../../assets/images/landing/dearWall/dear_board_3.png';
+import dearBackground1 from '../../assets/images/landing/dearWall/dear_background_1.png';
 import { useQuery } from '@tanstack/react-query';
 import * as api from '../../shared/services/landingService';
+import { motion } from 'framer-motion';
 
 function DearWall() {
   // TODO: 랜딩에 보여줄 카드 어드민에서 설정하기
   const { data: cards } = useQuery({ queryKey: ['cards'], queryFn: api.getThreeDearCards });
-  console.log(cards);
 
   return (
     <Wrapper>
+      <Background>
+        <BackgroundTxtBox
+          animate={{
+            x: ['0%', '-100%'],
+          }}
+          transition={{
+            ease: 'linear',
+            repeat: Infinity,
+            duration: 5,
+          }}
+        >
+          <img src={dearBackground1} />
+          <img src={dearBackground1} />
+        </BackgroundTxtBox>
+        <BackgroundTxtBox
+          animate={{
+            x: ['0%', '-100%'],
+          }}
+          transition={{
+            ease: 'linear',
+            repeat: Infinity,
+            duration: 8,
+          }}
+        >
+          <img src={dearBackground1} />
+          <img src={dearBackground1} />
+        </BackgroundTxtBox>
+        <BackgroundTxtBox
+          animate={{
+            x: ['0%', '-100%'],
+          }}
+          transition={{
+            ease: 'linear',
+            repeat: Infinity,
+            duration: 6,
+          }}
+        >
+          <img src={dearBackground1} />
+          <img src={dearBackground1} />
+        </BackgroundTxtBox>
+        <BackgroundTxtBox
+          animate={{
+            x: ['0%', '-100%'],
+          }}
+          transition={{
+            ease: 'linear',
+            repeat: Infinity,
+            duration: 10,
+          }}
+        >
+          <img src={dearBackground1} />
+          <img src={dearBackground1} />
+        </BackgroundTxtBox>
+        <BackgroundTxtBox
+          animate={{
+            x: ['0%', '-100%'],
+          }}
+          transition={{
+            ease: 'linear',
+            repeat: Infinity,
+            duration: 4,
+          }}
+        >
+          <img src={dearBackground1} />
+          <img src={dearBackground1} />
+        </BackgroundTxtBox>
+        <BackgroundTxtBox
+          animate={{
+            x: ['0%', '-100%'],
+          }}
+          transition={{
+            ease: 'linear',
+            repeat: Infinity,
+            duration: 12,
+          }}
+        >
+          <img src={dearBackground1} />
+          <img src={dearBackground1} />
+        </BackgroundTxtBox>
+      </Background>
       <Sticker src={sticker1} width={207} height={145} top={839} right={281} />
       <Sticker src={sticker2} width={160} height={160} top={313} right={270} />
       <Sticker src={sticker3} width={200} height={140} top={488} left={151} />
@@ -102,6 +183,26 @@ const Wrapper = styled.div`
   color: #fff;
   font-size: 200px;
   padding: 50px 0;
+`;
+
+const Background = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 43px;
+
+  overflow: hidden;
+`;
+
+const BackgroundTxtBox = styled(motion.div)`
+  height: 128px;
+  display: flex;
+
+  & > img {
+    object-fit: cover;
+  }
 `;
 
 interface StickerProps {
