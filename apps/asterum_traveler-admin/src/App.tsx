@@ -12,8 +12,10 @@ function App() {
 
   const changePageTitle = (path: string) => {
     if (path === '/') setPageTitle('Dashboard Overview');
-    else if (path.startsWith('/report')) setPageTitle('Report Overview');
-    else setPageTitle('Page');
+    else if (path.startsWith('/landing')) setPageTitle('랜딩페이지 관리');
+    else if (path.startsWith('/report')) setPageTitle('리포트 관리');
+    else if (path.startsWith('/schedule')) setPageTitle('스케줄 관리');
+    else setPageTitle('');
   };
 
   return (
@@ -25,11 +27,16 @@ function App() {
           <Menu to={'/'} isSelected={!!useMatch('/')}>
             Overview
           </Menu>
+          <Menu to={'landing'} isSelected={!!useMatch('/landing')}>
+            Landing
+          </Menu>
           <Menu to={'/report'} isSelected={!!useMatch('/report/*')}>
             Report
           </Menu>
           <Menu to={'/'}>Dear</Menu>
-          <Menu to={'/'}>Schedule</Menu>
+          <Menu to={'/schedule'} isSelected={!!useMatch('/schedule')}>
+            Schedule
+          </Menu>
         </MenuBox>
       </Navigation>
       <Container>

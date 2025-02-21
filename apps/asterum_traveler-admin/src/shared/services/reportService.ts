@@ -42,7 +42,7 @@ export async function getProducts(): Promise<Product[]> {
     const products: Product[] = querySnapshot.docs.map((doc) => {
       const data = doc.data();
       return {
-        id: doc.id,
+        id: data.id,
         productName: data.productName ?? '',
         productBrand: data.productBrand ?? '',
         productThumbnail: data.productThumbnail ?? '',

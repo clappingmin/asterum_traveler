@@ -6,7 +6,7 @@ function Header() {
   return (
     <Wrapper>
       <Container>
-        <Link to="">
+        <Link to="/">
           <Logo src={LogoLarge} height="64" />
         </Link>
         <Link to="report">
@@ -28,6 +28,7 @@ const Wrapper = styled.div`
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 10;
 `;
 
 const Container = styled.div`

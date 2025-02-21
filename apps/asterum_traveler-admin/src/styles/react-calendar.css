@@ -1,0 +1,74 @@
+.react-calendar * {
+  color: var(--color);
+}
+
+.react-calendar__navigation {
+  margin-bottom: 20px;
+}
+
+.react-calendar__navigation > button {
+  background-color: transparent;
+}
+
+/* 요일 */
+.react-calendar__month-view {
+  border: 2px solid #fff;
+}
+
+.react-calendar__month-view__weekdays {
+  border-bottom: 2px solid #fff;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  padding: 16px 0;
+  color: var(--color);
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.react-calendar__month-view__weekdays__weekday:not(:last-child) {
+  border-right: 2px solid #fff;
+}
+
+.react-calendar__month-view__weekdays__weekday > abbr[title] {
+  text-decoration: none;
+}
+
+/* 날짜 */
+.react-calendar__month-view__days__day {
+  background-color: transparent;
+  height: 80px;
+  padding: 16px 16px 25px;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto !important;
+  cursor: pointer;
+}
+
+.react-calendar__month-view__days__day:not(:nth-last-child(-n + 7)) {
+  border-bottom: 2px solid #fff;
+}
+
+.react-calendar__month-view__days__day:not(:nth-child(7n)) {
+  border-right: 2px solid #fff;
+}
+
+.react-calendar__month-view__days__day > abbr {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  flex: 0 0 auto;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth * {
+  color: var(--gray) !important;
+}
+
+/* 오늘 */
+.react-calendar__tile--active {
+  background-color: var(--schedule);
+}
