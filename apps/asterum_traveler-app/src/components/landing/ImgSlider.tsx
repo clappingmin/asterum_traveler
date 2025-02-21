@@ -10,8 +10,10 @@ function ImgSlider() {
   const settings = {
     autoPlay: true,
     infiniteLoop: true,
-    interval: 5000,
+    interval: 3000,
+    showArrows: false,
     showThumbs: false,
+    showStatus: false,
   };
   return (
     <Wrapper>
