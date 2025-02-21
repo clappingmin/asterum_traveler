@@ -27,21 +27,18 @@ export async function getSchedulesByDate(targetDate: Date) {
   try {
     const schedulesRef = collection(db, 'schedules');
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    targetDate.setHours(0, 0, 0, 0);
 
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
+    const tomorrow = new Date(targetDate);
+    tomorrow.setDate(targetDate.getDate() + 1);
 
     const month = targetDate.getMonth() + 1;
     const day = targetDate.getDate();
 
-    // TODO: 전달, 다음달 +5개 스케줄 가져오기
-
     const q1 = query(
       schedulesRef,
       where('isAnniversary', '==', false),
-      where('scheduleDate', '>=', today),
+      where('scheduleDate', '>=', targetDate),
       where('scheduleDate', '<', tomorrow)
     );
 
