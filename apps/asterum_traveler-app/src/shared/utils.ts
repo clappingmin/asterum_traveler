@@ -1,4 +1,4 @@
-import { Schedule } from '@asterum/types';
+import { Member, Schedule } from '@asterum/types';
 import { Timestamp } from 'firebase/firestore';
 
 export const timestampToDisplayDate = (createdAt: Timestamp): string => {
@@ -11,12 +11,16 @@ export const timestampToDisplayDate = (createdAt: Timestamp): string => {
 };
 
 export const sortSchedule = (a: Schedule, b: Schedule) => {
-  if (a.schedule_hour < b.schedule_hour) return -1;
-  else if (a.schedule_hour > b.schedule_hour) return 1;
+  if (a.isAnniversary && !b.isAnniversary) return -1;
+  else if (!a.isAnniversary && b.isAnniversary) return 1;
   else {
-    if (a.schedule_minute < b.schedule_minute) return -1;
-    else if (a.schedule_minute > b.schedule_minute) return 1;
-    else return 0;
+    if (a.schedule_hour < b.schedule_hour) return -1;
+    else if (a.schedule_hour > b.schedule_hour) return 1;
+    else {
+      if (a.schedule_minute < b.schedule_minute) return -1;
+      else if (a.schedule_minute > b.schedule_minute) return 1;
+      else return 0;
+    }
   }
 };
 
@@ -26,4 +30,15 @@ export const formatTime = (hour: number, minute: number) => {
   const formattedMinute = String(minute).padStart(2, '0'); // 두 자리수로 변환
 
   return `${formattedHour}:${formattedMinute} ${period}`;
+};
+
+export const getWeekDay = (date: Date) => {
+  return date.toLocaleString('en-US', { weekday: 'short' });
+};
+
+export const sortMembers = (members: Member[]): Member[] => {
+  const order = ['yejun', 'noah', 'bamby', 'eunho', 'hamin'];
+  const orderMap = new Map(order.map((name, index) => [name, index]));
+
+  return members.sort((a, b) => (orderMap.get(a) ?? Infinity) - (orderMap.get(b) ?? Infinity));
 };
