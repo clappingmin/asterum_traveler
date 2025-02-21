@@ -1,6 +1,6 @@
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, limit, orderBy, query, where } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
-import { Album, Schedule } from '@asterum/types';
+import { Album, DearCard, Schedule } from '@asterum/types';
 import { sortSchedule } from '../utils';
 
 export async function getSchedulesAroundToday() {
@@ -76,6 +76,32 @@ export async function getDiscography() {
 
     return albums;
   } catch (e) {
+    return [];
+  }
+}
+
+export async function getThreeDearCards(): Promise<DearCard[]> {
+  try {
+    const cardsRef = collection(db, 'cards');
+
+    const q = query(cardsRef, orderBy('createdAt'), limit(3));
+
+    const querySnapshot = await getDocs(q);
+    const dearCards: DearCard[] = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: data.id,
+        createdAt: data.createdAt,
+        from: data.from ?? '',
+        password: data.password ?? '',
+        content: data.content ?? '',
+        cardCoverColor: data.cardCoverColor ?? 'pink',
+      } as DearCard;
+    });
+
+    return dearCards;
+  } catch (e) {
+    console.log(e);
     return [];
   }
 }

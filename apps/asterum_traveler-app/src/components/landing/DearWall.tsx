@@ -13,8 +13,14 @@ import sticker11 from '../../assets/images/landing/dearWall/sticker_11.png';
 import dearBoard1 from '../../assets/images/landing/dearWall/dear_board_1.png';
 import dearBoard2 from '../../assets/images/landing/dearWall/dear_board_2.png';
 import dearBoard3 from '../../assets/images/landing/dearWall/dear_board_3.png';
+import { useQuery } from '@tanstack/react-query';
+import * as api from '../../shared/services/landingService';
 
 function DearWall() {
+  // TODO: 랜딩에 보여줄 카드 어드민에서 설정하기
+  const { data: cards } = useQuery({ queryKey: ['cards'], queryFn: api.getThreeDearCards });
+  console.log(cards);
+
   return (
     <Wrapper>
       <Sticker src={sticker1} width={207} height={145} top={839} right={281} />
@@ -51,15 +57,8 @@ function DearWall() {
       <Sticker src={sticker11} width={122} height={115} top={87} right={674} />
 
       <DearBoard background={dearBoard1} width={800} height={400} top={71} left={230}>
-        <Board1From className="text-overflow-1">FROM.</Board1From>
-        <Board1Content>
-          장문입니다 길어지면 말줄임표 해주세요 아이고 허리아파 돈벌기 쉽지않아요 스티커도 거의 다
-          만든거랍니다 프리소스 훔쳐온 것도 있긴해요 문입니다 길어지면 말줄임표 해주세요 아이고
-          허리아파 돈벌기 쉽지않아요 스티커도 거의 다 만든거랍니다 프리소스 훔쳐온 것도 있긴해요
-          문입니다 길어지면 말줄임표 해주세요 아이고 허리아파 돈벌기 쉽지않아요 스티커도 거의 다
-          만든거랍니다 프리소스 훔쳐온 것도 있긴해요 문입니다 길어지면 말줄임표 해주세요 아이고
-          허리아파 돈벌기 쉽지않아요 스티커도 거의 다 만든거랍니다 프리소스 훔쳐온 것도 있긴해요
-        </Board1Content>
+        <Board1From className="text-overflow-1">FROM.{cards?.length && cards[0].from}</Board1From>
+        <Board1Content>{cards?.length && cards[0].content}</Board1Content>
       </DearBoard>
       <DearBoard
         background={dearBoard2}
@@ -69,16 +68,11 @@ function DearWall() {
         left={491}
         padding="10px"
       >
-        <Board2Dear className="text-overflow-1">DEAR.</Board2Dear>
-        <Board2Content>
-          아이고 허리아파 돈벌기 쉽지않아요 스티커도 거의 다 만든거랍니다 프리소스 훔쳐온 것도
-          있긴해요 문입니다 길어지면 말줄임표 해주세요 아이고 허리아파 돈벌기 쉽지않아요 스티커도
-          거의 다 만든거랍니다 프리소스 훔쳐온 것도 있긴해요 문입니다 길어지면 말줄임표 해주세요
-          아이고 허리아파 돈벌기 쉽지않아요 스티커도 거의 다 만든거랍니다 프리소스 훔쳐온 것도
-          있긴해요 문입니다 길어지면 말줄임표 해주세요 아이고 허리아파 돈벌기 쉽지않아요 스티커도
-          거의 다 만든거랍니다 프리소스 훔쳐온 것도 있긴해요
-        </Board2Content>
-        <Board2From className="text-overflow-1">FROM.</Board2From>
+        <Board2Dear className="text-overflow-1">DEAR.플레이브</Board2Dear>
+        <Board2Content>{cards && cards?.length > 1 && cards[1].content}</Board2Content>
+        <Board2From className="text-overflow-1">
+          FROM.{cards && cards?.length > 1 && cards[1].from}
+        </Board2From>
       </DearBoard>
       <DearBoard
         background={dearBoard3}
@@ -90,16 +84,11 @@ function DearWall() {
       >
         <Board3From>
           <FromIcon>※</FromIcon>
-          FROM.나인
+          FROM.{cards && cards?.length > 2 && cards[2].from}
           <FromIcon>※</FromIcon>
         </Board3From>
         <Board3Content className="text-overflow-2">
-          장문입니다 길어지면 말줄임표 해주세요 아이고 허리아파 돈벌기 쉽지않아요 스티커도 거의 다
-          만든거랍니다 프리소스 훔쳐온 것도 있긴해요 문입니다 길어지면 말줄임표 해주세요 아이고
-          허리아파 돈벌기 쉽지않아요 스티커도 거의 다 만든거랍니다 프리소스 훔쳐온 것도 있긴해요
-          문입니다 길어지면 말줄임표 해주세요 아이고 허리아파 돈벌기 쉽지않아요 스티커도 거의 다
-          만든거랍니다 프리소스 훔쳐온 것도 있긴해요 문입니다 길어지면 말줄임표 해주세요 아이고
-          허리아파 돈벌기 쉽지않아요 스티커도 거의 다 만든거랍니다 프리소스 훔쳐온 것도 있긴해요
+          {cards && cards?.length > 2 && cards[2].content}
         </Board3Content>
       </DearBoard>
     </Wrapper>

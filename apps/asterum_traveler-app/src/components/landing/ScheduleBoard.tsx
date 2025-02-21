@@ -39,10 +39,7 @@ function ScheduleBoard() {
 
   const ScheduleTextBox = (date: number) => {
     const targetDaySchedules = schedules?.filter((schedule) => schedule.schedule_day === date);
-
     targetDaySchedules?.sort(sortSchedule);
-
-    console.log(targetDaySchedules);
 
     return (
       <>
