@@ -1,18 +1,19 @@
+import { useQuery } from '@tanstack/react-query';
 import styled from 'styled-components';
+import * as api from '../../shared/services/landingService';
 
 function DiscographyOverView() {
+  const { data: albums } = useQuery({ queryKey: ['discography'], queryFn: api.getAlbums });
+
   return (
     <Wrapper>
-      <DiscographyBox>
-        <img src="https://i.namu.wiki/i/aHgckCf0RiUZ1gfaXDkrEMsY-IpdybKOItj7Ve1gYrLyHNPCtKpFL9sF-joh_Kvoj3te6OAtZy_E0ssyWd86Ko4fgK1T67cDxxP-s6TczFpkhtYQV-NZ-ljAKXoPIDzGHqzRmN0haX1mwhF44nzbLQ.webp" />
-        <span>ASTERUM : The Shape of Things to Come</span>
-        <span>2023.08.24</span>
-      </DiscographyBox>
-      <DiscographyBox>
-        <img src="https://i.namu.wiki/i/aHgckCf0RiUZ1gfaXDkrEMsY-IpdybKOItj7Ve1gYrLyHNPCtKpFL9sF-joh_Kvoj3te6OAtZy_E0ssyWd86Ko4fgK1T67cDxxP-s6TczFpkhtYQV-NZ-ljAKXoPIDzGHqzRmN0haX1mwhF44nzbLQ.webp" />
-        <span>ASTERUM : The Shape of Things to Come</span>
-        <span>2023.08.24</span>
-      </DiscographyBox>
+      {albums?.map((album) => (
+        <DiscographyBox key={album.id}>
+          <img src={album.imageUrl} alt={album.albumName} />
+          <span>{album.albumName}</span>
+          <span>{album.releaseDate}</span>
+        </DiscographyBox>
+      ))}
     </Wrapper>
   );
 }
@@ -20,7 +21,7 @@ function DiscographyOverView() {
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
 `;
 
@@ -34,6 +35,8 @@ const DiscographyBox = styled.div`
   width: 200px;
 
   & > img {
+    width: 100%;
+    aspect-ratio: 1;
   }
 
   & > span:nth-of-type(1) {
