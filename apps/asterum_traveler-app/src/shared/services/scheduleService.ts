@@ -7,7 +7,6 @@ export async function getSchedulesByDate(targetDate: Date) {
   try {
     const schedulesRef = collection(db, 'schedules');
 
-    const year = targetDate.getFullYear();
     const month = targetDate.getMonth() + 1;
 
     const startOfLastMonth = new Date(
