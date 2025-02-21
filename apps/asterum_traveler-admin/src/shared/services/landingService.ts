@@ -149,3 +149,39 @@ export async function addAlbum(
     return '';
   }
 }
+
+/**
+ * 앨범 가져오기
+ * @return {Promise<Album[]>}
+ */
+export async function getAlbums(): Promise<Album[]> {
+  try {
+    const imagesRef = collection(db, 'discography');
+
+    const q = query(imagesRef);
+
+    const querySnapshot = await getDocs(q);
+    const albums: Album[] = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: data.id,
+        albumName: data.albumName ?? '',
+        releaseDate: data.releaseDate ?? '',
+        imageUrl: data.imageUrl ?? '',
+      } as Album;
+    });
+
+    albums.sort((a: Album, b: Album) => {
+      const aDate = new Date(a.releaseDate.replace(/\./g, '-'));
+      const bDate = new Date(b.releaseDate.replace(/\./g, '-'));
+
+      if (aDate < bDate) return -1;
+      else if (aDate > bDate) return 1;
+      else return 0;
+    });
+
+    return albums;
+  } catch (e) {
+    return [];
+  }
+}

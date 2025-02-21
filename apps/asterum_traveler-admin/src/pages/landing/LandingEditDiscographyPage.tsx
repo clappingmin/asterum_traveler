@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { formatDate } from '../../shared/utils';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import * as api from '../../shared/services/landingService';
 import { queryClient } from '../../main';
+import { Album } from '@asterum/types';
 
 function LandingEditDiscographyPage() {
   const [albumName, setAlbumName] = useState<string>('');
   const [releaseDate, setReleaseDate] = useState<string>('');
   const [albumCover, setAlbumCover] = useState<File | null>(null);
   const [coverUrl, setCoverUrl] = useState<string>();
+
+  const { data: albums } = useQuery({ queryKey: ['discography'], queryFn: api.getAlbums });
 
   const addAlbum = useMutation({
     mutationFn: ({
@@ -89,7 +92,17 @@ function LandingEditDiscographyPage() {
           <Button onClick={handleAddAlbum}>추가하기</Button>
         </AlbumInputContainer>
       </Container>
-      <UploadedContainer>{/* TODO: 삭제 */}</UploadedContainer>
+      <UploadedContainer>
+        {albums &&
+          albums.map((album: Album) => (
+            <AlbumBox>
+              <img src={album.imageUrl} alt={album.albumName} />
+              <span>{album.albumName}</span>
+              <span>{album.releaseDate}</span>
+            </AlbumBox>
+          ))}
+        {/* TODO: 삭제하기 */}
+      </UploadedContainer>
     </Wrapper>
   );
 }
@@ -152,7 +165,35 @@ const InputBox = styled.div`
   }
 `;
 
-const UploadedContainer = styled.div``;
+const UploadedContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+`;
+
+const AlbumBox = styled.div`
+  background-color: #29292c;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 200px;
+
+  & > img {
+    width: 100%;
+    aspect-ratio: 1;
+  }
+
+  & > span:nth-of-type(1) {
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  & > span:last-of-type {
+    font-size: 14px;
+  }
+`;
 
 const Button = styled.button`
   margin-left: auto;
