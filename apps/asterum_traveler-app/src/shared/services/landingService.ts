@@ -1,6 +1,6 @@
 import { collection, getDocs, limit, orderBy, query, where } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
-import { Album, DearCard, Schedule } from '@asterum/types';
+import { Album, DearCard, Schedule, SliderImage } from '@asterum/types';
 import { sortSchedule } from '../utils';
 
 export async function getSchedulesAroundToday() {
@@ -100,6 +100,29 @@ export async function getThreeDearCards(): Promise<DearCard[]> {
     });
 
     return dearCards;
+  } catch (e) {
+    console.log(e);
+    return [];
+  }
+}
+
+export async function getViewdSliderImages(): Promise<SliderImage[]> {
+  try {
+    const imagesRef = collection(db, 'landing-slider');
+
+    const q = query(imagesRef, where('order', '!=', -1), orderBy('order'));
+
+    const querySnapshot = await getDocs(q);
+    const images: SliderImage[] = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: data.id,
+        order: data.order ?? 0,
+        imageUrl: data.imageUrl ?? '',
+      } as SliderImage;
+    });
+
+    return images;
   } catch (e) {
     console.log(e);
     return [];

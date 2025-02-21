@@ -3073,6 +3073,7 @@ __metadata:
     react: "npm:^18.3.1"
     react-calendar: "npm:^5.0.0"
     react-dom: "npm:^18.3.1"
+    react-responsive-carousel: "npm:^3.2.23"
     react-router-dom: "npm:^6.26.2"
     reset-css: "npm:^5.0.2"
     styled-components: "npm:^6.1.13"
@@ -3392,6 +3393,13 @@ __metadata:
     chromatic: dist/bin.js
     chromatic-cli: dist/bin.js
   checksum: 10c0/9f60e966fc7dc22df920649e3860493dbf7c86ea34d96e9818e4450c7572e47b8554a3ecec273881184303ee9098ca15b4c85d519b37138ee0399387b1356b7d
+  languageName: node
+  linkType: hard
+
+"classnames@npm:^2.2.5":
+  version: 2.5.1
+  resolution: "classnames@npm:2.5.1"
+  checksum: 10c0/afff4f77e62cea2d79c39962980bf316bacb0d7c49e13a21adaadb9221e1c6b9d3cdb829d8bb1b23c406f4e740507f37e1dcf506f7e3b7113d17c5bab787aa69
   languageName: node
   linkType: hard
 
@@ -5521,7 +5529,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.6.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.5.8, prop-types@npm:^15.6.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -5646,6 +5654,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-easy-swipe@npm:^0.0.21":
+  version: 0.0.21
+  resolution: "react-easy-swipe@npm:0.0.21"
+  dependencies:
+    prop-types: "npm:^15.5.8"
+  checksum: 10c0/f1831df379dfb5074b546de48f42db270bc1e97367342d07bb3fce07f4799a8d33d5e5a605b1b12243087d0eb0ab0fecc1fa0ade49c487b8504217824f3f2ad0
+  languageName: node
+  linkType: hard
+
 "react-fast-compare@npm:3.2.2":
   version: 3.2.2
   resolution: "react-fast-compare@npm:3.2.2"
@@ -5733,6 +5750,17 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 10c0/8273e3f67a460af84b3387c93459b33920d48be15091c5ea10e8c1c4f514ad41f71dad028ee13df25370e5de16cadf02697fe28adaacbdacdf8b57bbf03ee559
+  languageName: node
+  linkType: hard
+
+"react-responsive-carousel@npm:^3.2.23":
+  version: 3.2.23
+  resolution: "react-responsive-carousel@npm:3.2.23"
+  dependencies:
+    classnames: "npm:^2.2.5"
+    prop-types: "npm:^15.5.8"
+    react-easy-swipe: "npm:^0.0.21"
+  checksum: 10c0/47957d48898f550cfc7e3517ad755a4dd94ce78630480310db58ec5896de6d6f3c1ed253347432bee889860036a15e32b508cb19b121c4cdd634e78e6fe83064
   languageName: node
   linkType: hard
 
