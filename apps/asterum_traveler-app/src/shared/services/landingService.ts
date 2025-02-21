@@ -1,6 +1,6 @@
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
-import { Schedule } from '@asterum/types';
+import { Album, Schedule } from '@asterum/types';
 import { sortSchedule } from '../utils';
 
 export async function getSchedulesAroundToday() {
@@ -46,4 +46,36 @@ export async function getSchedulesAroundToday() {
 
     return schedulesArray;
   } catch (error) {}
+}
+
+export async function getDiscography() {
+  try {
+    const imagesRef = collection(db, 'discography');
+
+    const q = query(imagesRef);
+
+    const querySnapshot = await getDocs(q);
+    const albums: Album[] = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: data.id,
+        albumName: data.albumName ?? '',
+        releaseDate: data.releaseDate ?? '',
+        imageUrl: data.imageUrl ?? '',
+      } as Album;
+    });
+
+    albums.sort((a: Album, b: Album) => {
+      const aDate = new Date(a.releaseDate.replace(/\./g, '-'));
+      const bDate = new Date(b.releaseDate.replace(/\./g, '-'));
+
+      if (aDate < bDate) return -1;
+      else if (aDate > bDate) return 1;
+      else return 0;
+    });
+
+    return albums;
+  } catch (e) {
+    return [];
+  }
 }
