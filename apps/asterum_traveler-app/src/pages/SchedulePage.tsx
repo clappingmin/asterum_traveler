@@ -35,7 +35,7 @@ function SchedulePage() {
 
     const dateSchedules: Schedule[] = data
       ? data?.filter(
-          (schedule) => schedule.schedules_day === day && schedule.schedules_month === month
+          (schedule) => schedule.schedule_day === day && schedule.schedule_month === month
         )
       : [];
 
@@ -45,7 +45,7 @@ function SchedulePage() {
           <ScheduleText className="text-overflow-3" key={schedule.id}>
             {!schedule.isAnniversary
               ? '🎉'
-              : formatTime(schedule.schedules_hour, schedule.schedules_minute)}{' '}
+              : formatTime(schedule.schedule_hour, schedule.schedule_minute)}{' '}
             {schedule.members.map((member) => MEMBER_KOREAN_NAME[member]).join(' ')}{' '}
             {schedule.content}
           </ScheduleText>
