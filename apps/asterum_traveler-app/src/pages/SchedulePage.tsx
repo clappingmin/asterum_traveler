@@ -110,6 +110,7 @@ function SchedulePage() {
 const Wrapper = styled.div`
   width: 100%;
   margin: var(--header-height) auto;
+  user-select: none;
 `;
 
 const TitleContainer = styled.div`

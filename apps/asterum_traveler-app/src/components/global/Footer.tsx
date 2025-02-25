@@ -47,6 +47,7 @@ function Footer() {
 
 const Wrapper = styled.div`
   width: 100%;
+  user-select: none;
 `;
 
 const Container = styled.div`
@@ -81,6 +82,7 @@ const ContactBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  user-select: all;
 `;
 
 const DeveloperBox = styled.div`
@@ -113,6 +115,7 @@ const SocialBox = styled.div`
   display: flex;
   gap: 16px;
   align-items: center;
+  user-select: none;
 `;
 
 const SocialIcon = styled.img`
