@@ -26,10 +26,13 @@ export const sortSchedule = (a: Schedule, b: Schedule) => {
 
 export const formatTime = (hour: number, minute: number) => {
   const period = hour >= 12 ? 'PM' : 'AM';
-  const formattedHour = String(hour > 0 ? hour % 12 : 0).padStart(2, '0');
+
+  const formattedHour = String(hour > 0 ? hour % 12 : 0);
   const formattedMinute = String(minute).padStart(2, '0'); // 두 자리수로 변환
 
-  return `${formattedHour}:${formattedMinute} ${period}`;
+  return minute === 0
+    ? `${formattedHour}${period}`
+    : `${formattedHour}:${formattedMinute} ${period}`;
 };
 
 export const getWeekDay = (date: Date) => {
