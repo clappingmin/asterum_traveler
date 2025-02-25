@@ -7,7 +7,7 @@ import haminIcon from '../../assets/images/member/heart/hamin.png';
 import { IncludedProduct, Product } from '@asterum/types';
 import { useQuery } from '@tanstack/react-query';
 import * as api from '../../shared/services/reportService';
-import { ALL_MEMBERS } from '../../shared/constants';
+import { sortMembers } from '../../shared/utils';
 
 const MEMBER_ICON = {
   yejun: yejunIcon,
@@ -36,7 +36,7 @@ function ProductBox({ includedProduct: { productId, members } }: ProductBoxProps
         <ProductName className="text-overflow-2">{data?.productName}</ProductName>
         <BrandName className="text-overflow-1">{data?.productBrand}</BrandName>
         <MemberIconsContainer>
-          {ALL_MEMBERS.map(
+          {sortMembers(members).map(
             (member, index) =>
               members.includes(member) && (
                 <MemberIconBox key={`productMember-${index}-${member}`}>
