@@ -9,7 +9,8 @@ interface ReportImagePageProps {
 }
 
 function ReportImagePage({ reportData }: ReportImagePageProps) {
-  const { reportThumbnail, reportMembers, reportDate, imageTags, includedProducts } = reportData;
+  const { reportThumbnail, reportMembers, reportDateDisplay, imageTags, includedProducts } =
+    reportData;
   return (
     <Wrapper>
       <Thumbnail width="540" src={reportThumbnail} alt="리포트 이미지"></Thumbnail>
@@ -19,7 +20,7 @@ function ReportImagePage({ reportData }: ReportImagePageProps) {
             return reportMembers.includes(member) && <MemberBox key={member} member={member} />;
           })}
         </Members>
-        <UpdateInfo className="text-overflow-1">{reportDate.display}</UpdateInfo>
+        <UpdateInfo className="text-overflow-1">{reportDateDisplay}</UpdateInfo>
         <TagBox>
           {imageTags?.map((tag, index) => (
             <Tag key={`tag-${index}`}>#{tag}</Tag>

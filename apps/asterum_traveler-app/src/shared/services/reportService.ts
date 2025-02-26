@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, query, Timestamp, where } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { Product, Report, ReportCategory } from '@asterum/types';
 
@@ -24,7 +24,8 @@ export async function getReportsByCategory(category: ReportCategory | 'all'): Pr
         reportMembers: data.reportMembers ?? [],
         reportThumbnail: data.reportThumbnail ?? '',
         includedProducts: data.includedProducts ?? [],
-        reportDate: { display: data.display ?? '', usage: data.usage ?? '' },
+        reportDateDisplay: data.reportDateDisplay ?? '',
+        reportDateUsage: data.reportDateUsage ?? Timestamp.now(),
         liveTitle: data.liveTitle ?? '',
         reportUrl: data.reportUrl ?? '',
       } as Report;
