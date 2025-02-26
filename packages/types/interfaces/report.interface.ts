@@ -29,7 +29,7 @@ export type IncludedProduct = { productId: string; members: Member[] };
 
 export interface ReportBase {
   reportType: ReportType; // 'image' | 'live'
-  category: ReportCategory;
+  category: ReportCategory[];
   reportMembers: Member[];
   reportThumbnail: string;
   includedProducts: IncludedProduct[];

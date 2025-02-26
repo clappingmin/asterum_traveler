@@ -22,7 +22,11 @@ export async function getReportsByCategory(category: ReportCategory | 'all'): Pr
     const q =
       category === 'all'
         ? query(reportsRef, orderBy('reportDateUsage'))
-        : query(reportsRef, where('category', '==', category), orderBy('reportDateUsage', 'desc'));
+        : query(
+            reportsRef,
+            where('category', 'array-contains', category),
+            orderBy('reportDateUsage', 'desc')
+          );
 
     const querySnapshot = await getDocs(q);
     const reports: Report[] = querySnapshot.docs.map((doc) => {
@@ -44,6 +48,7 @@ export async function getReportsByCategory(category: ReportCategory | 'all'): Pr
 
     return reports;
   } catch (e) {
+    console.log(e);
     throw e;
   }
 }
