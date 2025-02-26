@@ -8,6 +8,10 @@ export const localStringToTimestamp = (localString: string) => {
   return Timestamp.fromDate(date);
 };
 
+export const convertDateToTimestamp = (dateString: string) => {
+  return Timestamp.fromDate(new Date(dateString));
+};
+
 export const localStringToScheduleDate = (localString: string): ScheduleDate => {
   const date = new Date(localString);
 

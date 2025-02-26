@@ -13,6 +13,7 @@ import * as api from '../../shared/services/reportService';
 import { textOverflowStyles } from '../../styles/common';
 import { queryClient } from '../../main';
 import { useNavigate } from 'react-router-dom';
+import { convertDateToTimestamp } from '../../shared/utils';
 
 function ReportEditPage() {
   const [reportType, setReportType] = useState<ReportType>('image');
@@ -150,6 +151,7 @@ function ReportEditPage() {
     if (!uploadedThumbnailUrl) return;
 
     const convertedProduts = convertMapToIncludedProduct(includedProducts);
+    const coonvertedUsageDate = convertDateToTimestamp(usageDate);
 
     const report: ReportBase = {
       reportType,
@@ -157,7 +159,8 @@ function ReportEditPage() {
       reportMembers,
       reportThumbnail: uploadedThumbnailUrl,
       includedProducts: convertedProduts,
-      reportDate: { display: displayDate, usage: usageDate },
+      reportDateDisplay: displayDate,
+      reportDateUsage: coonvertedUsageDate,
       liveTitle,
       imageTags,
       reportUrl,

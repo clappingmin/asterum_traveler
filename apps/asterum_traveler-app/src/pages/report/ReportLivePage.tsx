@@ -9,14 +9,15 @@ interface ReportLivePageProps {
 }
 
 function ReportLivePage({ reportData }: ReportLivePageProps) {
-  const { reportThumbnail, liveTitle, reportDate, reportMembers, includedProducts } = reportData;
+  const { reportThumbnail, liveTitle, reportDateDisplay, reportMembers, includedProducts } =
+    reportData;
 
   return (
     <Wrapper>
       <LiveContainer>
         <LiveThumbnail src={reportThumbnail} width={960} height={540} alt="라이브 이미지" />
         <LiveTitle className="text-overflow-2">{liveTitle}</LiveTitle>
-        <LiveDate>{reportDate.display}</LiveDate>
+        <LiveDate>{reportDateDisplay}</LiveDate>
         <LiveMembers>
           {ALL_MEMBERS.map((member) => {
             return reportMembers.includes(member) && <MemberBox key={member} member={member} />;
