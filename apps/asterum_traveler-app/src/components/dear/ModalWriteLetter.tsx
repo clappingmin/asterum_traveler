@@ -11,6 +11,8 @@ import { CardCoverColor, DearCardBase } from '@asterum/types';
 import { useMutation } from '@tanstack/react-query';
 import * as api from '../../shared/services/dearService';
 import { queryClient } from '../../main';
+import { motion } from 'framer-motion';
+import { CardInputs } from '../../shared/interfaces/common.interface';
 
 const CARD_COVER_COLORS: CardCoverColor[] = [
   'pink',
@@ -32,6 +34,9 @@ function ModalWriteLetter({ onClose }: ModalWriteLetterProps) {
   const [password, setPassword] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const [cardCoverColor, setCardCoverColor] = useState<CardCoverColor | undefined>(undefined);
+  // 빈 값 애니메이션 상태
+  const [empties, setEmpties] = useState<Set<CardInputs>>(() => new Set());
+  const [shakeTrigger, setShakeTrigger] = useState<boolean>(false);
 
   // TODO: 최근에 추가한 카드 앞에 추가하게 수정
   const addDearCard = useMutation({
@@ -61,8 +66,24 @@ function ModalWriteLetter({ onClose }: ModalWriteLetterProps) {
    * @return {void}
    */
   const saveDearCard = (): void => {
-    // TODO: 비었을 경우 UI처리 추가
-    if (!from || !password || !content || !cardCoverColor) return;
+    // 카드 인풋이 비었을 때
+    if (!from || !password || !content || !cardCoverColor) {
+      const newEmpties = new Set<CardInputs>();
+
+      !!!from && newEmpties.add('from');
+      !!!password && newEmpties.add('password');
+      !!!content && newEmpties.add('content');
+      !!!cardCoverColor && newEmpties.add('cardCoverColor');
+
+      setEmpties(() => newEmpties);
+      setShakeTrigger(true);
+
+      setTimeout(() => {
+        setShakeTrigger(false);
+      }, 300);
+
+      return;
+    }
 
     const saveData: DearCardBase = {
       from,
@@ -85,41 +106,66 @@ function ModalWriteLetter({ onClose }: ModalWriteLetterProps) {
       </Header>
       <WriteContainer>
         <WriterContainer>
-          <WriterInfoInput
-            placeholder="From"
-            value={from}
-            onChange={(e) => setFrom(e.target.value)}
-          />
-          <WriterInfoInput
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <EmptyAnimation
+            animate={empties.has('from') && shakeTrigger ? { x: [-10, 10, -10, 10, 0] } : {}}
+            transition={{ duration: 0.2 }}
+            className={empties.has('from') ? 'warning' : 'normal'}
+          >
+            <WriterInfoInput
+              placeholder="From"
+              value={from}
+              onChange={(e) => setFrom(e.target.value)}
+            />
+          </EmptyAnimation>
+          <EmptyAnimation
+            animate={empties.has('password') && shakeTrigger ? { x: [-10, 10, -10, 10, 0] } : {}}
+            transition={{ duration: 0.2 }}
+            className={empties.has('password') ? 'warning' : 'normal'}
+          >
+            <WriterInfoInput
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </EmptyAnimation>
         </WriterContainer>
         <TextareaBox>
-          <LetterTextarea
-            placeholder="Dear,"
-            maxLength={100}
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            // cols={47}
-            // rows={7}
-          />
+          <EmptyAnimation
+            animate={empties.has('content') && shakeTrigger ? { x: [-10, 10, -10, 10, 0] } : {}}
+            transition={{ duration: 0.2 }}
+            className={empties.has('content') ? 'warning' : 'normal'}
+          >
+            <LetterTextarea
+              placeholder="Dear,"
+              maxLength={100}
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              // cols={47}
+              // rows={7}
+            />
+          </EmptyAnimation>
           <BoxBorderIcon src={icon_box_top_left} />
           <BoxBorderIcon src={icon_box_top_right} />
           <BoxBorderIcon src={icon_box_bottom_left} />
           <BoxBorderIcon src={icon_box_bottom_right} />
         </TextareaBox>
-        <ColorSelectBox onClick={changeCardCoverColor}>
-          {CARD_COVER_COLORS.map((color) => (
-            <ColorBox
-              key={`card-cover-${color}`}
-              data-color={color}
-              boxColor={color}
-              isSelected={color === cardCoverColor}
-            />
-          ))}
-        </ColorSelectBox>
+        <motion.div
+          animate={
+            empties.has('cardCoverColor') && shakeTrigger ? { x: [-10, 10, -10, 10, 0] } : {}
+          }
+          transition={{ duration: 0.2 }}
+        >
+          <ColorSelectBox onClick={changeCardCoverColor}>
+            {CARD_COVER_COLORS.map((color) => (
+              <ColorBox
+                key={`card-cover-${color}`}
+                data-color={color}
+                boxColor={color}
+                isSelected={color === cardCoverColor}
+              />
+            ))}
+          </ColorSelectBox>
+        </motion.div>
         <WriteButton onClick={saveDearCard}>
           <img src={icon_write_letter} />
         </WriteButton>
@@ -280,6 +326,16 @@ const WriteButton = styled.div`
   & > img {
     width: 60px;
     height: 47px;
+  }
+`;
+
+const EmptyAnimation = styled(motion.div)`
+  height: 100%;
+  &.warning {
+    input::placeholder,
+    textarea::placeholder {
+      color: #ec1d26;
+    }
   }
 `;
 

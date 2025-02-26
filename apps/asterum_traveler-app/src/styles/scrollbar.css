@@ -1,0 +1,19 @@
+.scrollbar {
+  overflow-x: auto;
+  overflow-y: auto; /*  */
+}
+
+/* 스크롤바의 폭 너비 */
+.scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: #242424; /* 스크롤바 색상 */
+  border-radius: 10px; /* 스크롤바 둥근 테두리 */
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1); /*스크롤바 뒷 배경 색상*/
+}

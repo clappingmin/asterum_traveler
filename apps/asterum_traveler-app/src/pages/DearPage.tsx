@@ -21,6 +21,7 @@ function DearPage() {
 const Wrapper = styled.div`
   width: var(--width);
   margin: var(--header-height) auto;
+  user-select: none;
 `;
 
 const TitleContainer = styled.div`

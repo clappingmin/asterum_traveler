@@ -5,7 +5,7 @@ import { formatTime, getWeekDay, sortMembers, sortSchedule } from '../../shared/
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import * as api from '../../shared/services/landingService';
-import { MEMBER_HEART } from '../../shared/constants';
+import { MEMBER_HEART, MEMBER_KOREAN_NAME } from '../../shared/constants';
 
 const TODAY = new Date();
 const YEAR = TODAY.getFullYear();
@@ -50,6 +50,9 @@ function ScheduleBoard() {
               .join('')}{' '}
             {!schedule.isAnniversary &&
               formatTime(schedule.schedule_hour, schedule.schedule_minute)}{' '}
+            {sortMembers(schedule.members)
+              .map((member) => MEMBER_KOREAN_NAME[member])
+              .join(' ')}{' '}
             {schedule.content}
           </div>
         ))}
