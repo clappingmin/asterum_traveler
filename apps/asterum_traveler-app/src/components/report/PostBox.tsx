@@ -18,6 +18,7 @@ function PostBox({ report }: PostBoxProps) {
 
   return (
     <Wrapper
+      initial={{ backgroundColor: 'var(--placeholder)' }}
       animate={{ backgroundColor: loaded ? 'transparent' : 'var(--placeholder)' }}
       transition={{ duration: 0.7 }}
       onClick={() => goToReportDetail(report.id, report.reportType)}
