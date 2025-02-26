@@ -29,7 +29,7 @@ function Header({ scrollTarget }: HeaderProps) {
     }
 
     // 랜딩 제외
-    if (scrollTop > 198) return 'rgba(0,0,0,0.5)';
+    if (scrollTop > 128) return 'rgba(0,0,0,0.5)';
     return 'transparent';
   };
 
