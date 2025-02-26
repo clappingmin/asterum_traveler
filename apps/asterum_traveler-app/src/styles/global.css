@@ -1,6 +1,7 @@
 @import './font.css';
 @import './variables.css';
 @import './common.css';
+@import './scrollbar.css';
 
 * {
   box-sizing: border-box;

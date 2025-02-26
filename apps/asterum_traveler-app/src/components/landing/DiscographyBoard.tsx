@@ -10,7 +10,7 @@ function DiscographyBoard() {
   });
 
   return (
-    <Wrapper>
+    <Wrapper className="scrollbar">
       {/* TODO: 슬라이더로 변경하기 참고: https://vlast.co.kr/plave/ */}
 
       {discography?.map((album) => (
@@ -35,6 +35,11 @@ const Wrapper = styled.div`
   display: flex;
   overflow-x: auto;
   flex-wrap: nowrap;
+
+  &.scrollbar::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
 `;
 
 const CDBox = styled.div`
