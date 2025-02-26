@@ -14,7 +14,7 @@ function ReportLivePage({ reportData }: ReportLivePageProps) {
   return (
     <Wrapper>
       <LiveContainer>
-        <LiveThumbnail src={reportThumbnail} />
+        <LiveThumbnail src={reportThumbnail} width={960} height={540} alt="라이브 이미지" />
         <LiveTitle className="text-overflow-2">{liveTitle}</LiveTitle>
         <LiveDate>{reportDate.display}</LiveDate>
         <LiveMembers>

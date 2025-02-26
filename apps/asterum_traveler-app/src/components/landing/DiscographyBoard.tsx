@@ -16,7 +16,7 @@ function DiscographyBoard() {
       {discography?.map((album) => (
         <CDBox key={album.id}>
           <CD className="cd-img">
-            <CDImg src={album.imageUrl} />
+            <CDImg src={album.imageUrl} width={400} height={400} />
             <CDHole src={cdHole} width={124} height={124} />
           </CD>
           <CDInfo className="cd-info" fontSize={album.albumName.length > 10 ? 'small' : 'large'}>
@@ -60,8 +60,8 @@ const CDBox = styled.div`
 `;
 
 const CD = styled.div`
-  &:hover {
-  }
+  border-radius: 50%;
+  background-color: var(--placeholder);
 `;
 
 const CDImg = styled.img`

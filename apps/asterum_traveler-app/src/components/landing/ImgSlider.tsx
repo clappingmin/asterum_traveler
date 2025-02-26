@@ -19,7 +19,7 @@ function ImgSlider() {
     <Wrapper>
       <Carousel {...settings}>
         {data?.map((image) => (
-          <Imgae src={image.imageUrl} />
+          <Imgae src={image.imageUrl} width={1920} height={1080} alt="플레이브 이미지" />
         ))}
       </Carousel>
     </Wrapper>
@@ -29,7 +29,6 @@ function ImgSlider() {
 const Wrapper = styled.div`
   width: 100%;
   aspect-ratio: 1920 / 1080;
-  color: #fff;
 `;
 
 const Imgae = styled.img`

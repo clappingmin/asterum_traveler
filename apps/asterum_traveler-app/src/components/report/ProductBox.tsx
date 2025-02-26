@@ -31,7 +31,13 @@ function ProductBox({ includedProduct: { productId, members } }: ProductBoxProps
 
   return (
     <Wrapper>
-      <ProductTumbnail width="243" height="243" src={data?.productThumbnail} />
+      <ProductTumbnail
+        width="243"
+        height="243"
+        src={data?.productThumbnail}
+        alt="제품 이미지"
+        loading="lazy"
+      />
       <ProductInfoBox>
         <ProductName className="text-overflow-2">{data?.productName}</ProductName>
         <BrandName className="text-overflow-1">{data?.productBrand}</BrandName>

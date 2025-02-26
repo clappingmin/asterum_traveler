@@ -12,7 +12,7 @@ function ReportImagePage({ reportData }: ReportImagePageProps) {
   const { reportThumbnail, reportMembers, reportDate, imageTags, includedProducts } = reportData;
   return (
     <Wrapper>
-      <Thumbnail width="540" src={reportThumbnail}></Thumbnail>
+      <Thumbnail width="540" src={reportThumbnail} alt="리포트 이미지"></Thumbnail>
       <InfoContainer>
         <Members>
           {ALL_MEMBERS.map((member) => {
