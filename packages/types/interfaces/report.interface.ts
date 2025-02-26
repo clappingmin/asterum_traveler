@@ -32,7 +32,7 @@ export interface ReportBase {
   reportMembers: Member[];
   reportThumbnail: string;
   includedProducts: IncludedProduct[];
-  reportDate: { display: string; usage: string }; // TODO: usage Timestamp로 변경하고 정렬 기능 추가
+  reportDate: { display: string; usage: string }; // TODO: usage Timestamp로 변경하고 정렬 기능 추가 (바깥으로 빼야 함)
   liveTitle?: string; // 라이브 리포트에서만 사용
   imageTags?: string[];
   reportUrl?: string; // 바로가기 연결할 주소
