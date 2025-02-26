@@ -22,7 +22,12 @@ interface MemberBoxProps {
 function MemberBox({ member }: MemberBoxProps) {
   return (
     <Wrapper>
-      <MemberImg width="64" height="64" src={MEMBER_IMAGE[member]}></MemberImg>
+      <MemberImg
+        width="64"
+        height="64"
+        src={MEMBER_IMAGE[member]}
+        alt={`${MEMBER_KOREAN_NAME[member]} 이미지`}
+      ></MemberImg>
       <NameBox>
         <KoreanName>{MEMBER_KOREAN_NAME[member]}</KoreanName>
         <EnglishName>{MEMBER_ENGLISH_NAME[member]}</EnglishName>

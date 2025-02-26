@@ -83,7 +83,14 @@ function ReportListPage() {
       <PostContainer>
         {reports?.map((report) => (
           <Post key={report.id} onClick={() => goToReportDetail(report.id, report.reportType)}>
-            <img src={report.reportThumbnail} />
+            <img
+              src={report.reportThumbnail}
+              width={388}
+              height={388}
+              alt={'리포트 이미지'}
+              loading="lazy"
+              decoding="async"
+            />
           </Post>
         ))}
       </PostContainer>
@@ -172,7 +179,7 @@ const PostContainer = styled.div`
 const Post = styled.div`
   width: 100%;
   aspect-ratio: 1;
-  /* background-color: #d9d9d9; // 로딩 컬러 */
+  background-color: var(--placeholder);
   display: flex;
   justify-content: center;
   align-items: center;
