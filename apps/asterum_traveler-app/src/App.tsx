@@ -45,7 +45,7 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <Wrapper ref={wrapperRef} className="scrollbar">
-        <Header />
+        <Header scrollTarget={wrapperRef} />
         <Container>
           <PageContainer>
             <Outlet />
