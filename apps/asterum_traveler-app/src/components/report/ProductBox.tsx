@@ -68,6 +68,7 @@ const ProductInfoBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  user-select: text;
 `;
 
 const ProductName = styled.span`

@@ -43,6 +43,7 @@ const Wrapper = styled.div`
   align-items: flex-start;
   gap: 64px;
   overflow-x: hidden;
+  user-select: none;
 `;
 
 const Thumbnail = styled.img`

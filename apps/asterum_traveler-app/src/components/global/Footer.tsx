@@ -92,7 +92,7 @@ const ContactBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  user-select: all;
+  user-select: text;
 `;
 
 const DeveloperBox = styled.div`
