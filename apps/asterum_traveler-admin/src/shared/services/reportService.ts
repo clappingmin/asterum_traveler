@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { db, storage } from '../firebaseConfig';
-import { collection, doc, getDocs, query, setDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, query, setDoc, Timestamp } from 'firebase/firestore';
 import { Product, Report, ReportBase, ProductBase } from '@asterum/types';
 
 export const imageUpload = async (image: File, saveType: 'products' | 'reports') => {
@@ -90,7 +90,8 @@ export async function getReports(): Promise<Report[]> {
         reportMembers: data.reportMembers ?? [],
         reportThumbnail: data.reportThumbnail ?? '',
         includedProducts: data.includedProducts ?? [],
-        reportDate: { display: data.display ?? '', usage: data.usage ?? '' },
+        reportDateDisplay: data.reportDateDisplay ?? '',
+        reportDateUsage: data.reportDateUsage ?? Timestamp.now(),
         liveTitle: data.liveTitle ?? '',
         reportUrl: data.reportUrl ?? '',
       } as Report;
