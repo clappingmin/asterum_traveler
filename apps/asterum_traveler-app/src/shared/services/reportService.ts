@@ -21,7 +21,7 @@ export async function getReportsByCategory(category: ReportCategory | 'all'): Pr
 
     const q =
       category === 'all'
-        ? query(reportsRef, orderBy('reportDateUsage'))
+        ? query(reportsRef, orderBy('reportDateUsage', 'desc'))
         : query(
             reportsRef,
             where('category', 'array-contains', category),
