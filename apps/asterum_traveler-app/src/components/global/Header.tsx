@@ -85,6 +85,7 @@ const Wrapper = styled.div`
   left: 0;
   width: 100%;
   z-index: 10;
+  user-select: none;
 `;
 
 const Container = styled.div`
