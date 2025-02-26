@@ -366,6 +366,7 @@ function ReportEditPage() {
               src={product.productThumbnail}
               onClick={() => changeSelectProduct(product.id)}
             />
+            <ProductName>{product.productBrand}</ProductName>
             <ProductName>{product.productName}</ProductName>
             <form
               onChange={(e: React.ChangeEvent<HTMLFormElement>) =>

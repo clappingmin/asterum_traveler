@@ -1,4 +1,13 @@
-import { collection, doc, getDoc, getDocs, query, Timestamp, where } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+  Timestamp,
+  where,
+} from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { Product, Report, ReportCategory } from '@asterum/types';
 
@@ -11,7 +20,9 @@ export async function getReportsByCategory(category: ReportCategory | 'all'): Pr
     const reportsRef = collection(db, 'reports');
 
     const q =
-      category === 'all' ? query(reportsRef) : query(reportsRef, where('category', '==', category));
+      category === 'all'
+        ? query(reportsRef, orderBy('reportDateUsage'))
+        : query(reportsRef, where('category', '==', category), orderBy('reportDateUsage', 'desc'));
 
     const querySnapshot = await getDocs(q);
     const reports: Report[] = querySnapshot.docs.map((doc) => {
