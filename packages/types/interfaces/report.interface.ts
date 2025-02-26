@@ -1,4 +1,4 @@
-import { Timestamp } from '@firebase/firestore/dist';
+import { Timestamp } from 'firebase/firestore';
 import { Member } from './common.interface';
 
 export interface ProductBase {
@@ -33,9 +33,8 @@ export interface ReportBase {
   reportMembers: Member[];
   reportThumbnail: string;
   includedProducts: IncludedProduct[];
-  // reportDate: { display: string; usage: string };
   reportDateDisplay: string;
-  reportDateUsage: string | Timestamp;
+  reportDateUsage: Timestamp;
   liveTitle?: string; // 라이브 리포트에서만 사용
   imageTags?: string[];
   reportUrl?: string; // 바로가기 연결할 주소
