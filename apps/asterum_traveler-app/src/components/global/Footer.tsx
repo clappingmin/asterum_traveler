@@ -33,11 +33,21 @@ function Footer() {
             </InfoBox>
           </DeveloperBox>
           <SocialBox>
-            <SocialIcon src={Vlast} height={24} />
-            <SocialIcon src={X} height={24} />
-            <SocialIcon src={Youtube} height={24} />
-            <SocialIcon src={DaumCafe} height={24} />
-            <SocialIcon src={Weverse} height={24} />
+            <a href="https://vlast.com/" target="_blank">
+              <SocialIcon src={Vlast} height={24} />
+            </a>
+            <a href="https://x.com/plave_official" target="_blank">
+              <SocialIcon src={X} height={24} />
+            </a>
+            <a href="https://www.youtube.com/@plave_official" target="_blank">
+              <SocialIcon src={Youtube} height={24} />
+            </a>
+            <a href="https://cafe.daum.net/plave" target="_blank">
+              <SocialIcon src={DaumCafe} height={24} />
+            </a>
+            <a href="https://weverse.io/plave" target="_blank">
+              <SocialIcon src={Weverse} height={24} />
+            </a>
           </SocialBox>
         </ContactBox>
       </Container>
@@ -47,6 +57,7 @@ function Footer() {
 
 const Wrapper = styled.div`
   width: 100%;
+  user-select: none;
 `;
 
 const Container = styled.div`
@@ -81,6 +92,7 @@ const ContactBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  user-select: text;
 `;
 
 const DeveloperBox = styled.div`
@@ -113,6 +125,7 @@ const SocialBox = styled.div`
   display: flex;
   gap: 16px;
   align-items: center;
+  user-select: none;
 `;
 
 const SocialIcon = styled.img`

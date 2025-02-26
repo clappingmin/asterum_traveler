@@ -39,6 +39,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 64px;
+  user-select: none;
   /* overflow-x: hidden; */
 `;
 

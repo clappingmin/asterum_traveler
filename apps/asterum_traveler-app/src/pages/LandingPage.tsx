@@ -24,6 +24,7 @@ const Wrapper = styled.div<{ background: string }>`
   gap: 128px;
   background: url(${(props) => props.background}) no-repeat center center;
   background-size: cover;
+  user-select: none;
 `;
 
 export default LandingPage;

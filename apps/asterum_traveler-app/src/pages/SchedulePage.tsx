@@ -6,22 +6,28 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import * as api from '../shared/services/scheduleService';
 import { Schedule } from '@asterum/types';
-import { MEMBER_KOREAN_NAME } from '../shared/constants';
-import { formatTime } from '../shared/utils';
+import { MEMBER_HEART, MEMBER_KOREAN_NAME } from '../shared/constants';
+import { formatTime, sortMembers } from '../shared/utils';
 
 const TODAY = new Date();
 const YEAR = TODAY.getFullYear();
-const MONTH = TODAY.getMonth() + 1;
 
 function SchedulePage() {
+  const [selectedMonth, setSelectedMonth] = useState(TODAY.getMonth() + 1);
+  const [displayStartDate, setDisplayStartDate] = useState(TODAY);
+
   const { data } = useQuery({
-    queryKey: ['schedules', YEAR, MONTH],
+    queryKey: ['schedules', YEAR, selectedMonth],
     queryFn: async () => {
-      return await api.getSchedulesByDate(TODAY);
+      return await api.getSchedulesByDate(displayStartDate);
     },
   });
 
-  const [selectedMonth, _setSelectedMonth] = useState(TODAY.getMonth() + 1);
+  const changeDisplayMonth = (month: number) => {
+    console.log(month);
+    setDisplayStartDate(new Date(YEAR, month - 1, 1));
+    setSelectedMonth(month);
+  };
 
   // 요일에 마침표 추가
   const formatWeekday = (locale: string | undefined, date: Date) => {
@@ -29,6 +35,10 @@ function SchedulePage() {
     return `${weekday}..`;
   };
 
+  /**
+   * 날짜에 맞게 스케줄 데이터 보여주기
+   * @param date
+   */
   const renderSchedule = ({ date }: any) => {
     const day = new Date(date).getDate();
     const month = new Date(date).getMonth() + 1;
@@ -43,10 +53,14 @@ function SchedulePage() {
       <DayScheduleBox>
         {dateSchedules.map((schedule) => (
           <ScheduleText className="text-overflow-3" key={schedule.id}>
-            {!schedule.isAnniversary
-              ? '🎉'
+            {schedule.isAnniversary
+              ? '🥳'
               : formatTime(schedule.schedule_hour, schedule.schedule_minute)}{' '}
-            {schedule.members.map((member) => MEMBER_KOREAN_NAME[member]).join(' ')}{' '}
+            {sortMembers(schedule.members)
+              .map((member) =>
+                schedule.isAnniversary ? MEMBER_HEART[member] : MEMBER_KOREAN_NAME[member]
+              )
+              .join(schedule.isAnniversary ? '' : ' ')}{' '}
             {schedule.content}
           </ScheduleText>
         ))}
@@ -63,7 +77,13 @@ function SchedulePage() {
       <MonthContainer>
         <Year>2024</Year>
         {Array.from({ length: 12 }, (_, index) => (
-          <Month key={index + 1} isSelected={selectedMonth === index + 1}>
+          <Month
+            key={index + 1}
+            isSelected={selectedMonth === index + 1}
+            onClick={() => {
+              changeDisplayMonth(index + 1);
+            }}
+          >
             {index + 1}
           </Month>
         ))}
@@ -71,6 +91,7 @@ function SchedulePage() {
       <HorizontalLine />
       <CalendarWrapper>
         <Calendar
+          activeStartDate={displayStartDate}
           defaultActiveStartDate={TODAY}
           defaultValue={TODAY}
           defaultView="month"
@@ -89,6 +110,7 @@ function SchedulePage() {
 const Wrapper = styled.div`
   width: 100%;
   margin: var(--header-height) auto;
+  user-select: none;
 `;
 
 const TitleContainer = styled.div`
