@@ -25,3 +25,8 @@ export const MEMBER_HEART = {
   eunho: '❤️',
   hamin: '🖤',
 };
+
+export const InfiniteQueryEmptyReturn = {
+  data: [],
+  lastVisible: null,
+};
