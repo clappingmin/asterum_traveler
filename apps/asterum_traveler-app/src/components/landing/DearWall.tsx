@@ -20,7 +20,10 @@ import { motion } from 'framer-motion';
 
 function DearWall() {
   // TODO: 랜딩에 보여줄 카드 어드민에서 설정하기
-  const { data: cards } = useQuery({ queryKey: ['cards'], queryFn: api.getThreeDearCards });
+  const { data: cards } = useQuery({
+    queryKey: ['cards', 'lending'],
+    queryFn: api.getThreeDearCards,
+  });
 
   return (
     <Wrapper>
