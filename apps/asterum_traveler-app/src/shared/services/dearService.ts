@@ -16,6 +16,7 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 import { db } from '../firebaseConfig';
 import { getRowCountForInfiniteScroll } from '../utils';
+import { InfiniteQueryEmptyReturn } from '../constants';
 
 /**
  * 디어 카드 추가하기
@@ -51,13 +52,14 @@ export async function getDearCards({
     const cardsRef = collection(db, 'cards');
 
     let q = query(cardsRef, orderBy('createdAt', 'desc'), limit(PAGE_COUNT));
-
-    if (pageParam) {
-      q = query(q, startAfter(pageParam));
-    }
+    if (pageParam) q = query(q, startAfter(pageParam));
 
     const querySnapshot = await getDocs(q);
-    const lastPage = querySnapshot.docs[querySnapshot.docs.length - 1];
+
+    // 데이터가 비었을 때
+    if (querySnapshot.empty) return InfiniteQueryEmptyReturn;
+
+    const lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
 
     const dearCards: DearCard[] = querySnapshot.docs.map((doc) => {
       const data = doc.data();
@@ -71,9 +73,10 @@ export async function getDearCards({
       } as DearCard;
     });
 
-    return { data: dearCards, lastPage };
+    return { data: dearCards, lastVisible };
   } catch (e) {
-    throw e;
+    console.log(e);
+    return InfiniteQueryEmptyReturn;
   }
 }
 
