@@ -31,6 +31,7 @@ function ImgSlider() {
 const Wrapper = styled.div`
   width: 100%;
   aspect-ratio: 1920 / 1080;
+  background-color: #000;
 `;
 
 export default ImgSlider;
