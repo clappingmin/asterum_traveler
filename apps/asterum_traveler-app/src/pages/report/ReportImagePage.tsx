@@ -64,7 +64,6 @@ const Wrapper = styled.div`
 
 const Thumbnail = styled(motion.img)`
   flex: 0 0 540px;
-
   width: 540px;
   object-fit: contain;
 `;

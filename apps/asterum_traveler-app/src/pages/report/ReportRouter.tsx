@@ -4,6 +4,7 @@ import ReportImagePage from './ReportImagePage';
 import { useQuery } from '@tanstack/react-query';
 import * as api from '../../shared/services/reportService';
 import { Report } from '@asterum/types';
+import NotFoundPage from '../NotFoundPage';
 
 interface ReportRouterParams {
   pageType: 'image' | 'live';
@@ -14,7 +15,7 @@ function ReportRouter() {
   const { pageType, pageId } = useParams<Partial<Record<keyof ReportRouterParams, string>>>();
 
   if (!pageType || !pageId) {
-    return <div>Invalid route parameters</div>;
+    return <NotFoundPage />;
   }
 
   const { data } = useQuery<Report>({
@@ -24,7 +25,7 @@ function ReportRouter() {
     },
   });
 
-  if (!data) return <div>NO DATA</div>;
+  if (!data) return <NotFoundPage />;
 
   switch (pageType) {
     case 'image':
@@ -32,7 +33,7 @@ function ReportRouter() {
     case 'live':
       return <ReportLivePage reportData={data} />;
     default:
-      return <div>Unknown page type</div>;
+      return <NotFoundPage />;
   }
 }
 
