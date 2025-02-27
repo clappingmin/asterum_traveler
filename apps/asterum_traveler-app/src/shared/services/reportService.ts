@@ -1,19 +1,54 @@
-import { collection, doc, getDoc, getDocs, query, Timestamp, where } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  DocumentData,
+  getDoc,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  QueryDocumentSnapshot,
+  startAfter,
+  Timestamp,
+  where,
+} from 'firebase/firestore';
 import { db } from '../firebaseConfig';
-import { Product, Report, ReportCategory } from '@asterum/types';
+import { Product, Report } from '@asterum/types';
+import { getRowCountForInfiniteScroll } from '../utils';
 
 /**
  * 리포트 가져오기
- * @return {Promise<Report[]>}
  */
-export async function getReportsByCategory(category: ReportCategory | 'all'): Promise<Report[]> {
+export async function getReportsByCategory({
+  pageParam,
+  queryKey,
+}: {
+  pageParam: QueryDocumentSnapshot<DocumentData, DocumentData> | null;
+  queryKey: string[];
+}) {
   try {
+    const PAGE_COUNT = getRowCountForInfiniteScroll() * 4;
+    const [_key, category] = queryKey;
+
     const reportsRef = collection(db, 'reports');
 
-    const q =
-      category === 'all' ? query(reportsRef) : query(reportsRef, where('category', '==', category));
+    let q =
+      category === 'all'
+        ? query(reportsRef, orderBy('reportDateUsage', 'desc'), limit(PAGE_COUNT))
+        : query(
+            reportsRef,
+            where('category', 'array-contains', category),
+            orderBy('reportDateUsage', 'desc'),
+            limit(PAGE_COUNT)
+          );
+
+    if (pageParam) {
+      q = query(q, startAfter(pageParam));
+    }
 
     const querySnapshot = await getDocs(q);
+    const lastPage = querySnapshot.docs[querySnapshot.docs.length - 1];
+
     const reports: Report[] = querySnapshot.docs.map((doc) => {
       const data = doc.data();
 
@@ -31,8 +66,9 @@ export async function getReportsByCategory(category: ReportCategory | 'all'): Pr
       } as Report;
     });
 
-    return reports;
+    return { data: reports, lastPage };
   } catch (e) {
+    console.log(e);
     throw e;
   }
 }

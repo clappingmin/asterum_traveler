@@ -76,7 +76,7 @@ const ImgPreviewContainer = styled.div`
     & > img {
       width: inherit;
       aspect-ratio: 1920/1080;
-      object-fit: fill;
+      object-fit: cover;
     }
   }
 

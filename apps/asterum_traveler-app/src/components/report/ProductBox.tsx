@@ -8,6 +8,8 @@ import { IncludedProduct, Product } from '@asterum/types';
 import { useQuery } from '@tanstack/react-query';
 import * as api from '../../shared/services/reportService';
 import { sortMembers } from '../../shared/utils';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const MEMBER_ICON = {
   yejun: yejunIcon,
@@ -22,6 +24,8 @@ interface ProductBoxProps {
 }
 
 function ProductBox({ includedProduct: { productId, members } }: ProductBoxProps) {
+  const [loaded, setLoaded] = useState<boolean>(false);
+
   const { data } = useQuery<Product>({
     queryKey: ['product', productId],
     queryFn: async () => {
@@ -37,6 +41,12 @@ function ProductBox({ includedProduct: { productId, members } }: ProductBoxProps
         src={data?.productThumbnail}
         alt="제품 이미지"
         loading="lazy"
+        onLoad={() => setLoaded(true)}
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: loaded ? 1 : 0,
+        }}
+        transition={{ duration: 0.3 }}
       />
       <ProductInfoBox>
         <ProductName className="text-overflow-2">{data?.productName}</ProductName>
@@ -64,7 +74,7 @@ const Wrapper = styled.div`
   gap: 16px;
 `;
 
-const ProductTumbnail = styled.img`
+const ProductTumbnail = styled(motion.img)`
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;

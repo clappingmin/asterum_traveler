@@ -3,6 +3,8 @@ import MemberBox from '../../components/report/MemberBox';
 import ProductBox from '../../components/report/ProductBox';
 import { Report } from '@asterum/types';
 import { ALL_MEMBERS } from '../../shared/constants';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 interface ReportImagePageProps {
   reportData: Report;
@@ -11,9 +13,22 @@ interface ReportImagePageProps {
 function ReportImagePage({ reportData }: ReportImagePageProps) {
   const { reportThumbnail, reportMembers, reportDateDisplay, imageTags, includedProducts } =
     reportData;
+  const [loaded, setLoaded] = useState<boolean>(false);
+
   return (
     <Wrapper>
-      <Thumbnail width="540" src={reportThumbnail} alt="리포트 이미지"></Thumbnail>
+      <Thumbnail
+        width="540"
+        src={reportThumbnail}
+        alt="리포트 이미지"
+        onLoad={() => {
+          setLoaded(true);
+        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: loaded ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+      />
+
       <InfoContainer>
         <Members>
           {ALL_MEMBERS.map((member) => {
@@ -47,8 +62,9 @@ const Wrapper = styled.div`
   user-select: none;
 `;
 
-const Thumbnail = styled.img`
+const Thumbnail = styled(motion.img)`
   flex: 0 0 540px;
+
   width: 540px;
   object-fit: contain;
 `;
