@@ -6,6 +6,7 @@ import ReportListPage from './pages/report/ReportListPage';
 import DearPage from './pages/DearPage';
 import SchedulePage from './pages/SchedulePage';
 import ReportRouter from './pages/report/ReportRouter';
+import NotFoundPage from './pages/NotFoundPage';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: 'dear', element: <DearPage /> },
       { path: 'schedule', element: <SchedulePage /> },
     ],
+    errorElement: <NotFoundPage />,
   },
 ]);
 

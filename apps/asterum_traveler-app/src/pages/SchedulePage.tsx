@@ -8,6 +8,7 @@ import * as api from '../shared/services/scheduleService';
 import { Schedule } from '@asterum/types';
 import { MEMBER_HEART, MEMBER_KOREAN_NAME } from '../shared/constants';
 import { formatTime, sortMembers } from '../shared/utils';
+import LoadingDim from '../components/global/LoadingDim';
 
 const TODAY = new Date();
 const YEAR = TODAY.getFullYear();
@@ -16,7 +17,7 @@ function SchedulePage() {
   const [selectedMonth, setSelectedMonth] = useState(TODAY.getMonth() + 1);
   const [displayStartDate, setDisplayStartDate] = useState(TODAY);
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['schedules', YEAR, selectedMonth],
     queryFn: async () => {
       return await api.getSchedulesByDate(displayStartDate);
@@ -69,41 +70,44 @@ function SchedulePage() {
   };
 
   return (
-    <Wrapper>
-      <TitleContainer>
-        <Title>SCHEDULE</Title>
-        <Bamby width={647} height={562} src={scheduleBambyImg} />
-      </TitleContainer>
-      <MonthContainer>
-        <Year>2024</Year>
-        {Array.from({ length: 12 }, (_, index) => (
-          <Month
-            key={index + 1}
-            isSelected={selectedMonth === index + 1}
-            onClick={() => {
-              changeDisplayMonth(index + 1);
-            }}
-          >
-            {index + 1}
-          </Month>
-        ))}
-      </MonthContainer>
-      <HorizontalLine />
-      <CalendarWrapper>
-        <Calendar
-          activeStartDate={displayStartDate}
-          defaultActiveStartDate={TODAY}
-          defaultValue={TODAY}
-          defaultView="month"
-          maxDate={new Date(YEAR, 11, 31)}
-          minDate={new Date(YEAR, 11, 31)}
-          showNavigation={false}
-          formatShortWeekday={formatWeekday}
-          locale="en-US"
-          tileContent={renderSchedule}
-        />
-      </CalendarWrapper>
-    </Wrapper>
+    <>
+      {isLoading && <LoadingDim />}
+      <Wrapper>
+        <TitleContainer>
+          <Title>SCHEDULE</Title>
+          <Bamby width={647} height={562} src={scheduleBambyImg} />
+        </TitleContainer>
+        <MonthContainer>
+          <Year>2024</Year>
+          {Array.from({ length: 12 }, (_, index) => (
+            <Month
+              key={index + 1}
+              isSelected={selectedMonth === index + 1}
+              onClick={() => {
+                changeDisplayMonth(index + 1);
+              }}
+            >
+              {index + 1}
+            </Month>
+          ))}
+        </MonthContainer>
+        <HorizontalLine />
+        <CalendarWrapper>
+          <Calendar
+            activeStartDate={displayStartDate}
+            defaultActiveStartDate={TODAY}
+            defaultValue={TODAY}
+            defaultView="month"
+            maxDate={new Date(YEAR, 11, 31)}
+            minDate={new Date(YEAR, 11, 31)}
+            showNavigation={false}
+            formatShortWeekday={formatWeekday}
+            locale="en-US"
+            tileContent={renderSchedule}
+          />
+        </CalendarWrapper>
+      </Wrapper>
+    </>
   );
 }
 

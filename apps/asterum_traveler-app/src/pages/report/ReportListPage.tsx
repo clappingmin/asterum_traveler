@@ -7,12 +7,13 @@ import { useState } from 'react';
 import PostBox from '../../components/report/PostBox';
 import InfiniteScroll from '../../components/global/InfiniteScroll';
 import { getListMinHeight } from '../../shared/utils';
+import LoadingDim from '../../components/global/LoadingDim';
 
 function ReportListPage() {
   const [category, setCategory] = useState<ReportCategory | 'all'>('all');
   const [postListHeight, _setPostListHeight] = useState<number>(getListMinHeight());
 
-  const { data, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery({
+  const { data, isFetchingNextPage, fetchNextPage, hasNextPage, isLoading } = useInfiniteQuery({
     queryKey: ['reports', category],
     queryFn: api.getReportsByCategory,
     initialPageParam: null,
@@ -21,78 +22,81 @@ function ReportListPage() {
   });
 
   return (
-    <Wrapper>
-      <TitleContainer>
-        <Title>REPORT</Title>
-        <Yejun width={863} height={543} src={reportYejunImg} />
-      </TitleContainer>
-      <TabContainer>
-        <Tabs>
-          <Tab
-            isSelected={category === 'all'}
-            onClick={() => {
-              setCategory('all');
-            }}
-          >
-            All
-          </Tab>
-          <Tab
-            isSelected={category === 'album'}
-            onClick={() => {
-              setCategory('album');
-            }}
-          >
-            Album
-          </Tab>
-          <Tab
-            isSelected={category === 'fashion'}
-            onClick={() => {
-              setCategory('fashion');
-            }}
-          >
-            Fashion
-          </Tab>
-          <Tab
-            isSelected={category === 'game'}
-            onClick={() => {
-              setCategory('game');
-            }}
-          >
-            Game
-          </Tab>
-          <Tab
-            isSelected={category === 'live'}
-            onClick={() => {
-              setCategory('live');
-            }}
-          >
-            Live
-          </Tab>
-          <Tab
-            isSelected={category === 'etc'}
-            onClick={() => {
-              setCategory('etc');
-            }}
-          >
-            etc.
-          </Tab>
-        </Tabs>
-        <HorizontalLine />
-      </TabContainer>
-      <PostContainer minHeight={postListHeight}>
-        {data?.pages
-          .flatMap((page) => page.data)
-          .map((report: Report) => (
-            <PostBox key={report.id} report={report} />
-          ))}
-      </PostContainer>
+    <>
+      {isLoading && <LoadingDim />}
+      <Wrapper>
+        <TitleContainer>
+          <Title>REPORT</Title>
+          <Yejun width={863} height={543} src={reportYejunImg} />
+        </TitleContainer>
+        <TabContainer>
+          <Tabs>
+            <Tab
+              isSelected={category === 'all'}
+              onClick={() => {
+                setCategory('all');
+              }}
+            >
+              All
+            </Tab>
+            <Tab
+              isSelected={category === 'album'}
+              onClick={() => {
+                setCategory('album');
+              }}
+            >
+              Album
+            </Tab>
+            <Tab
+              isSelected={category === 'fashion'}
+              onClick={() => {
+                setCategory('fashion');
+              }}
+            >
+              Fashion
+            </Tab>
+            <Tab
+              isSelected={category === 'game'}
+              onClick={() => {
+                setCategory('game');
+              }}
+            >
+              Game
+            </Tab>
+            <Tab
+              isSelected={category === 'live'}
+              onClick={() => {
+                setCategory('live');
+              }}
+            >
+              Live
+            </Tab>
+            <Tab
+              isSelected={category === 'etc'}
+              onClick={() => {
+                setCategory('etc');
+              }}
+            >
+              etc.
+            </Tab>
+          </Tabs>
+          <HorizontalLine />
+        </TabContainer>
+        <PostContainer minHeight={postListHeight}>
+          {data?.pages
+            .flatMap((page) => page.data)
+            .map((report: Report) => (
+              <PostBox key={report.id} report={report} />
+            ))}
+        </PostContainer>
 
-      <InfiniteScroll
-        fetchFn={fetchNextPage}
-        isLoaded={isFetchingNextPage}
-        isLastPage={!!!hasNextPage}
-      />
-    </Wrapper>
+        <InfiniteScroll
+          fetchFn={fetchNextPage}
+          isLoaded={isFetchingNextPage}
+          isLastPage={!!!hasNextPage}
+        />
+      </Wrapper>
+    </>
   );
 }
 
