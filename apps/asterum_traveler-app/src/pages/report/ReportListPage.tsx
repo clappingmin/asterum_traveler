@@ -1,19 +1,23 @@
 import styled from 'styled-components';
 import reportYejunImg from '../../assets/images/member/report_yejun.png';
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { ReportCategory, Report } from '@asterum/types';
 import * as api from '../../shared/services/reportService';
 import { useState } from 'react';
 import PostBox from '../../components/report/PostBox';
+import InfiniteScroll from '../../components/global/InfiniteScroll';
+import { getListMinHeight } from '../../shared/utils';
 
 function ReportListPage() {
   const [category, setCategory] = useState<ReportCategory | 'all'>('all');
+  const [postListHeight, _setPostListHeight] = useState<number>(getListMinHeight());
 
-  const { data: reports } = useQuery<Report[]>({
+  const { data, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery({
     queryKey: ['reports', category],
-    queryFn: async () => {
-      return await api.getReportsByCategory(category);
-    },
+    queryFn: api.getReportsByCategory,
+    initialPageParam: null,
+    getNextPageParam: (lastPage) => lastPage.lastPage || undefined,
+    staleTime: 1000 * 60 * 5,
   });
 
   return (
@@ -75,12 +79,19 @@ function ReportListPage() {
         </Tabs>
         <HorizontalLine />
       </TabContainer>
-      <PostContainer>
-        {reports?.map((report) => (
-          <PostBox key={report.id} report={report} />
-        ))}
+      <PostContainer minHeight={postListHeight}>
+        {data?.pages
+          .flatMap((page) => page.data)
+          .map((report: Report) => (
+            <PostBox key={report.id} report={report} />
+          ))}
       </PostContainer>
-      {/* TODO: 무한스크롤 영역 margin 처리 */}
+
+      <InfiniteScroll
+        fetchFn={fetchNextPage}
+        isLoaded={isFetchingNextPage}
+        isLastPage={!!!hasNextPage}
+      />
     </Wrapper>
   );
 }
@@ -154,28 +165,13 @@ const HorizontalLine = styled.div`
   border: 1px solid #fff;
 `;
 
-const PostContainer = styled.div`
+const PostContainer = styled.div<{ minHeight: number }>`
   width: var(--width);
   margin: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-`;
-
-const Post = styled.div`
-  width: 100%;
-  aspect-ratio: 1;
-  background-color: var(--placeholder);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-
-  & > img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
+  min-height: ${(props) => `${props.minHeight}px`};
 `;
 
 export default ReportListPage;
