@@ -15,6 +15,7 @@ import {
 import { db } from '../firebaseConfig';
 import { Product, Report } from '@asterum/types';
 import { getRowCountForInfiniteScroll } from '../utils';
+import { InfiniteQueryEmptyReturn } from '../constants';
 
 /**
  * 리포트 가져오기
@@ -42,12 +43,14 @@ export async function getReportsByCategory({
             limit(PAGE_COUNT)
           );
 
-    if (pageParam) {
-      q = query(q, startAfter(pageParam));
-    }
+    if (pageParam) q = query(q, startAfter(pageParam));
 
     const querySnapshot = await getDocs(q);
-    const lastPage = querySnapshot.docs[querySnapshot.docs.length - 1];
+
+    // 데이터가 비었을 때
+    if (querySnapshot.empty) return InfiniteQueryEmptyReturn;
+
+    const lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
 
     const reports: Report[] = querySnapshot.docs.map((doc) => {
       const data = doc.data();
@@ -66,10 +69,10 @@ export async function getReportsByCategory({
       } as Report;
     });
 
-    return { data: reports, lastPage };
+    return { data: reports, lastVisible };
   } catch (e) {
     console.log(e);
-    throw e;
+    return InfiniteQueryEmptyReturn;
   }
 }
 

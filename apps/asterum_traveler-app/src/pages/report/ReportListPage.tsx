@@ -17,7 +17,7 @@ function ReportListPage() {
     queryKey: ['reports', category],
     queryFn: api.getReportsByCategory,
     initialPageParam: null,
-    getNextPageParam: (lastPage) => lastPage.lastPage || undefined,
+    getNextPageParam: (lastPage) => lastPage.lastVisible || null,
     staleTime: 1000 * 60 * 5,
   });
 

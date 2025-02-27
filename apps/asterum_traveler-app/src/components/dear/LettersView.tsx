@@ -11,7 +11,7 @@ function LettersView() {
     queryKey: ['cards'],
     queryFn: api.getDearCards,
     initialPageParam: null,
-    getNextPageParam: (lastPage) => lastPage.lastPage || undefined,
+    getNextPageParam: (lastPage) => lastPage?.lastVisible || null,
     staleTime: 1000 * 60 * 5,
   });
 
