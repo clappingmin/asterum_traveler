@@ -19,7 +19,6 @@ function InfiniteScroll({ parent, fetchFn, isLoaded, isLastPage }: InfiniteScrol
   const targetRef = useRef(null);
 
   useEffect(() => {
-    console.log(parent);
     if (!targetRef.current || isLoaded) return;
 
     const observer = new IntersectionObserver(

@@ -27,10 +27,10 @@ export async function getReportsByCategory({
   queryKey: string[];
 }) {
   try {
+    const PAGE_COUNT = getRowCountForInfiniteScroll() * 4;
     const [_key, category] = queryKey;
 
     const reportsRef = collection(db, 'reports');
-    const PAGE_COUNT = getRowCountForInfiniteScroll() * 4;
 
     let q =
       category === 'all'
