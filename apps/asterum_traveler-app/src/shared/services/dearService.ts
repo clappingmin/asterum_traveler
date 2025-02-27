@@ -3,14 +3,19 @@ import {
   collection,
   deleteDoc,
   doc,
+  DocumentData,
   getDocs,
+  limit,
   orderBy,
   query,
+  QueryDocumentSnapshot,
   setDoc,
+  startAfter,
   Timestamp,
 } from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
 import { db } from '../firebaseConfig';
+import { getRowCountForInfiniteScroll } from '../utils';
 
 /**
  * 디어 카드 추가하기
@@ -34,15 +39,26 @@ export async function addDearCard(dearCard: DearCardBase): Promise<string> {
 
 /**
  * 디어 카드 리스트 가져오기
- * @return {Promise<DearCard[]>}
  */
-export async function getDearCards(): Promise<DearCard[]> {
+export async function getDearCards({
+  pageParam,
+}: {
+  pageParam: QueryDocumentSnapshot<DocumentData, DocumentData> | null;
+}) {
   try {
+    const PAGE_COUNT = getRowCountForInfiniteScroll() * 4;
+
     const cardsRef = collection(db, 'cards');
 
-    const q = query(cardsRef, orderBy('createdAt', 'desc'));
+    let q = query(cardsRef, orderBy('createdAt', 'desc'), limit(PAGE_COUNT));
+
+    if (pageParam) {
+      q = query(q, startAfter(pageParam));
+    }
 
     const querySnapshot = await getDocs(q);
+    const lastPage = querySnapshot.docs[querySnapshot.docs.length - 1];
+
     const dearCards: DearCard[] = querySnapshot.docs.map((doc) => {
       const data = doc.data();
       return {
@@ -55,7 +71,7 @@ export async function getDearCards(): Promise<DearCard[]> {
       } as DearCard;
     });
 
-    return dearCards;
+    return { data: dearCards, lastPage };
   } catch (e) {
     throw e;
   }

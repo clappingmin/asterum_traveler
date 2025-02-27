@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { db, storage } from '../firebaseConfig';
-import { collection, doc, getDocs, query, setDoc, Timestamp } from 'firebase/firestore';
+import { collection, doc, getDocs, orderBy, query, setDoc, Timestamp } from 'firebase/firestore';
 import { Product, Report, ReportBase, ProductBase } from '@asterum/types';
 
 export const imageUpload = async (image: File, saveType: 'products' | 'reports') => {
@@ -78,7 +78,7 @@ export async function addReport(report: ReportBase): Promise<string> {
  */
 export async function getReports(): Promise<Report[]> {
   try {
-    const q = query(collection(db, 'reports'));
+    const q = query(collection(db, 'reports'), orderBy('reportDateUsage', 'desc'));
 
     const querySnapshot = await getDocs(q);
     const reports: Report[] = querySnapshot.docs.map((doc) => {

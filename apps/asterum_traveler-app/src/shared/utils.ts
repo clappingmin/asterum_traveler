@@ -45,3 +45,19 @@ export const sortMembers = (members: Member[]): Member[] => {
 
   return members.sort((a, b) => (orderMap.get(a) ?? Infinity) - (orderMap.get(b) ?? Infinity));
 };
+
+export const getRowCountForInfiniteScroll = (): number => {
+  const screenArea = window.innerWidth * window.innerHeight;
+  const cellArea = Math.pow(window.innerWidth / 4, 2);
+  const cellRowCount = Math.ceil(screenArea / cellArea / 4);
+
+  return cellRowCount + 1;
+};
+
+export const getListMinHeight = (cellHeight: number = 388): number => {
+  const screenArea = window.innerWidth * window.innerHeight;
+  const cellArea = Math.pow(window.innerWidth / 4, 2);
+  const cellRowCount = Math.ceil(screenArea / cellArea / 4);
+
+  return cellRowCount * cellHeight;
+};

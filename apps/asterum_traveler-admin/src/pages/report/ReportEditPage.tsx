@@ -21,7 +21,7 @@ function ReportEditPage() {
   const [thumbnail, setThumbnail] = useState<File | null>(null);
   const [displayDate, setDisplayDate] = useState<string>('');
   const [usageDate, setUsageDate] = useState<string>('');
-  const [category, setCategory] = useState<ReportCategory>('etc');
+  const [category, setCategory] = useState<ReportCategory[]>([]);
   const [liveTitle, setLiveTitle] = useState<string>('');
   const [tag, setTag] = useState<string>('');
   const [imageTags, setImageTags] = useState<string[]>([]);
@@ -72,6 +72,20 @@ function ReportEditPage() {
       prevMembers.includes(selectedMember)
         ? prevMembers.filter((member: Member) => member !== selectedMember) // 제거
         : [...prevMembers, selectedMember]
+    );
+  };
+
+  /**
+   * 게시글 카테고리 선택 변경
+   * @param {React.ChangeEvent<HTMLFormElement>} e
+   */
+  const changeSelectCategory = (e: React.ChangeEvent<HTMLFormElement>) => {
+    const selectedCategory = e.target.value;
+
+    setCategory((prevCategories) =>
+      prevCategories.includes(selectedCategory)
+        ? prevCategories.filter((category: ReportCategory) => category !== selectedCategory) // 제거
+        : [...prevCategories, selectedCategory]
     );
   };
 
@@ -219,50 +233,25 @@ function ReportEditPage() {
           </InputWrapper>
           <InputWrapper>
             <InfoLabel>게시글 카테고리</InfoLabel>
-            <form onChange={(e: React.ChangeEvent<HTMLFormElement>) => setCategory(e.target.value)}>
+            <form onChange={(e: React.ChangeEvent<HTMLFormElement>) => changeSelectCategory(e)}>
               <label>
-                <input
-                  type="radio"
-                  name="category"
-                  value="album"
-                  defaultChecked={category === 'album'}
-                />
+                <input type="checkbox" name="category" value="album" />
                 앨범
               </label>
               <label>
-                <input
-                  type="radio"
-                  name="category"
-                  value="fashion"
-                  defaultChecked={category === 'fashion'}
-                />
+                <input type="checkbox" name="category" value="fashion" />
                 패션
               </label>
               <label>
-                <input
-                  type="radio"
-                  name="category"
-                  value="game"
-                  defaultChecked={category === 'game'}
-                />
+                <input type="checkbox" name="category" value="game" />
                 게임
               </label>
               <label>
-                <input
-                  type="radio"
-                  name="category"
-                  value="live"
-                  defaultChecked={category === 'live'}
-                />
+                <input type="checkbox" name="category" value="live" />
                 라이브
               </label>
               <label>
-                <input
-                  type="radio"
-                  name="category"
-                  value="etc"
-                  defaultChecked={category === 'etc'}
-                />
+                <input type="checkbox" name="category" value="etc" />
                 기타
               </label>
             </form>
@@ -366,6 +355,7 @@ function ReportEditPage() {
               src={product.productThumbnail}
               onClick={() => changeSelectProduct(product.id)}
             />
+            <ProductName>{product.productBrand}</ProductName>
             <ProductName>{product.productName}</ProductName>
             <form
               onChange={(e: React.ChangeEvent<HTMLFormElement>) =>

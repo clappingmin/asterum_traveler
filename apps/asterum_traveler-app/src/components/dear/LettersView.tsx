@@ -1,21 +1,34 @@
 import { styled } from 'styled-components';
 import Card from './Card';
-import { useQuery } from '@tanstack/react-query';
-import { DearCard } from '@asterum/types';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import * as api from '../../shared/services/dearService';
+import { DearCard } from '@asterum/types';
+import InfiniteScroll from '../global/InfiniteScroll';
 
 function LettersView() {
-  const { data: dearCards } = useQuery<DearCard[]>({
+  const { data, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery({
     queryKey: ['cards'],
     queryFn: api.getDearCards,
+    initialPageParam: null,
+    getNextPageParam: (lastPage) => lastPage.lastPage || undefined,
+    staleTime: 1000 * 60 * 5,
   });
 
   return (
-    <Wrapper>
-      {dearCards?.map((dearCard) => (
-        <Card key={`card-${dearCard.id}`} dearCard={dearCard} />
-      ))}
-    </Wrapper>
+    <>
+      <Wrapper>
+        {data?.pages
+          .flatMap((page) => page.data)
+          .map((dearCard: DearCard) => (
+            <Card key={`card-${dearCard.id}`} dearCard={dearCard} />
+          ))}
+      </Wrapper>
+      <InfiniteScroll
+        fetchFn={fetchNextPage}
+        isLoaded={isFetchingNextPage}
+        isLastPage={!!!hasNextPage}
+      />
+    </>
   );
 }
 
@@ -24,6 +37,8 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
+  min-height: 100%;
+  grid-template-rows: repeat(auto-fill, 388px);
 `;
 
 export default LettersView;
