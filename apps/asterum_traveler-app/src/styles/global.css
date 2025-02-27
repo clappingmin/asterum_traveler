@@ -12,3 +12,7 @@ body {
   background-color: #000 !important;
   color: var(--color);
 }
+
+button {
+  cursor: pointer;
+}

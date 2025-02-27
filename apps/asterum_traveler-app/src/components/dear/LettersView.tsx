@@ -4,9 +4,10 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import * as api from '../../shared/services/dearService';
 import { DearCard } from '@asterum/types';
 import InfiniteScroll from '../global/InfiniteScroll';
+import LoadingDim from '../global/LoadingDim';
 
 function LettersView() {
-  const { data, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery({
+  const { data, isFetchingNextPage, fetchNextPage, hasNextPage, isLoading } = useInfiniteQuery({
     queryKey: ['cards'],
     queryFn: api.getDearCards,
     initialPageParam: null,
@@ -16,6 +17,7 @@ function LettersView() {
 
   return (
     <>
+      {isLoading && <LoadingDim />}
       <Wrapper>
         {data?.pages
           .flatMap((page) => page.data)
