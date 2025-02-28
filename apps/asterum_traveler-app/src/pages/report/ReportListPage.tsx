@@ -7,6 +7,7 @@ import ReportListView from '../../components/report/ReportListView';
 
 function ReportListPage() {
   const [category, setCategory] = useState<ReportCategory | 'all'>('all');
+  const [refetchFn, setRefetchFn] = useState<(() => Promise<any>) | null>(null);
 
   return (
     <>
@@ -68,8 +69,8 @@ function ReportListPage() {
           </Tabs>
           <HorizontalLine />
         </TabContainer>
-        <ApiErrorBoundary>
-          <ReportListView category={category} />
+        <ApiErrorBoundary onRetry={() => refetchFn && refetchFn()}>
+          <ReportListView category={category} onRefetch={setRefetchFn} />
         </ApiErrorBoundary>
       </Wrapper>
     </>
