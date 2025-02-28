@@ -7,7 +7,7 @@ import DearPage from './pages/DearPage';
 import SchedulePage from './pages/SchedulePage';
 import ReportRouter from './pages/report/ReportRouter';
 import NotFoundPage from './pages/NotFoundPage';
-import ApiErrorBoundary from './components/global/error/ApiErrorBoundary';
+import FetchErrorBoundary from './components/global/error/FetchErrorBoundary';
 
 const router = createBrowserRouter([
   {
@@ -25,9 +25,9 @@ const router = createBrowserRouter([
       {
         path: 'report/:pageType/:pageId',
         element: (
-          <ApiErrorBoundary>
+          <FetchErrorBoundary>
             <ReportRouter />
-          </ApiErrorBoundary>
+          </FetchErrorBoundary>
         ),
       },
       { path: 'dear', element: <DearPage /> },

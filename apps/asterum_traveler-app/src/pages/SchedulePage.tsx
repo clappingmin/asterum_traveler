@@ -3,7 +3,7 @@ import scheduleBambyImg from '../assets/images/member/schedule_bamby.png';
 import '../styles/react-calendar.css';
 import { useState } from 'react';
 import ScheduleCalendar from '../components/schedule/ScheduleCalendar';
-import ApiErrorBoundary from '../components/global/error/ApiErrorBoundary';
+import FetchErrorBoundary from '../components/global/error/FetchErrorBoundary';
 
 const TODAY = new Date();
 const YEAR = TODAY.getFullYear();
@@ -35,9 +35,9 @@ function SchedulePage() {
         </MonthContainer>
         <HorizontalLine />
         <CalendarWrapper>
-          <ApiErrorBoundary onRetry={() => refetchFn && refetchFn()}>
+          <FetchErrorBoundary onRetry={() => refetchFn && refetchFn()}>
             <ScheduleCalendar month={selectedMonth} onRefetch={setRefetchFn} />
-          </ApiErrorBoundary>
+          </FetchErrorBoundary>
         </CalendarWrapper>
       </Wrapper>
     </>

@@ -2,7 +2,7 @@ import { Component, ReactNode } from 'react';
 import { ApiError } from '../../../shared/errors';
 import styled from 'styled-components';
 
-class ApiErrorBoundary extends Component<
+class FetchErrorBoundary extends Component<
   { children: ReactNode; onRetry?: () => void },
   { hasError?: boolean; error: any }
 > {
@@ -83,4 +83,4 @@ const RetryButton = styled.button`
   min-width: 400px;
 `;
 
-export default ApiErrorBoundary;
+export default FetchErrorBoundary;

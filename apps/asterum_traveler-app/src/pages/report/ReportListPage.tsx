@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import reportYejunImg from '../../assets/images/member/report_yejun.png';
 import { ReportCategory } from '@asterum/types';
 import { useState } from 'react';
-import ApiErrorBoundary from '../../components/global/error/ApiErrorBoundary';
+import FetchErrorBoundary from '../../components/global/error/FetchErrorBoundary';
 import ReportListView from '../../components/report/ReportListView';
 
 function ReportListPage() {
@@ -69,9 +69,9 @@ function ReportListPage() {
           </Tabs>
           <HorizontalLine />
         </TabContainer>
-        <ApiErrorBoundary onRetry={() => refetchFn && refetchFn()}>
+        <FetchErrorBoundary onRetry={() => refetchFn && refetchFn()}>
           <ReportListView category={category} onRefetch={setRefetchFn} />
-        </ApiErrorBoundary>
+        </FetchErrorBoundary>
       </Wrapper>
     </>
   );

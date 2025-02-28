@@ -56,7 +56,7 @@ export async function getSchedulesByDate(targetDate: Date) {
     schedulesArray.sort(sortSchedule);
 
     return schedulesArray;
-  } catch (e) {
+  } catch (e: any) {
     return Promise.reject(new ApiError(e, 'getSchedulesByDate', true));
   }
 }

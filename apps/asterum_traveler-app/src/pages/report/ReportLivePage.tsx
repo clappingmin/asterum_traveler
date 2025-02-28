@@ -4,7 +4,7 @@ import ProductBox from '../../components/report/ProductBox';
 import { Report } from '@asterum/types';
 import { ALL_MEMBERS } from '../../shared/constants';
 import { useState } from 'react';
-import ApiErrorBoundary from '../../components/global/error/ApiErrorBoundary';
+import FetchErrorBoundary from '../../components/global/error/FetchErrorBoundary';
 
 interface ReportLivePageProps {
   reportData: Report;
@@ -27,7 +27,7 @@ function ReportLivePage({ reportData }: ReportLivePageProps) {
           })}
         </LiveMembers>
       </LiveContainer>
-      <ApiErrorBoundary onRetry={() => refetchFn && refetchFn()}>
+      <FetchErrorBoundary onRetry={() => refetchFn && refetchFn()}>
         <ProductContainer>
           {includedProducts.map((product) => {
             return (
@@ -39,7 +39,7 @@ function ReportLivePage({ reportData }: ReportLivePageProps) {
             );
           })}
         </ProductContainer>
-      </ApiErrorBoundary>
+      </FetchErrorBoundary>
     </Wrapper>
   );
 }
