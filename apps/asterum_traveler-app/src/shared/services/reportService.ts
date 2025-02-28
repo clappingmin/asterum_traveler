@@ -72,7 +72,7 @@ export async function getReportsByCategory({
 
     return { data: reports, lastVisible };
   } catch (e: any) {
-    return Promise.reject(new ApiError(e, 'getReportsByCategory', e.massage, true));
+    return Promise.reject(new ApiError(e, 'getReportsByCategory', true));
   }
 }
 
@@ -84,7 +84,7 @@ export async function getReportById(reportId: string): Promise<Report> {
     if (docSnap.exists()) return docSnap.data() as Report;
     else throw new Error(ERROR_NO_DATA);
   } catch (e: any) {
-    return Promise.reject(new ApiError(e, 'getReportById', e.massage, false));
+    return Promise.reject(new ApiError(e, 'getReportById', false));
   }
 }
 
@@ -101,8 +101,6 @@ export async function getProdcutById(productId: string): Promise<Product> {
     if (docSnap.exists()) return docSnap.data() as Product;
     else throw new Error(ERROR_NO_DATA);
   } catch (e: any) {
-    return Promise.reject(
-      new ApiError(e, 'getProdcutById', e.massage, e.message !== ERROR_NO_DATA)
-    );
+    return Promise.reject(new ApiError(e, 'getProdcutById', e.message !== ERROR_NO_DATA));
   }
 }

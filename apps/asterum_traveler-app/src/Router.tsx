@@ -31,7 +31,10 @@ const router = createBrowserRouter([
         ),
       },
       { path: 'dear', element: <DearPage /> },
-      { path: 'schedule', element: <SchedulePage /> },
+      {
+        path: 'schedule',
+        element: <SchedulePage />,
+      },
     ],
     errorElement: <NotFoundPage />,
   },

@@ -7,11 +7,10 @@ class ApiError extends Error {
   responseMessage?: string;
   canRetry?: boolean;
 
-  constructor(message: string, apiName: string, responseMessage?: string, canRetry?: boolean) {
+  constructor(message: string, apiName: string, canRetry?: boolean) {
     super(message);
     this.name = 'ApiError';
     this.apiName = apiName;
-    this.responseMessage = responseMessage;
     this.canRetry = canRetry;
   }
 }
