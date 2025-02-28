@@ -55,6 +55,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  word-break: keep-all;
 
   & > span {
     font-size: 44px;

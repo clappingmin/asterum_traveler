@@ -98,13 +98,11 @@ export async function getProdcutById(productId: string): Promise<Product> {
     const docRef = doc(db, 'products', productId);
     const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-      return docSnap.data() as Product;
-    } else {
-      // TODO: 에러 처리
-      throw new Error('Get Data Error!!');
-    }
-  } catch (e) {
-    throw e;
+    if (docSnap.exists()) return docSnap.data() as Product;
+    else throw new Error(ERROR_NO_DATA);
+  } catch (e: any) {
+    return Promise.reject(
+      new ApiError(e, 'getProdcutById', e.massage, e.message !== ERROR_NO_DATA)
+    );
   }
 }

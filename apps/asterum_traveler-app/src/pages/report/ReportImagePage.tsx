@@ -5,6 +5,7 @@ import { Report } from '@asterum/types';
 import { ALL_MEMBERS } from '../../shared/constants';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import ApiErrorBoundary from '../../components/global/error/ApiErrorBoundary';
 
 interface ReportImagePageProps {
   reportData: Report;
@@ -14,6 +15,7 @@ function ReportImagePage({ reportData }: ReportImagePageProps) {
   const { reportThumbnail, reportMembers, reportDateDisplay, imageTags, includedProducts } =
     reportData;
   const [loaded, setLoaded] = useState<boolean>(false);
+  const [refetchFn, setRefetchFn] = useState<(() => Promise<any>) | null>(null);
 
   return (
     <Wrapper>
@@ -42,9 +44,17 @@ function ReportImagePage({ reportData }: ReportImagePageProps) {
           ))}
         </TagBox>
         <ProductContainer>
-          {includedProducts.map((product) => {
-            return <ProductBox key={product.productId} includedProduct={product} />;
-          })}
+          <ApiErrorBoundary onRetry={() => refetchFn && refetchFn()}>
+            {includedProducts.map((product) => {
+              return (
+                <ProductBox
+                  key={product.productId}
+                  includedProduct={product}
+                  onRefetch={setRefetchFn}
+                />
+              );
+            })}
+          </ApiErrorBoundary>
         </ProductContainer>
       </InfoContainer>
     </Wrapper>
@@ -107,7 +117,7 @@ const Tag = styled.span`
 const ProductContainer = styled.div`
   margin-top: 32px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: 32px 8px;
 `;
 
