@@ -17,7 +17,7 @@ class FetchErrorBoundary extends Component<
 
   componentDidCatch(error: any, errorInfo: React.ErrorInfo) {
     // TODO: 슬랙에 에러 전송
-    console.error('UI 렌더링 중 에러 발생:', error, errorInfo);
+    console.error('Data Fetch 중 에러 발생:', error, errorInfo);
   }
 
   handleRetry = () => {
