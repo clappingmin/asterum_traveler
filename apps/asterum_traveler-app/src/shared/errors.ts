@@ -1,12 +1,11 @@
 import { createStandaloneToast } from '@chakra-ui/react';
 
+const { toast } = createStandaloneToast();
 /**
  * 에러메시지 토스트 띄우기
  * @param {string} message
  */
 export function showErrorToast(message = '요청을 처리하는 중 오류가 발생했습니다.') {
-  const { toast } = createStandaloneToast();
-
   toast({
     id: 'error-toast',
     title: '오류 발생',
