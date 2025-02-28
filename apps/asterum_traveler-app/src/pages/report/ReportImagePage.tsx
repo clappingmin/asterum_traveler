@@ -43,8 +43,8 @@ function ReportImagePage({ reportData }: ReportImagePageProps) {
             <Tag key={`tag-${index}`}>#{tag}</Tag>
           ))}
         </TagBox>
-        <ProductContainer>
-          <ApiErrorBoundary onRetry={() => refetchFn && refetchFn()}>
+        <ApiErrorBoundary onRetry={() => refetchFn && refetchFn()}>
+          <ProductContainer>
             {includedProducts.map((product) => {
               return (
                 <ProductBox
@@ -54,8 +54,8 @@ function ReportImagePage({ reportData }: ReportImagePageProps) {
                 />
               );
             })}
-          </ApiErrorBoundary>
-        </ProductContainer>
+          </ProductContainer>
+        </ApiErrorBoundary>
       </InfoContainer>
     </Wrapper>
   );

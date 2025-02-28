@@ -3,6 +3,8 @@ import MemberBox from '../../components/report/MemberBox';
 import ProductBox from '../../components/report/ProductBox';
 import { Report } from '@asterum/types';
 import { ALL_MEMBERS } from '../../shared/constants';
+import { useState } from 'react';
+import ApiErrorBoundary from '../../components/global/error/ApiErrorBoundary';
 
 interface ReportLivePageProps {
   reportData: Report;
@@ -11,6 +13,7 @@ interface ReportLivePageProps {
 function ReportLivePage({ reportData }: ReportLivePageProps) {
   const { reportThumbnail, liveTitle, reportDateDisplay, reportMembers, includedProducts } =
     reportData;
+  const [refetchFn, setRefetchFn] = useState<(() => Promise<any>) | null>(null);
 
   return (
     <Wrapper>
@@ -24,11 +27,19 @@ function ReportLivePage({ reportData }: ReportLivePageProps) {
           })}
         </LiveMembers>
       </LiveContainer>
-      <ProductContainer>
-        {includedProducts.map((product) => {
-          return <ProductBox key={product.productId} includedProduct={product} />;
-        })}
-      </ProductContainer>
+      <ApiErrorBoundary onRetry={() => refetchFn && refetchFn()}>
+        <ProductContainer>
+          {includedProducts.map((product) => {
+            return (
+              <ProductBox
+                key={product.productId}
+                includedProduct={product}
+                onRefetch={setRefetchFn}
+              />
+            );
+          })}
+        </ProductContainer>
+      </ApiErrorBoundary>
     </Wrapper>
   );
 }
