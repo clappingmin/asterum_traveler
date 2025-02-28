@@ -46,9 +46,6 @@ function ModalWriteLetter({ onClose }: ModalWriteLetterProps) {
       alert('카드 추가 완료');
       onClose();
     },
-    onError: () => {
-      alert('카드 추가 실패!');
-    },
   });
 
   /**
