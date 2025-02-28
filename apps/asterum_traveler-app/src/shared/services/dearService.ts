@@ -75,8 +75,8 @@ export async function getDearCards({
     });
 
     return { data: dearCards, lastVisible };
-  } catch (e) {
-    return InfiniteQueryEmptyReturn;
+  } catch (e: any) {
+    return Promise.reject(new ApiError(e, 'getDearCards', true));
   }
 }
 
