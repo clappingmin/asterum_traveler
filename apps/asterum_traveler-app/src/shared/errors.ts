@@ -1,3 +1,7 @@
+// 에러 메시지
+export const ERROR_NO_DATA = 'No data available';
+
+// 에러 종류
 class ApiError extends Error {
   apiName: string;
   responseMessage?: string;

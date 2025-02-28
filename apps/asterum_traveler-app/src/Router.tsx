@@ -7,6 +7,7 @@ import DearPage from './pages/DearPage';
 import SchedulePage from './pages/SchedulePage';
 import ReportRouter from './pages/report/ReportRouter';
 import NotFoundPage from './pages/NotFoundPage';
+import ApiErrorBoundary from './components/global/error/ApiErrorBoundary';
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,14 @@ const router = createBrowserRouter([
         path: 'report',
         element: <ReportListPage />,
       },
-      { path: 'report/:pageType/:pageId', element: <ReportRouter /> },
+      {
+        path: 'report/:pageType/:pageId',
+        element: (
+          <ApiErrorBoundary>
+            <ReportRouter />
+          </ApiErrorBoundary>
+        ),
+      },
       { path: 'dear', element: <DearPage /> },
       { path: 'schedule', element: <SchedulePage /> },
     ],

@@ -48,6 +48,7 @@ class ApiErrorBoundary extends Component<
 }
 
 const Wrapper = styled.div`
+  margin: auto;
   width: 100%;
   padding: 60px 30px;
   color: #fff;

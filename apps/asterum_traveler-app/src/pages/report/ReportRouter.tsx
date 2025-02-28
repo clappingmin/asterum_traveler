@@ -23,12 +23,15 @@ function ReportRouter() {
   // 페이지 타입이 잘못된 경우
   if (pageType !== 'image' && pageType !== 'live') return <NotFoundPage />;
 
-  const { data, isLoading } = useQuery<Report>({
+  const { data, isLoading, error, isError } = useQuery<Report>({
     queryKey: ['report', pageId],
     queryFn: async () => {
       return await api.getReportById(pageId);
     },
+    retry: false,
   });
+
+  if (isError) throw error;
 
   if (!data) {
     if (isLoading) return <LoadingDim />;

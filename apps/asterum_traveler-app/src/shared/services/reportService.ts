@@ -16,7 +16,7 @@ import { db } from '../firebaseConfig';
 import { Product, Report } from '@asterum/types';
 import { getRowCountForInfiniteScroll } from '../utils';
 import { InfiniteQueryEmptyReturn } from '../constants';
-import { ApiError } from '../errors';
+import { ApiError, ERROR_NO_DATA } from '../errors';
 
 /**
  * 리포트 가져오기
@@ -81,14 +81,10 @@ export async function getReportById(reportId: string): Promise<Report> {
     const docRef = doc(db, 'reports', reportId);
     const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-      return docSnap.data() as Report;
-    } else {
-      // TODO: 에러 처리
-      throw new Error('Get Data Error!!');
-    }
-  } catch (e) {
-    throw e;
+    if (docSnap.exists()) return docSnap.data() as Report;
+    else throw new Error(ERROR_NO_DATA);
+  } catch (e: any) {
+    return Promise.reject(new ApiError(e, 'getReportById', e.massage, false));
   }
 }
 
