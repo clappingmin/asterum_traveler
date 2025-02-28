@@ -174,6 +174,7 @@ const PostContainer = styled.div<{ minHeight: number }>`
   margin: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(auto-fill, 388px);
   gap: 16px;
   min-height: ${(props) => `${props.minHeight}px`};
 `;
