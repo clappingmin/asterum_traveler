@@ -73,3 +73,30 @@ export function showSuccessToast(message: string = '요청이 성공적으로 �
     isClosable: true,
   });
 }
+
+export const sendMessageToSlack = async () => {
+  try {
+    const functionURL = import.meta.env.VITE_FIREBASE_FUNCTION_SEND_TO_SLACK_URL;
+
+    const response = await fetch(functionURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message: '🚀 Firebase Functions 배포 성공!' }),
+    });
+
+    // 응답이 JSON 형식인지 확인
+    const text = await response.text();
+    console.log('응답 데이터:', text);
+
+    try {
+      const result = JSON.parse(text);
+      console.log('Slack 메시지 전송 결과:', result);
+    } catch (error) {
+      console.error('JSON 파싱 오류:', error);
+    }
+  } catch (error) {
+    console.error('클라이언트 Slack 메시지 전송 실패:', error);
+  }
+};
