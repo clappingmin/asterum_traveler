@@ -1,29 +1,15 @@
 import styled from 'styled-components';
 import reportYejunImg from '../../assets/images/member/report_yejun.png';
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { ReportCategory, Report } from '@asterum/types';
-import * as api from '../../shared/services/reportService';
+import { ReportCategory } from '@asterum/types';
 import { useState } from 'react';
-import PostBox from '../../components/report/PostBox';
-import InfiniteScroll from '../../components/global/InfiniteScroll';
-import { getListMinHeight } from '../../shared/utils';
-import LoadingDim from '../../components/global/LoadingDim';
+import ApiErrorBoundary from '../../components/global/error/ApiErrorBoundary';
+import ReportListView from '../../components/report/ReportListView';
 
 function ReportListPage() {
   const [category, setCategory] = useState<ReportCategory | 'all'>('all');
-  const [postListHeight, _setPostListHeight] = useState<number>(getListMinHeight());
-
-  const { data, isFetchingNextPage, fetchNextPage, hasNextPage, isLoading } = useInfiniteQuery({
-    queryKey: ['reports', category],
-    queryFn: api.getReportsByCategory,
-    initialPageParam: null,
-    getNextPageParam: (lastPage) => lastPage.lastVisible || null,
-    staleTime: 1000 * 60 * 5,
-  });
 
   return (
     <>
-      {isLoading && <LoadingDim />}
       <Wrapper>
         <TitleContainer>
           <Title>REPORT</Title>
@@ -82,19 +68,9 @@ function ReportListPage() {
           </Tabs>
           <HorizontalLine />
         </TabContainer>
-        <PostContainer minHeight={postListHeight}>
-          {data?.pages
-            .flatMap((page) => page.data)
-            .map((report: Report) => (
-              <PostBox key={report.id} report={report} />
-            ))}
-        </PostContainer>
-
-        <InfiniteScroll
-          fetchFn={fetchNextPage}
-          isLoaded={isFetchingNextPage}
-          isLastPage={!!!hasNextPage}
-        />
+        <ApiErrorBoundary>
+          <ReportListView category={category} />
+        </ApiErrorBoundary>
       </Wrapper>
     </>
   );
@@ -167,16 +143,6 @@ const HorizontalLine = styled.div`
   width: 100%;
   height: 0;
   border: 1px solid #fff;
-`;
-
-const PostContainer = styled.div<{ minHeight: number }>`
-  width: var(--width);
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(auto-fill, 388px);
-  gap: 16px;
-  min-height: ${(props) => `${props.minHeight}px`};
 `;
 
 export default ReportListPage;

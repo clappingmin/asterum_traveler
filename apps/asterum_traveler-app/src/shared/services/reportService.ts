@@ -16,6 +16,7 @@ import { db } from '../firebaseConfig';
 import { Product, Report } from '@asterum/types';
 import { getRowCountForInfiniteScroll } from '../utils';
 import { InfiniteQueryEmptyReturn } from '../constants';
+import { ApiError } from '../errors';
 
 /**
  * 리포트 가져오기
@@ -70,9 +71,8 @@ export async function getReportsByCategory({
     });
 
     return { data: reports, lastVisible };
-  } catch (e) {
-    console.log(e);
-    return InfiniteQueryEmptyReturn;
+  } catch (e: any) {
+    return Promise.reject(new ApiError(e, 'getReportsByCategory', e.massage, true));
   }
 }
 

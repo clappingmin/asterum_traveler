@@ -1,20 +1,12 @@
 class ApiError extends Error {
   apiName: string;
-  statusCode: number;
   responseMessage?: string;
   canRetry?: boolean;
 
-  constructor(
-    message: string,
-    apiName: string,
-    statusCode: number,
-    responseMessage?: string,
-    canRetry?: boolean
-  ) {
+  constructor(message: string, apiName: string, responseMessage?: string, canRetry?: boolean) {
     super(message);
     this.name = 'ApiError';
     this.apiName = apiName;
-    this.statusCode = statusCode;
     this.responseMessage = responseMessage;
     this.canRetry = canRetry;
   }
