@@ -1,12 +1,13 @@
 const functions = require('firebase-functions');
 const express = require('express');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 app.use(cors({ origin: true }));
 app.use(express.json());
 
-const SLACK_WEBHOOK_URL = functions.config().slack.webhook_url;
+const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL || '';
 
 app.post('/', async (req: any, res: any) => {
   try {
