@@ -2,7 +2,6 @@ import { Schedule } from '@asterum/types';
 import Calendar from 'react-calendar';
 import styled from 'styled-components';
 import * as api from '../../shared/services/scheduleService';
-import { ApiError } from '../../shared/errors';
 
 import { formatTime, sortMembers } from '../../shared/utils';
 import { MEMBER_HEART, MEMBER_KOREAN_NAME } from '../../shared/constants';
