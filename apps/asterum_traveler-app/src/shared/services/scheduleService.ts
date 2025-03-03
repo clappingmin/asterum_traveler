@@ -2,6 +2,7 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { Schedule } from '@asterum/types';
 import { sortSchedule } from '../utils';
+import { ApiError } from '../errors';
 
 export async function getSchedulesByDate(targetDate: Date) {
   try {
@@ -55,7 +56,7 @@ export async function getSchedulesByDate(targetDate: Date) {
     schedulesArray.sort(sortSchedule);
 
     return schedulesArray;
-  } catch (e) {
-    console.log(e);
+  } catch (e: any) {
+    return Promise.reject(new ApiError(e, 'getSchedulesByDate', true));
   }
 }

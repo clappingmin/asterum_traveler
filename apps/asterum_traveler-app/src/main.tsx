@@ -5,8 +5,22 @@ import { RouterProvider } from 'react-router-dom';
 import router from './Router.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { sendMessageToSlack, showErrorToast } from './shared/errors.ts';
+import { showSuccessToast } from './shared/utils.ts';
 
-export const queryClient = new QueryClient();
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    mutations: {
+      onSuccess: () => {
+        showSuccessToast();
+      },
+      onError: (error: unknown) => {
+        showErrorToast();
+        sendMessageToSlack(error);
+      },
+    },
+  },
+});
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

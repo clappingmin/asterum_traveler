@@ -17,6 +17,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { db } from '../firebaseConfig';
 import { getRowCountForInfiniteScroll } from '../utils';
 import { InfiniteQueryEmptyReturn } from '../constants';
+import { ApiError } from '../errors';
 
 /**
  * 디어 카드 추가하기
@@ -33,8 +34,8 @@ export async function addDearCard(dearCard: DearCardBase): Promise<string> {
       ...dearCard,
     } as DearCard);
     return cardId;
-  } catch (e) {
-    throw e;
+  } catch (e: any) {
+    throw new ApiError(e, 'addDearCard');
   }
 }
 
@@ -74,9 +75,8 @@ export async function getDearCards({
     });
 
     return { data: dearCards, lastVisible };
-  } catch (e) {
-    console.log(e);
-    return InfiniteQueryEmptyReturn;
+  } catch (e: any) {
+    return Promise.reject(new ApiError(e, 'getDearCards', true));
   }
 }
 
@@ -90,7 +90,7 @@ export async function deleteDearCardByCardId(cardId: string): Promise<boolean> {
     await deleteDoc(doc(db, 'cards', cardId));
 
     return true;
-  } catch (e) {
-    throw e;
+  } catch (e: any) {
+    throw new ApiError(e, 'deleteDearCardByCardId');
   }
 }

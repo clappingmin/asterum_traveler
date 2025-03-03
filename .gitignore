@@ -9,3 +9,9 @@ node_modules
 !.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
+.yarnrc.yml
+
+
+# storybook
+.storybook/
+storybook-static/

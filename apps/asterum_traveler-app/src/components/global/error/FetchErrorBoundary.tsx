@@ -1,8 +1,8 @@
 import { Component, ReactNode } from 'react';
-import { ApiError } from '../../../shared/errors';
+import { ApiError, sendMessageToSlack } from '../../../shared/errors';
 import styled from 'styled-components';
 
-class ApiErrorBoundary extends Component<
+class FetchErrorBoundary extends Component<
   { children: ReactNode; onRetry?: () => void },
   { hasError?: boolean; error: any }
 > {
@@ -16,8 +16,8 @@ class ApiErrorBoundary extends Component<
   }
 
   componentDidCatch(error: any, errorInfo: React.ErrorInfo) {
-    // TODO: 슬랙에 에러 전송
-    console.error('UI 렌더링 중 에러 발생:', error, errorInfo);
+    console.error('Data Fetch 중 에러 발생:', error, errorInfo);
+    sendMessageToSlack(error);
   }
 
   handleRetry = () => {
@@ -48,12 +48,15 @@ class ApiErrorBoundary extends Component<
 }
 
 const Wrapper = styled.div`
+  margin: auto;
   width: 100%;
   padding: 60px 30px;
   color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  word-break: keep-all;
 
   & > span {
     font-size: 44px;
@@ -80,4 +83,4 @@ const RetryButton = styled.button`
   min-width: 400px;
 `;
 
-export default ApiErrorBoundary;
+export default FetchErrorBoundary;

@@ -13,6 +13,7 @@ import * as api from '../../shared/services/dearService';
 import { queryClient } from '../../main';
 import { motion } from 'framer-motion';
 import { CardInputs } from '../../shared/interfaces/common.interface';
+import { showSuccessToast } from '../../shared/utils';
 
 const CARD_COVER_COLORS: CardCoverColor[] = [
   'pink',
@@ -43,11 +44,8 @@ function ModalWriteLetter({ onClose }: ModalWriteLetterProps) {
     mutationFn: (dearCard: DearCardBase) => api.addDearCard(dearCard),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['cards'] });
-      alert('카드 추가 완료');
+      showSuccessToast('카드가 추가되었습니다.');
       onClose();
-    },
-    onError: () => {
-      alert('카드 추가 실패!');
     },
   });
 

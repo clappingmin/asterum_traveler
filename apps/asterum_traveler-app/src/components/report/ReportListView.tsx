@@ -3,29 +3,42 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import * as api from '../../shared/services/reportService';
 import InfiniteScroll from '../global/InfiniteScroll';
 import { getListMinHeight } from '../../shared/utils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PostBox from './PostBox';
 import LoadingDim from '../global/LoadingDim';
 
 interface ReportListViewProps {
   category: ReportCategory | 'all';
+  onRefetch?: (fn: () => Promise<any>) => void;
 }
 
-function ReportListView({ category }: ReportListViewProps) {
+function ReportListView({ category, onRefetch }: ReportListViewProps) {
   const [postListHeight, _setPostListHeight] = useState<number>(getListMinHeight());
 
-  const { data, isFetchingNextPage, fetchNextPage, hasNextPage, isLoading, error, isError } =
-    useInfiniteQuery({
-      queryKey: ['reports', category],
-      queryFn: api.getReportsByCategory,
-      initialPageParam: null,
-      getNextPageParam: (lastPage) => lastPage.lastVisible || null,
-      staleTime: 1000 * 60 * 5,
-      retry: false,
-    });
+  const {
+    data,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+    isLoading,
+    error,
+    isError,
+    refetch,
+  } = useInfiniteQuery({
+    queryKey: ['reports', category],
+    queryFn: api.getReportsByCategory,
+    initialPageParam: null,
+    getNextPageParam: (lastPage) => lastPage.lastVisible || null,
+    staleTime: 1000 * 60 * 5,
+    retry: false,
+  });
 
   if (isError) throw error;
+
+  useEffect(() => {
+    if (onRefetch && refetch) onRefetch(() => refetch());
+  }, [onRefetch, refetch]);
 
   return (
     <>
