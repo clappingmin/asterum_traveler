@@ -8,7 +8,8 @@
   "private": true,
   "workspaces": [
     "packages/*",
-    "apps/*"
+    "apps/*",
+    "firebase/functions"
   ],
   "scripts": {
     "storybook": "storybook dev -p 6006",
