@@ -1,8 +1,5 @@
 {
   "projects": {
-    "default": "asterum-traveler",
-    "functions": {
-      "predeploy": "yarn --cwd functions install"
-    }
+    "default": "asterum-traveler"
   }
 }
