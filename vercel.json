@@ -1,8 +1,0 @@
-{
-  "build": {
-    "installCommand": "yarn workspaces focus --all",
-    "command": "yarn run build"
-  },
-  "routes": [],
-  "functions": {}
-}
