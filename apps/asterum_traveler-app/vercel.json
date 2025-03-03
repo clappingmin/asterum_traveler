@@ -1,0 +1,7 @@
+{
+  "build": {
+    "command": "cd ../../ && yarn install && cd apps/app && yarn run build"
+  },
+  "routes": [],
+  "functions": {}
+}
