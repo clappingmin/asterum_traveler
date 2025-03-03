@@ -11,14 +11,12 @@ const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL || '';
 
 app.post('/', async (req: any, res: any) => {
   try {
-    console.log('📩 Slack 메시지 수신:', req.body);
-
-    const message = req.body.message || '기본 메시지';
+    const message = req.body;
 
     const slackResponse = await fetch(SLACK_WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: message }),
+      body: JSON.stringify(message),
     });
 
     if (!slackResponse.ok) {

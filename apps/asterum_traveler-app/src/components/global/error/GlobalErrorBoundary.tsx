@@ -1,5 +1,6 @@
 import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
+import { sendMessageToSlack } from '../../../shared/errors';
 
 class GlobalErrorBoundary extends Component<
   { children: ReactNode },
@@ -15,8 +16,8 @@ class GlobalErrorBoundary extends Component<
   }
 
   componentDidCatch(error: any, errorInfo: React.ErrorInfo) {
-    // TODO: 슬랙에 에러 전송
     console.error('UI 렌더링 중 에러 발생:', error, errorInfo);
+    sendMessageToSlack(error);
   }
 
   render() {

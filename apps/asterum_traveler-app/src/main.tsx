@@ -5,7 +5,7 @@ import { RouterProvider } from 'react-router-dom';
 import router from './Router.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { showErrorToast } from './shared/errors.ts';
+import { sendMessageToSlack, showErrorToast } from './shared/errors.ts';
 import { showSuccessToast } from './shared/utils.ts';
 
 export const queryClient = new QueryClient({
@@ -14,9 +14,9 @@ export const queryClient = new QueryClient({
       onSuccess: () => {
         showSuccessToast();
       },
-      onError: (error) => {
+      onError: (error: unknown) => {
         showErrorToast();
-        // TODO: 슬랙메시지로 전송
+        sendMessageToSlack(error);
       },
     },
   },
