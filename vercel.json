@@ -1,0 +1,9 @@
+{
+  "build": {
+    "installCommand": "yarn workspaces focus --all",
+    "command": "yarn run build"
+  },
+  "ignoreBuildStep": true,
+  "routes": [],
+  "functions": {}
+}
