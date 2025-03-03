@@ -2,8 +2,5 @@
   "build": {
     "installCommand": "yarn install --immutable",
     "command": "yarn run build"
-  },
-  "functions": {
-    "includeFiles": "firebase/functions/lib/**"
   }
 }
