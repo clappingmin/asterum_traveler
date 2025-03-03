@@ -5,21 +5,22 @@ import * as api from '../../shared/services/landingService';
 import { useQuery } from '@tanstack/react-query';
 import CarouselImg from './CarouselImg';
 
+const SETTINGS = {
+  autoPlay: true,
+  infiniteLoop: true,
+  interval: 3000,
+  showArrows: false,
+  showThumbs: false,
+  showStatus: false,
+  emulateTouch: false,
+};
+
 function ImgSlider() {
   const { data } = useQuery({ queryKey: ['slider'], queryFn: api.getViewdSliderImages });
 
-  const settings = {
-    autoPlay: true,
-    infiniteLoop: true,
-    interval: 3000,
-    showArrows: false,
-    showThumbs: false,
-    showStatus: false,
-    emulateTouch: false,
-  };
   return (
     <Wrapper>
-      <Carousel {...settings}>
+      <Carousel {...SETTINGS}>
         {data?.map((image) => (
           <CarouselImg key={image.id} image={image} />
         ))}

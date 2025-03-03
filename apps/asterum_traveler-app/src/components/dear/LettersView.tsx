@@ -5,15 +5,36 @@ import * as api from '../../shared/services/dearService';
 import { DearCard } from '@asterum/types';
 import InfiniteScroll from '../global/InfiniteScroll';
 import LoadingDim from '../global/LoadingDim';
+import { useEffect } from 'react';
 
-function LettersView() {
-  const { data, isFetchingNextPage, fetchNextPage, hasNextPage, isLoading } = useInfiniteQuery({
+interface LettersViewProps {
+  onRefetch?: (fn: () => Promise<any>) => void;
+}
+
+function LettersView({ onRefetch }: LettersViewProps) {
+  const {
+    data,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useInfiniteQuery({
     queryKey: ['cards'],
     queryFn: api.getDearCards,
     initialPageParam: null,
     getNextPageParam: (lastPage) => lastPage?.lastVisible || null,
     staleTime: 1000 * 60 * 5,
+    retry: false,
   });
+
+  if (isError) throw error;
+
+  useEffect(() => {
+    if (onRefetch && refetch) onRefetch(() => refetch());
+  }, [onRefetch, refetch]);
 
   return (
     <>

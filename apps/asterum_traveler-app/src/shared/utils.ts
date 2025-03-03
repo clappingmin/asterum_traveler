@@ -1,4 +1,5 @@
 import { Member, Schedule } from '@asterum/types';
+import { createStandaloneToast } from '@chakra-ui/react';
 import { Timestamp } from 'firebase/firestore';
 
 export const timestampToDisplayDate = (createdAt: Timestamp): string => {
@@ -61,3 +62,14 @@ export const getListMinHeight = (cellHeight: number = 388): number => {
 
   return cellRowCount * cellHeight;
 };
+
+const { toast } = createStandaloneToast();
+
+export function showSuccessToast(message: string = '요청이 성공적으로 처리되었습니다.') {
+  toast({
+    description: message,
+    status: 'success',
+    duration: 4000,
+    isClosable: true,
+  });
+}

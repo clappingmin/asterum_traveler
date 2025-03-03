@@ -8,7 +8,7 @@ import { IncludedProduct, Product } from '@asterum/types';
 import { useQuery } from '@tanstack/react-query';
 import * as api from '../../shared/services/reportService';
 import { sortMembers } from '../../shared/utils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const MEMBER_ICON = {
@@ -21,17 +21,25 @@ const MEMBER_ICON = {
 
 interface ProductBoxProps {
   includedProduct: IncludedProduct;
+  onRefetch?: (fn: () => Promise<any>) => void;
 }
 
-function ProductBox({ includedProduct: { productId, members } }: ProductBoxProps) {
+function ProductBox({ includedProduct: { productId, members }, onRefetch }: ProductBoxProps) {
   const [loaded, setLoaded] = useState<boolean>(false);
 
-  const { data } = useQuery<Product>({
+  const { data, isError, error, refetch } = useQuery<Product>({
     queryKey: ['product', productId],
     queryFn: async () => {
       return await api.getProdcutById(productId);
     },
+    retry: false,
   });
+
+  if (isError) throw error;
+
+  useEffect(() => {
+    if (onRefetch && refetch) onRefetch(() => refetch());
+  }, [onRefetch, refetch]);
 
   return (
     <Wrapper>
@@ -68,6 +76,7 @@ function ProductBox({ includedProduct: { productId, members } }: ProductBoxProps
 }
 
 const Wrapper = styled.div`
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
