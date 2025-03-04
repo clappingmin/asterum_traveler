@@ -14,19 +14,12 @@ const handleResize = (wrapperRef: React.RefObject<HTMLDivElement>) => {
   const pageWrapper = wrapperRef.current;
   if (!pageWrapper) return;
 
-  // 1920보다 클 경우
-  if (window.innerWidth > 1920) {
-    pageWrapper.style.zoom = '1';
-    pageWrapper.style.minHeight = '100vh';
-
-    return;
-  }
-
   const zoomSize = window.innerWidth / 1920;
   const revertSize = 1920 / window.innerWidth;
 
   pageWrapper.style.zoom = String(zoomSize);
-  pageWrapper.style.minHeight = `calc(100vh * ${revertSize})`;
+  pageWrapper.style.height =
+    pageWrapper.clientWidth === 1920 ? '100vh' : `calc(100vh * ${revertSize})`;
 };
 
 function App() {
@@ -58,15 +51,16 @@ function App() {
 }
 
 const Wrapper = styled.div`
-  width: 100%;
+  width: 1920px;
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
+  /* border: 10px solid red; */
 `;
 
 const Container = styled.div`
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 `;

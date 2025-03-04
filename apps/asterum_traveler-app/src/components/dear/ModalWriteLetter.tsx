@@ -155,12 +155,9 @@ function ModalWriteLetter({ onClose }: ModalWriteLetterProps) {
         >
           <ColorSelectBox onClick={changeCardCoverColor}>
             {CARD_COVER_COLORS.map((color) => (
-              <ColorBox
-                key={`card-cover-${color}`}
-                data-color={color}
-                boxColor={color}
-                isSelected={color === cardCoverColor}
-              />
+              <ColorBox key={`card-cover-${color}`} data-color={color} boxColor={color}>
+                {color === cardCoverColor && <img src={icon_select_color} />}
+              </ColorBox>
             ))}
           </ColorSelectBox>
         </motion.div>
@@ -288,7 +285,6 @@ const ColorSelectBox = styled.div`
 
 interface ColorBoxProps {
   boxColor: string;
-  isSelected: boolean;
 }
 
 const ColorBox = styled.div<ColorBoxProps>`
@@ -299,8 +295,7 @@ const ColorBox = styled.div<ColorBoxProps>`
   border-radius: 50%;
   background-color: ${(props) => `var(--letter-${props.boxColor})`};
 
-  &::before {
-    content: '';
+  & > img {
     position: absolute;
     top: 0;
     left: 0;
@@ -308,7 +303,6 @@ const ColorBox = styled.div<ColorBoxProps>`
     height: 24px;
     border-radius: 50%;
     z-index: 1;
-    background-image: ${(props) => (props.isSelected ? `url(${icon_select_color})` : 'none')};
   }
 `;
 

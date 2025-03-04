@@ -11,6 +11,8 @@
 body {
   background-color: #000 !important;
   color: var(--color);
+  width: fit-content;
+  overflow: hidden;
 }
 
 button {
