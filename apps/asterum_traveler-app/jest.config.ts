@@ -1,5 +1,4 @@
 export default {
-  preset: 'ts-jest',
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   moduleNameMapper: {
@@ -7,8 +6,16 @@ export default {
     '\\.(css|scss)$': '<rootDir>/__mocks__/styleMock.js',
     '^styled-components$': require.resolve('styled-components'),
   },
-  transform: {
-    '^.+\\.(ts|tsx|js|jsx)?$': ['ts-jest'],
+  globals: {
+    'ts-jest': {
+      tsconfig: false,
+      useESM: true,
+      babelConfig: true,
+      plugins: ['babel-plugin-transform-vite-meta-env'],
+    },
   },
-  extensionsToTreatAsEsm: ['.ts', '.tsx'],
+
+  transform: {
+    '^.+\\.(ts|tsx|js|jsx|mjs)$': 'babel-jest',
+  },
 };
