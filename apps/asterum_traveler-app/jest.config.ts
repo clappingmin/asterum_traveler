@@ -7,4 +7,8 @@ export default {
     '\\.(css|scss)$': '<rootDir>/__mocks__/styleMock.js',
     '^styled-components$': require.resolve('styled-components'),
   },
+  transform: {
+    '^.+\\.(ts|tsx|js|jsx)?$': ['ts-jest'],
+  },
+  extensionsToTreatAsEsm: ['.ts', '.tsx'],
 };
