@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import ReportImagePage from './ReportImagePage';
-import { Timestamp } from 'firebase/firestore';
-import type { Report } from '@asterum/types';
+import { mockReportImageData } from '../../shared/mocks';
 
 jest.mock('../../components/report/MemberBox', () => ({ member }: { member: string }) => (
   <div data-testid={`member-${member}`}>{member}</div>
@@ -19,33 +18,21 @@ jest.mock(
       <div data-testid="fetch-error-boundary">{children}</div>
 );
 
-const mockReportData: Report = {
-  id: '-1',
-  reportType: 'image',
-  category: ['fashion', 'etc'],
-  reportMembers: ['bamby', 'hamin'],
-  reportThumbnail: 'test-thumbnail.png',
-  includedProducts: [{ productId: '-1', members: ['bamby'] }],
-  reportDateDisplay: '202년 3월 6일',
-  reportDateUsage: Timestamp.now(),
-  imageTags: ['테스트'],
-};
-
 describe('ReportImagePage', () => {
   test('ReportImagePage 렌더링 테스트', () => {
-    render(<ReportImagePage reportData={mockReportData} />);
+    render(<ReportImagePage reportData={mockReportImageData} />);
 
     // 썸네일 이미지가 정상적으로 표시되는지 확인
     const thumbnail = screen.getByAltText('리포트 이미지');
     expect(thumbnail).toBeInTheDocument();
-    expect(thumbnail).toHaveAttribute('src', mockReportData.reportThumbnail);
+    expect(thumbnail).toHaveAttribute('src', mockReportImageData.reportThumbnail);
 
     // 멤버들이 정상적으로 렌더링되는지 확인
-    mockReportData.reportMembers.forEach((member) => {
+    mockReportImageData.reportMembers.forEach((member) => {
       expect(screen.getByTestId(`member-${member}`)).toBeInTheDocument();
     });
 
     // 날짜 표시 확인
-    expect(screen.getByText(mockReportData.reportDateDisplay)).toBeInTheDocument();
+    expect(screen.getByText(mockReportImageData.reportDateDisplay)).toBeInTheDocument();
   });
 });
