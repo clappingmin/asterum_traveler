@@ -97,7 +97,7 @@ describe('ScheduleCalendar', () => {
 
       const scheduleElement = screen.getByTestId(`schedule-${MONTH}-${DAY}`);
 
-      expect(scheduleElement).not.toBeEmptyDOMElement(); // ✅ 스케줄이 있는지 확인
+      expect(scheduleElement).not.toBeEmptyDOMElement();
       expect(scheduleElement).toHaveTextContent('스케줄 테스트 라디오 방송');
     });
 
@@ -126,7 +126,7 @@ describe('ScheduleCalendar', () => {
 
       const scheduleElement = screen.getByTestId(`schedule-${MONTH}-${DAY}`);
 
-      expect(scheduleElement).not.toBeEmptyDOMElement(); // ✅ 스케줄이 있는지 확인
+      expect(scheduleElement).not.toBeEmptyDOMElement();
       expect(scheduleElement).toHaveTextContent('🥳 💗 기념일 테스트');
     });
   });
