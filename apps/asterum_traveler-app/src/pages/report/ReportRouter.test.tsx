@@ -9,7 +9,7 @@ jest.mock('@tanstack/react-query', () => ({
   useQuery: jest.fn(),
 }));
 
-jest.mock('../../shared/services/reportService', jest.fn());
+jest.mock('../../shared/services/reportService', () => jest.fn());
 jest.mock('./ReportImagePage', () => () => <div data-testid="report-image-page" />);
 jest.mock('./ReportLivePage', () => () => <div data-testid="report-live-page" />);
 jest.mock('../NotFoundPage', () => () => <div data-testid="not-found-page" />);
