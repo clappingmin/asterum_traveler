@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import ModalLetterDetail from './ModalLetterDetail';
 import { useMutation } from '@tanstack/react-query';
 import '@testing-library/jest-dom';
