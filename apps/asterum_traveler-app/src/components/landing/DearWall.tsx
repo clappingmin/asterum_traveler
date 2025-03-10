@@ -140,6 +140,7 @@ function DearWall() {
       <Sticker src={sticker10} width={206} height={199} top={58} right={156} />
       <Sticker src={sticker11} width={122} height={115} top={87} right={674} />
 
+      {/* 디어 메시지 보여주는 보드 */}
       <DearBoard background={dearBoard1} width={800} height={400} top={71} left={230}>
         <Board1From className="text-overflow-1">FROM.{cards?.length && cards[0].from}</Board1From>
         <Board1Content>{cards?.length && cards[0].content}</Board1Content>
@@ -217,7 +218,10 @@ interface StickerProps {
   transform?: string;
 }
 
-const Sticker = styled.img<StickerProps>`
+const Sticker = styled.img.withConfig({
+  shouldForwardProp: (prop) =>
+    !['width', 'height', 'top', 'left', 'right', 'transform'].includes(prop),
+})<StickerProps>`
   position: absolute;
   width: ${(props) => `${props.width}px`};
   height: ${(props) => `${props.height}px`};
@@ -232,7 +236,12 @@ interface DearBoardProps extends StickerProps {
   padding?: string;
 }
 
-const DearBoard = styled.div<DearBoardProps>`
+const DearBoard = styled.div.withConfig({
+  shouldForwardProp: (prop) =>
+    !['width', 'height', 'top', 'left', 'right', 'transform', 'background', 'padding'].includes(
+      prop
+    ),
+})<DearBoardProps>`
   position: absolute;
   width: ${(props) => `${props.width}px`};
   height: ${(props) => `${props.height}px`};
