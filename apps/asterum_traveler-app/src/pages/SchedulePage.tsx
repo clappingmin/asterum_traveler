@@ -91,7 +91,9 @@ interface MonthProps {
   isSelected?: boolean;
 }
 
-const Month = styled.div<MonthProps>`
+const Month = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'isSelected',
+})<MonthProps>`
   cursor: pointer;
   color: ${(props) => (props.isSelected ? 'var(--schedule)' : 'var(--gray)')};
   font-size: 2rem;

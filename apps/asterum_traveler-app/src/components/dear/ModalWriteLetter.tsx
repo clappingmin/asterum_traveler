@@ -155,13 +155,18 @@ function ModalWriteLetter({ onClose }: ModalWriteLetterProps) {
         >
           <ColorSelectBox onClick={changeCardCoverColor}>
             {CARD_COVER_COLORS.map((color) => (
-              <ColorBox key={`card-cover-${color}`} data-color={color} boxColor={color}>
-                {color === cardCoverColor && <img src={icon_select_color} />}
+              <ColorBox
+                key={`card-cover-${color}`}
+                data-color={color}
+                boxColor={color}
+                data-testid={`cover-color-${color}`}
+              >
+                {color === cardCoverColor && <img src={icon_select_color} alt="select-icon" />}
               </ColorBox>
             ))}
           </ColorSelectBox>
         </motion.div>
-        <WriteButton onClick={saveDearCard}>
+        <WriteButton onClick={saveDearCard} data-testid="writeButton">
           <img src={icon_write_letter} />
         </WriteButton>
       </WriteContainer>
@@ -287,7 +292,9 @@ interface ColorBoxProps {
   boxColor: string;
 }
 
-const ColorBox = styled.div<ColorBoxProps>`
+const ColorBox = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop != 'boxColor',
+})<ColorBoxProps>`
   position: relative;
   cursor: pointer;
   width: 24px;

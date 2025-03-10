@@ -45,7 +45,7 @@ function Card({ dearCard }: CardProps) {
       <Modal isOpen={isOpen} onClose={onClose} isCentered closeOnOverlayClick={true}>
         <ModalOverlay />
         <ModalContent>
-          <ModalLetterDetail onClose={onClose} dearCard={dearCard} />
+          {isOpen && <ModalLetterDetail onClose={onClose} dearCard={dearCard} />}
         </ModalContent>
       </Modal>
     </>

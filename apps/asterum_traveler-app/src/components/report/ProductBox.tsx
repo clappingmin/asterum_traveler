@@ -35,11 +35,12 @@ function ProductBox({ includedProduct: { productId, members }, onRefetch }: Prod
     retry: false,
   });
 
-  if (isError) throw error;
-
   useEffect(() => {
     if (onRefetch && refetch) onRefetch(() => refetch());
   }, [onRefetch, refetch]);
+
+  // FIXME: throw 하면서 useEffect 내부가 실행 전에 컴포넌트가 언마운트 된다.
+  if (isError) throw error;
 
   return (
     <Wrapper>
@@ -59,11 +60,11 @@ function ProductBox({ includedProduct: { productId, members }, onRefetch }: Prod
       <ProductInfoBox>
         <ProductName className="text-overflow-2">{data?.productName}</ProductName>
         <BrandName className="text-overflow-1">{data?.productBrand}</BrandName>
-        <MemberIconsContainer>
+        <MemberIconsContainer data-testid="members-container">
           {sortMembers(members).map(
             (member, index) =>
               members.includes(member) && (
-                <MemberIconBox key={`productMember-${index}-${member}`}>
+                <MemberIconBox key={`productMember-${index}-${member}`} data-testid={member}>
                   <MemberIcon width={28} height={28} src={MEMBER_ICON[member]} />
                   {index !== members.length - 1 && <span>,</span>}
                 </MemberIconBox>

@@ -128,7 +128,9 @@ interface TabProps {
   isSelected: boolean;
 }
 
-const Tab = styled.div<TabProps>`
+const Tab = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'isSelected',
+})<TabProps>`
   color: ${(props) => (props.isSelected ? 'var(--report)' : 'var(--gray)')};
   font-size: 32px;
   font-weight: ${(props) => (props.isSelected ? 700 : 400)};
