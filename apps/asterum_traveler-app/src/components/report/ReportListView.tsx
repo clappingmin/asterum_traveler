@@ -34,6 +34,7 @@ function ReportListView({ category, onRefetch }: ReportListViewProps) {
     retry: false,
   });
 
+  // FIXME: Refetch, throw error
   if (isError) throw error;
 
   useEffect(() => {
@@ -43,7 +44,7 @@ function ReportListView({ category, onRefetch }: ReportListViewProps) {
   return (
     <>
       {isLoading && <LoadingDim />}
-      <PostContainer minHeight={postListHeight}>
+      <PostContainer minHeight={postListHeight} data-testid="post-container">
         {data?.pages
           .flatMap((page) => page.data)
           .map((report: Report) => (
@@ -59,7 +60,9 @@ function ReportListView({ category, onRefetch }: ReportListViewProps) {
   );
 }
 
-const PostContainer = styled.div<{ minHeight: number }>`
+const PostContainer = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'minHeight',
+})<{ minHeight: number }>`
   width: var(--width);
   margin: auto;
   display: grid;

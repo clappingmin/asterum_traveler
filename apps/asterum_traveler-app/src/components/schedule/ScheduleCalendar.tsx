@@ -2,7 +2,6 @@ import { Schedule } from '@asterum/types';
 import Calendar from 'react-calendar';
 import styled from 'styled-components';
 import * as api from '../../shared/services/scheduleService';
-
 import { formatTime, sortMembers } from '../../shared/utils';
 import { MEMBER_HEART, MEMBER_KOREAN_NAME } from '../../shared/constants';
 import { useEffect, useState } from 'react';
@@ -59,7 +58,7 @@ function ScheduleCalendar({ month, onRefetch }: ScheduleCalendarProps) {
       : [];
 
     return (
-      <DayScheduleBox>
+      <DayScheduleBox data-testid={`schedule-${month}-${day}`}>
         {dateSchedules.map((schedule) => (
           <ScheduleText className="text-overflow-3" key={schedule.id}>
             {schedule.isAnniversary
