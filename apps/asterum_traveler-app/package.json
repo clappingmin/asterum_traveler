@@ -1,7 +1,7 @@
 {
   "name": "app",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite --mode dev",
@@ -9,7 +9,10 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "cross-env NODE_ENV=test jest",
-    "release": "standard-version --tag-prefix app-v"
+    "release": "standard-version --tag-prefix app-v",
+    "release:patch": "standard-version --release-as patch --tag-prefix app-v",
+    "release:minor": "standard-version --release-as minor --tag-prefix app-v",
+    "release:major": "standard-version --release-as major --tag-prefix app-v"
   },
   "dependencies": {
     "@asterum/types": "workspace:^",
