@@ -9,7 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "cross-env NODE_ENV=test jest",
-    "release": "standard-version --tag-prefix app-"
+    "release": "standard-version --tag-prefix app-v"
   },
   "dependencies": {
     "@asterum/types": "workspace:^",
