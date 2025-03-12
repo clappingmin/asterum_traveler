@@ -11,6 +11,7 @@ import { Modal, ModalContent, ModalOverlay, useDisclosure } from '@chakra-ui/rea
 import ModalLetterDetail from './ModalLetterDetail';
 import { CardCoverColor, DearCard } from '@asterum/types';
 import { timestampToDisplayDate } from '../../shared/utils';
+import { motion } from 'framer-motion';
 
 const CARD_IMAGES = {
   pink: img_card_pink,
@@ -34,14 +35,20 @@ function Card({ dearCard }: CardProps) {
 
   return (
     <>
-      <Wrapper>
-        <Cover coverColor={cardCoverColor} src={CARD_IMAGES[cardCoverColor]} />
-        <MessageContainer onClick={onOpen}>
-          <CardTitle>{from}</CardTitle>
-          <CardDate>{timestampToDisplayDate(createdAt)}</CardDate>
-          <CardContent>{content}</CardContent>
-        </MessageContainer>
-      </Wrapper>
+      <PerspectiveWrapper>
+        <Wrapper
+          initial={{ rotateY: 0 }}
+          whileHover={{ rotateY: 180 }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+        >
+          <Cover coverColor={cardCoverColor} src={CARD_IMAGES[cardCoverColor]} />
+          <MessageContainer onClick={onOpen}>
+            <CardTitle>{from}</CardTitle>
+            <CardDate>{timestampToDisplayDate(createdAt)}</CardDate>
+            <CardContent>{content}</CardContent>
+          </MessageContainer>
+        </Wrapper>
+      </PerspectiveWrapper>
       <Modal isOpen={isOpen} onClose={onClose} isCentered closeOnOverlayClick={true}>
         <ModalOverlay />
         <ModalContent>
@@ -52,18 +59,17 @@ function Card({ dearCard }: CardProps) {
   );
 }
 
-const Wrapper = styled.div`
+const PerspectiveWrapper = styled.div`
+  perspective: 800px;
+`;
+
+const Wrapper = styled(motion.div)`
   width: 388px;
   height: 388px;
   background-color: #242424;
-  transition: transform 0.3s;
-  transform: perspective(800px) rotateY(0deg);
   transform-style: preserve-3d;
   cursor: pointer;
-
-  &:hover {
-    transform: perspective(800px) rotateY(180deg);
-  }
+  will-change: transform;
 
   & > * {
     position: absolute;
