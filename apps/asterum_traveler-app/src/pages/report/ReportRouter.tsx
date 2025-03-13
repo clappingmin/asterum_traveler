@@ -2,10 +2,10 @@ import { useParams } from 'react-router-dom';
 import ReportLivePage from './ReportLivePage';
 import ReportImagePage from './ReportImagePage';
 import { useQuery } from '@tanstack/react-query';
-import * as api from '../../shared/services/reportService';
+import * as api from '@/shared/services/reportService';
 import { Report } from '@asterum/types';
-import NotFoundPage from '../NotFoundPage';
-import LoadingDim from '../../components/global/LoadingDim';
+import NotFoundPage from '@/pages/NotFoundPage';
+import LoadingDim from '@/components/global/LoadingDim';
 
 interface ReportRouterParams {
   pageType: 'image' | 'live';

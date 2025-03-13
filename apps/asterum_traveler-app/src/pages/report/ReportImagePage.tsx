@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import MemberBox from '../../components/report/MemberBox';
-import ProductBox from '../../components/report/ProductBox';
+import MemberBox from '@/components/report/MemberBox';
+import ProductBox from '@/components/report/ProductBox';
 import { Report } from '@asterum/types';
-import { ALL_MEMBERS } from '../../shared/constants';
+import { ALL_MEMBERS } from '@/shared/constants';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import FetchErrorBoundary from '../../components/global/error/FetchErrorBoundary';
+import FetchErrorBoundary from '@/components/global/error/FetchErrorBoundary';
 
 interface ReportImagePageProps {
   reportData: Report;

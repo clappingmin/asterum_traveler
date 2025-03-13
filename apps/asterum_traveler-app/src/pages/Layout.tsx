@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import Header from '../components/global/Header';
-import Footer from '../components/global/Footer';
+import Header from '@/components/global/Header';
+import Footer from '@/components/global/Footer';
 
 /**
  * 화면 크기가 변경됐을 때

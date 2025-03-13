@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import reportYejunImg from '../../assets/images/member/report_yejun.png';
+import reportYejunImg from '@/assets/images/member/report_yejun.png';
 import { ReportCategory } from '@asterum/types';
 import { useState } from 'react';
-import FetchErrorBoundary from '../../components/global/error/FetchErrorBoundary';
-import ReportListView from '../../components/report/ReportListView';
+import FetchErrorBoundary from '@/components/global/error/FetchErrorBoundary';
+import ReportListView from '@/components/report/ReportListView';
 
 function ReportListPage() {
   const [category, setCategory] = useState<ReportCategory | 'all'>('all');

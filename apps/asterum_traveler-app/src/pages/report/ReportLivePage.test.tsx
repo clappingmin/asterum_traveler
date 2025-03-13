@@ -1,23 +1,23 @@
 import { render, screen } from '@testing-library/react';
-import ReportLivePage from './ReportLivePage';
+import ReportLivePage from '@/pages/report/ReportLivePage';
 import { MemoryRouter } from 'react-router-dom';
-import { mockReportLiveData } from '../../shared/mocks';
+import { mockReportLiveData } from '@/shared/mocks';
 
 jest.mock(
-  '../../components/global/error/FetchErrorBoundary',
+  '@/components/global/error/FetchErrorBoundary',
   () =>
     ({ children }: { children: React.ReactNode }) =>
       <div data-testid="fetch-error-boundary">{children}</div>
 );
 
 jest.mock(
-  '../../components/report/ProductBox',
+  '@/components/report/ProductBox',
   () =>
     ({ includedProduct }: { includedProduct: { productId: string } }) =>
       <div data-testid="product-box">{`Product: ${includedProduct.productId}`}</div>
 );
 
-jest.mock('../../components/report/MemberBox', () => ({ member }: { member: string }) => (
+jest.mock('@/components/report/MemberBox', () => ({ member }: { member: string }) => (
   <div data-testid="member-box">{`Member: ${member}`}</div>
 ));
 

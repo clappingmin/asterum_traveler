@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import DearPage from './DearPage';
 
-jest.mock('../components/dear/WriteLetterButton', () => () => (
+jest.mock('@/components/dear/WriteLetterButton', () => () => (
   <div data-testid="write-letter-button" />
 ));
 
-jest.mock('../components/dear/LettersView', () => () => <div data-testid="letters-view" />);
+jest.mock('@/components/dear/LettersView', () => () => <div data-testid="letters-view" />);
 jest.mock(
-  '../components/global/error/FetchErrorBoundary',
+  '@/components/global/error/FetchErrorBoundary',
   () =>
     ({ children }: { children: React.ReactNode }) =>
       <div data-testid="fetch-error-boundary">{children}</div>

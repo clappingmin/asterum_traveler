@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import ImgSlider from '../components/landing/ImgSlider';
-import DearWall from '../components/landing/DearWall';
-import ScheduleBoard from '../components/landing/ScheduleBoard';
-import DiscographyBoard from '../components/landing/DiscographyBoard';
-import BackgroundImg from '../assets/images/landing/background.png';
+import ImgSlider from '@/components/landing/ImgSlider';
+import DearWall from '@/components/landing/DearWall';
+import ScheduleBoard from '@/components/landing/ScheduleBoard';
+import DiscographyBoard from '@/components/landing/DiscographyBoard';
+import BackgroundImg from '@/assets/images/landing/background.png';
 
 function LandingPage() {
   return (

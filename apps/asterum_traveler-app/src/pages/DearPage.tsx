@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import dearNoahImg from '../assets/images/member/dear_noah.png';
-import WriteLetterButton from '../components/dear/WriteLetterButton';
-import LettersView from '../components/dear/LettersView';
-import FetchErrorBoundary from '../components/global/error/FetchErrorBoundary';
+import dearNoahImg from '@/assets/images/member/dear_noah.png';
+import WriteLetterButton from '@/components/dear/WriteLetterButton';
+import LettersView from '@/components/dear/LettersView';
+import FetchErrorBoundary from '@/components/global/error/FetchErrorBoundary';
 import { useState } from 'react';
 
 function DearPage() {

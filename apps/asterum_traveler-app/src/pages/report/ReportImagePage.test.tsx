@@ -1,18 +1,18 @@
 import { render, screen } from '@testing-library/react';
-import ReportImagePage from './ReportImagePage';
-import { mockReportImageData } from '../../shared/mocks';
+import ReportImagePage from '@/pages/report/ReportImagePage';
+import { mockReportImageData } from '@/shared/mocks';
 
-jest.mock('../../components/report/MemberBox', () => ({ member }: { member: string }) => (
+jest.mock('@/components/report/MemberBox', () => ({ member }: { member: string }) => (
   <div data-testid={`member-${member}`}>{member}</div>
 ));
 jest.mock(
-  '../../components/report/ProductBox',
+  '@/components/report/ProductBox',
   () =>
     ({ includedProduct }: { includedProduct: any }) =>
       <div data-testid={`product-${includedProduct.productId}`}>{includedProduct.name}</div>
 );
 jest.mock(
-  '../../components/global/error/FetchErrorBoundary',
+  '@/components/global/error/FetchErrorBoundary',
   () =>
     ({ children }: { children: React.ReactNode }) =>
       <div data-testid="fetch-error-boundary">{children}</div>

@@ -1,11 +1,11 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import SchedulePage from './SchedulePage';
+import SchedulePage from '@/pages/SchedulePage';
 
-jest.mock('../components/schedule/ScheduleCalendar', () => ({ month }: { month: number }) => (
+jest.mock('@/components/schedule/ScheduleCalendar', () => ({ month }: { month: number }) => (
   <div data-testid="schedule-calendar">{`Month: ${month}`}</div>
 ));
 jest.mock(
-  '../components/global/error/FetchErrorBoundary',
+  '@/components/global/error/FetchErrorBoundary',
   () =>
     ({ children }: { children: React.ReactNode }) =>
       <div data-testid="fetch-error-boundary">{children}</div>

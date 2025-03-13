@@ -2,18 +2,18 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import ReportRouter from './ReportRouter';
 import { useQuery } from '@tanstack/react-query';
-import { mockReportImageData, mockReportLiveData } from '../../shared/mocks';
+import { mockReportImageData, mockReportLiveData } from '@/shared/mocks';
 
 jest.mock('@tanstack/react-query', () => ({
   ...jest.requireActual('@tanstack/react-query'),
   useQuery: jest.fn(),
 }));
 
-jest.mock('../../shared/services/reportService', () => jest.fn());
-jest.mock('./ReportImagePage', () => () => <div data-testid="report-image-page" />);
-jest.mock('./ReportLivePage', () => () => <div data-testid="report-live-page" />);
-jest.mock('../NotFoundPage', () => () => <div data-testid="not-found-page" />);
-jest.mock('../../components/global/LoadingDim', () => () => <div data-testid="loading-dim" />);
+jest.mock('@/shared/services/reportService', () => jest.fn());
+jest.mock('@/pages/report/ReportImagePage', () => () => <div data-testid="report-image-page" />);
+jest.mock('@/pages/report/ReportLivePage', () => () => <div data-testid="report-live-page" />);
+jest.mock('@/pages/NotFoundPage', () => () => <div data-testid="not-found-page" />);
+jest.mock('@/components/global/LoadingDim', () => () => <div data-testid="loading-dim" />);
 
 describe('ReportRouter', () => {
   test('페이지 타입, 페이지 아이디가 없는 경우', () => {

@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
-import LandingPage from '../pages/LandingPage';
+import LandingPage from '@/pages/LandingPage';
 
-jest.mock('../components/landing/ImgSlider', () => () => <div data-testid="img-slider" />);
-jest.mock('../components/landing/DearWall', () => () => <div data-testid="dear-wall" />);
-jest.mock('../components/landing/ScheduleBoard', () => () => <div data-testid="schedule-board" />);
-jest.mock('../components/landing/DiscographyBoard', () => () => (
+jest.mock('@/components/landing/ImgSlider', () => () => <div data-testid="img-slider" />);
+jest.mock('@/components/landing/DearWall', () => () => <div data-testid="dear-wall" />);
+jest.mock('@/components/landing/ScheduleBoard', () => () => <div data-testid="schedule-board" />);
+jest.mock('@/components/landing/DiscographyBoard', () => () => (
   <div data-testid="discography-board" />
 ));
 

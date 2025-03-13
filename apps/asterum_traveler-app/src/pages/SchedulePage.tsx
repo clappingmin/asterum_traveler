@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import scheduleBambyImg from '../assets/images/member/schedule_bamby.png';
-import '../styles/react-calendar.css';
+import scheduleBambyImg from '@/assets/images/member/schedule_bamby.png';
+import '@/styles/react-calendar.css';
 import { useState } from 'react';
-import ScheduleCalendar from '../components/schedule/ScheduleCalendar';
-import FetchErrorBoundary from '../components/global/error/FetchErrorBoundary';
+import ScheduleCalendar from '@/components/schedule/ScheduleCalendar';
+import FetchErrorBoundary from '@/components/global/error/FetchErrorBoundary';
 
 const TODAY = new Date();
 const YEAR = TODAY.getFullYear();
