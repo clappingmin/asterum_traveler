@@ -12,7 +12,6 @@ export default {
     'ts-jest': {
       tsconfig: false,
       useESM: true,
-      babelConfig: true,
       plugins: ['babel-plugin-transform-vite-meta-env'],
     },
   },
