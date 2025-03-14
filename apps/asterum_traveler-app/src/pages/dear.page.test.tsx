@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import DearPage from './dear.page';
+import { Page } from './dear.page';
 
 jest.mock('@/components/dear/WriteLetterButton', () => () => (
   <div data-testid="write-letter-button" />
@@ -15,7 +15,7 @@ jest.mock(
 
 describe('DearPage', () => {
   test('DearPage 랜더링 테스트', () => {
-    render(<DearPage />);
+    render(<Page />);
 
     // 주요 UI 요소들이 존재하는지 확인
     expect(screen.getByText('DEAR.')).toBeInTheDocument();

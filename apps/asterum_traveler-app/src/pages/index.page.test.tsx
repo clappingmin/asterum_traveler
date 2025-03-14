@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import LandingPage from '@/pages/LandingPage';
+import { Page } from '@/pages/index.page';
 
 jest.mock('@/components/landing/ImgSlider', () => () => <div data-testid="img-slider" />);
 jest.mock('@/components/landing/DearWall', () => () => <div data-testid="dear-wall" />);
@@ -10,7 +10,7 @@ jest.mock('@/components/landing/DiscographyBoard', () => () => (
 
 describe('LandingPage', () => {
   test('LandingPage 렌더링 테스트', () => {
-    render(<LandingPage />);
+    render(<Page />);
 
     expect(screen.getByTestId('img-slider')).toBeInTheDocument();
     expect(screen.getByTestId('dear-wall')).toBeInTheDocument();

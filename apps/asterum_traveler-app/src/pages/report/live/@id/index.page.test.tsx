@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import ReportLivePage from '@/pages/report/live/@id/index.page';
+import { Page } from '@/pages/report/live/@id/index.page';
 import { MemoryRouter } from 'react-router-dom';
 import { mockReportLiveData } from '@/shared/mocks';
 
@@ -25,7 +25,7 @@ describe('ReportLivePage', () => {
   test('ReportLivePage 렌더링 테스트', () => {
     render(
       <MemoryRouter>
-        <ReportLivePage reportData={mockReportLiveData} />
+        <Page />
       </MemoryRouter>
     );
 

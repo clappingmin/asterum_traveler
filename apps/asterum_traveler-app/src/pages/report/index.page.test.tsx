@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import ReportListPage from '@/pages/report/index.page';
+import { Page } from '@/pages/report/index.page';
 
 // Mock 데이터 및 컴포넌트
 jest.mock(
@@ -15,7 +15,7 @@ jest.mock('../../components/report/ReportListView', () => ({ category }: { categ
 
 describe('ReportListPage', () => {
   test('ReportListPage 렌더링 테스트', () => {
-    render(<ReportListPage />);
+    render(<Page />);
 
     // 주요 UI 요소 확인
     expect(screen.getByText('REPORT')).toBeInTheDocument();
@@ -29,7 +29,7 @@ describe('ReportListPage', () => {
   });
 
   test('탭 클릭 시 category 상태가 변경되는지 확인', () => {
-    render(<ReportListPage />);
+    render(<Page />);
 
     // 'Fashion' 탭 클릭
     const fashionTab = screen.getByText('Fashion');

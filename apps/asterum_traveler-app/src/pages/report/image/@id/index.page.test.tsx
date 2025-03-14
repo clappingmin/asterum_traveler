@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import ReportImagePage from '@/pages/report/image/@id/index.page';
+import { Page } from '@/pages/report/image/@id/index.page';
 import { mockReportImageData } from '@/shared/mocks';
 
 jest.mock('@/components/report/MemberBox', () => ({ member }: { member: string }) => (
@@ -20,7 +20,7 @@ jest.mock(
 
 describe('ReportImagePage', () => {
   test('ReportImagePage 렌더링 테스트', () => {
-    render(<ReportImagePage reportData={mockReportImageData} />);
+    render(<Page />);
 
     // 썸네일 이미지가 정상적으로 표시되는지 확인
     const thumbnail = screen.getByAltText('리포트 이미지');
