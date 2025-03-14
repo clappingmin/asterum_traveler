@@ -8,7 +8,7 @@ import FetchErrorBoundary from '@/components/global/error/FetchErrorBoundary';
 const TODAY = new Date();
 const YEAR = TODAY.getFullYear();
 
-function SchedulePage() {
+function Page() {
   const [selectedMonth, setSelectedMonth] = useState(TODAY.getMonth() + 1);
   const [refetchFn, setRefetchFn] = useState<(() => Promise<any>) | null>(null);
 
@@ -113,4 +113,4 @@ const CalendarWrapper = styled.div`
   padding-top: 2rem;
 `;
 
-export default SchedulePage;
+export { Page };

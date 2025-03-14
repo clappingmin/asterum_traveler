@@ -1,5 +1,4 @@
 import React from 'react';
-import type { PageContext } from './types';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { showSuccessToast } from '@/shared/utils';
 import { sendMessageToSlack, showErrorToast } from '@/shared/errors';

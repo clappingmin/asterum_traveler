@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import SchedulePage from '@/pages/SchedulePage';
+import SchedulePage from '@/pages/schedule.page';
 
 jest.mock('@/components/schedule/ScheduleCalendar', () => ({ month }: { month: number }) => (
   <div data-testid="schedule-calendar">{`Month: ${month}`}</div>

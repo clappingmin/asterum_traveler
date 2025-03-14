@@ -5,75 +5,73 @@ import { useState } from 'react';
 import FetchErrorBoundary from '@/components/global/error/FetchErrorBoundary';
 import ReportListView from '@/components/report/ReportListView';
 
-function ReportListPage() {
+function Page() {
   const [category, setCategory] = useState<ReportCategory | 'all'>('all');
   const [refetchFn, setRefetchFn] = useState<(() => Promise<any>) | null>(null);
 
   return (
-    <>
-      <Wrapper>
-        <TitleContainer>
-          <Title>REPORT</Title>
-          <Yejun width={863} height={543} src={reportYejunImg} />
-        </TitleContainer>
-        <TabContainer>
-          <Tabs>
-            <Tab
-              isSelected={category === 'all'}
-              onClick={() => {
-                setCategory('all');
-              }}
-            >
-              All
-            </Tab>
-            <Tab
-              isSelected={category === 'album'}
-              onClick={() => {
-                setCategory('album');
-              }}
-            >
-              Album
-            </Tab>
-            <Tab
-              isSelected={category === 'fashion'}
-              onClick={() => {
-                setCategory('fashion');
-              }}
-            >
-              Fashion
-            </Tab>
-            <Tab
-              isSelected={category === 'game'}
-              onClick={() => {
-                setCategory('game');
-              }}
-            >
-              Game
-            </Tab>
-            <Tab
-              isSelected={category === 'live'}
-              onClick={() => {
-                setCategory('live');
-              }}
-            >
-              Live
-            </Tab>
-            <Tab
-              isSelected={category === 'etc'}
-              onClick={() => {
-                setCategory('etc');
-              }}
-            >
-              etc.
-            </Tab>
-          </Tabs>
-          <HorizontalLine />
-        </TabContainer>
-        <FetchErrorBoundary onRetry={() => refetchFn && refetchFn()}>
-          <ReportListView category={category} onRefetch={setRefetchFn} />
-        </FetchErrorBoundary>
-      </Wrapper>
-    </>
+    <Wrapper>
+      <TitleContainer>
+        <Title>REPORT</Title>
+        <Yejun width={863} height={543} src={reportYejunImg} />
+      </TitleContainer>
+      <TabContainer>
+        <Tabs>
+          <Tab
+            isSelected={category === 'all'}
+            onClick={() => {
+              setCategory('all');
+            }}
+          >
+            All
+          </Tab>
+          <Tab
+            isSelected={category === 'album'}
+            onClick={() => {
+              setCategory('album');
+            }}
+          >
+            Album
+          </Tab>
+          <Tab
+            isSelected={category === 'fashion'}
+            onClick={() => {
+              setCategory('fashion');
+            }}
+          >
+            Fashion
+          </Tab>
+          <Tab
+            isSelected={category === 'game'}
+            onClick={() => {
+              setCategory('game');
+            }}
+          >
+            Game
+          </Tab>
+          <Tab
+            isSelected={category === 'live'}
+            onClick={() => {
+              setCategory('live');
+            }}
+          >
+            Live
+          </Tab>
+          <Tab
+            isSelected={category === 'etc'}
+            onClick={() => {
+              setCategory('etc');
+            }}
+          >
+            etc.
+          </Tab>
+        </Tabs>
+        <HorizontalLine />
+      </TabContainer>
+      <FetchErrorBoundary onRetry={() => refetchFn && refetchFn()}>
+        <ReportListView category={category} onRefetch={setRefetchFn} />
+      </FetchErrorBoundary>
+    </Wrapper>
   );
 }
 
@@ -148,4 +146,4 @@ const HorizontalLine = styled.div`
   border: 1px solid #fff;
 `;
 
-export default ReportListPage;
+export { Page };

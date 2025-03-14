@@ -10,7 +10,7 @@ interface ReportLivePageProps {
   reportData: Report;
 }
 
-function ReportLivePage({ reportData }: ReportLivePageProps) {
+function Page({ reportData }: ReportLivePageProps) {
   const { reportThumbnail, liveTitle, reportDateDisplay, reportMembers, includedProducts } =
     reportData;
   const [refetchFn, setRefetchFn] = useState<(() => Promise<any>) | null>(null);
@@ -100,4 +100,4 @@ const ProductContainer = styled.div`
   gap: 16px 8px;
 `;
 
-export default ReportLivePage;
+export { Page };

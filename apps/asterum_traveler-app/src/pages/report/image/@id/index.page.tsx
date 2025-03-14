@@ -11,7 +11,7 @@ interface ReportImagePageProps {
   reportData: Report;
 }
 
-function ReportImagePage({ reportData }: ReportImagePageProps) {
+function Page({ reportData }: ReportImagePageProps) {
   const { reportThumbnail, reportMembers, reportDateDisplay, imageTags, includedProducts } =
     reportData;
   const [loaded, setLoaded] = useState<boolean>(false);
@@ -121,4 +121,4 @@ const ProductContainer = styled.div`
   gap: 32px 8px;
 `;
 
-export default ReportImagePage;
+export { Page };

@@ -5,7 +5,7 @@ import LettersView from '@/components/dear/LettersView';
 import FetchErrorBoundary from '@/components/global/error/FetchErrorBoundary';
 import { useState } from 'react';
 
-function DearPage() {
+function Page() {
   const [refetchFn, setRefetchFn] = useState<(() => Promise<any>) | null>(null);
 
   return (
@@ -59,4 +59,4 @@ const WriteButtonWrapper = styled.div`
   margin: 32px 0;
 `;
 
-export default DearPage;
+export { Page };

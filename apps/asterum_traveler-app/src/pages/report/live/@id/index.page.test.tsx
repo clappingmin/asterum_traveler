@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import ReportLivePage from '@/pages/report/ReportLivePage';
+import ReportLivePage from '@/pages/report/live/@id/index.page';
 import { MemoryRouter } from 'react-router-dom';
 import { mockReportLiveData } from '@/shared/mocks';
 

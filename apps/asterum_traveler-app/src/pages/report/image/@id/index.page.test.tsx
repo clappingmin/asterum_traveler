@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import ReportImagePage from '@/pages/report/ReportImagePage';
+import ReportImagePage from '@/pages/report/image/@id/index.page';
 import { mockReportImageData } from '@/shared/mocks';
 
 jest.mock('@/components/report/MemberBox', () => ({ member }: { member: string }) => (

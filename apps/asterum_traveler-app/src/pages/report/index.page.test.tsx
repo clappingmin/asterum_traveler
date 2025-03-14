@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import ReportListPage from '@/pages/report/ReportListPage';
+import ReportListPage from '@/pages/report/index.page';
 
 // Mock 데이터 및 컴포넌트
 jest.mock(

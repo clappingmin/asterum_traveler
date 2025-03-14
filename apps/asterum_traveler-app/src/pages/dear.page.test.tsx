@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import DearPage from './DearPage';
+import DearPage from './dear.page';
 
 jest.mock('@/components/dear/WriteLetterButton', () => () => (
   <div data-testid="write-letter-button" />
