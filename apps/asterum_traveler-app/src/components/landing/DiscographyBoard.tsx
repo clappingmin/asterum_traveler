@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import cdHole from '../../assets/images/landing/discography/cd_hole.png';
+import cdHole from '@/assets/images/landing/discography/cd_hole.png';
 import { useQuery } from '@tanstack/react-query';
-import * as api from '../../shared/services/landingService';
+import * as api from '@/shared/services/landingService';
 
 function DiscographyBoard() {
   const { data: discography } = useQuery({

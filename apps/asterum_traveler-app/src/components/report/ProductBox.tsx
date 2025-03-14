@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import yejunIcon from '../../assets/images/member/heart/yejun.png';
-import noahIcon from '../../assets/images/member/heart/noah.png';
-import bambyIcon from '../../assets/images/member/heart/bamby.png';
-import eunhoIcon from '../../assets/images/member/heart/eunho.png';
-import haminIcon from '../../assets/images/member/heart/hamin.png';
+import yejunIcon from '@/assets/images/member/heart/yejun.png';
+import noahIcon from '@/assets/images/member/heart/noah.png';
+import bambyIcon from '@/assets/images/member/heart/bamby.png';
+import eunhoIcon from '@/assets/images/member/heart/eunho.png';
+import haminIcon from '@/assets/images/member/heart/hamin.png';
 import { IncludedProduct, Product } from '@asterum/types';
 import { useQuery } from '@tanstack/react-query';
-import * as api from '../../shared/services/reportService';
+import * as api from '@/shared/services/reportService';
 import { sortMembers } from '../../shared/utils';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';

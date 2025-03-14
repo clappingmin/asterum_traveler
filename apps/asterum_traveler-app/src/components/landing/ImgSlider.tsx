@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
-import * as api from '../../shared/services/landingService';
+import * as api from '@/shared/services/landingService';
 import { useQuery } from '@tanstack/react-query';
-import CarouselImg from './CarouselImg';
+import CarouselImg from '@/components/landing/CarouselImg';
 
 const SETTINGS = {
   autoPlay: true,

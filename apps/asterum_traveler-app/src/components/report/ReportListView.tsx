@@ -1,12 +1,12 @@
 import { Report, ReportCategory } from '@asterum/types';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import * as api from '../../shared/services/reportService';
-import InfiniteScroll from '../global/InfiniteScroll';
-import { getListMinHeight } from '../../shared/utils';
+import * as api from '@/shared/services/reportService';
+import InfiniteScroll from '@/components/global/InfiniteScroll';
+import { getListMinHeight } from '@/shared/utils';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import PostBox from './PostBox';
-import LoadingDim from '../global/LoadingDim';
+import PostBox from '@/components/report/PostBox';
+import LoadingDim from '@/components/global/LoadingDim';
 
 interface ReportListViewProps {
   category: ReportCategory | 'all';

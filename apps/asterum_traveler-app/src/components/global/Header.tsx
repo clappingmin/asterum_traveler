@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import LogoLarge from '../../assets/images/logos/logo_large.svg';
+import LogoLarge from '@/assets/images/logos/logo_large.svg';
 import { Link, useLocation } from 'react-router-dom';
-import LogoSmall from '../../assets/images/logos/logo_small.svg';
+import LogoSmall from '@/assets/images/logos/logo_small.svg';
 import { RefObject, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { HeaderBg } from '../../shared/interfaces/common.interface';
+import { HeaderBg } from '@/shared/interfaces/common.interface';
 
 interface HeaderProps {
   scrollTarget: RefObject<HTMLDivElement | null>;

@@ -1,10 +1,10 @@
 import { styled } from 'styled-components';
-import Card from './Card';
+import Card from '@/components/dear/Card';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import * as api from '../../shared/services/dearService';
+import * as api from '@/shared/services/dearService';
 import { DearCard } from '@asterum/types';
-import InfiniteScroll from '../global/InfiniteScroll';
-import LoadingDim from '../global/LoadingDim';
+import InfiniteScroll from '@/components/global/InfiniteScroll';
+import LoadingDim from '@/components/global/LoadingDim';
 import { useEffect } from 'react';
 
 interface LettersViewProps {

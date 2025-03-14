@@ -1,19 +1,19 @@
 import styled from 'styled-components';
-import icon_close from '../../assets/icons/close.svg';
-import icon_box_top_left from '../../assets/icons/box_top_left.svg';
-import icon_box_top_right from '../../assets/icons/box_top_right.svg';
-import icon_box_bottom_left from '../../assets/icons/box_bottom_left.svg';
-import icon_box_bottom_right from '../../assets/icons/box_bottom_right.svg';
-import icon_write_letter from '../../assets/images/dear/write_letter.png';
-import icon_select_color from '../../assets/icons/select_color.svg';
+import icon_close from '@/assets/icons/close.svg';
+import icon_box_top_left from '@/assets/icons/box_top_left.svg';
+import icon_box_top_right from '@/assets/icons/box_top_right.svg';
+import icon_box_bottom_left from '@/assets/icons/box_bottom_left.svg';
+import icon_box_bottom_right from '@/assets/icons/box_bottom_right.svg';
+import icon_write_letter from '@/assets/images/dear/write_letter.png';
+import icon_select_color from '@/assets/icons/select_color.svg';
 import { useState } from 'react';
 import { CardCoverColor, DearCardBase } from '@asterum/types';
 import { useMutation } from '@tanstack/react-query';
-import * as api from '../../shared/services/dearService';
-import { queryClient } from '../../main';
+import * as api from '@/shared/services/dearService';
+import { queryClient } from '@/main';
 import { motion } from 'framer-motion';
-import { CardInputs } from '../../shared/interfaces/common.interface';
-import { showSuccessToast } from '../../shared/utils';
+import { CardInputs } from '@/shared/interfaces/common.interface';
+import { showSuccessToast } from '@/shared/utils';
 
 const CARD_COVER_COLORS: CardCoverColor[] = [
   'pink',

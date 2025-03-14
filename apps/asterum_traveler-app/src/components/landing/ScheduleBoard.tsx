@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import background from '../../assets/images/landing/scheduleBoard/background.png';
-import boardIcon from '../../assets/images/landing/scheduleBoard/boardIcon.svg';
-import { formatTime, getWeekDay, sortMembers, sortSchedule } from '../../shared/utils';
+import background from '@/assets/images/landing/scheduleBoard/background.png';
+import boardIcon from '@/assets/images/landing/scheduleBoard/boardIcon.svg';
+import { formatTime, getWeekDay, sortMembers, sortSchedule } from '@/shared/utils';
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import * as api from '../../shared/services/landingService';
-import { MEMBER_HEART, MEMBER_KOREAN_NAME } from '../../shared/constants';
+import * as api from '@/shared/services/landingService';
+import { MEMBER_HEART, MEMBER_KOREAN_NAME } from '@/shared/constants';
 
 const TODAY = new Date();
 const YEAR = TODAY.getFullYear();

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import MemberBox from './MemberBox';
-import { MEMBER_ENGLISH_NAME, MEMBER_KOREAN_NAME } from '../../shared/constants';
+import { MEMBER_ENGLISH_NAME, MEMBER_KOREAN_NAME } from '@/shared/constants';
 import { Member } from '@asterum/types';
 
 describe('MemberBox', () => {

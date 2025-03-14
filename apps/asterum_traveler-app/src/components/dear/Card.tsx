@@ -1,16 +1,16 @@
 import styled from 'styled-components';
-import img_card_pink from '../../assets/images/report/card_pink.png';
-import img_card_red from '../../assets/images/report/card_red.png';
-import img_card_orange from '../../assets/images/report/card_orange.png';
-import img_card_yellow from '../../assets/images/report/card_yellow.png';
-import img_card_green from '../../assets/images/report/card_green.png';
-import img_card_skyblue from '../../assets/images/report/card_skyblue.png';
-import img_card_blue from '../../assets/images/report/card_blue.png';
-import img_card_yellowgreen from '../../assets/images/report/card_yellowgreen.png';
+import img_card_pink from '@/assets/images/report/card_pink.png';
+import img_card_red from '@/assets/images/report/card_red.png';
+import img_card_orange from '@/assets/images/report/card_orange.png';
+import img_card_yellow from '@/assets/images/report/card_yellow.png';
+import img_card_green from '@/assets/images/report/card_green.png';
+import img_card_skyblue from '@/assets/images/report/card_skyblue.png';
+import img_card_blue from '@/assets/images/report/card_blue.png';
+import img_card_yellowgreen from '@/assets/images/report/card_yellowgreen.png';
 import { Modal, ModalContent, ModalOverlay, useDisclosure } from '@chakra-ui/react';
-import ModalLetterDetail from './ModalLetterDetail';
+import ModalLetterDetail from '@/components/dear/ModalLetterDetail';
 import { CardCoverColor, DearCard } from '@asterum/types';
-import { timestampToDisplayDate } from '../../shared/utils';
+import { timestampToDisplayDate } from '@/shared/utils';
 import { motion } from 'framer-motion';
 
 const CARD_IMAGES = {

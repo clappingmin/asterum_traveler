@@ -1,14 +1,14 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import FetchErrorBoundary from './FetchErrorBoundary';
-import { ApiError } from '../../../shared/errors';
+import { ApiError } from '@/shared/errors';
 
-jest.mock('../../../shared/errors', () => ({
-  ...jest.requireActual('../../../shared/errors'),
+jest.mock('@/shared/errors', () => ({
+  ...jest.requireActual('@/shared/errors'),
   sendMessageToSlack: jest.fn(),
 }));
 
 describe('FetchErrorBoundary', () => {
-  const mockSendMessageToSlack = jest.requireMock('../../../shared/errors').sendMessageToSlack;
+  const mockSendMessageToSlack = jest.requireMock('@/shared/errors').sendMessageToSlack;
 
   const ErrorComponent = () => {
     throw new ApiError('테스트 에러', 'FetchErrorBoundaryTest', true);

@@ -3,8 +3,8 @@ import ScheduleBoard from './ScheduleBoard';
 import { useQuery } from '@tanstack/react-query';
 import { Schedule } from '@asterum/types';
 import { Timestamp } from 'firebase/firestore';
-import { MEMBER_HEART, MEMBER_KOREAN_NAME } from '../../shared/constants';
-import { formatTime } from '../../shared/utils';
+import { MEMBER_HEART, MEMBER_KOREAN_NAME } from '@/shared/constants';
+import { formatTime } from '@/shared/utils';
 
 // Mock API와 React Query
 jest.mock('@tanstack/react-query', () => ({

@@ -10,17 +10,17 @@ jest.mock('@tanstack/react-query', () => ({
   useMutation: jest.fn(),
 }));
 
-jest.mock('../../shared/services/dearService', () => ({
+jest.mock('@/shared/services/dearService', () => ({
   deleteDearCardByCardId: jest.fn(),
 }));
 
-jest.mock('../../main', () => ({
+jest.mock('@/main', () => ({
   queryClient: {
     invalidateQueries: jest.fn(),
   },
 }));
 
-jest.mock('../../shared/utils', () => ({
+jest.mock('@/shared/utils', () => ({
   showSuccessToast: jest.fn(),
   timestampToDisplayDate: jest.fn((timestamp: number) => `Formatted: ${timestamp}`),
 }));

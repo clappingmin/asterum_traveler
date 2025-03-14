@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import ImgSlider from './ImgSlider';
 import { SliderImage } from '@asterum/types';
 
-jest.mock('./CarouselImg', () => ({ image }: { image: SliderImage }) => (
+jest.mock('@/components/landing/CarouselImg', () => ({ image }: { image: SliderImage }) => (
   <img src={image.imageUrl} alt={image.imageUrl} data-testid={`carousel-image-${image.id}`} />
 ));
 jest.mock('@tanstack/react-query', () => ({
