@@ -1,17 +1,19 @@
 import styled from 'styled-components';
 import LogoLarge from '@/assets/images/logos/logo_large.svg';
-import { Link, useLocation } from 'react-router-dom';
 import LogoSmall from '@/assets/images/logos/logo_small.svg';
 import { RefObject, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { HeaderBg } from '@/shared/interfaces/common.interface';
+import { usePageContext } from '@/renderer/usePageContext';
+import { Link } from '@/renderer/Link';
 
 interface HeaderProps {
   scrollTarget: RefObject<HTMLDivElement | null>;
 }
 
 function Header({ scrollTarget }: HeaderProps) {
-  const location = useLocation();
+  const { urlPathname } = usePageContext();
+
   const [currentPath, setCurrentPath] = useState('');
   const [headerBg, setHeaderBg] = useState<HeaderBg>('transparent');
 
@@ -34,10 +36,10 @@ function Header({ scrollTarget }: HeaderProps) {
   };
 
   useEffect(() => {
-    const path = location.pathname.split('/').filter(Boolean)[0] || '';
+    const path = urlPathname || '';
     setCurrentPath(path);
     setHeaderBg('transparent');
-  }, [location]);
+  }, [urlPathname]);
 
   useEffect(() => {
     const wrapper = scrollTarget.current;
@@ -58,10 +60,10 @@ function Header({ scrollTarget }: HeaderProps) {
   return (
     <Wrapper bgColor={headerBg}>
       <Container>
-        <NavButton to="/">
+        <NavButton href="/">
           <Logo src={LogoLarge} height="64" />
         </NavButton>
-        <NavButton to="report">
+        <NavButton href="report">
           <motion.div
             initial={{ clipPath: 'circle(100%)' }}
             animate={{ clipPath: currentPath === 'report' ? 'circle(0%)' : 'circle(100%)' }}
@@ -78,7 +80,7 @@ function Header({ scrollTarget }: HeaderProps) {
             <img src={LogoSmall} width={100} height={100} alt="Small Logo" />
           </motion.div>
         </NavButton>
-        <NavButton to="schedule">
+        <NavButton href="schedule">
           <motion.div
             initial={{ clipPath: 'circle(100%)' }}
             animate={{ clipPath: currentPath === 'schedule' ? 'circle(0%)' : 'circle(100%)' }}
@@ -96,7 +98,7 @@ function Header({ scrollTarget }: HeaderProps) {
           </motion.div>
         </NavButton>
 
-        <NavButton to="dear">
+        <NavButton href="dear">
           <motion.div
             initial={{ clipPath: 'circle(100%)' }}
             animate={{ clipPath: currentPath === 'dear' ? 'circle(0%)' : 'circle(100%)' }}

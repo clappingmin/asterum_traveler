@@ -13,7 +13,7 @@ async function render(pageContext: PageContextClient) {
 
   // SPA
   ReactDOM.createRoot(root).render(
-    <PageShell>
+    <PageShell pageContext={pageContext}>
       <Page />
     </PageShell>
   );

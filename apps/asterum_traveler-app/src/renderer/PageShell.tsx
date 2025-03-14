@@ -4,6 +4,8 @@ import { showSuccessToast } from '@/shared/utils';
 import { sendMessageToSlack, showErrorToast } from '@/shared/errors';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Layout from '@/components/global/Layout';
+import type { PageContext } from './types';
+import { PageContextProvider } from './usePageContext';
 
 export { PageShell };
 
@@ -21,12 +23,20 @@ export const queryClient = new QueryClient({
   },
 });
 
-function PageShell({ children }: { children: React.ReactNode }) {
+function PageShell({
+  children,
+  pageContext,
+}: {
+  children: React.ReactNode;
+  pageContext: PageContext;
+}) {
   return (
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={true} />
-        <Layout>{children}</Layout>
+        <PageContextProvider pageContext={pageContext}>
+          <Layout>{children}</Layout>
+        </PageContextProvider>
       </QueryClientProvider>
     </React.StrictMode>
   );
