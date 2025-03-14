@@ -28,3 +28,7 @@ async function render(pageContext) {
     sheet.seal();
   }
 }
+
+export { passToClient };
+
+const passToClient = ['urlPathname'];
