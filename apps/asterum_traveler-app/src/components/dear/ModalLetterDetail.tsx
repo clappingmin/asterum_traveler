@@ -5,7 +5,7 @@ import { DearCard } from '@asterum/types';
 import { showSuccessToast, timestampToDisplayDate } from '@/shared/utils';
 import { useMutation } from '@tanstack/react-query';
 import * as api from '@/shared/services/dearService';
-import { queryClient } from '@/main';
+import { queryClient } from '@/renderer/PageShell';
 
 interface ModalLetterDetailProps {
   onClose: () => void;

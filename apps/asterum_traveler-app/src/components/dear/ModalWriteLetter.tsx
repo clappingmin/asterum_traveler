@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { CardCoverColor, DearCardBase } from '@asterum/types';
 import { useMutation } from '@tanstack/react-query';
 import * as api from '@/shared/services/dearService';
-import { queryClient } from '@/main';
+import { queryClient } from '@/renderer/PageShell';
 import { motion } from 'framer-motion';
 import { CardInputs } from '@/shared/interfaces/common.interface';
 import { showSuccessToast } from '@/shared/utils';
