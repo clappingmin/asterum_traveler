@@ -5,42 +5,79 @@ import { Report } from '@asterum/types';
 import { ALL_MEMBERS } from '@/shared/constants';
 import { useState } from 'react';
 import FetchErrorBoundary from '@/components/global/error/FetchErrorBoundary';
+import { usePageContext } from '@/renderer/usePageContext';
+import { goToNotFound } from '@/shared/utils';
+import { useQuery } from '@tanstack/react-query';
+import * as api from '@/shared/services/reportService';
+import LoadingDim from '@/components/global/LoadingDim';
+import { motion } from 'framer-motion';
 
-interface ReportLivePageProps {
-  reportData: Report;
-}
+function Page() {
+  const { urlPathname } = usePageContext();
 
-function Page({ reportData }: ReportLivePageProps) {
-  const { reportThumbnail, liveTitle, reportDateDisplay, reportMembers, includedProducts } =
-    reportData;
+  const pageId = urlPathname.split('/')[3];
+  if (!pageId) goToNotFound();
+
+  const { data, isLoading, error, isError } = useQuery<Report>({
+    queryKey: ['report', pageId],
+    queryFn: async () => {
+      return await api.getReportById(pageId);
+    },
+    retry: false,
+  });
+
+  if (isError) throw error;
+
+  if (!isLoading && !data) {
+    goToNotFound();
+    return;
+  }
+
+  const [loaded, setLoaded] = useState<boolean>(false);
   const [refetchFn, setRefetchFn] = useState<(() => Promise<any>) | null>(null);
 
   return (
-    <Wrapper>
-      <LiveContainer>
-        <LiveThumbnail src={reportThumbnail} width={960} height={540} alt="라이브 이미지" />
-        <LiveTitle className="text-overflow-2">{liveTitle}</LiveTitle>
-        <LiveDate>{reportDateDisplay}</LiveDate>
-        <LiveMembers>
-          {ALL_MEMBERS.map((member) => {
-            return reportMembers.includes(member) && <MemberBox key={member} member={member} />;
-          })}
-        </LiveMembers>
-      </LiveContainer>
-      <FetchErrorBoundary onRetry={() => refetchFn && refetchFn()}>
-        <ProductContainer>
-          {includedProducts.map((product) => {
-            return (
-              <ProductBox
-                key={product.productId}
-                includedProduct={product}
-                onRefetch={setRefetchFn}
-              />
-            );
-          })}
-        </ProductContainer>
-      </FetchErrorBoundary>
-    </Wrapper>
+    <>
+      {isLoading && <LoadingDim />}
+      <Wrapper>
+        <LiveContainer>
+          <LiveThumbnail
+            src={data?.reportThumbnail}
+            width={960}
+            height={540}
+            alt="라이브 이미지"
+            onLoad={() => {
+              setLoaded(true);
+            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: loaded ? 1 : 0 }}
+            transition={{ duration: 0.3 }}
+          />
+          <LiveTitle className="text-overflow-2">{data?.liveTitle}</LiveTitle>
+          <LiveDate>{data?.reportDateDisplay}</LiveDate>
+          <LiveMembers>
+            {ALL_MEMBERS.map((member) => {
+              return (
+                data?.reportMembers.includes(member) && <MemberBox key={member} member={member} />
+              );
+            })}
+          </LiveMembers>
+        </LiveContainer>
+        <FetchErrorBoundary onRetry={() => refetchFn && refetchFn()}>
+          <ProductContainer>
+            {data?.includedProducts.map((product) => {
+              return (
+                <ProductBox
+                  key={product.productId}
+                  includedProduct={product}
+                  onRefetch={setRefetchFn}
+                />
+              );
+            })}
+          </ProductContainer>
+        </FetchErrorBoundary>
+      </Wrapper>
+    </>
   );
 }
 
@@ -65,7 +102,7 @@ const LiveContainer = styled.div`
   top: calc(var(--header-height) + 64px);
 `;
 
-const LiveThumbnail = styled.img`
+const LiveThumbnail = styled(motion.img)`
   width: 100%;
   height: 540px;
   aspect-ratio: 16/9;

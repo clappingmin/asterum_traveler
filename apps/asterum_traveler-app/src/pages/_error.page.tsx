@@ -1,20 +1,15 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from '@/renderer/Link';
 import styled from 'styled-components';
 
 function Page() {
-  const navigate = useNavigate();
   return (
     <Wrapper>
       <ButtonContainer>
         <span>404</span>
         <span>요청하신 페이지를 찾을 수 없습니다.</span>
-        <button
-          onClick={() => {
-            navigate('/');
-          }}
-        >
-          홈으로 돌아가기
-        </button>
+        <Link href="/">
+          <div>홈으로 돌아가기</div>
+        </Link>
       </ButtonContainer>
       {/* TODO: SVG 추가 후 애니메이션 */}
     </Wrapper>
@@ -44,7 +39,7 @@ const ButtonContainer = styled.div`
     font-size: 60px;
   }
 
-  & > button {
+  & > div {
     color: var(--color);
     background: transparent;
     border: none;

@@ -43,7 +43,7 @@ function Layout({ children }: LayoutProps) {
   return (
     <ChakraProvider theme={theme}>
       <Wrapper ref={wrapperRef} className="scrollbar" id="scrollRoot">
-        {/* <Header scrollTarget={wrapperRef} /> */}
+        <Header scrollTarget={wrapperRef} />
         <Container>
           <PageContainer>{children}</PageContainer>
           <Footer />
