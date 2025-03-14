@@ -5,7 +5,7 @@ import ScheduleBoard from '@/components/landing/ScheduleBoard';
 import DiscographyBoard from '@/components/landing/DiscographyBoard';
 import BackgroundImg from '@/assets/images/landing/background.png';
 
-function LandingPage() {
+function Page() {
   return (
     <Wrapper background={BackgroundImg}>
       <ImgSlider />
@@ -27,4 +27,4 @@ const Wrapper = styled.div<{ background: string }>`
   user-select: none;
 `;
 
-export default LandingPage;
+export { Page };

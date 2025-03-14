@@ -8,6 +8,7 @@ module.exports = {
     '@babel/plugin-transform-runtime',
     'babel-plugin-transform-import-meta',
     'babel-plugin-transform-vite-meta-env',
+    'babel-plugin-styled-components',
     [
       'module-resolver',
       {

@@ -1,7 +1,11 @@
+import 'reset-css';
+import '@/styles/global.css';
 import { ReactNode, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Header from '@/components/global/Header';
 import Footer from '@/components/global/Footer';
+import { ChakraProvider } from '@chakra-ui/react';
+import { theme } from '@asterum/ui';
 
 /**
  * 화면 크기가 변경됐을 때
@@ -37,17 +41,20 @@ function Layout({ children }: LayoutProps) {
   }, []);
 
   return (
-    <Wrapper ref={wrapperRef} className="scrollbar" id="scrollRoot">
-      <Header scrollTarget={wrapperRef} />
-      <Container>
-        <PageContainer>{children}</PageContainer>
-        <Footer />
-      </Container>
-    </Wrapper>
+    <ChakraProvider theme={theme}>
+      <Wrapper ref={wrapperRef} className="scrollbar" id="scrollRoot">
+        {/* <Header scrollTarget={wrapperRef} /> */}
+        <Container>
+          <PageContainer>{children}</PageContainer>
+          <Footer />
+        </Container>
+      </Wrapper>
+    </ChakraProvider>
   );
 }
 
 const Wrapper = styled.div`
+  background-color: #000;
   width: 1920px;
   height: 100vh;
   overflow-x: hidden;

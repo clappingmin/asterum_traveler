@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import NotFoundPage from '@/pages/NotFoundPage';
+import NotFoundPage from '@/pages/_error.page';
 
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({

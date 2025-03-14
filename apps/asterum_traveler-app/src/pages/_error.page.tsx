@@ -1,23 +1,24 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-function NotFoundPage() {
+function Page() {
   const navigate = useNavigate();
   return (
-    <Wrapper>
-      <ButtonContainer>
-        <span>404</span>
-        <span>요청하신 페이지를 찾을 수 없습니다.</span>
-        <button
-          onClick={() => {
-            navigate('/');
-          }}
-        >
-          홈으로 돌아가기
-        </button>
-      </ButtonContainer>
-      {/* TODO: SVG 추가 후 애니메이션 */}
-    </Wrapper>
+    // <Wrapper>
+    //   <ButtonContainer>
+    //     <span>404</span>
+    //     <span>요청하신 페이지를 찾을 수 없습니다.</span>
+    //     <button
+    //       onClick={() => {
+    //         navigate('/');
+    //       }}
+    //     >
+    //       홈으로 돌아가기
+    //     </button>
+    //   </ButtonContainer>
+    //   {/* TODO: SVG 추가 후 애니메이션 */}
+    // </Wrapper>
+    <div>에러ㅜ</div>
   );
 }
 
@@ -51,4 +52,4 @@ const ButtonContainer = styled.div`
   }
 `;
 
-export default NotFoundPage;
+export { Page };
