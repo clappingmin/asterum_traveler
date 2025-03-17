@@ -13,8 +13,8 @@ function SEOMetaTag() {
       <meta name="description" content={description} />
       <meta name="keywords" content={keyword.join(', ')} />
 
-      <meta name="robots" content="index,follow" />
-      <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+      {/* <meta name="robots" content="index,follow,noarchive" />
+      <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" /> */}
 
       {/* <!-- Open Graph --> */}
       <meta property="og:title" content={title} />
@@ -28,8 +28,6 @@ function SEOMetaTag() {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
-
-      <meta name="robots" content="noarchive" />
     </Helmet>
   );
 }
