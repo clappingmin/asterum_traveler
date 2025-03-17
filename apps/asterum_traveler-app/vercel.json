@@ -9,11 +9,5 @@
       "use": "@vercel/static"
     }
   ],
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/index.ts"
-    },
-    { "source": "/(.*)", "destination": "/" }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
 }
