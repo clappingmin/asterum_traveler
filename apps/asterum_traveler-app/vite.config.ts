@@ -14,7 +14,7 @@ export default defineConfig({
     vercel(),
   ],
   ssr: {
-    noExternal: ['styled-components'],
+    noExternal: ['styled-components', 'vite-plugin-ssr'],
   },
 
   resolve: {

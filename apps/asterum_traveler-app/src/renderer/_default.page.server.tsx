@@ -5,19 +5,20 @@ import { baseMeta } from '@/shared/constants';
 export { render };
 
 async function render(pageContext: PageContextServer) {
-  const { urlOriginal } = pageContext;
+  try {
+    const { urlOriginal } = pageContext;
 
-  const { documentProps } = pageContext.exports;
-  const title = documentProps?.title || baseMeta.title;
-  const description = documentProps?.description || baseMeta.description;
-  const keyword = (
-    documentProps?.keyword?.length
-      ? baseMeta.keyword.concat(documentProps.keyword)
-      : baseMeta.keyword
-  ).join(', ');
-  const image = documentProps?.image || baseMeta.image;
+    const { documentProps } = pageContext.exports;
+    const title = documentProps?.title || baseMeta.title;
+    const description = documentProps?.description || baseMeta.description;
+    const keyword = (
+      documentProps?.keyword?.length
+        ? baseMeta.keyword.concat(documentProps.keyword)
+        : baseMeta.keyword
+    ).join(', ');
+    const image = documentProps?.image || baseMeta.image;
 
-  return escapeInject`<!DOCTYPE html>
+    return escapeInject`<!DOCTYPE html>
         <html lang="ko">
       <head>
         <link rel="icon" type="image/svg+xml" href="/logo_icon.svg" />
@@ -37,7 +38,7 @@ async function render(pageContext: PageContextServer) {
         <meta property="og:title" content="${title}" />
         <meta property="og:description" content="${description}" />
         <meta property="og:image" content="${image}" />
-        <meta property="og:url" content="${import.meta.env.VITE_APP_URL}${urlOriginal}" />
+         <!-- <meta property="og:url" content="${import.meta.env.VITE_APP_URL}${urlOriginal}" /> -->
         <meta property="og:type" content="website" />
 
 
@@ -52,6 +53,13 @@ async function render(pageContext: PageContextServer) {
         <div id="page-view"></div>
       </body>
     </html>`;
+  } catch (e) {
+    console.error('SSR Rendering Error:', e);
+    return {
+      statusCode: 500,
+      body: 'ASTERUM TRAVELER | Internal Server Error',
+    };
+  }
 }
 
 export { passToClient };
