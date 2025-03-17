@@ -59,4 +59,10 @@ const WriteButtonWrapper = styled.div`
   margin: 32px 0;
 `;
 
+export const documentProps = {
+  title: '플레이브에게 응원 메시지 보내기 – Dear',
+  description:
+    'Dear 페이지에서 플레이브에게 직접 응원 메시지를 보내보세요. 플리의 마음을 담아 따뜻한 메시지를 전달할 수 있는 특별한 공간입니다.',
+};
+
 export { Page };

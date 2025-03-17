@@ -113,4 +113,10 @@ const CalendarWrapper = styled.div`
   padding-top: 2rem;
 `;
 
+export const documentProps = {
+  title: '플레이브 스케줄 확인하기 – Schedule',
+  description:
+    '플레이브의 최신 스케줄을 확인할 수 있는 페이지입니다. 공연, 방송, 팬미팅 등 다양한 활동 일정을 한눈에 확인하세요.',
+};
+
 export { Page };

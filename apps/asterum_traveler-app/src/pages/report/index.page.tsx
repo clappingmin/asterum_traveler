@@ -146,4 +146,10 @@ const HorizontalLine = styled.div`
   border: 1px solid #fff;
 `;
 
+export const documentProps = {
+  title: '플레이브의 라이브, 게임 및 스타일 리포트 - Report',
+  description:
+    '플레이브가 입은 의상, 참여한 게임, 그리고 최신 라이브 정보를 모아둔 팬들을 위한 리포트 페이지. 모든 스타일과 기록을 확인하세요!',
+};
+
 export { Page };

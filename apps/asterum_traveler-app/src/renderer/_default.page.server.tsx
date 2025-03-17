@@ -7,13 +7,16 @@ export { render };
 
 async function render(pageContext: PageContextServer) {
   const sheet = new ServerStyleSheet();
-
   const { urlOriginal } = pageContext;
 
   const { documentProps } = pageContext.exports;
   const title = documentProps?.title || baseMeta.title;
   const description = documentProps?.description || baseMeta.description;
-  const keyword = documentProps?.keyword?.join(', ') || baseMeta.keyword.join(', ');
+  const keyword = (
+    documentProps?.keyword?.length
+      ? baseMeta.keyword.concat(documentProps.keyword)
+      : baseMeta.keyword
+  ).join(', ');
   const image = documentProps?.image || baseMeta.image;
 
   try {
