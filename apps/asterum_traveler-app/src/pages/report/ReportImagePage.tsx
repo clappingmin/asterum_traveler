@@ -3,9 +3,11 @@ import MemberBox from '../../components/report/MemberBox';
 import ProductBox from '../../components/report/ProductBox';
 import { Report } from '@asterum/types';
 import { ALL_MEMBERS } from '../../shared/constants';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import FetchErrorBoundary from '../../components/global/error/FetchErrorBoundary';
+import metaJson from '../../assets/jsons/metaData.json';
+import { useMetaStore } from '../../store/metaStore';
 
 interface ReportImagePageProps {
   reportData: Report;
@@ -16,6 +18,18 @@ function ReportImagePage({ reportData }: ReportImagePageProps) {
     reportData;
   const [loaded, setLoaded] = useState<boolean>(false);
   const [refetchFn, setRefetchFn] = useState<(() => Promise<any>) | null>(null);
+  const { setMetaData } = useMetaStore();
+
+  useEffect(() => {
+    const keyword = metaJson['base'].keyword.concat(...imageTags!, ...reportMembers);
+
+    setMetaData({
+      title: metaJson['/report'].title,
+      description: metaJson['/report'].description,
+      keyword,
+      image: reportData.reportThumbnail,
+    });
+  }, []);
 
   return (
     <Wrapper>
