@@ -1,18 +1,8 @@
 {
-  "builds": [
+  "rewrites": [
     {
-      "src": "dist/server/**",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "dist/client/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/dist/server/entries/src_renderer_default-page-server.mjs"
+      "source": "/((?!assets/).*)",
+      "destination": "/api/ssr.js"
     }
   ]
 }
