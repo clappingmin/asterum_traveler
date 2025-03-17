@@ -1,1 +1,19 @@
-{ "rewrites": [{ "source": "/(.*)", "destination": "/" }] }
+{
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "dist/client/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.ts"
+    },
+    { "source": "/(.*)", "destination": "/" }
+  ]
+}
