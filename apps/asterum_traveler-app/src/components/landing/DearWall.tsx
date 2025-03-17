@@ -1,21 +1,21 @@
 import styled from 'styled-components';
-import sticker1 from '../../assets/images/landing/dearWall/sticker_1.png';
-import sticker2 from '../../assets/images/landing/dearWall/sticker_2.png';
-import sticker3 from '../../assets/images/landing/dearWall/sticker_3.png';
-import sticker4 from '../../assets/images/landing/dearWall/sticker_4.png';
-import sticker5 from '../../assets/images/landing/dearWall/sticker_5.png';
-import sticker6 from '../../assets/images/landing/dearWall/sticker_6.png';
-import sticker7 from '../../assets/images/landing/dearWall/sticker_7.png';
-import sticker8 from '../../assets/images/landing/dearWall/sticker_8.png';
-import sticker9 from '../../assets/images/landing/dearWall/sticker_9.png';
-import sticker10 from '../../assets/images/landing/dearWall/sticker_10.png';
-import sticker11 from '../../assets/images/landing/dearWall/sticker_11.png';
-import dearBoard1 from '../../assets/images/landing/dearWall/dear_board_1.png';
-import dearBoard2 from '../../assets/images/landing/dearWall/dear_board_2.png';
-import dearBoard3 from '../../assets/images/landing/dearWall/dear_board_3.png';
-import dearBackground1 from '../../assets/images/landing/dearWall/dear_background_1.png';
+import sticker1 from '@/assets/images/landing/dearWall/sticker_1.png';
+import sticker2 from '@/assets/images/landing/dearWall/sticker_2.png';
+import sticker3 from '@/assets/images/landing/dearWall/sticker_3.png';
+import sticker4 from '@/assets/images/landing/dearWall/sticker_4.png';
+import sticker5 from '@/assets/images/landing/dearWall/sticker_5.png';
+import sticker6 from '@/assets/images/landing/dearWall/sticker_6.png';
+import sticker7 from '@/assets/images/landing/dearWall/sticker_7.png';
+import sticker8 from '@/assets/images/landing/dearWall/sticker_8.png';
+import sticker9 from '@/assets/images/landing/dearWall/sticker_9.png';
+import sticker10 from '@/assets/images/landing/dearWall/sticker_10.png';
+import sticker11 from '@/assets/images/landing/dearWall/sticker_11.png';
+import dearBoard1 from '@/assets/images/landing/dearWall/dear_board_1.png';
+import dearBoard2 from '@/assets/images/landing/dearWall/dear_board_2.png';
+import dearBoard3 from '@/assets/images/landing/dearWall/dear_board_3.png';
+import dearBackground1 from '@/assets/images/landing/dearWall/dear_background_1.png';
 import { useQuery } from '@tanstack/react-query';
-import * as api from '../../shared/services/landingService';
+import * as api from '@/shared/services/landingService';
 import { motion } from 'framer-motion';
 
 function DearWall() {

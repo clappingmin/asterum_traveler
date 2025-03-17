@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import PostBox from './PostBox';
 import { Report } from '@asterum/types';
-import { mockReportImageData } from '../../shared/mocks';
+import { mockReportImageData } from '@/shared/mocks';
 
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({

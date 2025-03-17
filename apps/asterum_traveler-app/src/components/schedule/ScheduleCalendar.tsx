@@ -1,12 +1,12 @@
 import { Schedule } from '@asterum/types';
 import Calendar from 'react-calendar';
 import styled from 'styled-components';
-import * as api from '../../shared/services/scheduleService';
-import { formatTime, sortMembers } from '../../shared/utils';
-import { MEMBER_HEART, MEMBER_KOREAN_NAME } from '../../shared/constants';
+import * as api from '@/shared/services/scheduleService';
+import { formatTime, sortMembers } from '@/shared/utils';
+import { MEMBER_HEART, MEMBER_KOREAN_NAME } from '@/shared/constants';
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import LoadingDim from '../global/LoadingDim';
+import LoadingDim from '@/components/global/LoadingDim';
 
 const TODAY = new Date();
 const YEAR = TODAY.getFullYear();

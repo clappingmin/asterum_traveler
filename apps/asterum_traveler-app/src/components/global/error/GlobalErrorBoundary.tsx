@@ -1,6 +1,6 @@
 import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
-import { sendMessageToSlack } from '../../../shared/errors';
+import { sendMessageToSlack } from '@/shared/errors';
 
 class GlobalErrorBoundary extends Component<
   { children: ReactNode },

@@ -2,10 +2,10 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { DearCard } from '@asterum/types';
 import { Timestamp } from 'firebase/firestore';
 import Card from './Card';
-import { timestampToDisplayDate } from '../../shared/utils';
+import { timestampToDisplayDate } from '@/shared/utils';
 
-jest.mock('../../assets/images/report/card_pink.png', () => 'pink.png');
-jest.mock('./ModalLetterDetail', () => ({ dearCard }: { dearCard: DearCard }) => (
+jest.mock('@/assets/images/report/card_pink.png', () => 'pink.png');
+jest.mock('@/components/dear/ModalLetterDetail', () => ({ dearCard }: { dearCard: DearCard }) => (
   <div data-testid="card-modal">{dearCard.content}</div>
 ));
 

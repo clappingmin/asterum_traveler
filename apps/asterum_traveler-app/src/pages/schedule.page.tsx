@@ -1,28 +1,16 @@
 import styled from 'styled-components';
-import scheduleBambyImg from '../assets/images/member/schedule_bamby.png';
-import '../styles/react-calendar.css';
-import { useEffect, useState } from 'react';
-import ScheduleCalendar from '../components/schedule/ScheduleCalendar';
-import FetchErrorBoundary from '../components/global/error/FetchErrorBoundary';
-import { useMetaStore } from '../store/metaStore';
-import metaJson from '../assets/jsons/metaData.json';
+import scheduleBambyImg from '@/assets/images/member/schedule_bamby.png';
+import '@/styles/react-calendar.css';
+import { useState } from 'react';
+import ScheduleCalendar from '@/components/schedule/ScheduleCalendar';
+import FetchErrorBoundary from '@/components/global/error/FetchErrorBoundary';
 
 const TODAY = new Date();
 const YEAR = TODAY.getFullYear();
 
-function SchedulePage() {
+function Page() {
   const [selectedMonth, setSelectedMonth] = useState(TODAY.getMonth() + 1);
   const [refetchFn, setRefetchFn] = useState<(() => Promise<any>) | null>(null);
-  const { setMetaData } = useMetaStore();
-
-  useEffect(() => {
-    setMetaData({
-      title: metaJson['/schedule'].title,
-      description: metaJson['/schedule'].description,
-      keyword: metaJson['base'].keyword.concat([`플레이브 ${YEAR}년 스케줄`]),
-      image: metaJson['/schedule'].image,
-    });
-  }, []);
 
   return (
     <>
@@ -125,4 +113,4 @@ const CalendarWrapper = styled.div`
   padding-top: 2rem;
 `;
 
-export default SchedulePage;
+export { Page };

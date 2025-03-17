@@ -1,5 +1,5 @@
 import { Component, ReactNode } from 'react';
-import { ApiError, sendMessageToSlack } from '../../../shared/errors';
+import { ApiError, sendMessageToSlack } from '@/shared/errors';
 import styled from 'styled-components';
 
 class FetchErrorBoundary extends Component<

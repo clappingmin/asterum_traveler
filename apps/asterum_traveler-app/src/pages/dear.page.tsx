@@ -1,25 +1,12 @@
 import styled from 'styled-components';
-import dearNoahImg from '../assets/images/member/dear_noah.png';
-import WriteLetterButton from '../components/dear/WriteLetterButton';
-import LettersView from '../components/dear/LettersView';
-import FetchErrorBoundary from '../components/global/error/FetchErrorBoundary';
-import { useEffect, useState } from 'react';
-import { useMetaStore } from '../store/metaStore';
-import metaJson from '../assets/jsons/metaData.json';
+import dearNoahImg from '@/assets/images/member/dear_noah.png';
+import WriteLetterButton from '@/components/dear/WriteLetterButton';
+import LettersView from '@/components/dear/LettersView';
+import FetchErrorBoundary from '@/components/global/error/FetchErrorBoundary';
+import { useState } from 'react';
 
-function DearPage() {
+function Page() {
   const [refetchFn, setRefetchFn] = useState<(() => Promise<any>) | null>(null);
-
-  const { setMetaData } = useMetaStore();
-
-  useEffect(() => {
-    setMetaData({
-      title: metaJson['/dear'].title,
-      description: metaJson['/dear'].description,
-      keyword: metaJson['base'].keyword,
-      image: metaJson['/dear'].image,
-    });
-  }, []);
 
   return (
     <Wrapper>
@@ -72,4 +59,4 @@ const WriteButtonWrapper = styled.div`
   margin: 2rem 0;
 `;
 
-export default DearPage;
+export { Page };

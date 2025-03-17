@@ -1,18 +1,18 @@
 import { render, screen } from '@testing-library/react';
-import ReportImagePage from './ReportImagePage';
-import { mockReportImageData } from '../../shared/mocks';
+import { Page } from '@/pages/report/image/@id/index.page';
+import { mockReportImageData } from '@/shared/mocks';
 
-jest.mock('../../components/report/MemberBox', () => ({ member }: { member: string }) => (
+jest.mock('@/components/report/MemberBox', () => ({ member }: { member: string }) => (
   <div data-testid={`member-${member}`}>{member}</div>
 ));
 jest.mock(
-  '../../components/report/ProductBox',
+  '@/components/report/ProductBox',
   () =>
     ({ includedProduct }: { includedProduct: any }) =>
       <div data-testid={`product-${includedProduct.productId}`}>{includedProduct.name}</div>
 );
 jest.mock(
-  '../../components/global/error/FetchErrorBoundary',
+  '@/components/global/error/FetchErrorBoundary',
   () =>
     ({ children }: { children: React.ReactNode }) =>
       <div data-testid="fetch-error-boundary">{children}</div>
@@ -20,7 +20,7 @@ jest.mock(
 
 describe('ReportImagePage', () => {
   test('ReportImagePage 렌더링 테스트', () => {
-    render(<ReportImagePage reportData={mockReportImageData} />);
+    render(<Page />);
 
     // 썸네일 이미지가 정상적으로 표시되는지 확인
     const thumbnail = screen.getByAltText('리포트 이미지');

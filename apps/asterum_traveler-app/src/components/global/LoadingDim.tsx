@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import logoIcon from '../../assets/images/logos/logo_small.svg';
+import logoIcon from '@/assets/images/logos/logo_small.svg';
 
 function LoadingDim() {
   return (

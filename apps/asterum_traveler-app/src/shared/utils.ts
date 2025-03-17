@@ -73,3 +73,8 @@ export function showSuccessToast(message: string = '요청이 성공적으로 �
     isClosable: true,
   });
 }
+
+export function goToNotFound() {
+  if (typeof window !== 'undefined') window.location.href = '/_error';
+  return;
+}

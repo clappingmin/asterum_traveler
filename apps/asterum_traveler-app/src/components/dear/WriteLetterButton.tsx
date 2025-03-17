@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import pencilImg from '../../assets/images/dear/pencil.png';
+import pencilImg from '@/assets/images/dear/pencil.png';
 import { Modal, ModalContent, ModalOverlay, useDisclosure } from '@chakra-ui/react';
-import ModalWriteLetter from './ModalWriteLetter';
+import ModalWriteLetter from '@/components/dear/ModalWriteLetter';
 
 function WriteLetterButton() {
   const { isOpen, onOpen, onClose } = useDisclosure();
