@@ -14,3 +14,4 @@ node_modules
 # storybook
 .storybook/
 storybook-static/
+.vercel
