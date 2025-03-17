@@ -1,8 +1,7 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
 import { renderPage } from 'vite-plugin-ssr/server';
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
-  const pageContext = await renderPage({ urlOriginal: req.url! });
+export default async function handler(req, res) {
+  const pageContext = await renderPage({ urlOriginal: req.url });
 
   const { httpResponse } = pageContext;
   if (!httpResponse) {
