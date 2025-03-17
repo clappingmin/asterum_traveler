@@ -14,8 +14,8 @@ jest.mock('react', () => ({
   useState: jest.fn(),
 }));
 
-jest.mock('../../shared/services/scheduleService', () => jest.fn());
-jest.mock('../global/LoadingDim', () => () => <div data-testid="loading-dim"></div>);
+jest.mock('@/shared/services/scheduleService', () => jest.fn());
+jest.mock('@/components/global/LoadingDim', () => () => <div data-testid="loading-dim"></div>);
 
 describe('ScheduleCalendar', () => {
   let setState: unknown;

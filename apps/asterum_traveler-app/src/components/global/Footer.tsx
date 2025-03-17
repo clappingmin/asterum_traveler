@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import Vlast from '../../assets/images/social/vlast.png';
-import X from '../../assets/images/social/x.png';
-import Youtube from '../../assets/images/social/youtube.png';
-import DaumCafe from '../../assets/images/social/daum_cafe.png';
-import Weverse from '../../assets/images/social/weverse.png';
+import Vlast from '@/assets/images/social/vlast.png';
+import X from '@/assets/images/social/x.png';
+import Youtube from '@/assets/images/social/youtube.png';
+import DaumCafe from '@/assets/images/social/daum_cafe.png';
+import Weverse from '@/assets/images/social/weverse.png';
 
 function Footer() {
   return (

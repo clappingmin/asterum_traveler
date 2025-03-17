@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { RefObject, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import logo from '../../assets/images/logos/logo_small.svg';
+import logo from '@/assets/images/logos/logo_small.svg';
 
 const OPTIONS = {
   rootMargin: '10px', // 바깥 여백(Margin)을 이용해 Root 범위를 확장하거나 축소할 수 있음

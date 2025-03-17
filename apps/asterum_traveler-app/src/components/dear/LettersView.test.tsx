@@ -9,17 +9,17 @@ jest.mock('@tanstack/react-query', () => ({
   useInfiniteQuery: jest.fn(),
 }));
 
-jest.mock('./Card', () => ({ dearCard }: { dearCard: DearCard }) => (
+jest.mock('@/components/dear/Card', () => ({ dearCard }: { dearCard: DearCard }) => (
   <div data-testid="card">{dearCard.content}</div>
 ));
 
-jest.mock('../global/InfiniteScroll', () => ({ fetchFn }: any) => (
+jest.mock('@/components/global/InfiniteScroll', () => ({ fetchFn }: any) => (
   <button onClick={fetchFn} data-testid="load-more">
     Load More
   </button>
 ));
 
-jest.mock('../global/LoadingDim', () => () => <div data-testid="loading" />);
+jest.mock('@/components/global/LoadingDim', () => () => <div data-testid="loading" />);
 
 describe('LettersView Component', () => {
   const mockCards = [

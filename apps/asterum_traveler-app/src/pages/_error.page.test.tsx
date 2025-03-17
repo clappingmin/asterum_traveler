@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import NotFoundPage from './NotFoundPage';
+import { Page } from '@/pages/_error.page';
 
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
@@ -10,7 +10,7 @@ jest.mock('react-router-dom', () => ({
 
 describe('NotFoundPage', () => {
   test('NotFoundPage 렌더링 테스트', () => {
-    render(<NotFoundPage />);
+    render(<Page />);
 
     expect(screen.getByText('404')).toBeInTheDocument();
     expect(screen.getByText('요청하신 페이지를 찾을 수 없습니다.')).toBeInTheDocument();
@@ -20,7 +20,7 @@ describe('NotFoundPage', () => {
   test('홈으로 돌아가기 버튼을 클릭하면 navigate("/")가 호출되는지 확인', () => {
     render(
       <MemoryRouter>
-        <NotFoundPage />
+        <Page />
       </MemoryRouter>
     );
 

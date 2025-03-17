@@ -2,14 +2,14 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import WriteLetterButton from './WriteLetterButton';
 
-jest.mock('./ModalWriteLetter', () => ({ onClose }: { onClose: () => void }) => (
+jest.mock('@/components/dear/ModalWriteLetter', () => ({ onClose }: { onClose: () => void }) => (
   <div data-testid="modal-write-letter">
     <button onClick={onClose}>Close Modal</button>
     <p>Dear,</p>
   </div>
 ));
 
-jest.mock('../../assets/images/dear/pencil.png', () => 'pencil.png');
+jest.mock('@/assets/images/dear/pencil.png', () => 'pencil.png');
 
 describe('WriteLetterButton', () => {
   test('연필 이미지가 화면에 렌더링된다.', () => {

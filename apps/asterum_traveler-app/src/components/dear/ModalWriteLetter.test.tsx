@@ -11,7 +11,7 @@ jest.mock('@tanstack/react-query', () => ({
   })),
 }));
 
-jest.mock('../../main', () => ({
+jest.mock('@/main', () => ({
   queryClient: jest.fn(),
 }));
 

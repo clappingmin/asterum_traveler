@@ -1,11 +1,11 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import SchedulePage from './SchedulePage';
+import { Page } from '@/pages/schedule.page';
 
-jest.mock('../components/schedule/ScheduleCalendar', () => ({ month }: { month: number }) => (
+jest.mock('@/components/schedule/ScheduleCalendar', () => ({ month }: { month: number }) => (
   <div data-testid="schedule-calendar">{`Month: ${month}`}</div>
 ));
 jest.mock(
-  '../components/global/error/FetchErrorBoundary',
+  '@/components/global/error/FetchErrorBoundary',
   () =>
     ({ children }: { children: React.ReactNode }) =>
       <div data-testid="fetch-error-boundary">{children}</div>
@@ -13,7 +13,7 @@ jest.mock(
 
 describe('SchedulePage', () => {
   test('SchedulePage 렌더링 테스트', () => {
-    render(<SchedulePage />);
+    render(<Page />);
 
     expect(screen.getByText('SCHEDULE')).toBeInTheDocument();
     expect(screen.getByTestId('schedule-calendar')).toBeInTheDocument();
@@ -25,7 +25,7 @@ describe('SchedulePage', () => {
   });
 
   test('월 선택 버튼 클릭 시 selectedMonth 상태가 변경되는지 확인', () => {
-    render(<SchedulePage />);
+    render(<Page />);
 
     // 3월 버튼 클릭
     const marchButton = screen.getByText('3');

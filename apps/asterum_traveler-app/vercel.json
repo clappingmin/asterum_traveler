@@ -1,8 +1,8 @@
 {
-  "build": {
-    "env": {
-      "YARN_VERSION": "4.5.0"
+  "rewrites": [
+    {
+      "source": "/((?!assets/).*)",
+      "destination": "/api/ssr.js"
     }
-  },
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  ]
 }

@@ -7,7 +7,7 @@ jest.mock('../../../shared/errors', () => ({
 }));
 
 describe('GlobalErrorBoundary', () => {
-  const mockSendMessageToSlack = jest.requireMock('../../../shared/errors').sendMessageToSlack;
+  const mockSendMessageToSlack = jest.requireMock('@/shared/errors').sendMessageToSlack;
 
   const ErrorComponent = () => {
     throw new Error('테스트 에러');

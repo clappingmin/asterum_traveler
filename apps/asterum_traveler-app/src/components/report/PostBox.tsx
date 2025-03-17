@@ -1,7 +1,7 @@
-import { Report, ReportType } from '@asterum/types';
+import { Link } from '@/renderer/Link';
+import { Report } from '@asterum/types';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 interface PostBoxProps {
@@ -9,35 +9,31 @@ interface PostBoxProps {
 }
 
 function PostBox({ report }: PostBoxProps) {
-  const navigate = useNavigate();
   const [loaded, setLoaded] = useState<boolean>(false);
 
-  const goToReportDetail = (reportId: string, reportType: ReportType) => {
-    navigate(`${reportType}/${reportId}`);
-  };
-
   return (
-    <Wrapper
-      initial={{ backgroundColor: 'var(--placeholder)' }}
-      animate={{ backgroundColor: loaded ? 'transparent' : 'var(--placeholder)' }}
-      transition={{ duration: 0.7 }}
-      onClick={() => goToReportDetail(report.id, report.reportType)}
-    >
-      <motion.img
-        src={report.reportThumbnail}
-        width={388}
-        height={388}
-        alt={'리포트 이미지'}
-        loading="lazy"
-        decoding="async"
-        onLoad={() => {
-          setLoaded(true);
-        }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: loaded ? 1 : 0 }}
+    <Link href={`report/${report.reportType}/${report.id}`}>
+      <Wrapper
+        initial={{ backgroundColor: 'var(--placeholder)' }}
+        animate={{ backgroundColor: loaded ? 'transparent' : 'var(--placeholder)' }}
         transition={{ duration: 0.7 }}
-      />
-    </Wrapper>
+      >
+        <motion.img
+          src={report.reportThumbnail}
+          width={388}
+          height={388}
+          alt={'리포트 이미지'}
+          loading="lazy"
+          decoding="async"
+          onLoad={() => {
+            setLoaded(true);
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: loaded ? 1 : 0 }}
+          transition={{ duration: 0.7 }}
+        />
+      </Wrapper>
+    </Link>
   );
 }
 

@@ -6,8 +6,10 @@ import { ReportCategory } from '@asterum/types';
 jest.mock('@tanstack/react-query', () => ({
   useInfiniteQuery: jest.fn(),
 }));
-jest.mock('../global/LoadingDim', () => () => <div data-testid="loading-dim"></div>);
-jest.mock('../global/InfiniteScroll', () => () => <div data-testid="infinite-scroll"></div>);
+jest.mock('@/components/global/LoadingDim', () => () => <div data-testid="loading-dim"></div>);
+jest.mock('@/components/global/InfiniteScroll', () => () => (
+  <div data-testid="infinite-scroll"></div>
+));
 
 describe('ReportListView', () => {
   const mockReportListViewProps: { category: ReportCategory | 'all' } = {

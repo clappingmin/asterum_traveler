@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import icon_close from '../../assets/icons/close.svg';
-import img_trash from '../../assets/images/dear/trash.png';
+import icon_close from '@/assets/icons/close.svg';
+import img_trash from '@/assets/images/dear/trash.png';
 import { DearCard } from '@asterum/types';
-import { showSuccessToast, timestampToDisplayDate } from '../../shared/utils';
+import { showSuccessToast, timestampToDisplayDate } from '@/shared/utils';
 import { useMutation } from '@tanstack/react-query';
-import * as api from '../../shared/services/dearService';
-import { queryClient } from '../../main';
+import * as api from '@/shared/services/dearService';
+import { queryClient } from '@/renderer/PageShell';
 
 interface ModalLetterDetailProps {
   onClose: () => void;

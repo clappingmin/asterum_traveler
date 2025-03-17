@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import ProductBox from './ProductBox';
 import { IncludedProduct } from '@asterum/types';
 import { render, screen } from '@testing-library/react';
-import { sortMembers } from '../../shared/utils';
+import { sortMembers } from '@/shared/utils';
 
 jest.mock('@tanstack/react-query', () => ({
   ...jest.requireActual('@tanstack/react-query'),
