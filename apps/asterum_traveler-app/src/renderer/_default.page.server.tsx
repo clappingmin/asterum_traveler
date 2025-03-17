@@ -8,7 +8,7 @@ export { render };
 async function render(pageContext: PageContextServer) {
   try {
     const { urlOriginal } = pageContext;
-    const page: Pathname = urlOriginal.split('/')[1] as Pathname;
+    const page: Pathname = (urlOriginal.split('/')[1] as Pathname) || '';
 
     // TODO: data fetch SSR에서 한 뒤 받아온 데이터를 메타 태그에 넣기
     // const { documentProps } = pageContext.exports;
@@ -56,8 +56,7 @@ async function render(pageContext: PageContextServer) {
   } catch (e) {
     console.error('SSR Rendering Error:', e);
     return {
-      statusCode: 500,
-      body: 'ASTERUM TRAVELER | Internal Server Error',
+      documentHtml: '<h1>Internal Server Error</h1>',
     };
   }
 }
