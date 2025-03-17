@@ -2,7 +2,8 @@
   "build": {
     "env": {
       "YARN_ENABLE_GLOBAL_CACHE": "1",
-      "YARN_NODE_LINKER": "node-modules"
+      "YARN_NODE_LINKER": "node-modules",
+      "YARN_VERSION": "4.5.0"
     }
   }
 }

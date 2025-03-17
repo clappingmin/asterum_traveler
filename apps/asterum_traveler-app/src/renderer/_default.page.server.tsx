@@ -1,12 +1,10 @@
 import { escapeInject } from 'vite-plugin-ssr/server';
-import { ServerStyleSheet } from 'styled-components';
 import { PageContextServer } from './types';
 import { baseMeta } from '@/shared/constants';
 
 export { render };
 
 async function render(pageContext: PageContextServer) {
-  const sheet = new ServerStyleSheet();
   const { urlOriginal } = pageContext;
 
   const { documentProps } = pageContext.exports;
@@ -19,10 +17,7 @@ async function render(pageContext: PageContextServer) {
   ).join(', ');
   const image = documentProps?.image || baseMeta.image;
 
-  try {
-    const styleTags = sheet.getStyleTags();
-
-    return escapeInject`<!DOCTYPE html>
+  return escapeInject`<!DOCTYPE html>
         <html lang="ko">
       <head>
         <link rel="icon" type="image/svg+xml" href="/logo_icon.svg" />
@@ -34,7 +29,7 @@ async function render(pageContext: PageContextServer) {
         <meta name="description" content="${description}">
         <meta name="keywords" content="${keyword}" />
  
-        <meta name="robots" content="index,follow">
+        <meta name="robots" content="index,follow,noarchive">
         <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
 
@@ -51,18 +46,12 @@ async function render(pageContext: PageContextServer) {
         <meta name="twitter:title" content="${title}" />
         <meta name="twitter:description" content="${description}" />
         <meta name="twitter:image" content="${image}" />
-
-        <meta name="robots" content="noarchive" />
-
-        ${styleTags}
+        
       </head>
         <body>
         <div id="page-view"></div>
       </body>
     </html>`;
-  } finally {
-    sheet.seal();
-  }
 }
 
 export { passToClient };
