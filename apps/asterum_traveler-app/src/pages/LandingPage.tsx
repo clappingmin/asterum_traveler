@@ -4,8 +4,22 @@ import DearWall from '../components/landing/DearWall';
 import ScheduleBoard from '../components/landing/ScheduleBoard';
 import DiscographyBoard from '../components/landing/DiscographyBoard';
 import BackgroundImg from '../assets/images/landing/background.png';
+import { useMetaStore } from '../store/metaStore';
+import { useEffect } from 'react';
+import metaJson from '../assets/jsons/metaData.json';
 
 function LandingPage() {
+  const { setMetaData } = useMetaStore();
+
+  useEffect(() => {
+    setMetaData({
+      title: metaJson['base'].title,
+      description: metaJson['base'].description,
+      keyword: metaJson['base'].keyword,
+      image: metaJson['base'].image,
+    });
+  }, []);
+
   return (
     <Wrapper background={BackgroundImg}>
       <ImgSlider />

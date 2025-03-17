@@ -3,10 +3,23 @@ import dearNoahImg from '../assets/images/member/dear_noah.png';
 import WriteLetterButton from '../components/dear/WriteLetterButton';
 import LettersView from '../components/dear/LettersView';
 import FetchErrorBoundary from '../components/global/error/FetchErrorBoundary';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useMetaStore } from '../store/metaStore';
+import metaJson from '../assets/jsons/metaData.json';
 
 function DearPage() {
   const [refetchFn, setRefetchFn] = useState<(() => Promise<any>) | null>(null);
+
+  const { setMetaData } = useMetaStore();
+
+  useEffect(() => {
+    setMetaData({
+      title: metaJson['/dear'].title,
+      description: metaJson['/dear'].description,
+      keyword: metaJson['base'].keyword,
+      image: metaJson['/dear'].image,
+    });
+  }, []);
 
   return (
     <Wrapper>
@@ -34,14 +47,14 @@ const TitleContainer = styled.div`
   position: relative;
   margin: auto;
   width: var(--width);
-  padding-top: 64px;
-  padding-bottom: 128px;
+  padding-top: 4rem;
+  padding-bottom: 8rem;
 `;
 
 const Title = styled.div`
   color: var(--dear);
   font-family: 'PartialSansKR' !important;
-  font-size: 200px;
+  font-size: 12.5rem;
   font-weight: 400;
   line-height: 120%;
 `;
@@ -49,14 +62,14 @@ const Title = styled.div`
 const Noah = styled.img`
   position: absolute;
   bottom: 0;
-  left: 1060px;
-  width: 700px;
-  height: 524px;
+  left: 66.25rem;
+  width: 43.75rem;
+  height: 32.75rem;
 `;
 
 const WriteButtonWrapper = styled.div`
   width: 100%;
-  margin: 32px 0;
+  margin: 2rem 0;
 `;
 
 export default DearPage;

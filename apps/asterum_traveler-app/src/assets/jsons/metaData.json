@@ -1,0 +1,50 @@
+{
+  "base": {
+    "title": "ASTERUM TRAVELER | 플레이브 팬페이지",
+    "description": "플레이브 팬페이지, 아스테룸 트레블러! 플레이브가 착용한 옷, 게임, 라이브 정보를 확인하고, 플리가 직접 응원 메시지를 남길 수 있는 공간! 또한, 플레이브의 스케줄을 한눈에 확인할 수 있는 팬페이지입니다.",
+    "image": "https://firebasestorage.googleapis.com/v0/b/asterum-traveler.firebasestorage.app/o/base%2Flogo_large.svg?alt=media&token=41a8fb91-d82a-49a9-8c09-c0313340ffd1",
+    "keyword": [
+      "플레이브",
+      "PLAVE",
+      "플레이브 팬페이지",
+      "플리",
+      "예준",
+      "노아",
+      "밤비",
+      "은호",
+      "하민",
+      "플레이브 리포트",
+      "플레이브 디어",
+      "플레이브 스케줄",
+      "플레이브 메시지",
+      "플레이브 라이브",
+      "플레이브 유튜브",
+      "플레이브 라디오",
+      "플레이브 의상",
+      "플레이브 게임",
+      "플레이브 사용 물건",
+      "플레이브 굿즈",
+      "플레이브 응원",
+      "플레이브 스타일",
+      "플레이브 음악",
+      "플레이브 음원",
+      "플레이브 스케줄 확인",
+      "플리 커뮤니티"
+    ]
+  },
+  "/report": {
+    "title": "Report | 플레이브의 라이브, 게임 및 스타일 확인하기",
+    "description": "플레이브가 입은 의상, 참여한 게임, 그리고 최신 라이브 정보를 모아둔 팬들을 위한 리포트 페이지. 모든 스타일과 기록을 확인하세요!",
+    "image": "https://firebasestorage.googleapis.com/v0/b/asterum-traveler.firebasestorage.app/o/base%2Freport_yejun.png?alt=media&token=8753d576-c686-4abf-974a-e1a3451e83ee"
+  },
+  "/dear": {
+    "title": "Dear | 플레이브에게 응원 메시지 보내기",
+    "description": "Dear 페이지에서 플레이브에게 직접 응원 메시지를 보내보세요. 플리의 마음을 담아 따뜻한 메시지를 전달할 수 있는 특별한 공간입니다.",
+    "image": "https://firebasestorage.googleapis.com/v0/b/asterum-traveler.firebasestorage.app/o/base%2Fdear_noah.png?alt=media&token=2d3342e2-45a0-42bf-b6b1-938b804b0284"
+  },
+  "/schedule": {
+    "title": "Schedule | 플레이브 스케줄 확인하기",
+    "description": "플레이브의 최신 스케줄을 확인할 수 있는 페이지입니다. 공연, 방송, 팬미팅 등 다양한 활동 일정을 한눈에 확인하세요.",
+    "image": "https://firebasestorage.googleapis.com/v0/b/asterum-traveler.firebasestorage.app/o/base%2Fschedule_bamby.png?alt=media&token=d14c6a44-4632-4244-bd8c-27def2057a29"
+  }
+}

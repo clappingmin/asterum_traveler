@@ -1,13 +1,26 @@
 import styled from 'styled-components';
 import reportYejunImg from '../../assets/images/member/report_yejun.png';
 import { ReportCategory } from '@asterum/types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FetchErrorBoundary from '../../components/global/error/FetchErrorBoundary';
 import ReportListView from '../../components/report/ReportListView';
+import { useMetaStore } from '../../store/metaStore';
+import metaJson from '../../assets/jsons/metaData.json';
 
 function ReportListPage() {
   const [category, setCategory] = useState<ReportCategory | 'all'>('all');
   const [refetchFn, setRefetchFn] = useState<(() => Promise<any>) | null>(null);
+
+  const { setMetaData } = useMetaStore();
+
+  useEffect(() => {
+    setMetaData({
+      title: metaJson['/report'].title,
+      description: metaJson['/report'].description,
+      keyword: metaJson['base'].keyword,
+      image: metaJson['/report'].image,
+    });
+  }, []);
 
   return (
     <>
