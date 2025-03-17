@@ -1,22 +1,22 @@
 import { escapeInject } from 'vite-plugin-ssr/server';
 import { PageContextServer } from './types';
-import { baseMeta } from '@/shared/constants';
+import metaJson from '@/assets/jsons/metaData.json';
+import { Pathname } from '@/shared/interfaces/common.interface';
 
 export { render };
 
 async function render(pageContext: PageContextServer) {
   try {
     const { urlOriginal } = pageContext;
+    const page: Pathname = urlOriginal.split('/')[1] as Pathname;
 
-    const { documentProps } = pageContext.exports;
-    const title = documentProps?.title || baseMeta.title;
-    const description = documentProps?.description || baseMeta.description;
-    const keyword = (
-      documentProps?.keyword?.length
-        ? baseMeta.keyword.concat(documentProps.keyword)
-        : baseMeta.keyword
-    ).join(', ');
-    const image = documentProps?.image || baseMeta.image;
+    // TODO: data fetch SSR에서 한 뒤 받아온 데이터를 메타 태그에 넣기
+    // const { documentProps } = pageContext.exports;
+
+    const title = page === '' ? metaJson['base'].title : metaJson[page].title;
+    const description = page === '' ? metaJson['base'].description : metaJson[page].description;
+    const keyword = metaJson['base'].keyword.join(', ');
+    const image = page === '' ? metaJson['base'].image : metaJson[page].image;
 
     return escapeInject`<!DOCTYPE html>
         <html lang="ko">
