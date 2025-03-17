@@ -8,7 +8,11 @@
     "build": "tsc && vite build --mode production",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "cross-env NODE_ENV=test jest"
+    "test": "cross-env NODE_ENV=test jest",
+    "release": "standard-version --tag-prefix app-v",
+    "release:patch": "standard-version --release-as patch --tag-prefix app-v",
+    "release:minor": "standard-version --release-as minor --tag-prefix app-v",
+    "release:major": "standard-version --release-as major --tag-prefix app-v"
   },
   "dependencies": {
     "@asterum/types": "workspace:^",
@@ -59,6 +63,7 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jest-styled-components": "^7.2.0",
+    "standard-version": "^9.5.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2",
     "vite": "^5.2.0"
