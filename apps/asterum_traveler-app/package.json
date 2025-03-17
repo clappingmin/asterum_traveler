@@ -32,7 +32,7 @@
     "reset-css": "^5.0.2",
     "styled-components": "^6.1.13",
     "uuid": "^11.0.3",
-    "vite-plugin-ssr": "^0.4.142"
+    "vite-plugin-ssr": "0.4.142"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.26.9",
