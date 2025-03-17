@@ -8,5 +8,11 @@
       "src": "dist/client/**",
       "use": "@vercel/static"
     }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/dist/server/entries/src_renderer_default-page-server.mjs"
+    }
   ]
 }
