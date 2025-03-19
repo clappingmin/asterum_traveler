@@ -87,6 +87,12 @@ const HeaderButton = styled.button`
   border: none;
   padding: 0;
   background-color: transparent;
+  outline: none;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
 `;
 
 const HeaderButtonIcon = styled.img`
