@@ -121,7 +121,6 @@ function Header({ scrollTarget }: HeaderProps) {
 }
 
 const Wrapper = styled.div<{ bgColor: HeaderBg }>`
-  user-select: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -144,6 +143,7 @@ const Container = styled.div`
 const Logo = styled.img`
   height: 64px;
   cursor: pointer;
+  user-select: none;
 `;
 
 const NavButton = styled(Link)`
@@ -154,6 +154,7 @@ const NavButton = styled(Link)`
   font-weight: 400;
   line-height: 42px;
   cursor: pointer;
+  user-select: none;
 
   * {
     font-family: inherit !important;

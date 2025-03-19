@@ -167,7 +167,7 @@ const ScheduleBoxs = styled.tbody`
     & > div {
       width: 100%;
       word-break: break-all;
-      overflow-y: scroll;
+      overflow-y: auto;
       text-align: start;
 
       &:not(:last-of-type) {

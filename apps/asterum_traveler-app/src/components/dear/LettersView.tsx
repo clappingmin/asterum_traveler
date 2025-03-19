@@ -5,13 +5,16 @@ import * as api from '@/shared/services/dearService';
 import { DearCard } from '@asterum/types';
 import InfiniteScroll from '@/components/global/InfiniteScroll';
 import LoadingDim from '@/components/global/LoadingDim';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { getListMinHeight } from '@/shared/utils';
 
 interface LettersViewProps {
   onRefetch?: (fn: () => Promise<any>) => void;
 }
 
 function LettersView({ onRefetch }: LettersViewProps) {
+  const [postListHeight, _setPostListHeight] = useState<number>(getListMinHeight());
+
   const {
     data,
     isFetchingNextPage,
@@ -39,7 +42,7 @@ function LettersView({ onRefetch }: LettersViewProps) {
   return (
     <>
       {isLoading && <LoadingDim />}
-      <Wrapper>
+      <Wrapper minHeight={postListHeight}>
         {data?.pages
           .flatMap((page) => page.data)
           .map((dearCard: DearCard) => (
@@ -55,13 +58,15 @@ function LettersView({ onRefetch }: LettersViewProps) {
   );
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'minHeight',
+})<{ minHeight: number }>`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  min-height: 100%;
   grid-template-rows: repeat(auto-fill, 388px);
+  min-height: ${(props) => `${props.minHeight}px`};
 `;
 
 export default LettersView;
