@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](https://github.com/clappingmin/asterum_traveler/compare/app-v2.0.1...app-v2.0.2) (2025-03-19)
+
+
+### Bug Fixes
+
+* 슬랙메시지 보내기 cors 제한 추가 ([0a8be0b](https://github.com/clappingmin/asterum_traveler/commit/0a8be0bbde136e99b4857c6f6813a0a2a76e53e6))
+
 ### [2.0.1](https://github.com/clappingmin/asterum_traveler/compare/app-v2.0.0...app-v2.0.1) (2025-03-19)
 
 
