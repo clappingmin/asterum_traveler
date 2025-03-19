@@ -38,7 +38,8 @@ async function render(pageContext: PageContextServer) {
         <meta property="og:title" content="${title}" />
         <meta property="og:description" content="${description}" />
         <meta property="og:image" content="${image}" />
-         <!-- <meta property="og:url" content="${import.meta.env.VITE_APP_URL}${urlOriginal}" /> -->
+        <meta property="og:url" content="${import.meta.env.VITE_APP_URL}${urlOriginal}" />
+        <meta property="og:site_name" content="ASTERUM TRAVELER" />
         <meta property="og:type" content="website" />
 
 
