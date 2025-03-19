@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/clappingmin/asterum_traveler/compare/app-v2.0.0...app-v2.0.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* 디어 카드 삭제 비밀번호 입력 취소시 알럿 안띄우기 ([0a0e489](https://github.com/clappingmin/asterum_traveler/commit/0a0e48914d8bb8fb95ae13aba18c91576b9e19ef))
+* 모달 처음 띄울때 버튼 포커스 되는 오류 수정 ([7965849](https://github.com/clappingmin/asterum_traveler/commit/79658493b6c1df0dbc3e2f25254eb8f20b5fec1c))
+* 스케줄 옆에 스크롤 생기는 오류 수정 ([f484afa](https://github.com/clappingmin/asterum_traveler/commit/f484afac837983a9f7941d42072048257722d9c6))
+* 푸터 위치 오류 수정 및 무한스크롤 로딩 아이콘 높이 수정 ([62048ca](https://github.com/clappingmin/asterum_traveler/commit/62048cafa440c3a96fd90948b4ad1a7c3774ec20))
+* header 라우터 오류 수정 ([751b892](https://github.com/clappingmin/asterum_traveler/commit/751b8921b3fbbb3f28987ef62ab4bdf70df8c37a))
+* header 셀렉트 막기 ([e5323e4](https://github.com/clappingmin/asterum_traveler/commit/e5323e47d1362a20cc1e7fe172a69d62a236959e))
+
 ## [2.0.0](https://github.com/clappingmin/asterum_traveler/compare/app-v1.1.0...app-v2.0.0) (2025-03-17)
 
 
