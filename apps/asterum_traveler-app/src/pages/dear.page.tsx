@@ -26,7 +26,7 @@ function Page() {
 
 const Wrapper = styled.div`
   width: var(--width);
-  margin: var(--header-height) auto;
+  margin: var(--header-height) auto 0;
   user-select: none;
 `;
 
