@@ -29,8 +29,11 @@ function ModalLetterDetail({ onClose, dearCard }: ModalLetterDetailProps) {
    * 비밀번호 확인
    * @returns {boolean}
    */
-  const handlePasswordInput = (): boolean => {
+  const handlePasswordInput = (): boolean | null => {
     const inputPassword = prompt('비밀번호를 입력하세요.');
+
+    // 취소
+    if (inputPassword === null) return null;
 
     if (inputPassword === password) return true;
 
@@ -38,8 +41,13 @@ function ModalLetterDetail({ onClose, dearCard }: ModalLetterDetailProps) {
   };
 
   const deleteButtonClickHandler = () => {
+    const passwordCheckResult = handlePasswordInput();
+
     // 비밀번호 확인
-    if (!handlePasswordInput()) {
+    if (!passwordCheckResult) {
+      // 취소
+      if (passwordCheckResult === null) return;
+
       alert('비밀번호가 다릅니다.');
       return;
     }
