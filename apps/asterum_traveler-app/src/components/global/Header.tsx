@@ -53,7 +53,6 @@ function Header({ scrollTarget }: HeaderProps) {
 
     return () => {
       wrapper?.removeEventListener('scroll', handleScroll);
-      console.log('remove wrapper scroll event');
     };
   }, [scrollTarget]);
 
