@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [
     react(),
     ssr({
-      prerender: false,
+      prerender: true,
     }),
     removeConsole(),
   ],
