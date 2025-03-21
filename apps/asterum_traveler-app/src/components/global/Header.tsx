@@ -60,7 +60,7 @@ function Header({ scrollTarget }: HeaderProps) {
     <Wrapper bgColor={headerBg}>
       <Container>
         <NavButton href="/" aria-label="Go to Landing Page">
-          <Logo src={LogoLarge} height="64" />
+          <Logo src={LogoLarge} height="64" alt="ASTERUM TRAVELER 공식 아이콘" />
         </NavButton>
         <NavButton href="/report" aria-label="Go to Report Page">
           <motion.div
@@ -76,7 +76,7 @@ function Header({ scrollTarget }: HeaderProps) {
             animate={{ clipPath: currentPath === 'report' ? 'circle(100%)' : 'circle(0%)' }}
             transition={{ duration: 0.3 }}
           >
-            <img src={LogoSmall} width={100} height={100} alt="Small Logo" />
+            <img src={LogoSmall} width={100} height={100} alt="ASTERUM TRAVELER 공식 아이콘" />
           </motion.div>
         </NavButton>
         <NavButton href="/schedule" aria-label="Go to Schedule Page">
@@ -93,7 +93,7 @@ function Header({ scrollTarget }: HeaderProps) {
             animate={{ clipPath: currentPath === 'schedule' ? 'circle(100%)' : 'circle(0%)' }}
             transition={{ duration: 0.3 }}
           >
-            <img src={LogoSmall} width={100} height={100} alt="Small Logo" />
+            <img src={LogoSmall} width={100} height={100} alt="ASTERUM TRAVELER 공식 아이콘" />
           </motion.div>
         </NavButton>
 
@@ -111,7 +111,7 @@ function Header({ scrollTarget }: HeaderProps) {
             animate={{ clipPath: currentPath === 'dear' ? 'circle(100%)' : 'circle(0%)' }}
             transition={{ duration: 0.3 }}
           >
-            <img src={LogoSmall} width={100} height={100} alt="Small Logo" />
+            <img src={LogoSmall} width={100} height={100} alt="ASTERUM TRAVELER 공식 아이콘" />
           </motion.div>
         </NavButton>
       </Container>

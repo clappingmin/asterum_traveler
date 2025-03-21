@@ -34,31 +34,43 @@ function Footer() {
           </DeveloperBox>
           <SocialBox>
             <a href="https://vlast.com/" target="_blank" aria-label="Go to vlast">
-              <SocialIcon src={Vlast} height={24} />
+              <SocialIcon src={Vlast} height={24} alt="블래스트 공식 홈페이지로 이동하기 아이콘" />
             </a>
             <a
               href="https://x.com/plave_official"
               target="_blank"
               aria-label="Go to Plave official X"
             >
-              <SocialIcon src={X} height={24} />
+              <SocialIcon src={X} height={24} alt="플레이브 X 공식 페이지로 이동하기 아이콘" />
             </a>
             <a
               href="https://www.youtube.com/@plave_official"
               target="_blank"
               aria-label="Go to Plave official Youtube"
             >
-              <SocialIcon src={Youtube} height={24} />
+              <SocialIcon
+                src={Youtube}
+                height={24}
+                alt="플레이브 공식 유튜브 채널로 이동하기 아이콘"
+              />
             </a>
             <a
               href="https://cafe.daum.net/plave"
               target="_blank"
               aria-label="Go to Plave official Daum Cafe"
             >
-              <SocialIcon src={DaumCafe} height={24} />
+              <SocialIcon
+                src={DaumCafe}
+                height={24}
+                alt="플레이브 공식 다음 팬카페로 이동하기 아이콘"
+              />
             </a>
             <a href="https://weverse.io/plave" target="_blank" aria-label="Go to Plave Weverse">
-              <SocialIcon src={Weverse} height={24} />
+              <SocialIcon
+                src={Weverse}
+                height={24}
+                alt="플레이브 공식 위버스 페이지로 이동하기 아이콘"
+              />
             </a>
           </SocialBox>
         </ContactBox>

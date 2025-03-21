@@ -99,7 +99,7 @@ function ModalWriteLetter({ onClose }: ModalWriteLetterProps) {
     <Wrapper>
       <Header>
         <CloseButton onClick={onClose}>
-          <CloseIcon width={24} height={24} src={icon_close} />
+          <CloseIcon width={24} height={24} src={icon_close} alt="디어 카드 작성 모달 닫기 버튼" />
         </CloseButton>
       </Header>
       <WriteContainer>
@@ -142,10 +142,10 @@ function ModalWriteLetter({ onClose }: ModalWriteLetterProps) {
               // rows={7}
             />
           </EmptyAnimation>
-          <BoxBorderIcon src={icon_box_top_left} />
-          <BoxBorderIcon src={icon_box_top_right} />
-          <BoxBorderIcon src={icon_box_bottom_left} />
-          <BoxBorderIcon src={icon_box_bottom_right} />
+          <BoxBorderIcon src={icon_box_top_left} alt="디어카드 입력창 테두리" />
+          <BoxBorderIcon src={icon_box_top_right} alt="디어카드 입력창 테두리" />
+          <BoxBorderIcon src={icon_box_bottom_left} alt="디어카드 입력창 테두리" />
+          <BoxBorderIcon src={icon_box_bottom_right} alt="디어카드 입력창 테두리" />
         </TextareaBox>
         <motion.div
           animate={
@@ -161,13 +161,15 @@ function ModalWriteLetter({ onClose }: ModalWriteLetterProps) {
                 boxColor={color}
                 data-testid={`cover-color-${color}`}
               >
-                {color === cardCoverColor && <img src={icon_select_color} alt="select-icon" />}
+                {color === cardCoverColor && (
+                  <img src={icon_select_color} alt="디어 카드 커버 스타일 선택 아이콘" />
+                )}
               </ColorBox>
             ))}
           </ColorSelectBox>
         </motion.div>
         <WriteButton onClick={saveDearCard} data-testid="writeButton">
-          <img src={icon_write_letter} />
+          <img src={icon_write_letter} alt="디어 카드 작성 완료하기 버튼" />
         </WriteButton>
       </WriteContainer>
     </Wrapper>

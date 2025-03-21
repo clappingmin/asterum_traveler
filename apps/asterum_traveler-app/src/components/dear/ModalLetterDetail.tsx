@@ -59,10 +59,10 @@ function ModalLetterDetail({ onClose, dearCard }: ModalLetterDetailProps) {
     <Wrapper>
       <Header>
         <HeaderButton onClick={deleteButtonClickHandler}>
-          <HeaderButtonIcon width={24} height={24} src={img_trash} />
+          <HeaderButtonIcon width={24} height={24} src={img_trash} alt="디어 카드 삭제 버튼" />
         </HeaderButton>
         <HeaderButton onClick={onClose}>
-          <HeaderButtonIcon width={24} height={24} src={icon_close} />
+          <HeaderButtonIcon width={24} height={24} src={icon_close} alt="디어 카드 닫기 버튼" />
         </HeaderButton>
       </Header>
       <ContentContainer>

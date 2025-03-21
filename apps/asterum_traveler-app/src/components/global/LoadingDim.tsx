@@ -9,6 +9,7 @@ function LoadingDim() {
         src={logoIcon}
         animate={{ rotate: 360 }}
         transition={{ repeat: Infinity, duration: 1 }}
+        alt="로딩 중 아이콘"
       />
     </Wrapper>
   );

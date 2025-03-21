@@ -8,7 +8,13 @@ function WriteLetterButton() {
 
   return (
     <>
-      <WritePencil width={1600} height={64} src={pencilImg} onClick={onOpen} />
+      <WritePencil
+        width={1600}
+        height={64}
+        src={pencilImg}
+        onClick={onOpen}
+        alt="플레이브에게 카드 작성 모달 띄우기 버튼"
+      />
       <Modal isOpen={isOpen} onClose={onClose} isCentered closeOnOverlayClick={true}>
         <ModalOverlay />
         <ModalContent>

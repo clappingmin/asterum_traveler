@@ -22,7 +22,7 @@ function PostBox({ report }: PostBoxProps) {
           src={report.reportThumbnail}
           width={388}
           height={388}
-          alt={'리포트 이미지'}
+          alt={'ASTERUM TRAVELER 리포트 썸네일'}
           loading="lazy"
           decoding="async"
           onLoad={() => {

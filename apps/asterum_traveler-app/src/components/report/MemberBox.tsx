@@ -26,7 +26,7 @@ function MemberBox({ member }: MemberBoxProps) {
         width="64"
         height="64"
         src={MEMBER_IMAGE[member]}
-        alt={`${MEMBER_KOREAN_NAME[member]} 이미지`}
+        alt={`플레이브 ${MEMBER_KOREAN_NAME[member]} 이미지`}
       ></MemberImg>
       <NameBox>
         <KoreanName>{MEMBER_KOREAN_NAME[member]}</KoreanName>

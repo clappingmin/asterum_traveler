@@ -10,6 +10,7 @@ import * as api from '@/shared/services/reportService';
 import { sortMembers } from '../../shared/utils';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { MEMBER_KOREAN_NAME } from '@/shared/constants';
 
 const MEMBER_ICON = {
   yejun: yejunIcon,
@@ -48,7 +49,7 @@ function ProductBox({ includedProduct: { productId, members }, onRefetch }: Prod
         width="243"
         height="243"
         src={data?.productThumbnail}
-        alt="제품 이미지"
+        alt={`ASTERUM TRAVELER 리포트 플레이브 제품 썸네일`}
         loading="lazy"
         onLoad={() => setLoaded(true)}
         initial={{ opacity: 0 }}
@@ -65,7 +66,12 @@ function ProductBox({ includedProduct: { productId, members }, onRefetch }: Prod
             (member, index) =>
               members.includes(member) && (
                 <MemberIconBox key={`productMember-${index}-${member}`} data-testid={member}>
-                  <MemberIcon width={28} height={28} src={MEMBER_ICON[member]} />
+                  <MemberIcon
+                    width={28}
+                    height={28}
+                    src={MEMBER_ICON[member]}
+                    alt={`플레이브 ${MEMBER_KOREAN_NAME[member]} 대표 아이콘`}
+                  />
                   {index !== members.length - 1 && <span>,</span>}
                 </MemberIconBox>
               )

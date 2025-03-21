@@ -17,7 +17,12 @@ function Page() {
       <Wrapper>
         <TitleContainer>
           <Title>SCHEDULE</Title>
-          <Bamby width={647} height={562} src={scheduleBambyImg} />
+          <Bamby
+            width={647}
+            height={562}
+            src={scheduleBambyImg}
+            alt="ASTERUM TRAVELER Schedule 페이지 밤비 이미지"
+          />
         </TitleContainer>
         <MonthContainer>
           <Year>{YEAR}</Year>
