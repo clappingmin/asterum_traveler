@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import icon_close from '@/assets/icons/close.svg';
-import img_trash from '@/assets/images/dear/trash.png';
+import img_trash from '@/assets/images/dear/trash.svg';
 import { DearCard } from '@asterum/types';
 import { showSuccessToast, timestampToDisplayDate } from '@/shared/utils';
 import { useMutation } from '@tanstack/react-query';
