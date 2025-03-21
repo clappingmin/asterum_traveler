@@ -16,8 +16,14 @@ function DiscographyBoard() {
       {discography?.map((album) => (
         <CDBox key={album.id}>
           <CD className="cd-img">
-            <CDImg src={album.imageUrl} width={400} height={400} alt={album.albumName} />
-            <CDHole src={cdHole} width={124} height={124} />
+            <CDImg
+              src={album.imageUrl}
+              width={400}
+              height={400}
+              alt={`플레이브 ${album.albumName} 앨범 커버 이미지`}
+              loading="lazy"
+            />
+            <CDHole src={cdHole} width={124} height={124} alt="CD 구멍" />
           </CD>
           <CDInfo className="cd-info" fontSize={album.albumName.length > 10 ? 'small' : 'large'}>
             <span>{album.albumName}</span>

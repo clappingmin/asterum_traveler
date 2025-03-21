@@ -43,7 +43,7 @@ function Page() {
         <Thumbnail
           width="540"
           src={data?.reportThumbnail}
-          alt="리포트 이미지"
+          alt="ASTERUM TRAVELER Report 페이지 이미지 타입 리포트 썸네일"
           onLoad={() => {
             setLoaded(true);
           }}

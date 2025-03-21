@@ -41,6 +41,7 @@ function InfiniteScroll({ parent, fetchFn, isLoaded, isLastPage }: InfiniteScrol
           src={logo}
           animate={{ rotate: 360 }}
           transition={{ repeat: Infinity, duration: 1 }}
+          alt="로딩 중 아이콘"
         />
       )}
     </Target>

@@ -41,7 +41,12 @@ function Card({ dearCard }: CardProps) {
           whileHover={{ rotateY: 180 }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
         >
-          <Cover coverColor={cardCoverColor} src={CARD_IMAGES[cardCoverColor]} />
+          <Cover
+            coverColor={cardCoverColor}
+            src={CARD_IMAGES[cardCoverColor]}
+            alt="카드 커버 이미지"
+            loading="lazy"
+          />
           <MessageContainer onClick={onOpen}>
             <CardTitle>{from}</CardTitle>
             <CardDate>{timestampToDisplayDate(createdAt)}</CardDate>

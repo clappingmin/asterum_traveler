@@ -14,7 +14,7 @@ function CarouselImg({ image }: CarouselImgProps) {
       src={image.imageUrl}
       width={1920}
       height={1080}
-      alt="플레이브 이미지"
+      alt="ASTERUM TRAVELER 슬라이더 이미지"
       onLoad={() => {
         setLoaded(true);
       }}
