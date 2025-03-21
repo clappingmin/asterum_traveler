@@ -21,6 +21,7 @@ function DiscographyBoard() {
               width={400}
               height={400}
               alt={`플레이브 ${album.albumName} 앨범 커버 이미지`}
+              loading="lazy"
             />
             <CDHole src={cdHole} width={124} height={124} alt="CD 구멍" />
           </CD>

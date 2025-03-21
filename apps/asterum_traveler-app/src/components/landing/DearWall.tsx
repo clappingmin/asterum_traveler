@@ -38,8 +38,8 @@ function DearWall() {
             duration: 5,
           }}
         >
-          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" />
-          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
         </BackgroundTxtBox>
         <BackgroundTxtBox
           animate={{
@@ -51,8 +51,8 @@ function DearWall() {
             duration: 8,
           }}
         >
-          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" />
-          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
         </BackgroundTxtBox>
         <BackgroundTxtBox
           animate={{
@@ -64,8 +64,8 @@ function DearWall() {
             duration: 6,
           }}
         >
-          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" />
-          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
         </BackgroundTxtBox>
         <BackgroundTxtBox
           animate={{
@@ -77,8 +77,8 @@ function DearWall() {
             duration: 10,
           }}
         >
-          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" />
-          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
         </BackgroundTxtBox>
         <BackgroundTxtBox
           animate={{
@@ -90,8 +90,8 @@ function DearWall() {
             duration: 4,
           }}
         >
-          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" />
-          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
         </BackgroundTxtBox>
         <BackgroundTxtBox
           animate={{
@@ -103,8 +103,8 @@ function DearWall() {
             duration: 12,
           }}
         >
-          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" />
-          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
         </BackgroundTxtBox>
       </Background>
       <Sticker

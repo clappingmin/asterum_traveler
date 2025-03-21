@@ -45,6 +45,7 @@ function Card({ dearCard }: CardProps) {
             coverColor={cardCoverColor}
             src={CARD_IMAGES[cardCoverColor]}
             alt="카드 커버 이미지"
+            loading="lazy"
           />
           <MessageContainer onClick={onOpen}>
             <CardTitle>{from}</CardTitle>
