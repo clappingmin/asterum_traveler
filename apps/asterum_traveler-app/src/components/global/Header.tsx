@@ -59,10 +59,10 @@ function Header({ scrollTarget }: HeaderProps) {
   return (
     <Wrapper bgColor={headerBg}>
       <Container>
-        <NavButton href="/">
+        <NavButton href="/" aria-label="Go to Landing Page">
           <Logo src={LogoLarge} height="64" />
         </NavButton>
-        <NavButton href="/report">
+        <NavButton href="/report" aria-label="Go to Report Page">
           <motion.div
             initial={{ clipPath: 'circle(100%)' }}
             animate={{ clipPath: currentPath === 'report' ? 'circle(0%)' : 'circle(100%)' }}
@@ -79,7 +79,7 @@ function Header({ scrollTarget }: HeaderProps) {
             <img src={LogoSmall} width={100} height={100} alt="Small Logo" />
           </motion.div>
         </NavButton>
-        <NavButton href="/schedule">
+        <NavButton href="/schedule" aria-label="Go to Schedule Page">
           <motion.div
             initial={{ clipPath: 'circle(100%)' }}
             animate={{ clipPath: currentPath === 'schedule' ? 'circle(0%)' : 'circle(100%)' }}
@@ -97,7 +97,7 @@ function Header({ scrollTarget }: HeaderProps) {
           </motion.div>
         </NavButton>
 
-        <NavButton href="/dear">
+        <NavButton href="/dear" aria-label="Go to Dear Page">
           <motion.div
             initial={{ clipPath: 'circle(100%)' }}
             animate={{ clipPath: currentPath === 'dear' ? 'circle(0%)' : 'circle(100%)' }}

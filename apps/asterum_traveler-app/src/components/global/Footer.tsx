@@ -33,19 +33,31 @@ function Footer() {
             </InfoBox>
           </DeveloperBox>
           <SocialBox>
-            <a href="https://vlast.com/" target="_blank">
+            <a href="https://vlast.com/" target="_blank" aria-label="Go to vlast">
               <SocialIcon src={Vlast} height={24} />
             </a>
-            <a href="https://x.com/plave_official" target="_blank">
+            <a
+              href="https://x.com/plave_official"
+              target="_blank"
+              aria-label="Go to Plave official X"
+            >
               <SocialIcon src={X} height={24} />
             </a>
-            <a href="https://www.youtube.com/@plave_official" target="_blank">
+            <a
+              href="https://www.youtube.com/@plave_official"
+              target="_blank"
+              aria-label="Go to Plave official Youtube"
+            >
               <SocialIcon src={Youtube} height={24} />
             </a>
-            <a href="https://cafe.daum.net/plave" target="_blank">
+            <a
+              href="https://cafe.daum.net/plave"
+              target="_blank"
+              aria-label="Go to Plave official Daum Cafe"
+            >
               <SocialIcon src={DaumCafe} height={24} />
             </a>
-            <a href="https://weverse.io/plave" target="_blank">
+            <a href="https://weverse.io/plave" target="_blank" aria-label="Go to Plave Weverse">
               <SocialIcon src={Weverse} height={24} />
             </a>
           </SocialBox>
