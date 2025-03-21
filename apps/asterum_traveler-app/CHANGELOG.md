@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.3](https://github.com/clappingmin/asterum_traveler/compare/app-v2.0.2...app-v2.0.3) (2025-03-21)
+
+
+### Bug Fixes
+
+* 전체 img 태그 alt 추가 ([72ebda9](https://github.com/clappingmin/asterum_traveler/commit/72ebda946e40b06551c51b53001c20d7c0893658))
+* 전체 img 태그 alt 추가 ([0398653](https://github.com/clappingmin/asterum_traveler/commit/039865305620ce4a4aeec4d0ac74784a4e52750e))
+* a 태그 aria-label 추가 ([67a9aad](https://github.com/clappingmin/asterum_traveler/commit/67a9aad81c2347379e8ff7fce51cb82da0ae44af))
+* loading="lazy" 이미지 추가 ([f910e54](https://github.com/clappingmin/asterum_traveler/commit/f910e540b2cbb3fcdfdac35f96b4b52fad8295e9))
+* og 태그 추가 ([b795792](https://github.com/clappingmin/asterum_traveler/commit/b7957927d7418acfddbc818261c0addb196d25f4))
+* png 파일 svg로 변경 ([825a585](https://github.com/clappingmin/asterum_traveler/commit/825a58506ddc9c03700f55e9705db878545b84a7))
+* vercel 빌드 오류 수정 ([ca3d865](https://github.com/clappingmin/asterum_traveler/commit/ca3d8656beb0618827d59f06ebdf6edc610f70fb))
+
 ### [2.0.2](https://github.com/clappingmin/asterum_traveler/compare/app-v2.0.1...app-v2.0.2) (2025-03-19)
 
 
