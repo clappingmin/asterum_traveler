@@ -5245,6 +5245,7 @@ __metadata:
     typescript: "npm:^5.7.2"
     uuid: "npm:^11.0.3"
     vite: "npm:^5.2.0"
+    vite-plugin-remove-console: "npm:^2.2.0"
     vite-plugin-ssr: "npm:0.4.142"
   languageName: unknown
   linkType: soft
@@ -12463,6 +12464,13 @@ __metadata:
     spdx-correct: "npm:^3.0.0"
     spdx-expression-parse: "npm:^3.0.0"
   checksum: 10c0/7b91e455a8de9a0beaa9fe961e536b677da7f48c9a493edf4d4d4a87fd80a7a10267d438723364e432c2fcd00b5650b5378275cded362383ef570276e6312f4f
+  languageName: node
+  linkType: hard
+
+"vite-plugin-remove-console@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "vite-plugin-remove-console@npm:2.2.0"
+  checksum: 10c0/b97e77f68e52196bdae468161103217aaa6325bdb88e59dfd18fbe6ed0e4f8e4487708fb091f8780174b104c03c47cf94e7408fbe1d9360256f45bc35ccde0f7
   languageName: node
   linkType: hard
 

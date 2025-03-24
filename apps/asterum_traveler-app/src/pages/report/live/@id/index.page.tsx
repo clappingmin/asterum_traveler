@@ -45,7 +45,7 @@ function Page() {
             src={data?.reportThumbnail}
             width={960}
             height={540}
-            alt="라이브 이미지"
+            alt="ASTERUM TRAVELER Report 페이지 라이브 타입 리포트 썸네일"
             onLoad={() => {
               setLoaded(true);
             }}

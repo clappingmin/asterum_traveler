@@ -13,7 +13,12 @@ function Page() {
     <Wrapper>
       <TitleContainer>
         <Title>REPORT</Title>
-        <Yejun width={863} height={543} src={reportYejunImg} />
+        <Yejun
+          width={863}
+          height={543}
+          src={reportYejunImg}
+          alt="ASTERUM TRAVELER Report 페이지 예준 이미지"
+        />
       </TitleContainer>
       <TabContainer>
         <Tabs>

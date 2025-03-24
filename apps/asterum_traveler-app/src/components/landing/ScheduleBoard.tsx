@@ -83,7 +83,7 @@ function ScheduleBoard() {
             ))}
           </tr>
         </ScheduleBoxs>
-        <BoardIcon src={boardIcon} />
+        <BoardIcon src={boardIcon} alt="ASTERUM TRAVELER 스케줄 보드 아이콘" />
       </ScheduleTable>
     </Wrapper>
   );

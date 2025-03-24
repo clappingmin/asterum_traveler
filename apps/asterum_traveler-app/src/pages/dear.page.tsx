@@ -12,7 +12,12 @@ function Page() {
     <Wrapper>
       <TitleContainer>
         <Title>DEAR.</Title>
-        <Noah width={700} height={524} src={dearNoahImg} />
+        <Noah
+          width={700}
+          height={524}
+          src={dearNoahImg}
+          alt="ASTERUM TRAVELER Dear 페이지 노아 이미지"
+        />
       </TitleContainer>
       <WriteButtonWrapper>
         <WriteLetterButton />

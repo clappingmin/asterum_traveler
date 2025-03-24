@@ -53,17 +53,16 @@ function Header({ scrollTarget }: HeaderProps) {
 
     return () => {
       wrapper?.removeEventListener('scroll', handleScroll);
-      console.log('remove wrapper scroll event');
     };
   }, [scrollTarget]);
 
   return (
     <Wrapper bgColor={headerBg}>
       <Container>
-        <NavButton href="/">
-          <Logo src={LogoLarge} height="64" />
+        <NavButton href="/" aria-label="Go to Landing Page">
+          <Logo src={LogoLarge} height="64" alt="ASTERUM TRAVELER 공식 아이콘" />
         </NavButton>
-        <NavButton href="/report">
+        <NavButton href="/report" aria-label="Go to Report Page">
           <motion.div
             initial={{ clipPath: 'circle(100%)' }}
             animate={{ clipPath: currentPath === 'report' ? 'circle(0%)' : 'circle(100%)' }}
@@ -77,10 +76,10 @@ function Header({ scrollTarget }: HeaderProps) {
             animate={{ clipPath: currentPath === 'report' ? 'circle(100%)' : 'circle(0%)' }}
             transition={{ duration: 0.3 }}
           >
-            <img src={LogoSmall} width={100} height={100} alt="Small Logo" />
+            <img src={LogoSmall} width={100} height={100} alt="ASTERUM TRAVELER 공식 아이콘" />
           </motion.div>
         </NavButton>
-        <NavButton href="/schedule">
+        <NavButton href="/schedule" aria-label="Go to Schedule Page">
           <motion.div
             initial={{ clipPath: 'circle(100%)' }}
             animate={{ clipPath: currentPath === 'schedule' ? 'circle(0%)' : 'circle(100%)' }}
@@ -94,11 +93,11 @@ function Header({ scrollTarget }: HeaderProps) {
             animate={{ clipPath: currentPath === 'schedule' ? 'circle(100%)' : 'circle(0%)' }}
             transition={{ duration: 0.3 }}
           >
-            <img src={LogoSmall} width={100} height={100} alt="Small Logo" />
+            <img src={LogoSmall} width={100} height={100} alt="ASTERUM TRAVELER 공식 아이콘" />
           </motion.div>
         </NavButton>
 
-        <NavButton href="/dear">
+        <NavButton href="/dear" aria-label="Go to Dear Page">
           <motion.div
             initial={{ clipPath: 'circle(100%)' }}
             animate={{ clipPath: currentPath === 'dear' ? 'circle(0%)' : 'circle(100%)' }}
@@ -112,7 +111,7 @@ function Header({ scrollTarget }: HeaderProps) {
             animate={{ clipPath: currentPath === 'dear' ? 'circle(100%)' : 'circle(0%)' }}
             transition={{ duration: 0.3 }}
           >
-            <img src={LogoSmall} width={100} height={100} alt="Small Logo" />
+            <img src={LogoSmall} width={100} height={100} alt="ASTERUM TRAVELER 공식 아이콘" />
           </motion.div>
         </NavButton>
       </Container>

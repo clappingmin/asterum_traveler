@@ -38,8 +38,8 @@ function DearWall() {
             duration: 5,
           }}
         >
-          <img src={dearBackground1} />
-          <img src={dearBackground1} />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
         </BackgroundTxtBox>
         <BackgroundTxtBox
           animate={{
@@ -51,8 +51,8 @@ function DearWall() {
             duration: 8,
           }}
         >
-          <img src={dearBackground1} />
-          <img src={dearBackground1} />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
         </BackgroundTxtBox>
         <BackgroundTxtBox
           animate={{
@@ -64,8 +64,8 @@ function DearWall() {
             duration: 6,
           }}
         >
-          <img src={dearBackground1} />
-          <img src={dearBackground1} />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
         </BackgroundTxtBox>
         <BackgroundTxtBox
           animate={{
@@ -77,8 +77,8 @@ function DearWall() {
             duration: 10,
           }}
         >
-          <img src={dearBackground1} />
-          <img src={dearBackground1} />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
         </BackgroundTxtBox>
         <BackgroundTxtBox
           animate={{
@@ -90,8 +90,8 @@ function DearWall() {
             duration: 4,
           }}
         >
-          <img src={dearBackground1} />
-          <img src={dearBackground1} />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
         </BackgroundTxtBox>
         <BackgroundTxtBox
           animate={{
@@ -103,13 +103,34 @@ function DearWall() {
             duration: 12,
           }}
         >
-          <img src={dearBackground1} />
-          <img src={dearBackground1} />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
+          <img src={dearBackground1} alt="ASTERUM TRAVELER 디어 배경" loading="lazy" />
         </BackgroundTxtBox>
       </Background>
-      <Sticker src={sticker1} width={207} height={145} top={839} right={281} />
-      <Sticker src={sticker2} width={160} height={160} top={313} right={270} />
-      <Sticker src={sticker3} width={200} height={140} top={488} left={151} />
+      <Sticker
+        src={sticker1}
+        width={207}
+        height={145}
+        top={839}
+        right={281}
+        alt="ASTERUM TRAVELER 디어 스티커"
+      />
+      <Sticker
+        src={sticker2}
+        width={160}
+        height={160}
+        top={313}
+        right={270}
+        alt="ASTERUM TRAVELER 디어 스티커"
+      />
+      <Sticker
+        src={sticker3}
+        width={200}
+        height={140}
+        top={488}
+        left={151}
+        alt="ASTERUM TRAVELER 디어 스티커"
+      />
       <Sticker
         src={sticker4}
         width={187}
@@ -117,10 +138,32 @@ function DearWall() {
         top={133}
         right={475}
         transform="rotate(13.756deg)"
+        alt="ASTERUM TRAVELER 디어 스티커"
       />
-      <Sticker src={sticker5} width={133} height={133} top={705} right={105} />
-      <Sticker src={sticker6} width={100} height={100} top={890} left={359} />
-      <Sticker src={sticker7} width={184} height={184} top={501} left={819} />
+      <Sticker
+        src={sticker5}
+        width={133}
+        height={133}
+        top={705}
+        right={105}
+        alt="ASTERUM TRAVELER 디어 스티커"
+      />
+      <Sticker
+        src={sticker6}
+        width={100}
+        height={100}
+        top={890}
+        left={359}
+        alt="ASTERUM TRAVELER 디어 스티커"
+      />
+      <Sticker
+        src={sticker7}
+        width={184}
+        height={184}
+        top={501}
+        left={819}
+        alt="ASTERUM TRAVELER 디어 스티커"
+      />
       <Sticker
         src={sticker8}
         width={166}
@@ -128,6 +171,7 @@ function DearWall() {
         top={726}
         left={192}
         transform="rotate(38.575deg)"
+        alt="ASTERUM TRAVELER 디어 스티커"
       />
       <Sticker
         src={sticker9}
@@ -136,9 +180,24 @@ function DearWall() {
         top={794}
         right={608}
         transform="rotate(7.268deg)"
+        alt="ASTERUM TRAVELER 디어 스티커"
       />
-      <Sticker src={sticker10} width={206} height={199} top={58} right={156} />
-      <Sticker src={sticker11} width={122} height={115} top={87} right={674} />
+      <Sticker
+        src={sticker10}
+        width={206}
+        height={199}
+        top={58}
+        right={156}
+        alt="ASTERUM TRAVELER 디어 스티커"
+      />
+      <Sticker
+        src={sticker11}
+        width={122}
+        height={115}
+        top={87}
+        right={674}
+        alt="ASTERUM TRAVELER 디어 스티커"
+      />
 
       {/* 디어 메시지 보여주는 보드 */}
       <DearBoard background={dearBoard1} width={800} height={400} top={71} left={230}>
