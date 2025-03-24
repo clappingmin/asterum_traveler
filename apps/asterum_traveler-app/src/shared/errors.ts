@@ -66,7 +66,7 @@ export const ERROR_NO_DATA = 'No data available';
  */
 export const sendMessageToSlack = async (error: unknown) => {
   try {
-    const functionURL = import.meta.env.VITE_FIREBASE_FUNCTION_SEND_TO_SLACK_URL;
+    const functionURL = `${import.meta.env.VITE_FIREBASE_FUNCTION_URL}/slack`;
 
     const message =
       error instanceof ApiError ? error.convertSlackMessage() : unknownErrorToSlackMessage(error);
