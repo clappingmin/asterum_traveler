@@ -1,6 +1,6 @@
 # ASTERUM TRAVELER
 
-_PLAVE 팬을 위한 감성 팬페이지 아카이브 웹앱_
+_PLAVE 팬을 위한 팬페이지 아카이브 웹앱_
 
 ---
 
