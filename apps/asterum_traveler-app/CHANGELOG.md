@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.4](https://github.com/clappingmin/asterum_traveler/compare/app-v2.0.3...app-v2.0.4) (2025-04-21)
+
+
+### Bug Fixes
+
+* 리포트 페이지(스크롤 없는 페이지)에서 ui 깨짐 수정 ([0757a73](https://github.com/clappingmin/asterum_traveler/commit/0757a733ed942eb0a5ad52511491ed0359d8d46a))
+
 ### [2.0.3](https://github.com/clappingmin/asterum_traveler/compare/app-v2.0.2...app-v2.0.3) (2025-03-21)
 
 
