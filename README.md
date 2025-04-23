@@ -40,18 +40,25 @@ _PLAVE 팬을 위한 팬페이지 아카이브 웹앱_
 <img src="https://img.shields.io/badge/yarn-2C8EBB?style=flat-square&logo=yarn&logoColor=white"/> <img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=Typescript&logoColor=white"/> <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/> <img src="https://img.shields.io/badge/React Query-FF4154?style=flat-square&logo=reactquery&logoColor=white"/> <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=Vite&logoColor=white"/> <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=Vercel&logoColor=white"/> <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black"/> <img src="https://img.shields.io/badge/styled components-DB7093?style=flat-square&logo=styled-components&logoColor=white"/> <img src="https://img.shields.io/badge/Jest-C21325?style=flat-square&logo=Jest&logoColor=white"/> <img src="https://img.shields.io/badge/Slack-4A154B?style=flat-square&logo=slack&logoColor=white"/> <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=white"/>
 
 
-## 주요 기능
+## 기능
 
-- PLAVE 멤버 활동 기록 추가 및 조회 기능 구현
-- React Calendar를 활용한 PLAVE 스케줄 추가 및 조회 기능 구현
-- PLAVE 멤버에게 메시지를 남길 수 있는 Dear 페이지 기능 구현
-- Firebase Firestore를 데이터베이스로 활용하여 주요 기능의 데이터 저장 및 관리 구현
-- Yarn Workspaces 기반 모노레포로 App/Admin 분리 관리
-- Framer Motion 기반의 인터랙션 및 애니메이션 적용
-- Jest를 활용한 주요 컴포넌트 단위 테스트 작성
-- Firebase Functions를 활용해 에러 발생 시 Slack Webhook으로 알림 전송
-- vite-plugin-ssr을 활용한 페이지별 meta 태그 동적 설정 및 SEO 최적화 대응
+### 주요 기능 (사용자 흐름 기준)
 
+- PLAVE 멤버 라이브 or 이미지를 기준으로 사용한 제품 조회 
+- React Calendar 기반으로 팬 일정(Schedule)을 등록 및 조회
+- 팬이 Dear 페이지에 메시지를 작성
+- 모든 기능은 Firebase Firestore를 기반으로 실시간 저장 및 관리
+
+### 기술적 구현
+
+- Yarn Workspaces 기반의 모노레포 구성으로 App/Admin 분리
+- Firebase Firestore를 데이터베이스로 사용하여 실시간 데이터 관리
+- vite-plugin-ssr을 도입해 페이지별 meta 태그 SSR 구성 및 SEO 최적화 대응
+- Firebase Functions + Slack Webhook으로 실시간 에러 모니터링 구축
+- Framer Motion을 통한 UI 애니메이션 및 전환 효과 적용
+- Jest 기반 주요 컴포넌트 단위 테스트 작성
+
+---
 
 ## [기술적 고민 & 트러블슈팅](https://github.com/clappingmin/asterum_traveler/wiki)
 
