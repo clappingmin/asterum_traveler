@@ -42,13 +42,14 @@ _PLAVE 팬을 위한 팬페이지 아카이브 웹앱_
 
 ---
 
-## [기술적 고민 & 트러블슈팅](https://github.com/clappingmin/asterum_traveler.wiki.git)
+## [기술적 고민 & 트러블슈팅](https://github.com/clappingmin/asterum_traveler/wiki)
 
-- [모노레포와 Yarn Workspaces를 선택한 이유](https://github.com/clappingmin/asterum_traveler/wiki/%EB%AA%A8%EB%85%B8%EB%A0%88%ED%8F%AC%EC%99%80-Yarn-Workspaces%EB%A5%BC-%EC%84%A0%ED%83%9D%ED%95%9C-%EC%9D%B4%EC%9C%A0)
-- [SEO 대응을 위한 vite-plugin-ssr 도입](https://github.com/clappingmin/asterum_traveler/wiki/SEO-%EB%8C%80%EC%9D%91%EC%9D%84-%EC%9C%84%ED%95%9C-vite-plugin-ssr-%EB%8F%84%EC%9E%85)
-- [Vercel 배포 환경에서 vite-plugin-ssr 적용 시 404 오류 해결 과정](https://github.com/clappingmin/asterum_traveler/wiki/Vercel-%EB%B0%B0%ED%8F%AC-%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C-vite%E2%80%90plugin%E2%80%90ssr-%EC%A0%81%EC%9A%A9-%EC%8B%9C-404-%EC%98%A4%EB%A5%98-%ED%95%B4%EA%B2%B0-%EA%B3%BC%EC%A0%95)
-- [모바일 대응을 위한 화면 크기 감지 및 Zoom 기반 대응 전략](https://github.com/clappingmin/asterum_traveler/wiki/%EB%AA%A8%EB%B0%94%EC%9D%BC-%EB%8C%80%EC%9D%91%EC%9D%84-%EC%9C%84%ED%95%9C-%ED%99%94%EB%A9%B4-%ED%81%AC%EA%B8%B0-%EA%B0%90%EC%A7%80-%EB%B0%8F-Zoom-%EA%B8%B0%EB%B0%98-%EC%A0%84%EB%9E%B5)
 - [Firebase Functions와 Slack Webhook을 활용한 에러 알림 시스템 구축](https://github.com/clappingmin/asterum_traveler/wiki/Firebase-Functions%EC%99%80-Slack-Webhook%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%97%90%EB%9F%AC-%EC%95%8C%EB%A6%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B5%AC%EC%B6%95)
+- [SEO 대응을 위한 vite-plugin-ssr 도입](https://github.com/clappingmin/asterum_traveler/wiki/SEO-%EB%8C%80%EC%9D%91%EC%9D%84-%EC%9C%84%ED%95%9C-vite%E2%80%90plugin%E2%80%90ssr-%EB%8F%84%EC%9E%85)
+- [Vercel 배포 환경에서 vite-plugin-ssr 적용 시 404 오류 해결 과정](https://github.com/clappingmin/asterum_traveler/wiki/Vercel-%EB%B0%B0%ED%8F%AC-%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C-vite%E2%80%90plugin%E2%80%90ssr-%EC%A0%81%EC%9A%A9-%EC%8B%9C-404-%EC%98%A4%EB%A5%98-%ED%95%B4%EA%B2%B0-%EA%B3%BC%EC%A0%95)
+- [모노레포와 Yarn Workspaces를 선택한 이유](https://github.com/clappingmin/asterum_traveler/wiki/%EB%AA%A8%EB%85%B8%EB%A0%88%ED%8F%AC%EC%99%80-Yarn-Workspaces%EB%A5%BC-%EC%84%A0%ED%83%9D%ED%95%9C-%EC%9D%B4%EC%9C%A0)
+- [모바일 대응을 위한 화면 크기 감지 및 Zoom 기반 대응 전략](https://github.com/clappingmin/asterum_traveler/wiki/%EB%AA%A8%EB%B0%94%EC%9D%BC-%EB%8C%80%EC%9D%91%EC%9D%84-%EC%9C%84%ED%95%9C-%ED%99%94%EB%A9%B4-%ED%81%AC%EA%B8%B0-%EA%B0%90%EC%A7%80-%EB%B0%8F-Zoom-%EA%B8%B0%EB%B0%98-%EC%A0%84%EB%9E%B5)
+
 
 ---
 
