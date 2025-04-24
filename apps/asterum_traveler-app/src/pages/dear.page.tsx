@@ -6,7 +6,7 @@ import FetchErrorBoundary from '@/components/global/error/FetchErrorBoundary';
 import { useState } from 'react';
 
 function Page() {
-  const [refetchFn, setRefetchFn] = useState<(() => Promise<any>) | null>(null);
+  const [refetchFn, setRefetchFn] = useState<(() => Promise<unknown>) | null>(null);
 
   return (
     <Wrapper>
