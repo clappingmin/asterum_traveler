@@ -10,11 +10,11 @@ import LoadingDim from '@/components/global/LoadingDim';
 
 interface ReportListViewProps {
   category: ReportCategory | 'all';
-  onRefetch?: (fn: () => Promise<any>) => void;
+  onRefetch?: (fn: () => Promise<unknown>) => void;
 }
 
 function ReportListView({ category, onRefetch }: ReportListViewProps) {
-  const [postListHeight, _setPostListHeight] = useState<number>(getListMinHeight());
+  const [postListHeight] = useState(() => getListMinHeight());
 
   const {
     data,
@@ -54,7 +54,7 @@ function ReportListView({ category, onRefetch }: ReportListViewProps) {
       <InfiniteScroll
         fetchFn={fetchNextPage}
         isLoaded={isFetchingNextPage}
-        isLastPage={!!!hasNextPage}
+        isLastPage={!hasNextPage}
       />
     </>
   );

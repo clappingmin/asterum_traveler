@@ -6,14 +6,15 @@ import icon_box_bottom_left from '@/assets/icons/box_bottom_left.svg';
 import icon_box_bottom_right from '@/assets/icons/box_bottom_right.svg';
 import icon_write_letter from '@/assets/images/dear/write_letter.svg';
 import icon_select_color from '@/assets/icons/select_color.svg';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { CardCoverColor, DearCardBase } from '@asterum/types';
 import { useMutation } from '@tanstack/react-query';
 import * as api from '@/shared/services/dearService';
 import { queryClient } from '@/renderer/PageShell';
 import { motion } from 'framer-motion';
 import { CardInputs } from '@/shared/interfaces/common.interface';
-import { showSuccessToast } from '@/shared/utils';
+import { showErrorToast, showSuccessToast } from '@/shared/utils';
+import { sendMessageToSlack } from '@/shared/errors';
 
 const CARD_COVER_COLORS: CardCoverColor[] = [
   'pink',
@@ -47,6 +48,10 @@ function ModalWriteLetter({ onClose }: ModalWriteLetterProps) {
       showSuccessToast('카드가 추가되었습니다.');
       onClose();
     },
+    onError: (error: unknown) => {
+      showErrorToast('카드 저장 중 오류가 발생했습니다.');
+      sendMessageToSlack(error);
+    },
   });
 
   /**
@@ -60,20 +65,30 @@ function ModalWriteLetter({ onClose }: ModalWriteLetterProps) {
   };
 
   /**
+   * 카드 입력창 비었는지 확인
+   * @return {Set<CardInputs>}
+   */
+  const validateInputs = (): Set<CardInputs> => {
+    const newEmpties = new Set<CardInputs>();
+
+    !from && newEmpties.add('from');
+    !password && newEmpties.add('password');
+    !content && newEmpties.add('content');
+    !cardCoverColor && newEmpties.add('cardCoverColor');
+
+    return newEmpties;
+  };
+
+  /**
    * 카드 추가하기
    * @return {void}
    */
   const saveDearCard = (): void => {
+    const missing = validateInputs();
+
     // 카드 인풋이 비었을 때
-    if (!from || !password || !content || !cardCoverColor) {
-      const newEmpties = new Set<CardInputs>();
-
-      !!!from && newEmpties.add('from');
-      !!!password && newEmpties.add('password');
-      !!!content && newEmpties.add('content');
-      !!!cardCoverColor && newEmpties.add('cardCoverColor');
-
-      setEmpties(() => newEmpties);
+    if (missing.size) {
+      setEmpties(missing);
       setShakeTrigger(true);
 
       setTimeout(() => {
@@ -87,13 +102,23 @@ function ModalWriteLetter({ onClose }: ModalWriteLetterProps) {
       from,
       password,
       content,
-      cardCoverColor,
+      cardCoverColor: cardCoverColor as CardCoverColor,
     };
 
     addDearCard.mutate(saveData);
 
     return;
   };
+
+  const ShakeIfEmpty = ({ children, isEmpty }: { children: ReactNode; isEmpty: boolean }) => (
+    <EmptyAnimation
+      animate={isEmpty && shakeTrigger ? { x: [-10, 10, -10, 10, 0] } : {}}
+      transition={{ duration: 0.2 }}
+      className={isEmpty ? 'warning' : 'normal'}
+    >
+      {children}
+    </EmptyAnimation>
+  );
 
   return (
     <Wrapper>
@@ -104,70 +129,66 @@ function ModalWriteLetter({ onClose }: ModalWriteLetterProps) {
       </Header>
       <WriteContainer>
         <WriterContainer>
-          <EmptyAnimation
-            animate={empties.has('from') && shakeTrigger ? { x: [-10, 10, -10, 10, 0] } : {}}
-            transition={{ duration: 0.2 }}
-            className={empties.has('from') ? 'warning' : 'normal'}
-          >
-            <WriterInfoInput
-              placeholder="From"
-              value={from}
-              onChange={(e) => setFrom(e.target.value)}
-            />
-          </EmptyAnimation>
-          <EmptyAnimation
-            animate={empties.has('password') && shakeTrigger ? { x: [-10, 10, -10, 10, 0] } : {}}
-            transition={{ duration: 0.2 }}
-            className={empties.has('password') ? 'warning' : 'normal'}
-          >
-            <WriterInfoInput
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </EmptyAnimation>
+          {ShakeIfEmpty({
+            children: (
+              <WriterInfoInput
+                placeholder="From"
+                value={from}
+                onChange={(e) => setFrom(e.target.value)}
+              />
+            ),
+            isEmpty: empties.has('from'),
+          })}
+          {ShakeIfEmpty({
+            children: (
+              <WriterInfoInput
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            ),
+            isEmpty: empties.has('password'),
+          })}
         </WriterContainer>
         <TextareaBox>
-          <EmptyAnimation
-            animate={empties.has('content') && shakeTrigger ? { x: [-10, 10, -10, 10, 0] } : {}}
-            transition={{ duration: 0.2 }}
-            className={empties.has('content') ? 'warning' : 'normal'}
-          >
-            <LetterTextarea
-              placeholder="Dear,"
-              maxLength={100}
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              // cols={47}
-              // rows={7}
-            />
-          </EmptyAnimation>
+          {ShakeIfEmpty({
+            children: (
+              <LetterTextarea
+                placeholder="Dear,"
+                maxLength={100}
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                // cols={47}
+                // rows={7}
+              />
+            ),
+            isEmpty: empties.has('content'),
+          })}
           <BoxBorderIcon src={icon_box_top_left} alt="디어카드 입력창 테두리" />
           <BoxBorderIcon src={icon_box_top_right} alt="디어카드 입력창 테두리" />
           <BoxBorderIcon src={icon_box_bottom_left} alt="디어카드 입력창 테두리" />
           <BoxBorderIcon src={icon_box_bottom_right} alt="디어카드 입력창 테두리" />
         </TextareaBox>
-        <motion.div
-          animate={
-            empties.has('cardCoverColor') && shakeTrigger ? { x: [-10, 10, -10, 10, 0] } : {}
-          }
-          transition={{ duration: 0.2 }}
-        >
-          <ColorSelectBox onClick={changeCardCoverColor}>
-            {CARD_COVER_COLORS.map((color) => (
-              <ColorBox
-                key={`card-cover-${color}`}
-                data-color={color}
-                boxColor={color}
-                data-testid={`cover-color-${color}`}
-              >
-                {color === cardCoverColor && (
-                  <img src={icon_select_color} alt="디어 카드 커버 스타일 선택 아이콘" />
-                )}
-              </ColorBox>
-            ))}
-          </ColorSelectBox>
-        </motion.div>
+
+        {ShakeIfEmpty({
+          children: (
+            <ColorSelectBox onClick={changeCardCoverColor}>
+              {CARD_COVER_COLORS.map((color) => (
+                <ColorBox
+                  key={`card-cover-${color}`}
+                  data-color={color}
+                  boxColor={color}
+                  data-testid={`cover-color-${color}`}
+                >
+                  {color === cardCoverColor && (
+                    <img src={icon_select_color} alt="디어 카드 커버 스타일 선택 아이콘" />
+                  )}
+                </ColorBox>
+              ))}
+            </ColorSelectBox>
+          ),
+          isEmpty: empties.has('cardCoverColor'),
+        })}
         <WriteButton onClick={saveDearCard} data-testid="writeButton">
           <img src={icon_write_letter} alt="디어 카드 작성 완료하기 버튼" />
         </WriteButton>

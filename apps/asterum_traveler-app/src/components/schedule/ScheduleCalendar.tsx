@@ -13,7 +13,7 @@ const YEAR = TODAY.getFullYear();
 
 interface ScheduleCalendarProps {
   month: number;
-  onRefetch?: (fn: () => Promise<any>) => void;
+  onRefetch?: (fn: () => Promise<unknown>) => void;
 }
 
 function ScheduleCalendar({ month, onRefetch }: ScheduleCalendarProps) {
@@ -51,11 +51,10 @@ function ScheduleCalendar({ month, onRefetch }: ScheduleCalendarProps) {
     const day = new Date(date).getDate();
     const month = new Date(date).getMonth() + 1;
 
-    const dateSchedules: Schedule[] = data
-      ? data?.filter(
-          (schedule: Schedule) => schedule.schedule_day === day && schedule.schedule_month === month
-        )
-      : [];
+    const dateSchedules: Schedule[] =
+      data?.filter(
+        (schedule: Schedule) => schedule.schedule_day === day && schedule.schedule_month === month
+      ) || [];
 
     return (
       <DayScheduleBox data-testid={`schedule-${month}-${day}`}>

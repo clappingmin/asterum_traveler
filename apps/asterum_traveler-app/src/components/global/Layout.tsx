@@ -1,11 +1,12 @@
-import "reset-css";
-import "@/styles/global.css";
-import { ReactNode, useEffect, useRef } from "react";
-import styled from "styled-components";
-import Header from "@/components/global/Header";
-import Footer from "@/components/global/Footer";
-import { ChakraProvider } from "@chakra-ui/react";
-import { theme } from "@asterum/ui";
+import 'reset-css';
+import '@/styles/global.css';
+import { ReactNode, useEffect, useRef } from 'react';
+import styled from 'styled-components';
+import Header from '@/components/global/Header';
+import Footer from '@/components/global/Footer';
+import { ChakraProvider } from '@chakra-ui/react';
+import { theme } from '@asterum/ui';
+import debounce from 'lodash/debounce';
 
 /**
  * 화면 크기가 변경됐을 때
@@ -21,9 +22,7 @@ const handleResize = (wrapperRef: React.RefObject<HTMLDivElement>) => {
 
   pageWrapper.style.zoom = String(zoomSize);
   pageWrapper.style.height =
-    pageWrapper.clientWidth === 1920 && isMobile
-      ? "100vh"
-      : `calc(100vh * ${revertSize})`;
+    pageWrapper.clientWidth === 1920 && isMobile ? '100vh' : `calc(100vh * ${revertSize})`;
 };
 
 interface LayoutProps {
@@ -35,11 +34,11 @@ function Layout({ children }: LayoutProps) {
 
   useEffect(() => {
     handleResize(wrapperRef);
-    const handleResizeEvent = () => handleResize(wrapperRef);
-    window.addEventListener("resize", handleResizeEvent);
+    const handleResizeEvent = debounce(() => handleResize(wrapperRef), 200);
+    window.addEventListener('resize', handleResizeEvent);
 
     return () => {
-      window.removeEventListener("resize", handleResizeEvent);
+      window.removeEventListener('resize', handleResizeEvent);
     };
   }, []);
 

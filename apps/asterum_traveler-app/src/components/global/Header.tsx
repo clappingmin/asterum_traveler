@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import LogoLarge from '@/assets/images/logos/logo_large.svg';
 import LogoSmall from '@/assets/images/logos/logo_small.svg';
-import { RefObject, useEffect, useState } from 'react';
+import React, { RefObject, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { HeaderBg } from '@/shared/interfaces/common.interface';
 import { usePageContext } from '@/renderer/usePageContext';
@@ -169,4 +169,4 @@ const NavButton = styled(Link)`
   }
 `;
 
-export default Header;
+export default React.memo(Header);

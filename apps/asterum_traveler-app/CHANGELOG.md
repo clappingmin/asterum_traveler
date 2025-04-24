@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.6](https://github.com/clappingmin/asterum_traveler/compare/app-v2.0.5...app-v2.0.6) (2025-04-24)
+
+
+### Bug Fixes
+
+* lodash commonJs 오류 수정 ([1c6ba9e](https://github.com/clappingmin/asterum_traveler/commit/1c6ba9ec843b45de0748bdfb4186afa9f9ff17dc))
+
 ### [2.0.5](https://github.com/clappingmin/asterum_traveler/compare/app-v2.0.4...app-v2.0.5) (2025-04-23)
 
 ### [2.0.4](https://github.com/clappingmin/asterum_traveler/compare/app-v2.0.3...app-v2.0.4) (2025-04-21)

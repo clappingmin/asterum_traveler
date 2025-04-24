@@ -14,7 +14,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { Product, Report } from '@asterum/types';
-import { getRowCountForInfiniteScroll } from '../utils';
+import { getErrorMessage, getRowCountForInfiniteScroll } from '../utils';
 import { InfiniteQueryEmptyReturn } from '../constants';
 import { ApiError, ERROR_NO_DATA } from '../errors';
 
@@ -36,7 +36,11 @@ export async function getReportsByCategory({
 
     let q =
       category === 'all'
-        ? query(reportsRef, orderBy('reportDateUsage', 'desc'), limit(PAGE_COUNT))
+        ? query(
+            reportsRef,
+            orderBy('reportDateUsage', 'desc'),
+            limit(PAGE_COUNT)
+          )
         : query(
             reportsRef,
             where('category', 'array-contains', category),
@@ -71,8 +75,8 @@ export async function getReportsByCategory({
     });
 
     return { data: reports, lastVisible };
-  } catch (e: any) {
-    return Promise.reject(new ApiError(e, 'getReportsByCategory', true));
+  } catch (e: unknown) {
+    throw new ApiError(getErrorMessage(e), 'getReportsByCategory', true);
   }
 }
 
@@ -83,8 +87,8 @@ export async function getReportById(reportId: string): Promise<Report> {
 
     if (docSnap.exists()) return docSnap.data() as Report;
     else throw new Error(ERROR_NO_DATA);
-  } catch (e: any) {
-    return Promise.reject(new ApiError(e, 'getReportById', false));
+  } catch (e: unknown) {
+    throw new ApiError(getErrorMessage(e), 'getReportById', false);
   }
 }
 
@@ -100,7 +104,12 @@ export async function getProdcutById(productId: string): Promise<Product> {
 
     if (docSnap.exists()) return docSnap.data() as Product;
     else throw new Error(ERROR_NO_DATA);
-  } catch (e: any) {
-    return Promise.reject(new ApiError(e, 'getProdcutById', e.message !== ERROR_NO_DATA));
+  } catch (e: unknown) {
+    const errorMessage = getErrorMessage(e);
+    throw new ApiError(
+      errorMessage,
+      'getProdcutById',
+      errorMessage !== ERROR_NO_DATA
+    );
   }
 }
