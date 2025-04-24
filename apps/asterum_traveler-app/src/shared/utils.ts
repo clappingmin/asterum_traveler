@@ -65,7 +65,9 @@ export const getListMinHeight = (cellHeight: number = 388): number => {
 
 const { toast } = createStandaloneToast();
 
-export function showSuccessToast(message: string = '요청이 성공적으로 처리되었습니다.') {
+export function showSuccessToast(
+  message: string = '요청이 성공적으로 처리되었습니다.'
+) {
   toast({
     description: message,
     status: 'success',
@@ -77,4 +79,8 @@ export function showSuccessToast(message: string = '요청이 성공적으로 �
 export function goToNotFound() {
   if (typeof window !== 'undefined') window.location.href = '/_error';
   return;
+}
+
+export function getErrorMessage(e: unknown): string {
+  return e instanceof Error ? e.message : String(e);
 }

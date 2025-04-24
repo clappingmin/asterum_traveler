@@ -15,7 +15,7 @@ import {
 } from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
 import { db } from '../firebaseConfig';
-import { getRowCountForInfiniteScroll } from '../utils';
+import { getErrorMessage, getRowCountForInfiniteScroll } from '../utils';
 import { InfiniteQueryEmptyReturn } from '../constants';
 import { ApiError } from '../errors';
 
@@ -34,8 +34,8 @@ export async function addDearCard(dearCard: DearCardBase): Promise<string> {
       ...dearCard,
     } as DearCard);
     return cardId;
-  } catch (e: any) {
-    throw new ApiError(e, 'addDearCard');
+  } catch (e: unknown) {
+    throw new ApiError(getErrorMessage(e), 'addDearCard');
   }
 }
 
@@ -75,8 +75,8 @@ export async function getDearCards({
     });
 
     return { data: dearCards, lastVisible };
-  } catch (e: any) {
-    return Promise.reject(new ApiError(e, 'getDearCards', true));
+  } catch (e: unknown) {
+    throw new ApiError(getErrorMessage(e), 'getDearCards', true);
   }
 }
 
@@ -90,7 +90,7 @@ export async function deleteDearCardByCardId(cardId: string): Promise<boolean> {
     await deleteDoc(doc(db, 'cards', cardId));
 
     return true;
-  } catch (e: any) {
-    throw new ApiError(e, 'deleteDearCardByCardId');
+  } catch (e: unknown) {
+    throw new ApiError(getErrorMessage(e), 'deleteDearCardByCardId');
   }
 }

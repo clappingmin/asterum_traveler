@@ -1,7 +1,8 @@
 import { collection, getDocs, limit, orderBy, query, where } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { Album, DearCard, Schedule, SliderImage } from '@asterum/types';
-import { sortSchedule } from '../utils';
+import { getErrorMessage, sortSchedule } from '../utils';
+import { ApiError } from '../errors';
 
 export async function getSchedulesAroundToday() {
   try {
@@ -33,7 +34,10 @@ export async function getSchedulesAroundToday() {
       where('schedule_month', '==', month)
     );
 
-    const [snapshotBymonth, snapshotByAnniversary] = await Promise.all([getDocs(q1), getDocs(q2)]);
+    const [snapshotBymonth, snapshotByAnniversary] = await Promise.all([
+      getDocs(q1),
+      getDocs(q2),
+    ]);
 
     const schedules = new Map();
 
@@ -45,7 +49,9 @@ export async function getSchedulesAroundToday() {
     schedulesArray.sort(sortSchedule);
 
     return schedulesArray;
-  } catch (error) {}
+  } catch (e: unknown) {
+    throw new ApiError(getErrorMessage(e), 'getSchedulesAroundToday', false);
+  }
 }
 
 export async function getDiscography() {
@@ -75,8 +81,8 @@ export async function getDiscography() {
     });
 
     return albums;
-  } catch (e) {
-    return [];
+  } catch (e: unknown) {
+    throw new ApiError(getErrorMessage(e), 'getDiscography', false);
   }
 }
 
@@ -100,9 +106,8 @@ export async function getThreeDearCards(): Promise<DearCard[]> {
     });
 
     return dearCards;
-  } catch (e) {
-    console.log(e);
-    return [];
+  } catch (e: unknown) {
+    throw new ApiError(getErrorMessage(e), 'getThreeDearCards', false);
   }
 }
 
@@ -123,8 +128,7 @@ export async function getViewdSliderImages(): Promise<SliderImage[]> {
     });
 
     return images;
-  } catch (e) {
-    console.log(e);
-    return [];
+  } catch (e: unknown) {
+    throw new ApiError(getErrorMessage(e), 'getViewdSliderImages', false);
   }
 }
