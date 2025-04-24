@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { RefObject, useEffect, useRef } from 'react';
+import React, { RefObject, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import logo from '@/assets/images/logos/logo_small.svg';
 
@@ -10,13 +10,14 @@ const OPTIONS = {
 
 interface InfiniteScrollProps {
   parent?: RefObject<HTMLDivElement | null>;
-  fetchFn: () => {};
+  fetchFn: () => void;
   isLoaded: boolean;
   isLastPage: boolean;
 }
 
 function InfiniteScroll({ parent, fetchFn, isLoaded, isLastPage }: InfiniteScrollProps) {
   const targetRef = useRef(null);
+  const defaultRoot = document.querySelector('#scrollRoot');
 
   useEffect(() => {
     if (!targetRef.current || isLoaded) return;
@@ -27,7 +28,7 @@ function InfiniteScroll({ parent, fetchFn, isLoaded, isLastPage }: InfiniteScrol
           fetchFn();
         }
       },
-      { root: parent ? parent.current : document.querySelector('#scrollRoot'), ...OPTIONS }
+      { root: parent ? parent.current : defaultRoot, ...OPTIONS }
     );
 
     observer.observe(targetRef.current);
@@ -63,4 +64,4 @@ const LoadingIcon = styled(motion.img)`
   margin: 64px 0;
 `;
 
-export default InfiniteScroll;
+export default React.memo(InfiniteScroll);
