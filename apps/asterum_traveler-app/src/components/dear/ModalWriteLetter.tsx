@@ -13,7 +13,8 @@ import * as api from '@/shared/services/dearService';
 import { queryClient } from '@/renderer/PageShell';
 import { motion } from 'framer-motion';
 import { CardInputs } from '@/shared/interfaces/common.interface';
-import { showSuccessToast } from '@/shared/utils';
+import { showErrorToast, showSuccessToast } from '@/shared/utils';
+import { sendMessageToSlack } from '@/shared/errors';
 
 const CARD_COVER_COLORS: CardCoverColor[] = [
   'pink',
@@ -46,6 +47,10 @@ function ModalWriteLetter({ onClose }: ModalWriteLetterProps) {
       queryClient.invalidateQueries({ queryKey: ['cards'] });
       showSuccessToast('카드가 추가되었습니다.');
       onClose();
+    },
+    onError: (error: unknown) => {
+      showErrorToast('카드 저장 중 오류가 발생했습니다.');
+      sendMessageToSlack(error);
     },
   });
 
