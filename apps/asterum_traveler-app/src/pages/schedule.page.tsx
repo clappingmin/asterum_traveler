@@ -40,7 +40,7 @@ function Page() {
         </MonthContainer>
         <HorizontalLine />
         <CalendarWrapper>
-          <FetchErrorBoundary onRetry={() => refetchFn && refetchFn()}>
+          <FetchErrorBoundary onRetry={() => refetchFn?.()}>
             <ScheduleCalendar month={selectedMonth} onRefetch={setRefetchFn} />
           </FetchErrorBoundary>
         </CalendarWrapper>

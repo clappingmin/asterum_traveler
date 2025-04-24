@@ -22,7 +22,7 @@ function Page() {
       <WriteButtonWrapper>
         <WriteLetterButton />
       </WriteButtonWrapper>
-      <FetchErrorBoundary onRetry={() => refetchFn && refetchFn()}>
+      <FetchErrorBoundary onRetry={() => refetchFn?.()}>
         <LettersView onRefetch={setRefetchFn} />
       </FetchErrorBoundary>
     </Wrapper>
