@@ -12,6 +12,7 @@ import ModalLetterDetail from '@/components/dear/ModalLetterDetail';
 import { CardCoverColor, DearCard } from '@asterum/types';
 import { timestampToDisplayDate } from '@/shared/utils';
 import { motion } from 'framer-motion';
+import React from 'react';
 
 const CARD_IMAGES = {
   pink: img_card_pink,
@@ -124,4 +125,4 @@ const CardContent = styled.div`
   line-height: 32px;
 `;
 
-export default Card;
+export default React.memo(Card);
