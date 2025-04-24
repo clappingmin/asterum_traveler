@@ -4,18 +4,18 @@ import { sendMessageToSlack } from '@/shared/errors';
 
 class GlobalErrorBoundary extends Component<
   { children: ReactNode },
-  { hasError?: boolean; error: any }
+  { hasError?: boolean; error: unknown }
 > {
   constructor(props: { children: ReactNode }) {
     super(props);
     this.state = { hasError: false, error: null };
   }
 
-  static getDerivedStateFromError(error: any) {
+  static getDerivedStateFromError(error: unknown) {
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: any, errorInfo: React.ErrorInfo) {
+  componentDidCatch(error: unknown, errorInfo: React.ErrorInfo) {
     console.error('UI 렌더링 중 에러 발생:', error, errorInfo);
     sendMessageToSlack(error);
   }

@@ -4,18 +4,18 @@ import styled from 'styled-components';
 
 class FetchErrorBoundary extends Component<
   { children: ReactNode; onRetry?: () => void },
-  { hasError?: boolean; error: any }
+  { hasError?: boolean; error: unknown }
 > {
   constructor(props: { children: ReactNode; onRetry?: () => void }) {
     super(props);
     this.state = { hasError: false, error: null };
   }
 
-  static getDerivedStateFromError(error: any) {
+  static getDerivedStateFromError(error: unknown) {
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: any, errorInfo: React.ErrorInfo) {
+  componentDidCatch(error: unknown, errorInfo: React.ErrorInfo) {
     console.error('Data Fetch 중 에러 발생:', error, errorInfo);
     sendMessageToSlack(error);
   }
