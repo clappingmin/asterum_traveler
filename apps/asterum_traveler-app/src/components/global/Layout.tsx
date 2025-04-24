@@ -6,6 +6,7 @@ import Header from "@/components/global/Header";
 import Footer from "@/components/global/Footer";
 import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "@asterum/ui";
+import { debounce } from "lodash";
 
 /**
  * 화면 크기가 변경됐을 때
@@ -35,7 +36,7 @@ function Layout({ children }: LayoutProps) {
 
   useEffect(() => {
     handleResize(wrapperRef);
-    const handleResizeEvent = () => handleResize(wrapperRef);
+    const handleResizeEvent = debounce(() => handleResize(wrapperRef), 200);
     window.addEventListener("resize", handleResizeEvent);
 
     return () => {
