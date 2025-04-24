@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { getListMinHeight } from '@/shared/utils';
 
 interface LettersViewProps {
-  onRefetch?: (fn: () => Promise<any>) => void;
+  onRefetch?: (fn: () => Promise<unknown>) => void;
 }
 
 function LettersView({ onRefetch }: LettersViewProps) {

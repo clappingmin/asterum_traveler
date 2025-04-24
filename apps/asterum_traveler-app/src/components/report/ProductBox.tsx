@@ -22,7 +22,7 @@ const MEMBER_ICON = {
 
 interface ProductBoxProps {
   includedProduct: IncludedProduct;
-  onRefetch?: (fn: () => Promise<any>) => void;
+  onRefetch?: (fn: () => Promise<unknown>) => void;
 }
 
 function ProductBox({ includedProduct: { productId, members }, onRefetch }: ProductBoxProps) {
@@ -62,20 +62,17 @@ function ProductBox({ includedProduct: { productId, members }, onRefetch }: Prod
         <ProductName className="text-overflow-2">{data?.productName}</ProductName>
         <BrandName className="text-overflow-1">{data?.productBrand}</BrandName>
         <MemberIconsContainer data-testid="members-container">
-          {sortMembers(members).map(
-            (member, index) =>
-              members.includes(member) && (
-                <MemberIconBox key={`productMember-${index}-${member}`} data-testid={member}>
-                  <MemberIcon
-                    width={28}
-                    height={28}
-                    src={MEMBER_ICON[member]}
-                    alt={`플레이브 ${MEMBER_KOREAN_NAME[member]} 대표 아이콘`}
-                  />
-                  {index !== members.length - 1 && <span>,</span>}
-                </MemberIconBox>
-              )
-          )}
+          {sortMembers(members).map((member, index) => (
+            <MemberIconBox key={`productMember-${index}-${member}`} data-testid={member}>
+              <MemberIcon
+                width={28}
+                height={28}
+                src={MEMBER_ICON[member]}
+                alt={`플레이브 ${MEMBER_KOREAN_NAME[member]} 대표 아이콘`}
+              />
+              {index !== members.length - 1 && <span>,</span>}
+            </MemberIconBox>
+          ))}
         </MemberIconsContainer>
       </ProductInfoBox>
     </Wrapper>

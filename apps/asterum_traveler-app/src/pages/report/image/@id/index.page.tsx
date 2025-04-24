@@ -2,25 +2,31 @@ import styled from 'styled-components';
 import MemberBox from '@/components/report/MemberBox';
 import ProductBox from '@/components/report/ProductBox';
 import { Report } from '@asterum/types';
-import { ALL_MEMBERS } from '@/shared/constants';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import FetchErrorBoundary from '@/components/global/error/FetchErrorBoundary';
 import { useQuery } from '@tanstack/react-query';
 import * as api from '@/shared/services/reportService';
 import { usePageContext } from '@/renderer/usePageContext';
-import { goToNotFound } from '@/shared/utils';
+import { goToNotFound, sortMembers } from '@/shared/utils';
 import LoadingDim from '@/components/global/LoadingDim';
 
 function Page() {
+  const [loaded, setLoaded] = useState<boolean>(false);
+  const [refetchFn, setRefetchFn] = useState<(() => Promise<unknown>) | null>(null);
   const { urlPathname } = usePageContext();
+  const segments = urlPathname.split('/');
+  const pageId = segments.length >= 4 ? segments[3] : null;
 
-  const pageId = urlPathname.split('/')[3];
   if (!pageId) goToNotFound();
 
   const { data, isLoading, error, isError } = useQuery<Report>({
     queryKey: ['report', pageId],
     queryFn: async () => {
+      if (!pageId) {
+        goToNotFound();
+        return Promise.reject('pageId Error');
+      }
       return await api.getReportById(pageId);
     },
     retry: false,
@@ -32,9 +38,6 @@ function Page() {
     goToNotFound();
     return;
   }
-
-  const [loaded, setLoaded] = useState<boolean>(false);
-  const [refetchFn, setRefetchFn] = useState<(() => Promise<any>) | null>(null);
 
   return (
     <>
@@ -54,11 +57,10 @@ function Page() {
 
         <InfoContainer>
           <Members>
-            {ALL_MEMBERS.map((member) => {
-              return (
-                data?.reportMembers.includes(member) && <MemberBox key={member} member={member} />
-              );
-            })}
+            {data?.reportMembers &&
+              sortMembers(data?.reportMembers).map((member) => (
+                <MemberBox key={member} member={member} />
+              ))}
           </Members>
           <UpdateInfo className="text-overflow-1">{data?.reportDateDisplay}</UpdateInfo>
           <TagBox>
@@ -66,7 +68,7 @@ function Page() {
               <Tag key={`tag-${index}`}>#{tag}</Tag>
             ))}
           </TagBox>
-          <FetchErrorBoundary onRetry={() => refetchFn && refetchFn()}>
+          <FetchErrorBoundary onRetry={() => refetchFn?.()}>
             <ProductContainer>
               {data?.includedProducts.map((product) => {
                 return (

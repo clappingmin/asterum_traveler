@@ -1,7 +1,7 @@
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { Schedule } from '@asterum/types';
-import { sortSchedule } from '../utils';
+import { getErrorMessage, sortSchedule } from '../utils';
 import { ApiError } from '../errors';
 
 export async function getSchedulesByDate(targetDate: Date) {
@@ -44,7 +44,10 @@ export async function getSchedulesByDate(targetDate: Date) {
       where('schedule_month', '==', month)
     );
 
-    const [snapshotBymonth, snapshotByAnniversary] = await Promise.all([getDocs(q1), getDocs(q2)]);
+    const [snapshotBymonth, snapshotByAnniversary] = await Promise.all([
+      getDocs(q1),
+      getDocs(q2),
+    ]);
 
     const schedules = new Map();
 
@@ -56,7 +59,7 @@ export async function getSchedulesByDate(targetDate: Date) {
     schedulesArray.sort(sortSchedule);
 
     return schedulesArray;
-  } catch (e: any) {
-    return Promise.reject(new ApiError(e, 'getSchedulesByDate', true));
+  } catch (e: unknown) {
+    throw new ApiError(getErrorMessage(e), 'getSchedulesByDate', true);
   }
 }

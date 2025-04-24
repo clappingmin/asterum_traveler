@@ -2,25 +2,32 @@ import styled from 'styled-components';
 import MemberBox from '@/components/report/MemberBox';
 import ProductBox from '@/components/report/ProductBox';
 import { Report } from '@asterum/types';
-import { ALL_MEMBERS } from '@/shared/constants';
 import { useState } from 'react';
 import FetchErrorBoundary from '@/components/global/error/FetchErrorBoundary';
 import { usePageContext } from '@/renderer/usePageContext';
-import { goToNotFound } from '@/shared/utils';
+import { goToNotFound, sortMembers } from '@/shared/utils';
 import { useQuery } from '@tanstack/react-query';
 import * as api from '@/shared/services/reportService';
 import LoadingDim from '@/components/global/LoadingDim';
 import { motion } from 'framer-motion';
 
 function Page() {
+  const [loaded, setLoaded] = useState<boolean>(false);
+  const [refetchFn, setRefetchFn] = useState<(() => Promise<unknown>) | null>(null);
   const { urlPathname } = usePageContext();
 
-  const pageId = urlPathname.split('/')[3];
+  const segments = urlPathname.split('/');
+  const pageId = segments.length >= 4 ? segments[3] : null;
+
   if (!pageId) goToNotFound();
 
   const { data, isLoading, error, isError } = useQuery<Report>({
     queryKey: ['report', pageId],
     queryFn: async () => {
+      if (!pageId) {
+        goToNotFound();
+        return Promise.reject('pageId Error');
+      }
       return await api.getReportById(pageId);
     },
     retry: false,
@@ -32,9 +39,6 @@ function Page() {
     goToNotFound();
     return;
   }
-
-  const [loaded, setLoaded] = useState<boolean>(false);
-  const [refetchFn, setRefetchFn] = useState<(() => Promise<any>) | null>(null);
 
   return (
     <>
@@ -56,14 +60,13 @@ function Page() {
           <LiveTitle className="text-overflow-2">{data?.liveTitle}</LiveTitle>
           <LiveDate>{data?.reportDateDisplay}</LiveDate>
           <LiveMembers>
-            {ALL_MEMBERS.map((member) => {
-              return (
-                data?.reportMembers.includes(member) && <MemberBox key={member} member={member} />
-              );
-            })}
+            {data?.reportMembers &&
+              sortMembers(data?.reportMembers).map((member) => (
+                <MemberBox key={member} member={member} />
+              ))}
           </LiveMembers>
         </LiveContainer>
-        <FetchErrorBoundary onRetry={() => refetchFn && refetchFn()}>
+        <FetchErrorBoundary onRetry={() => refetchFn?.()}>
           <ProductContainer>
             {data?.includedProducts.map((product) => {
               return (

@@ -7,7 +7,16 @@ import ReportListView from '@/components/report/ReportListView';
 
 function Page() {
   const [category, setCategory] = useState<ReportCategory | 'all'>('all');
-  const [refetchFn, setRefetchFn] = useState<(() => Promise<any>) | null>(null);
+  const [refetchFn, setRefetchFn] = useState<(() => Promise<unknown>) | null>(null);
+
+  const categories: { label: string; value: ReportCategory | 'all' }[] = [
+    { label: 'All', value: 'all' },
+    { label: 'Album', value: 'album' },
+    { label: 'Fashion', value: 'fashion' },
+    { label: 'Game', value: 'game' },
+    { label: 'Live', value: 'live' },
+    { label: 'etc.', value: 'etc' },
+  ];
 
   return (
     <Wrapper>
@@ -22,58 +31,15 @@ function Page() {
       </TitleContainer>
       <TabContainer>
         <Tabs>
-          <Tab
-            isSelected={category === 'all'}
-            onClick={() => {
-              setCategory('all');
-            }}
-          >
-            All
-          </Tab>
-          <Tab
-            isSelected={category === 'album'}
-            onClick={() => {
-              setCategory('album');
-            }}
-          >
-            Album
-          </Tab>
-          <Tab
-            isSelected={category === 'fashion'}
-            onClick={() => {
-              setCategory('fashion');
-            }}
-          >
-            Fashion
-          </Tab>
-          <Tab
-            isSelected={category === 'game'}
-            onClick={() => {
-              setCategory('game');
-            }}
-          >
-            Game
-          </Tab>
-          <Tab
-            isSelected={category === 'live'}
-            onClick={() => {
-              setCategory('live');
-            }}
-          >
-            Live
-          </Tab>
-          <Tab
-            isSelected={category === 'etc'}
-            onClick={() => {
-              setCategory('etc');
-            }}
-          >
-            etc.
-          </Tab>
+          {categories.map(({ label, value }) => (
+            <Tab key={value} isSelected={category === value} onClick={() => setCategory(value)}>
+              {label}
+            </Tab>
+          ))}
         </Tabs>
         <HorizontalLine />
       </TabContainer>
-      <FetchErrorBoundary onRetry={() => refetchFn && refetchFn()}>
+      <FetchErrorBoundary onRetry={() => refetchFn?.()}>
         <ReportListView category={category} onRefetch={setRefetchFn} />
       </FetchErrorBoundary>
     </Wrapper>

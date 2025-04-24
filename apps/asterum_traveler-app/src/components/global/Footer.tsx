@@ -4,6 +4,7 @@ import X from '@/assets/images/social/x.png';
 import Youtube from '@/assets/images/social/youtube.png';
 import DaumCafe from '@/assets/images/social/daum_cafe.png';
 import Weverse from '@/assets/images/social/weverse.png';
+import React from 'react';
 
 function Footer() {
   return (
@@ -157,4 +158,4 @@ const SocialIcon = styled.img`
   height: 24px;
 `;
 
-export default Footer;
+export default  React.memo(Footer);

@@ -1,6 +1,6 @@
 import { SliderImage } from '@asterum/types';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 interface CarouselImgProps {
@@ -10,14 +10,12 @@ function CarouselImg({ image }: CarouselImgProps) {
   const [loaded, setLoaded] = useState<boolean>(false);
 
   return (
-    <Imgae
+    <Image
       src={image.imageUrl}
       width={1920}
       height={1080}
       alt="ASTERUM TRAVELER 슬라이더 이미지"
-      onLoad={() => {
-        setLoaded(true);
-      }}
+      onLoad={() => setLoaded(true)}
       initial={{ opacity: 0 }}
       animate={{ opacity: loaded ? 1 : 0 }}
       transition={{ duration: 0.7 }}
@@ -25,10 +23,10 @@ function CarouselImg({ image }: CarouselImgProps) {
   );
 }
 
-const Imgae = styled(motion.img)`
+const Image = styled(motion.img)`
   width: 1920px;
   height: 1080px;
   object-fit: cover;
 `;
 
-export default CarouselImg;
+export default React.memo(CarouselImg);

@@ -74,7 +74,20 @@ export function showSuccessToast(message: string = '요청이 성공적으로 �
   });
 }
 
+export function showErrorToast(message: string = '요청을 처리하는 중 오류가 발생했습니다.') {
+  toast({
+    description: message,
+    status: 'error',
+    duration: 4000,
+    isClosable: true,
+  });
+}
+
 export function goToNotFound() {
   if (typeof window !== 'undefined') window.location.href = '/_error';
   return;
+}
+
+export function getErrorMessage(e: unknown): string {
+  return e instanceof Error ? e.message : String(e);
 }

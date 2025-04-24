@@ -1,7 +1,7 @@
 import { Link } from '@/renderer/Link';
 import { Report } from '@asterum/types';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 interface PostBoxProps {
@@ -37,7 +37,7 @@ function PostBox({ report }: PostBoxProps) {
   );
 }
 
-export default PostBox;
+export default React.memo(PostBox);
 
 const Wrapper = styled(motion.div)`
   width: 100%;
