@@ -10,7 +10,7 @@ const YEAR = TODAY.getFullYear();
 
 function Page() {
   const [selectedMonth, setSelectedMonth] = useState(TODAY.getMonth() + 1);
-  const [refetchFn, setRefetchFn] = useState<(() => Promise<any>) | null>(null);
+  const [refetchFn, setRefetchFn] = useState<(() => Promise<unknown>) | null>(null);
 
   return (
     <>
