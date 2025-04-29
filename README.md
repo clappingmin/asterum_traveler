@@ -1,11 +1,10 @@
 # ASTERUM TRAVELER
 
-_PLAVE 팬을 위한 팬페이지 아카이브 웹앱_
+_PLAVE 팬을 위한 팬페이지_
 
 ## 소개
 
-**Asterum Traveler**는 K-pop 그룹 **PLAVE**의 활동 기록, 스케줄, 영상, 기념일 등을  
-감각적으로 정리한 **PLAVE 팬 아카이브 웹사이트**입니다.
+**Asterum Traveler**는 K-pop 그룹 **PLAVE**의 활동 기록, 스케줄, 영상, 기념일 등을 정리한 **PLAVE 팬 웹사이트**입니다.
 [👉 바로가기](https://www.asterumtraveler.kr/)
 
 
